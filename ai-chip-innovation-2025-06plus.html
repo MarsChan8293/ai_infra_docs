@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b19">
+  <title>下一代推理芯片新路径｜架构推导 × 十家厂商</title>
+  <meta name="description" content="用 ELI5 方式解释 Retrieval Plane，并从 2025 年 6 月后十家 AI 芯片厂商的公开设计中寻找可借鉴的架构零件。">
+  <style>
+    :root {
+      --ink: #14201d;
+      --ink-2: #25352f;
+      --muted: #6f7c75;
+      --paper: #f4f0e7;
+      --paper-2: #ebe5d8;
+      --card: #fffdf8;
+      --line: rgba(20, 32, 29, .14);
+      --teal: #177d6c;
+      --teal-dark: #0d5d52;
+      --coral: #df6346;
+      --amber: #d5a13d;
+      --blue: #4777a8;
+      --violet: #765899;
+      --shadow: 0 16px 42px rgba(25, 35, 30, .10);
+      --display: "Iowan Old Style", "Baskerville", "Songti SC", "STSong", serif;
+      --sans: "Avenir Next", "PingFang SC", "Helvetica Neue", sans-serif;
+      --mono: "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(213,161,61,.14), transparent 28rem),
+        linear-gradient(180deg, #f8f4ec 0%, var(--paper) 48%, #ede8dd 100%);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    ::selection { color: #fffaf0; background: var(--coral); }
+    .progress { position: fixed; inset: 0 0 auto 0; z-index: 30; height: 4px; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, var(--coral), var(--amber), var(--teal)); }
+    .site-nav { position: sticky; top: 0; z-index: 20; color: #edf1e8; background: rgba(16,27,25,.94); border-bottom: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(16px); }
+    .nav-inner { width: min(1220px, calc(100% - 40px)); min-height: 58px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; color: #fffdf8; font-size: 12px; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.55); color: var(--amber); font-family: var(--mono); font-size: 10px; transform: rotate(45deg); }
+    .brand-mark span { transform: rotate(-45deg); }
+    .nav-links { display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { padding: 8px 10px; border-radius: 999px; color: #bac7be; font-size: 12px; text-decoration: none; white-space: nowrap; transition: .2s ease; }
+    .nav-links a:hover, .nav-links a.active { color: #fffdf8; background: rgba(255,255,255,.11); }
+    .hero { position: relative; isolation: isolate; overflow: hidden; color: #f6f2e9; background: radial-gradient(circle at 85% 18%, rgba(223,99,70,.28), transparent 25rem), radial-gradient(circle at 8% 88%, rgba(23,125,108,.30), transparent 27rem), #101b19; }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .18; background-image: linear-gradient(rgba(255,255,255,.11) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.11) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(120deg, black, transparent 85%); }
+    .hero-inner { width: min(1220px, calc(100% - 40px)); min-height: 610px; margin: 0 auto; padding: 82px 0 76px; display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(360px, .98fr); align-items: center; gap: 62px; }
+    .eyebrow { margin: 0 0 18px; color: var(--amber); font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 500; letter-spacing: -.035em; }
+    h1 { max-width: 760px; margin-bottom: 24px; font-size: clamp(48px, 7vw, 92px); line-height: .98; }
+    .hero-lede { max-width: 700px; margin-bottom: 28px; color: #c8d1c9; font-size: 18px; line-height: 1.72; }
+    .hero-lede strong { color: #fffdf8; font-weight: 600; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 9px; color: #aab8af; font-size: 12px; }
+    .meta-chip { padding: 6px 11px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; }
+    .orbit-figure { position: relative; min-height: 370px; display: grid; place-items: center; }
+    .orbit-figure::before { content: ""; position: absolute; width: 350px; height: 350px; border: 1px dashed rgba(213,161,61,.48); border-radius: 50%; transform: rotate(-16deg); }
+    .orbit-figure::after { content: ""; position: absolute; width: 9px; height: 9px; top: 55px; left: 28%; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 9px rgba(213,161,61,.10), 0 0 24px rgba(213,161,61,.72); }
+    .chip-stack { position: relative; width: min(430px, 94%); padding: 23px; border: 1px solid rgba(255,255,255,.22); border-radius: 24px; background: rgba(9,22,19,.76); box-shadow: 0 25px 70px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.08); transform: rotate(2deg); }
+    .chip-caption { display: flex; justify-content: space-between; margin-bottom: 18px; color: #91a29a; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .chip-stack h2 { max-width: none; margin-bottom: 14px; color: #fffdf8; font-size: 28px; line-height: 1.08; }
+    .chip-stack p { margin-bottom: 18px; color: #b8c5bd; font-size: 13px; }
+    .flow-row { display: flex; flex-wrap: wrap; gap: 7px; }
+    .flow-row span { padding: 5px 8px; border: 1px solid rgba(255,255,255,.17); border-radius: 5px; color: #e6eee6; font-family: var(--mono); font-size: 10px; }
+    .flow-row span:nth-child(2n) { color: #f3c86b; }
+    main { overflow: hidden; }
+    .section { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 98px 0 18px; scroll-margin-top: 78px; }
+    .section-header { display: grid; grid-template-columns: 98px minmax(0,1fr); gap: 24px; align-items: start; margin-bottom: 38px; }
+    .section-num { padding-top: 8px; color: var(--coral); font-family: var(--mono); font-size: 11px; letter-spacing: .12em; }
+    h2 { max-width: 860px; margin-bottom: 12px; font-size: clamp(34px, 5vw, 62px); line-height: 1.04; }
+    .section-intro { max-width: 780px; margin-bottom: 0; color: var(--muted); font-size: 17px; }
+    .rule { width: 100%; height: 1px; margin: 74px 0 0; background: var(--line); }
+    .callout { padding: 22px 26px; border-left: 4px solid var(--coral); border-radius: 0 14px 14px 0; background: rgba(255,253,248,.68); box-shadow: 0 10px 30px rgba(25,35,30,.05); }
+    .callout strong { color: var(--teal-dark); }
+    .callout p:last-child { margin-bottom: 0; }
+    .callout.emphasis { border-color: var(--teal); background: rgba(23,125,108,.09); }
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .story-card { position: relative; min-height: 210px; padding: 24px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,253,248,.78); box-shadow: 0 10px 24px rgba(25,35,30,.045); }
+    .story-card::after { content: attr(data-step); position: absolute; right: 12px; bottom: -20px; color: rgba(20,32,29,.045); font-family: var(--display); font-size: 112px; line-height: 1; }
+    .story-label { display: block; margin-bottom: 18px; color: var(--coral); font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .story-card h3 { position: relative; z-index: 1; margin-bottom: 10px; font-size: 26px; line-height: 1.12; }
+    .story-card p { position: relative; z-index: 1; margin: 0; color: #58675f; font-size: 14px; }
+    .pipeline-scroll { margin-top: 18px; overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,253,248,.72); box-shadow: 0 10px 24px rgba(25,35,30,.045); }
+    .system-pipeline { min-width: 940px; display: grid; grid-template-columns: repeat(8, 1fr); }
+    .pipeline-step { position: relative; min-height: 118px; padding: 21px 16px 17px; border-right: 1px solid var(--line); }
+    .pipeline-step:last-child { border-right: 0; }
+    .pipeline-step::after { content: "→"; position: absolute; z-index: 2; top: 47px; right: -8px; width: 16px; height: 20px; color: var(--coral); background: var(--card); font-family: var(--mono); text-align: center; }
+    .pipeline-step:last-child::after { display: none; }
+    .pipeline-step b { display: block; margin-bottom: 7px; font-family: var(--mono); font-size: 11px; font-weight: 600; }
+    .pipeline-step span { color: var(--muted); font-size: 11px; }
+    .pipeline-step.compute { box-shadow: inset 0 3px var(--blue); }
+    .pipeline-step.select { box-shadow: inset 0 3px var(--amber); }
+    .pipeline-step.move { box-shadow: inset 0 3px var(--teal); }
+    .before-after { display: grid; grid-template-columns: 1fr 64px 1fr; gap: 18px; align-items: stretch; margin-top: 18px; }
+    .compare-card { padding: 24px; border: 1px solid rgba(223,99,70,.24); border-radius: 18px; background: rgba(223,99,70,.055); }
+    .compare-card.after { border-color: rgba(23,125,108,.25); background: rgba(23,125,108,.075); }
+    .compare-card h3 { margin-bottom: 11px; font-size: 27px; }
+    .compare-card ul { margin: 0; padding-left: 19px; color: #58675f; font-size: 13px; }
+    .compare-card li { margin: 6px 0; }
+    .compare-arrow { display: grid; place-items: center; color: var(--coral); font-family: var(--display); font-size: 46px; }
+    .architecture-shell { overflow: hidden; border: 1px solid rgba(20,32,29,.18); border-radius: 24px; background: #14231f; box-shadow: var(--shadow); }
+    .architecture-head { padding: 22px 25px; color: #f5efe6; border-bottom: 1px solid rgba(255,255,255,.12); background: linear-gradient(110deg, #14231f, #23473d); }
+    .architecture-head span { color: var(--amber); font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .architecture-head h3 { margin: 7px 0 0; color: #fffdf8; font-size: 30px; }
+    .plane-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,.12); }
+    .plane-card { min-height: 240px; padding: 27px; color: #d7e1d9; background: #172d27; }
+    .plane-card.retrieval { background: #21372f; }
+    .plane-card h4 { margin: 0 0 8px; color: #fffdf8; font-family: var(--display); font-size: 29px; font-weight: 500; }
+    .plane-card p { margin-bottom: 18px; color: #adbbb2; font-size: 13px; }
+    .primitive-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .primitive-list span { padding: 6px 9px; border: 1px solid rgba(255,255,255,.16); border-radius: 6px; color: #e6eee8; font-family: var(--mono); font-size: 10px; }
+    .plane-card.retrieval .primitive-list span { color: #f1c969; border-color: rgba(213,161,61,.27); }
+    .shared-rail { padding: 17px 25px; color: #c9d6cd; border-top: 1px solid rgba(255,255,255,.12); background: #0f1c19; }
+    .shared-rail b { margin-right: 10px; color: var(--amber); font-family: var(--mono); font-size: 11px; }
+    .shared-rail span { font-size: 12px; }
+    .candidate-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 18px; }
+    .candidate-flow span { padding: 7px 10px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink-2); background: rgba(255,253,248,.8); font-family: var(--mono); font-size: 10px; }
+    .candidate-flow i { color: var(--coral); font-family: var(--mono); font-style: normal; }
+    .arch-tabs { margin-top: 20px; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: rgba(255,253,248,.74); }
+    .arch-tab-buttons { display: flex; gap: 1px; padding: 7px; background: var(--paper-2); }
+    .arch-tab-button { flex: 1; padding: 10px 14px; border: 0; border-radius: 10px; color: var(--muted); background: transparent; cursor: pointer; font: inherit; font-family: var(--mono); font-size: 11px; }
+    .arch-tab-button[aria-selected="true"] { color: #fffdf8; background: var(--teal); }
+    .arch-tab-panel { min-height: 180px; padding: 25px; }
+    .arch-tab-panel h3 { margin-bottom: 7px; font-size: 28px; }
+    .arch-tab-panel p { max-width: 850px; margin-bottom: 11px; color: #58675f; }
+    .equation { display: inline-block; padding: 7px 10px; border-radius: 7px; color: var(--teal-dark); background: rgba(23,125,108,.09); font-family: var(--mono); font-size: 11px; }
+    .build-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .build-card { position: relative; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,253,248,.78); }
+    .build-level { display: inline-grid; min-width: 42px; height: 28px; place-items: center; margin-bottom: 14px; border-radius: 999px; color: #fffdf8; background: var(--teal); font-family: var(--mono); font-size: 10px; }
+    .build-card:nth-child(2) .build-level { background: var(--coral); }
+    .build-card:nth-child(3) .build-level { color: var(--ink); background: var(--amber); }
+    .build-card h3 { margin-bottom: 8px; font-size: 25px; }
+    .build-card p { margin: 0; color: #58675f; font-size: 13px; }
+    .metric-band { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .metric-band span { padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--teal-dark); background: rgba(23,125,108,.06); font-family: var(--mono); font-size: 10px; }
+    .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+    .decision-card { padding: 20px; border: 1px solid rgba(23,125,108,.25); border-radius: 16px; background: rgba(23,125,108,.08); }
+    .decision-card.no-go { border-color: rgba(223,99,70,.24); background: rgba(223,99,70,.06); }
+    .decision-card b { display: block; margin-bottom: 5px; color: var(--teal-dark); font-family: var(--mono); font-size: 11px; }
+    .decision-card.no-go b { color: #a74731; }
+    .decision-card p { margin: 0; color: #58675f; font-size: 13px; }
+    .pitfall-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 18px; }
+    .pitfall-item { padding: 17px; border-top: 3px solid var(--coral); border-radius: 8px 8px 14px 14px; background: rgba(255,253,248,.7); }
+    .pitfall-item h3 { margin-bottom: 6px; font-size: 20px; }
+    .pitfall-item p { margin: 0; color: #58675f; font-size: 12px; }
+    .term-index { margin-top: 18px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,253,248,.72); }
+    .term-index summary { padding: 16px 20px; }
+    .term-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; padding: 1px; background: var(--line); }
+    .term-item { padding: 15px 18px; background: var(--card); }
+    .term-item dt { margin-bottom: 3px; color: var(--teal-dark); font-family: var(--mono); font-size: 11px; }
+    .term-item dd { margin: 0; color: #58675f; font-size: 12px; }
+    .overview-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .stat-card, .card { position: relative; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,253,248,.78); box-shadow: 0 10px 24px rgba(25,35,30,.045); }
+    .stat-card::before { content: ""; position: absolute; top: 0; left: 22px; width: 42px; height: 3px; border-radius: 0 0 5px 5px; background: var(--coral); }
+    .stat-card:nth-child(2)::before { background: var(--teal); }
+    .stat-card:nth-child(3)::before { background: var(--amber); }
+    .stat-card:nth-child(4)::before { background: var(--blue); }
+    .stat-label { display: block; margin-bottom: 11px; color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .stat-card strong { display: block; margin-bottom: 6px; font-family: var(--display); font-size: 31px; line-height: 1.1; }
+    .stat-card p { margin: 0; color: #58675f; font-size: 13px; }
+    .filter-bar { position: sticky; top: 64px; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin: 0 0 26px; padding: 13px; border: 1px solid var(--line); border-radius: 16px; background: rgba(244,240,231,.90); backdrop-filter: blur(12px); }
+    .filter-button { padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); background: rgba(255,253,248,.8); cursor: pointer; font: inherit; font-size: 12px; transition: .2s ease; }
+    .filter-button:hover, .filter-button.active { border-color: var(--teal); color: #fffdf8; background: var(--teal); }
+    .search-box { min-width: 190px; flex: 1; margin-left: auto; padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); background: #fffdf8; font: inherit; font-size: 12px; outline: none; }
+    .search-box:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(23,125,108,.13); }
+    .matrix-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,253,248,.78); box-shadow: 0 10px 24px rgba(25,35,30,.045); }
+    .matrix { width: 100%; min-width: 1120px; border-collapse: collapse; font-size: 13px; }
+    .matrix th { padding: 14px 16px; color: #f6f2e9; background: var(--ink); font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .08em; text-align: left; text-transform: uppercase; }
+    .matrix td { padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .matrix tr:last-child td { border-bottom: 0; }
+    .matrix tr:hover td { background: rgba(23,125,108,.055); }
+    .matrix .chip-name { font-family: var(--display); font-size: 19px; }
+    .matrix .vendor-name { color: var(--muted); font-size: 12px; }
+    .matrix .innovation-name { max-width: 210px; color: var(--teal-dark); font-weight: 600; line-height: 1.45; }
+    .tag { display: inline-block; padding: 3px 8px; border-radius: 999px; color: #fffdf8; font-family: var(--mono); font-size: 10px; white-space: nowrap; }
+    .tag.gpu { background: var(--blue); } .tag.sparse { background: var(--teal); } .tag.memory { background: var(--coral); } .tag.dataflow { background: var(--violet); } .tag.wafer { background: #8d6b27; } .tag.tensor { background: #4a7c64; }
+    .status { color: var(--teal-dark); font-size: 12px; } .status.announced { color: #9b6a13; } .status.boundary { color: var(--coral); }
+    .score-pill { display: inline-flex; min-width: 42px; justify-content: center; padding: 4px 8px; border: 1px solid rgba(23,125,108,.25); border-radius: 999px; color: var(--teal-dark); background: rgba(23,125,108,.08); font-family: var(--mono); font-size: 11px; }
+    .vendor-list { display: grid; gap: 24px; }
+    .vendor-card { position: relative; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; background: rgba(255,253,248,.78); box-shadow: var(--shadow); }
+    .vendor-card[hidden] { display: none; }
+    .vendor-head { display: grid; grid-template-columns: minmax(0,1fr) 260px; gap: 26px; padding: 28px 30px 24px; color: #f6f2e9; background: linear-gradient(120deg, #15241f, #213e35 62%, #264b41); }
+    .vendor-head h3 { margin-bottom: 8px; color: #fffdf8; font-size: clamp(28px, 3.5vw, 44px); line-height: 1.04; }
+    .vendor-head p { max-width: 720px; margin-bottom: 0; color: #c3d1c8; font-size: 15px; }
+    .vendor-index { align-self: start; padding: 16px; border: 1px solid rgba(255,255,255,.18); border-radius: 16px; background: rgba(0,0,0,.15); }
+    .vendor-index-label { color: #9fb3a6; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .vendor-score { display: flex; align-items: end; gap: 7px; margin-top: 6px; color: #fffdf8; font-family: var(--display); font-size: 46px; line-height: 1; }
+    .vendor-score small { margin-bottom: 5px; color: #aab8af; font-family: var(--sans); font-size: 12px; }
+    .vendor-body { padding: 28px 30px 30px; }
+    .vendor-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 24px; }
+    .meta-line { padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 11px; }
+    .vendor-grid { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(280px,.9fr); gap: 24px; }
+    .plain-panel { padding: 20px; border-radius: 16px; background: rgba(23,125,108,.075); }
+    .plain-panel h4, .score-panel h4, .mapping-panel h4 { margin-bottom: 8px; color: var(--teal-dark); font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .plain-panel .lead { margin-bottom: 11px; color: var(--ink); font-family: var(--display); font-size: 24px; line-height: 1.25; }
+    .plain-panel p:last-child { margin-bottom: 0; }
+    .score-panel, .mapping-panel { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,253,248,.7); }
+    .innovation-panel { margin-top: 24px; overflow: hidden; border: 1px solid rgba(20,32,29,.18); border-radius: 20px; background: rgba(255,253,248,.82); box-shadow: 0 12px 28px rgba(25,35,30,.06); }
+    .innovation-top { display: grid; grid-template-columns: 150px minmax(0,1fr); gap: 22px; align-items: start; padding: 23px 24px; color: #f7f2e9; background: linear-gradient(115deg, #14231f, #21483d 72%, #2b594b); }
+    .innovation-kicker { padding-top: 5px; color: var(--amber); font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .innovation-top h4 { margin: 0 0 7px; color: #fffdf8; font-family: var(--display); font-size: clamp(27px, 3vw, 38px); font-weight: 500; letter-spacing: -.025em; line-height: 1.08; }
+    .innovation-top p { max-width: 820px; margin: 0; color: #c2d0c7; font-size: 14px; }
+    .innovation-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+    .innovation-stage { position: relative; min-height: 190px; padding: 21px 22px 23px; background: rgba(255,253,248,.94); }
+    .innovation-stage::before { content: attr(data-stage); display: block; margin-bottom: 14px; color: var(--coral); font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    .innovation-stage:nth-child(2)::before { color: var(--teal); }
+    .innovation-stage:nth-child(3)::before { color: #9b6a13; }
+    .innovation-stage h5 { margin: 0 0 8px; color: var(--ink); font-family: var(--display); font-size: 21px; font-weight: 500; }
+    .innovation-stage p { margin: 0; color: #58675f; font-size: 13px; }
+    .innovation-support { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(280px,.8fr); gap: 18px; align-items: start; padding: 19px 22px 21px; border-top: 1px solid var(--line); background: rgba(244,240,231,.64); }
+    .innovation-support-label { display: block; margin-bottom: 9px; color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .innovation-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .innovation-chip { padding: 5px 8px; border: 1px solid rgba(23,125,108,.18); border-radius: 999px; color: var(--teal-dark); background: rgba(23,125,108,.07); font-family: var(--mono); font-size: 9px; }
+    .innovation-boundary { padding: 12px 14px; border-left: 3px solid var(--coral); border-radius: 0 10px 10px 0; color: #58675f; background: rgba(223,99,70,.07); font-size: 12px; }
+    .score-row { display: grid; grid-template-columns: 112px 1fr 34px; gap: 9px; align-items: center; margin: 10px 0; color: #58675f; font-size: 11px; }
+    .score-track { height: 7px; overflow: hidden; border-radius: 99px; background: #e0ddd3; }
+    .score-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--teal), var(--amber)); }
+    .score-value { color: var(--ink); font-family: var(--mono); font-size: 10px; text-align: right; }
+    .mapping-grid { display: grid; gap: 9px; }
+    .mapping-item { padding: 10px 12px; border-radius: 10px; font-size: 12px; }
+    .mapping-item strong { display: block; margin-bottom: 2px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .mapping-item.direct { background: rgba(23,125,108,.10); } .mapping-item.indirect { background: rgba(213,161,61,.13); } .mapping-item.absent { background: rgba(223,99,70,.09); }
+    .vendor-bottom { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,.75fr); gap: 24px; margin-top: 24px; }
+    .borrow-list, .caveat-list { margin: 0; padding-left: 19px; color: #58675f; font-size: 13px; }
+    .borrow-list li, .caveat-list li { margin: 7px 0; }
+    details { border-top: 1px solid var(--line); }
+    details summary { padding: 14px 0 8px; color: var(--teal-dark); cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; list-style: none; text-transform: uppercase; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: "+"; display: inline-block; width: 20px; color: var(--coral); font-size: 15px; }
+    details[open] summary::before { content: "−"; }
+    .spec-table, .source-list { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .spec-table td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .spec-table tr:last-child td { border-bottom: 0; }
+    .spec-table td:first-child { width: 34%; color: var(--muted); }
+    .source-list { padding: 0; margin: 0; list-style: none; }
+    .source-list li { margin: 8px 0; }
+    .source-list a { color: var(--teal-dark); text-decoration-color: rgba(13,93,82,.3); text-underline-offset: 3px; }
+    .score-explain { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .score-explain .card { padding: 18px; }
+    .score-explain h3 { margin-bottom: 5px; font-size: 22px; }
+    .score-explain p { margin: 0; color: #58675f; font-size: 13px; }
+    .closing { color: #edf2eb; background: #101b19; }
+    .closing .section-intro { color: #aebdb3; }
+    .closing .section-num { color: var(--amber); }
+    .closing h2 { color: #fffdf8; }
+    .closing-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 22px; }
+    .closing .card { color: #d1ddd3; border-color: rgba(255,255,255,.13); background: rgba(255,255,255,.06); box-shadow: none; }
+    .closing .card h3 { color: #fffdf8; font-size: 28px; }
+    .closing .card p, .closing .card li { color: #afbeb4; font-size: 14px; }
+    .footer { padding: 36px 20px 56px; color: #899990; background: #101b19; font-size: 11px; }
+    .footer-inner { width: min(1120px, 100%); margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; }
+    .footer code { color: #d5a13d; }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .empty { display: none; padding: 36px; border: 1px dashed var(--line); border-radius: 16px; color: var(--muted); text-align: center; }
+    @media (max-width: 900px) {
+      .hero-inner, .vendor-grid, .vendor-bottom, .closing-grid, .story-grid, .build-grid, .innovation-support { grid-template-columns: 1fr; }
+      .hero-inner { min-height: auto; padding: 62px 0; }
+      .orbit-figure { min-height: 300px; }
+      .overview-grid { grid-template-columns: repeat(2,1fr); }
+      .vendor-head { grid-template-columns: 1fr; }
+      .vendor-index { max-width: 250px; }
+      .pitfall-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .nav-inner { width: min(100% - 24px, 1220px); }
+      .nav-links { display: none; }
+      .hero-inner, .section { width: min(100% - 28px, 1120px); }
+      .section { padding-top: 72px; }
+      .section-header { grid-template-columns: 1fr; gap: 8px; }
+      .section-num { padding-top: 0; }
+      .overview-grid, .score-explain { grid-template-columns: 1fr; }
+      .before-after, .plane-grid, .decision-grid, .term-grid, .pitfall-grid, .innovation-flow, .innovation-top { grid-template-columns: 1fr; }
+      .innovation-stage { min-height: auto; }
+      .compare-arrow { min-height: 28px; transform: rotate(90deg); }
+      .filter-bar { top: 58px; }
+      .search-box { min-width: 100%; margin-left: 0; }
+      .vendor-head, .vendor-body { padding: 22px; }
+      .chip-stack { transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media print {
+      .site-nav, .progress, .filter-bar { display: none; }
+      .hero-inner { min-height: auto; padding: 40px 0; }
+      .vendor-card, .card, .matrix-wrap { break-inside: avoid; box-shadow: none; }
+      .reveal { opacity: 1; transform: none; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <nav class="site-nav" aria-label="页面导航">
+    <div class="nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark"><span>R×10</span></span><span>INFERENCE CHIP / 2025.06+</span></a>
+      <div class="nav-links">
+        <a href="#problem">问题</a><a href="#architecture">新路径</a><a href="#validation">验证</a><a href="#matrix">矩阵</a><a href="#vendors">逐家</a><a href="#takeaway">结论</a><a href="#sources">来源</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="reveal">
+        <p class="eyebrow">Merged architecture brief · ELI5 · 2026.08.22</p>
+        <h1>一条推理芯片新路径，从十家厂商寻找旁证。</h1>
+        <p class="hero-lede">先从检索式长上下文推理的“找、筛、搬”问题推导一条新架构，再检查十家最新芯片已经做出了哪些零件。最终问题只有一个：<strong>下一颗推理芯片怎样少搬数据、少传中间结果，并把有用数据更早送到计算单元？</strong></p>
+        <div class="hero-meta">
+          <span class="meta-chip">研究范围：2025.07.01—2026.08.22</span>
+          <span class="meta-chip">合并：架构推导 × 十家厂商证据</span>
+          <span class="meta-chip">读者：懂 AI、未必懂芯片</span>
+        </div>
+      </div>
+      <div class="orbit-figure reveal" aria-label="Tensor Plane 与 Retrieval Plane 的关系图">
+        <div class="chip-stack">
+          <div class="chip-caption"><span>one inference architecture</span><span>R-2026</span></div>
+          <h2>先找对，再搬少，最后算深。</h2>
+          <p>Tensor Plane 继续做规则矩阵计算；Retrieval Plane 负责搜索、筛选、地址生成和离散搬运。</p>
+          <div class="flow-row"><span>QUERY</span><span>SEARCH</span><span>LOCAL TOP-K</span><span>MERGE</span><span>GATHER</span><span>ATTENTION</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="problem">
+      <div class="section-header reveal">
+        <div class="section-num">00 / 先把问题讲人话</div>
+        <div>
+          <h2>GPU 像矩阵工厂，Indexer 更像“搜索引擎 + 地址簿”。</h2>
+          <p class="section-intro">Tensor Core 擅长大块、整齐的矩阵计算。本文关注的检索式或动态稀疏长上下文推理，还需要在大量历史位置中找候选、保留 Top-k、把逻辑位置翻译成 KV 页地址，再读取分散的数据。后半段经常受数据移动和通信影响，不能只靠增加矩阵算力解决。</p>
+        </div>
+      </div>
+
+      <div class="story-grid">
+        <article class="story-card reveal" data-step="1"><span class="story-label">现有强项</span><h3>规则计算已经很强</h3><p>GEMM、FFN 和密集 Attention 可以把规则数据喂给矩阵单元，追求高吞吐。</p></article>
+        <article class="story-card reveal" data-step="2"><span class="story-label">新增压力</span><h3>动态数据不够整齐</h3><p>Indexer、Top-k、page map 和 KV Gather 需要比较、筛选、生成离散地址，并连接下一步计算。</p></article>
+        <article class="story-card reveal" data-step="3"><span class="story-label">真正目标</span><h3>优化一个 token 的旅程</h3><p>关注 TPOT、HBM bytes/token、跨卡 bytes/token 和 Tokens/J，而不是只让单个 kernel 的峰值更好看。</p></article>
+      </div>
+
+      <div class="callout reveal" style="margin-top:18px">
+        <p><strong>技术类比：</strong>把长上下文看成一个大型数据集合。Query 是检索条件，Indexer 负责给候选位置打分，Top-k 保留最相关的位置，Gather 按这些位置取回 KV，Attention 再对取回的数据做深入计算。</p>
+        <p><strong>类比边界：</strong>真实芯片没有运行通用数据库；这个类比只解释为什么“检索、地址和搬运”会形成一条与矩阵计算不同的数据路径。</p>
+      </div>
+
+      <div class="pipeline-scroll reveal" aria-label="从 Query 到 Attention 的数据旅程">
+        <div class="system-pipeline">
+          <div class="pipeline-step compute"><b>Q projection</b><span>规则计算</span></div>
+          <div class="pipeline-step move"><b>读 Index Keys</b><span>内存访问</span></div>
+          <div class="pipeline-step compute"><b>Dot product</b><span>候选打分</span></div>
+          <div class="pipeline-step compute"><b>Reduce</b><span>流式规约</span></div>
+          <div class="pipeline-step select"><b>Top-k</b><span>保留候选</span></div>
+          <div class="pipeline-step move"><b>Page map</b><span>生成地址</span></div>
+          <div class="pipeline-step move"><b>KV Gather</b><span>离散搬运</span></div>
+          <div class="pipeline-step compute"><b>Attention</b><span>深入计算</span></div>
+        </div>
+      </div>
+
+      <div class="before-after reveal">
+        <article class="compare-card"><span class="story-label">本文采用的基线路径</span><h3>先算满，再汇总，再筛选</h3><ul><li>完整分数可能被物化并离开片上存储。</li><li>在 head-parallel、full-score 基线中，多卡先交换大量中间结果，再决定哪些候选有用。</li><li>Top-k、地址生成和 Gather 分成多段执行。</li></ul></article>
+        <div class="compare-arrow" aria-hidden="true">→</div>
+        <article class="compare-card after"><span class="story-label">重新选择数据流</span><h3>边扫描，边筛选，边准备搬运</h3><ul><li>分数在片上流过，只保留 Local Top-k。</li><li>跨卡合并少量候选，不交换完整分数矩阵。</li><li>候选直接生成 page-aware Gather descriptor。</li></ul></article>
+      </div>
+      <div class="rule"></div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="section-header reveal">
+        <div class="section-num">01 / 新路径</div>
+        <div>
+          <h2>把推理芯片拆成“密集计算平面 + 检索搬运平面”。</h2>
+          <p class="section-intro">Retrieval Plane 不是缩小版 Tensor Core，也不绑定某个模型公式。它把 Search、Reduce、Top-k、Gather、Route 和 Page Map 组合成可编程的数据流；Tensor Plane 继续做最擅长的规则计算。</p>
+        </div>
+      </div>
+
+      <div class="architecture-shell reveal">
+        <div class="architecture-head"><span>R-Plane / proposed inference architecture</span><h3>让有用的数据更早留下，让无用的中间结果更早消失。</h3></div>
+        <div class="plane-grid">
+          <article class="plane-card"><h4>Tensor Compute Plane</h4><p>吞吐导向，处理规则、密集的矩阵与向量计算。</p><div class="primitive-list"><span>GEMM</span><span>GEMV</span><span>FFN</span><span>ATTENTION</span><span>MOE</span></div></article>
+          <article class="plane-card retrieval"><h4>Retrieval / Data-Movement Plane</h4><p>数据流导向，处理动态索引、候选筛选、地址翻译和离散搬运。</p><div class="primitive-list"><span>SEARCH</span><span>REDUCE</span><span>TOPK</span><span>MERGE</span><span>GATHER</span><span>ROUTE</span><span>PAGEMAP</span></div></article>
+        </div>
+        <div class="shared-rail"><b>矩阵单元 + 向量单元 + 软件可控片上中间存储</b><span>这是一条可迁移的共同设计原则：矩阵结果留在 UB、SMEM/TMEM、SBUF、VMEM 或 L1 等片上工作区，直接交给向量单元处理，尽量不绕回 HBM；Descriptor Queue 负责把搬运和依赖串起来。</span></div>
+      </div>
+
+      <div class="callout emphasis reveal" style="margin-top:20px">
+        <p><strong>最关键的并行变化：</strong>除了按 Attention/Indexer head 切分，还可以沿历史 candidate 或 block 切分。每个分区先做 Local Top-k，再合并约 P×k 规模的候选。它减少的是通信对象和中间结果；在没有额外索引时，精确扫描本身仍可能是 O(L)。</p>
+        <div class="candidate-flow" aria-label="候选感知的数据流"><span>Partition 0 · Local Top-k</span><i>+</i><span>Partition 1 · Local Top-k</span><i>…</i><span>Partition P · Local Top-k</span><i>→</i><span>Global Merge</span><i>→</i><span>Page-aware Gather</span></div>
+      </div>
+
+      <div class="arch-tabs reveal">
+        <div class="arch-tab-buttons" role="tablist" aria-label="Exact 与 Approximate 路线">
+          <button class="arch-tab-button" role="tab" aria-selected="true" aria-controls="exact-panel" id="exact-tab" data-arch-tab="exact">Exact / 第一代</button>
+          <button class="arch-tab-button" role="tab" aria-selected="false" aria-controls="approx-panel" id="approx-tab" data-arch-tab="approx">Approximate / 后续</button>
+        </div>
+        <div class="arch-tab-panel" role="tabpanel" id="exact-panel" aria-labelledby="exact-tab">
+          <h3>先保持结果语义，减少搬运和通信</h3>
+          <p>流式产生 score，在每个分区做 Local Top-k，再做 Global Merge，并直接生成 Gather descriptor。第一阶段不承诺降低全量扫描复杂度。</p>
+          <span class="equation">Full scan O(L) · merge input ≤ P × k candidate records</span>
+          <p>这里的 P×k 描述合并输入的候选数量上界，不直接等于通信字节或 collective 复杂度；实际成本还取决于候选记录大小、拓扑和 collective 实现。</p>
+        </div>
+        <div class="arch-tab-panel" role="tabpanel" id="approx-panel" aria-labelledby="approx-tab" hidden>
+          <h3>再用层级索引减少需要扫描的候选</h3>
+          <p>加入 block summary、层级索引、候选 refinement 或跨层复用。它可能减少扫描量，但会引入 recall、模型质量和算法协同约束。</p>
+          <span class="equation">coarse blocks → fine candidates → exact rerank → Top-k</span>
+        </div>
+      </div>
+      <div class="rule"></div>
+    </section>
+
+    <section class="section" id="validation">
+      <div class="section-header reveal">
+        <div class="section-num">02 / 第一验证</div>
+        <div>
+          <h2>先用软件证明端到端价值，再决定哪些能力值得划进硅。</h2>
+          <p class="section-intro">第一版实验应保持 Exact 结果，对比现有 full-score 路径、流式融合路径和 candidate-sharding 路径。只有收益穿透到 TPOT、数据移动、通信和能耗，专用 Retrieval Plane 才有面积价值。</p>
+        </div>
+      </div>
+
+      <div class="build-grid">
+        <article class="build-card reveal"><span class="build-level">P0</span><h3>先打通数据流</h3><p>强 Vector、Shared SRAM/UB、异步 DMA、Streaming Reduction + Top-k，以及持久化 descriptor queue。</p></article>
+        <article class="build-card reveal"><span class="build-level">P1</span><h3>形成硬件差异化</h3><p>Retrieval Core、candidate 分片、KV Page Translator、Local Top-k 和 Merge Top-k collective。</p></article>
+        <article class="build-card reveal"><span class="build-level">P2</span><h3>再走向近存与近似</h3><p>HBM-side retrieval、层级索引 SRAM、跨层索引缓存和 Approximate Search。</p></article>
+      </div>
+
+      <div class="metric-band reveal" aria-label="Go No-Go 指标"><span>TPOT</span><span>TTFT</span><span>HBM bytes/token</span><span>inter-GPU bytes/token</span><span>score intermediate bytes</span><span>Top-k exact match / recall</span><span>Tokens/J</span></div>
+      <div class="decision-grid reveal">
+        <article class="decision-card"><b>GO / 进入硬件可行性评估</b><p>如果 Exact 软件原型减少 HBM 或跨卡通信，而且最终 TPOT、吞吐或 Tokens/J 有可重复的改善，再继续评估面积、功耗、时序和工作负载覆盖面。</p></article>
+        <article class="decision-card no-go"><b>NO-GO / 暂不划硅</b><p>只有 Indexer 单 kernel 变快，端到端指标几乎不动，说明系统瓶颈还没有被真正移动。</p></article>
+      </div>
+
+      <div class="pitfall-grid">
+        <article class="pitfall-item reveal"><h3>Exact 仍可能扫描全量</h3><p>Local Top-k 先减少物化和通信，不会自动把 O(L) 变成 O(k)。</p></article>
+        <article class="pitfall-item reveal"><h3>更细访存不是魔法</h3><p>效果仍取决于 KV layout、block alignment、bank mapping 和访问合并。</p></article>
+        <article class="pitfall-item reveal"><h3>参考零件不等于完整方案</h3><p>TMA、SparseCore 或 DIMC 能提供启发，不等于已经实现完整 Indexer。</p></article>
+        <article class="pitfall-item reveal"><h3>不要把模型公式焊死</h3><p>固化 DOT、REDUCE、TOPK、GATHER 等原语，把模型变化留给编译器。</p></article>
+      </div>
+
+      <details class="term-index reveal">
+        <summary>术语索引｜把术语翻译成“它在系统里做什么”</summary>
+        <dl class="term-grid">
+          <div class="term-item"><dt>Tensor Plane</dt><dd>负责规则矩阵与向量计算的主计算平面。</dd></div>
+          <div class="term-item"><dt>Retrieval Plane</dt><dd>本文提出的 Search、Select、Move、Route、Address 数据流平面。</dd></div>
+          <div class="term-item"><dt>Local Top-k</dt><dd>每个分区先保留自己的前 k 个候选，再做全局合并。</dd></div>
+          <div class="term-item"><dt>Gather descriptor</dt><dd>描述要读取哪些 KV 页和地址，供搬运引擎直接消费。</dd></div>
+          <div class="term-item"><dt>TPOT / TTFT</dt><dd>每个输出 token 的时间 / 生成首 token 的时间。</dd></div>
+          <div class="term-item"><dt>HBM bytes/token</dt><dd>生成一个 token 需要从高带宽内存读写的数据量。</dd></div>
+          <div class="term-item"><dt>Exact</dt><dd>保持候选选择语义；是否全量扫描取决于算法与索引。</dd></div>
+          <div class="term-item"><dt>Approximate</dt><dd>通过额外结构少看候选，需要单独验证 recall 和模型质量。</dd></div>
+        </dl>
+      </details>
+      <div class="rule"></div>
+    </section>
+
+    <section class="section" id="rules">
+      <div class="section-header reveal"><div class="section-num">03 / 厂商研究边界</div><div><h2>架构假设提出以后，再看十家厂商做出了哪些“零件”。</h2><p class="section-intro">目标是找出 2025 年 6 月之后公开发布、宣布或进入可用阶段的最新 AI 芯片。时间状态、芯片规格、整机规格与营销投影分开记录；若某家在严格时间窗内没有新芯片，会显式标出边界。</p></div></div>
+      <div class="overview-grid">
+        <article class="stat-card reveal"><span class="stat-label">scope</span><strong>10</strong><p>家厂商，来自引用会话的创新性候选集。</p></article>
+        <article class="stat-card reveal"><span class="stat-label">cutoff</span><strong>2025.06+</strong><p>从 2025 年 7 月 1 日起算，避免把旧型号伪装成新芯片。</p></article>
+        <article class="stat-card reveal"><span class="stat-label">lens</span><strong>6 维</strong><p>数据搬运、执行、稀疏、互联、数值、可编程性。</p></article>
+        <article class="stat-card reveal"><span class="stat-label">evidence</span><strong>一手源</strong><p>官方产品页、白皮书、开发者文档和原始论文优先。</p></article>
+      </div>
+      <div class="callout emphasis reveal" style="margin-top:18px"><p><strong>附件的核心问题：</strong>Indexer 不只是矩阵乘。它还要搜索候选、做 Top-k、生成地址、离散 Gather KV，并在多卡之间传递“少量有用结果”而不是全量中间分数。下面每一张卡都回答：这颗芯片对这些动作是直接解决、间接帮助，还是没有公开证据。</p></div>
+    </section>
+
+    <section class="section" id="matrix">
+      <div class="section-header reveal"><div class="section-num">04 / 厂商矩阵</div><div><h2>同一个“AI 芯片”，可能在解决完全不同的瓶颈。</h2><p class="section-intro">矩阵新增“核心创新”，先看每家真正换了哪条路径，再进入逐家卡片阅读“旧瓶颈、机制、价值与边界”。分数是架构研究价值的分析判断，不是跑分榜。</p></div></div>
+      <div class="filter-bar reveal" role="toolbar" aria-label="厂商筛选">
+        <button class="filter-button active" data-filter="all">全部</button><button class="filter-button" data-filter="gpu">超级 GPU</button><button class="filter-button" data-filter="sparse">Sparse / 异构</button><button class="filter-button" data-filter="dataflow">Dataflow</button><button class="filter-button" data-filter="memory">Memory-centric</button><button class="filter-button" data-filter="wafer">Wafer-scale</button><button class="filter-button" data-filter="tensor">Tensor contraction</button>
+        <input class="search-box" type="search" placeholder="搜索厂商、芯片或问题…" aria-label="搜索厂商、芯片或问题">
+      </div>
+      <div class="matrix-wrap reveal"><table class="matrix"><thead><tr><th>厂商 / 最新芯片</th><th>时间状态</th><th>路线</th><th>核心创新</th><th>它主要解决的问题</th><th>对 Retrieval Plane 的关系</th><th>架构分</th></tr></thead><tbody id="matrix-body"></tbody></table></div>
+      <div class="empty" id="matrix-empty">没有匹配项。可以换一个厂商名、芯片名或路线关键词。</div>
+    </section>
+
+    <section class="section" id="vendors">
+      <div class="section-header reveal"><div class="section-num">05 / 逐家研究</div><div><h2>把“创新”拆成可理解的因果链。</h2><p class="section-intro">每张卡新增核心创新拆解：旧瓶颈是什么、硬件或编译器改了什么、为什么值得下一代推理芯片借鉴，以及这项能力不能被误解成什么。点击“证据与规格”查看原始链接。</p></div></div>
+      <div class="vendor-list" id="vendor-list"></div>
+      <div class="empty" id="vendor-empty">没有匹配项。</div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="section-header reveal"><div class="section-num">06 / 评价方法</div><div><h2>创新不等于“参数更大”，而是有没有换一条有效路径。</h2><p class="section-intro">沿用引用会话的权重。分数用于帮助读者比较架构思想的不同，不代表真实部署性能、成本或商业成功。</p></div></div>
+      <div class="score-explain">
+        <article class="card reveal"><h3>30%</h3><p><strong>数据搬运与存储</strong><br>片上 SRAM、HBM、内存层级、数据是否必须来回写回。</p></article>
+        <article class="card reveal"><h3>20%</h3><p><strong>执行架构</strong><br>矩阵、向量、标量、稀疏、数据流等执行单元怎么分工。</p></article>
+        <article class="card reveal"><h3>15%</h3><p><strong>稀疏与动态计算</strong><br>是否考虑 Top-k、Gather、MoE routing、embedding 或动态 shape。</p></article>
+        <article class="card reveal"><h3>15%</h3><p><strong>Scale-up / 互联</strong><br>多芯片如何扩展，以及通信是否成为新的瓶颈。</p></article>
+        <article class="card reveal"><h3>10%</h3><p><strong>数值与密度</strong><br>低精度格式、有效吞吐和能效之间如何取舍。</p></article>
+        <article class="card reveal"><h3>10%</h3><p><strong>可编程性</strong><br>编译器、ISA、运行时能否吸收模型变化，而不是焊死一个公式。</p></article>
+      </div>
+      <div class="callout reveal" style="margin-top:20px"><p><strong>读分数的方式：</strong>高分说明“架构问题意识”和“可供下一代 Retrieval GPU 研究的价值”高；它不自动说明芯片对所有模型更快。尤其要把官方峰值、平台级带宽与真实 TPOT、Tokens/J、Top-k recall 分开。</p></div>
+    </section>
+
+    <section class="section closing" id="takeaway">
+      <div class="section-header reveal"><div class="section-num">07 / 交叉洞察</div><div><h2>下一颗推理芯片，可能不是“更大的矩阵工厂”。</h2><p class="section-intro">十条路线交叉后，最值得追踪的不是一个冠军，而是三种能力正在靠近同一个系统问题。</p></div></div>
+      <div class="closing-grid">
+        <article class="card reveal"><h3>Tensor + Sparse + Dataflow</h3><p>密集矩阵单元继续负责规则吞吐；Sparse/Vector 单元负责不规则动作；编译器或硬件事件图负责把“算—筛—搬—算”串成连续流水。</p><p>附件提出的 Retrieval Plane，真正可以从这些成熟零件中吸收的是数据路径与执行边界，而不是照搬某颗芯片的宣传数字。</p></article>
+        <article class="card reveal"><h3>先验证数据流，再决定划硅</h3><ul><li>Exact Local Top-k → Global Merge</li><li>减少 score materialization 与跨卡全量 reduction</li><li>输出 page-aware Gather descriptor</li><li>用 TPOT、HBM bytes/token、inter-GPU bytes/token、Tokens/J 做 Go / No-Go</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="section-header reveal"><div class="section-num">08 / 证据说明</div><div><h2>来源不是装饰，它决定了判断能走多远。</h2><p class="section-intro">每家 Markdown 文件保留完整的来源、时间状态与证据边界；下面的 HTML 只做可读汇总。所有“推论”都应与官方规格分开阅读。</p></div></div>
+      <div class="callout reveal"><p><strong>交付文件：</strong><a href="01-nvidia.md">01-nvidia.md</a> · <a href="02-huawei-ascend.md">02-huawei-ascend.md</a> · <a href="03-google-ironwood.md">03-google-ironwood.md</a> · <a href="04-cerebras-wse.md">04-cerebras-wse.md</a> · <a href="05-amd-instinct.md">05-amd-instinct.md</a> · <a href="06-aws-trainium.md">06-aws-trainium.md</a> · <a href="07-groq-lpu.md">07-groq-lpu.md</a> · <a href="08-dmatrix-corsair.md">08-dmatrix-corsair.md</a> · <a href="09-furiosa-rngd.md">09-furiosa-rngd.md</a> · <a href="10-tenstorrent-blackhole.md">10-tenstorrent-blackhole.md</a></p><p>本页是离线 HTML，不依赖外部运行时。打开后可筛选路线、搜索厂商，并展开每家的规格与来源。</p></div>
+      <div class="callout emphasis reveal" style="margin-top:18px">
+        <p><strong>架构推导来源：</strong><a href="推导推理GPU新路径-ELI5.html">原始 ELI5 架构简报</a> · <a href="https://arxiv.org/abs/2304.01433" target="_blank" rel="noreferrer">TPU v4 SparseCore 论文</a> · <a href="https://docs.nvidia.com/cutlass/4.3.5/media/docs/cpp/cute/0z_tma_tensors.html" target="_blank" rel="noreferrer">NVIDIA TMA 文档</a> · <a href="https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/900/releasenote/release-notes.md" target="_blank" rel="noreferrer">昇腾 CANN 9.0 发布说明</a>。</p>
+        <p>Retrieval Plane、page-aware Gather DMA 和候选感知 collective 是本文提出或组合出的架构方向；厂商公开零件只能证明部分能力可行，不能当作完整方案已经量产的证据。</p>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="footer-inner"><span>Inference chip path × 10 vendors · ELI5</span><span>merged / single-file / offline-ready</span><span>updated 2026-08-22</span></div></footer>
+
+  <script>
+    const scoreLabels = { move: '数据搬运', exec: '执行架构', sparse: '稀疏/动态', scale: 'Scale-up', numeric: '数值/密度', programmable: '可编程性' };
+    const vendors = [
+      {
+        id: 'nvidia', vendor: 'NVIDIA', chip: 'Rubin GPU', date: '2026-01—05', status: '量产爬坡；单卡可购未确认', statusKey: 'announced', route: '超级 GPU', routeKey: 'gpu', total: 77,
+        tagline: '把 HBM4、TMA、依赖触发和 NVLink 6 组合成更紧的推理执行路径；它仍不是公开意义上的完整 Retrieval GPU。',
+        problem: '减少规则张量搬运、kernel 等待和跨卡通信的时间。',
+        eli5: '可以把 Rubin 想成一座更大的工厂：HBM4 是仓库，TMA 是按描述符工作的叉车，依赖触发像传感器，能让下一道工序在上一道工序完成关键 tile 后直接开始。它解决了“算完以后还要等谁来搬、谁来唤醒”的一部分浪费，但公开资料没有显示叉车会自己找出 KV 中最相关的 k 个位置。',
+        innovation: {
+          title: 'TMA 描述符搬运 + tile 级依赖触发',
+          thesis: 'Rubin 最值得借鉴的不是单一带宽数字，而是把“数据怎么搬、下游何时启动”变成硬件可理解的执行契约。',
+          before: '线程既要做计算，又要维护地址、步长和搬运状态；下游 kernel 往往要等上游阶段或整张 grid 完成，形成空档和中间结果回写。',
+          mechanism: 'TMA 根据描述符搬运多维 tensor tile，运行时可更新指针与步长；依赖触发让消费端在所需 tile 就绪后启动。NVLink 6、SHARP 与 counted writes 提供跨 GPU 通信、规约和写入通知路径，但不代表 tile 依赖调度已经跨 GPU 硬件化。',
+          impact: '若软件或额外原语补齐 Search、Top-k 与 Gather，Search → Select → Gather → Attention 可借鉴 tile 到达即推进的流水，减少地址 bookkeeping、kernel 间隙和部分 HBM 往返；这不是 Rubin 已公开实现的完整检索流水。',
+          signals: ['HBM4 22 TB/s', 'TMA descriptor', 'tile 级依赖触发', 'NVLink 6 + SHARP'],
+          boundary: 'TMA 擅长规则 tensor 布局，不等于任意索引或 KV 页表的离散 Gather；2:4 中间结果压缩也不等于动态精确 Top-k。'
+        },
+        retrievalSummary: 'Move / Route 强；Search、精确 Top-k、page-aware Gather 未公开确认。',
+        mapping: { direct: '规则 tensor tile 搬运、tile 级依赖触发、NVLink/SHARP 跨卡底座。', indirect: '片上中间结果压缩、descriptor 更新和强互联可承载 candidate merge。', absent: '没有公开专用 Indexer、精确 Local/Global Top-k 或 Indexed Gather DMA。' },
+        scores: { move: 73, exec: 80, sparse: 53, scale: 93, numeric: 90, programmable: 80 },
+        specs: { '芯片边界': 'Rubin GPU：288 GB HBM4；Vera Rubin NVL72 是 72 GPU + 36 CPU 的系统', '计算': '224 SM、896 Tensor Core、3360 亿晶体管；第五代 Tensor Core / 第三代 Transformer Engine', '数值': 'NVFP4 最高 50 PFLOPS（sparse specification）；FP8/FP6/FP16/BF16 等', '内存': '288 GB HBM4，最高 22 TB/s；片上 L2/SRAM 容量未确认', '互联': 'NVLink 6：3.6 TB/s/GPU；NVL72 聚合值与单 GPU 值分开统计', '状态边界': 'Rubin GPU/平台已宣布并进入量产爬坡；Rubin CPX 预计 2026 年底可用，不能当现货' },
+        borrow: ['保留 descriptor 驱动搬运，但把 page list、索引检查和合并规则扩展到 descriptor。', '把 tile 级依赖触发用于 Search → Select → Gather → Attention 的流水。', '尽量不把中间 score 写回 HBM，并用 HBM bytes/token 验证收益。'],
+        caveats: ['50 PFLOPS 是峰值规格，不是端到端 TPOT。', 'TMA 的公开描述不等于离散 KV Indexed Gather DMA。', 'NVLink 更快不代表全量 score 会自动变成 P×k 候选通信。'],
+        sources: [
+          { label: 'Rubin GPU 架构深读', url: 'https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/', note: 'TMA、依赖触发与执行路径' },
+          { label: 'Vera Rubin 产品页', url: 'https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/', note: '单 GPU 与 NVL72 规格' },
+          { label: 'NVLink 6', url: 'https://www.nvidia.com/en-gb/data-center/nvlink/', note: 'GPU 互联' },
+          { label: 'Rubin CPX 新闻稿', url: 'https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference', note: '长上下文变体状态' }
+        ]
+      },
+      {
+        id: 'huawei', vendor: '华为昇腾', chip: 'Ascend 950PR / 950DT', date: '2025-09—2026-07', status: 'PR 已上市；DT 状态未完全确认', statusKey: 'announced', route: 'Sparse / 异构', routeKey: 'sparse', total: 82,
+        tagline: '把 SIMD、SIMT、128B sector、NDDMA、CCU 和 P/D 内存取舍放进同一代 NPU；它更像 Retrieval GPU 的底层零件集合。',
+        problem: '同时照顾规则矩阵、离散访存、异步搬运和跨卡集合通信。',
+        eli5: '它像一间同时有流水线和手工工作台的厨房：SIMD 处理整齐的大批食材，SIMT 处理位置不规则的小批食材，NDDMA 负责按描述把货物搬到正确位置，CCU 负责多台厨房之间的合菜。这个组合更适合动态地址和不规则代码，但厨房还没有公开一个“直接返回精确 Top-k KV 页”的专用菜单。',
+        innovation: {
+          title: 'SIMD + SIMT 双路径，把不规则访问纳入同一编程模型',
+          thesis: '核心不是在 SIMD 旁多放一个执行单元，而是让规则向量、离散地址和动态分支能在同一代 NPU 内选择合适路径。',
+          before: '矩阵和规则向量适合批量处理，Gather、Scatter、Hash 与分支却会打散访问；若都挤进同一路径，利用率和有效带宽都会下降。',
+          mechanism: 'SIMD 走规则主路径，SIMT 补充离散地址与分支；Vector Function 可按任务选择。NDDMA 负责最高 5D 地址生成，512B L2 line 可按 128B sector 使用，URMA、CCU 与 UB2.0 接手远端访问和集合通信。',
+          impact: '规则计算与不规则取数有机会减少相互争抢，为 Retrieval Plane 的地址生成、Gather/Scatter、规约和跨卡路由提供更完整的底层零件；实际收益仍取决于布局、batch、KV page、融合和软件调度。',
+          signals: ['128B sector（512B line）', 'NDDMA / URMA', 'SIMD + SIMT', 'CCU / UB2.0'],
+          boundary: '128B 是 sector，不是 128B cache line；SIMD/SIMT 也不会把 O(L) 的精确扫描自动变成 O(k)，公开资料仍没有专用 Search/Top-k/KV 页引擎。'
+        },
+        retrievalSummary: 'Address / Move / Route 证据强；Search、Top-k、page-aware Gather 未公开确认。',
+        mapping: { direct: 'NDDMA/SDMA/URMA、128B sector、SIMT Gather/Scatter、CCU/UB2.0 通信骨架。', indirect: 'L2 Hint、Cache/sector 控制、P/D 内存专用化有利于减少搬运与等待。', absent: '没有公开 Retrieval Core、精确 Top-k、KV page table 或持久化 Gather queue。' },
+        scores: { move: 83, exec: 85, sparse: 53, scale: 93, numeric: 90, programmable: 90 },
+        specs: { '目标款': 'Ascend 950PR 面向 Prefill/推荐；950DT 面向 Decode/训练；共用 Ascend 950 Die', '执行': '完整架构最多 36 个 AI 子系统；每个含 Cube Core + 2 个 Vector Core；SIMD + SIMT', '数值': '公开资料列出 MXFP4、MXFP8、HiF8 等格式', '内存': '128B sector；L2 cache line 仍为 512B、由四个 sector 组成；PR/DT 采用不同内存取向', '互联': 'NDDMA、URMA、UB2.0、CCU；官方路线图包含大规模卡间互联', '状态边界': '950PR 随 Atlas 350 于 2026-03 宣布上市；950DT 宣布并展示，普遍量产/采购未确认' },
+        borrow: ['保留 512B line + 128B sector 的双层语义，让软件控制更细的有效访问粒度。', '采用 SIMD 主路径 + SIMT 辅助路径，分别服务规则向量与离散地址/分支。', '把异步搬运、远端 Load/Store、Reduce 和通信调度放进硬件队列。'],
+        caveats: ['128B 是 sector，不是把整条 cache line 改成 128B。', 'SIMD/SIMT 不会自动把精确搜索从 O(L) 变成 O(k)。', '路线图中的卡数、带宽与现货芯片状态不能混写。'],
+        sources: [
+          { label: '昇腾 950 NPU 架构白皮书', url: 'https://public-download.obs.cn-east-2.myhuaweicloud.com/ascend/%E6%98%87%E8%85%BE950%20NPU%E6%9E%B6%E6%9E%84%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf', note: 'SIMD/SIMT、sector、NDDMA、CCU' },
+          { label: 'Ascend 950 路线图演讲', url: 'https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech', note: 'PR/DT 时间与 P/D 取向' },
+          { label: 'Ascend 伙伴峰会 2026', url: 'https://www.hiascend.com/activities/dynamic-news/20260320-3', note: '950PR/Atlas 350 状态' },
+          { label: 'Atlas 950 SuperPoD', url: 'https://www.hiascend.com/hardware/cluster', note: '系统级互联边界' }
+        ]
+      },
+      {
+        id: 'google', vendor: 'Google', chip: 'TPU 8t / 8i；Ironwood TPU7x', date: '2025-11—2026-04', status: 'Ironwood GA；8t/8i Coming soon', statusKey: 'announced', route: 'Sparse / 异构', routeKey: 'sparse', total: 77,
+        tagline: '把 TensorCore、SparseCore/CAE、HBM 和大规模 ICI 放进同一条 TPU 演进线上；不规则数据平面是它与附件最有价值的连接点。',
+        problem: '在密集矩阵吞吐之外，处理 embedding、随机访问、collective 和大规模 Pod 的通信。',
+        eli5: '如果 TensorCore 是负责整齐矩阵的主车间，SparseCore 就像旁边的收发室，专门处理“去不同地址取东西、再按规则发给别的单元”。它可以让不规则工作不必硬塞进矩阵车间，但收发室知道怎么 gather，不代表它已经知道哪个 KV 候选最相关，也不代表它会做模型语义上的 Top-k。',
+        innovation: {
+          title: 'SparseCore：与 TensorCore 并置的独立不规则数据平面',
+          thesis: '最有价值的结构信号，是不再要求所有 AI 工作都伪装成密集矩阵，而给动态索引与数据搬运一条并行通道。',
+          before: 'Embedding lookup、动态索引、indexed Gather/Scatter 与 collective 控制很难映射成高利用率矩阵计算，容易占住主计算路径并等待内存。',
+          mechanism: 'SparseCore 面向 embedding 等不规则工作；JAX/Pallas 编程层公开 dynamic indexing、DMA、indexed Gather/Scatter 和 collective offload，TensorCore 同时执行密集计算。这里的公开软件能力不能直接等同于专用 KV Gather 硬件。',
+          impact: '它提供了“密集计算平面 + 不规则数据平面”的公开先例，也说明计算、取数和通信可以重叠，而不是排成一条长队。',
+          signals: ['indexed Gather/Scatter', 'collective offload', '3D torus ICI', '8i CAE / Boardfly（未 GA）'],
+          boundary: 'SparseCore 主要面向 embedding 与通用稀疏操作；它不是已验证的 Indexer Search、流式精确 Top-k 或 KV page translator，旧代 embedding 加速比也不能直接套到 Indexer。'
+        },
+        retrievalSummary: '通用 Gather / Route 有公开映射；Indexer Search、精确 Top-k、KV page 语义仍不足。',
+        mapping: { direct: 'JAX/Pallas 层面公开的 SparseCore dynamic indexing、DMA 与 indexed gather/scatter；ICI/3D torus 直接覆盖 collective 路径。', indirect: 'VMEM/HBM/8i 片上 SRAM 有利于保留中间结果和重叠搬运。', absent: '没有公开 page-aware KV Gather DMA、候选级 Route 或专用 Indexer Search。' },
+        scores: { move: 80, exec: 75, sparse: 60, scale: 93, numeric: 80, programmable: 70 },
+        specs: { '时间口径': 'Ironwood 2025-04 首次宣布但 2025-11 GA；TPU 8t/8i 2026-04 宣布，当前仍 Coming soon', 'Ironwood 执行': '2 个 TensorCore + 4 个 SparseCore；BF16 2,307 TFLOPS、FP8 4,614 TFLOPS', '内存': 'Ironwood 192 GiB HBM、约 7.38 TB/s；8t 216 GB；8i 288 GB', '片上': 'Ironwood VMEM 容量未公开；8t 128 MB VMEM；8i 384 MB SRAM/VMEM', '互联': 'Ironwood 双向 ICI 1,200 GB/s；3D torus；最大 9,216 芯片 Pod', '状态边界': 'Ironwood 面向 Cloud customers available；8t/8i 是 announced/Coming soon，不是已验证实测' },
+        borrow: ['让密集 TensorCore 与独立不规则数据平面并置，避免所有工作都挤进矩阵单元。', '把 indexed gather/scatter、DMA、scratchpad 和 descriptor queue 组成可编程基础设施。', '将 collective offload 与 Local/Global Top-k 一起设计，只传候选和地址描述。'],
+        caveats: ['SparseCore 的 embedding lookup 不等于附件 Indexer。', 'ICI 拓扑解决通信路径，不会自动生成 Local Top-k 或 Gather descriptor。', 'Pod 总 HBM/ExaFlops 不能替代单芯片或 TPOT 实测。'],
+        sources: [
+          { label: 'Google TPU 状态页', url: 'https://cloud.google.com/tpu?hl=en', note: 'Ironwood GA、8t/8i 状态' },
+          { label: 'TPU7x / Ironwood 架构文档', url: 'https://docs.cloud.google.com/tpu/docs/tpu7x', note: 'TensorCore、SparseCore、HBM、ICI' },
+          { label: 'TPU 8t/8i 技术深潜', url: 'https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive', note: 'CAE、片上 SRAM、Boardfly' },
+          { label: 'JAX SparseCore 文档', url: 'https://docs.jax.dev/en/latest/pallas/tpu/sparsecore.html', note: 'dynamic indexing、DMA、gather/scatter' }
+        ]
+      },
+      {
+        id: 'cerebras', vendor: 'Cerebras', chip: 'WSE-3 Turbo / CS-4', date: '2026-08-18', status: '已宣布；首批出货计划，普遍可用未确认', statusKey: 'announced', route: 'Wafer-scale', routeKey: 'wafer', total: 80,
+        tagline: '用 44GB 片上 SRAM、53.5 PB/s 片上 fabric 和三片晶圆级处理器，直接攻击内存与跨芯片搬运的距离。',
+        problem: '减少传统多 GPU 方案中的片外搬运、跨卡跳转和扩展复杂度。',
+        eli5: '它不像是在建很多小工厂再用公路连接，而是把一整片晶圆当成一个巨大的厂区，尽量让货物在厂区内部流动。44GB SRAM 是近处的工作台，fabric 是厂区内部道路；上一代 WSE-3 还公开过用冗余路由绕开制造坏点，但 WSE-3T 的专属实现尚未确认。它把“路太远”解决得很激进，却没有公开证明这些道路会做动态候选搜索或 Top-k。',
+        innovation: {
+          title: '晶圆级 SRAM-first 数据局部性',
+          thesis: 'Cerebras 不是先问“怎样把很多小芯片连得更快”，而是先把芯片边界推到整片晶圆，缩短数据移动的物理距离。',
+          before: '传统多 GPU 推理不断跨 HBM、封装和交换网络搬数据；芯片边界越多，延迟、同步和拓扑管理越复杂。',
+          mechanism: '单片晶圆处理器布置 44GB 分布式 SRAM、43.2 PB/s 内存带宽与 53.5 PB/s fabric，Direct Wafer Links 再扩到多片。冗余核心与 fail-in-place 是 WSE-3 上一代公开制造基线，WSE-3T/CS-4 的专属实现未确认。',
+          impact: '热权重与中间结果有望更多留在计算附近，直接攻击“距离和边界”造成的搬运成本；它可提供局部性和带宽基础，但流式 Search、精确 Top-k 与 page-aware KV Gather 仍需额外设计和验证。',
+          signals: ['44GB SRAM / 片', '43.2 PB/s 内存带宽', 'Direct Wafer Links', 'WSE-3 冗余路由基线'],
+          boundary: 'SRAM 和 fabric 不会自动生成搜索索引、Top-k 或 page-aware Gather；44GB 也不是完整 KV 容量保证，fail-in-place 解决制造良率而非运行时 KV 路由。'
+        },
+        retrievalSummary: '片上数据移动与规模化极强；Search / Select / page-aware Gather 未公开确认。',
+        mapping: { direct: '片上 SRAM、fabric、Direct Wafer Links 与低延迟 I/O 直接改善 Move / Route 的物理距离。', indirect: 'dataflow core 与片上保留 tile 可提供局部性基础；冗余路由仅有 WSE-3 上一代公开基线。', absent: '没有公开 Retrieval Core、Top-k/Merge Top-k 或 KV page translator。' },
+        scores: { move: 90, exec: 80, sparse: 53, scale: 93, numeric: 80, programmable: 70 },
+        specs: { '芯片边界': 'WSE-3T 单片晶圆处理器；CS-4 是三片 WSE-3T 加 backpack、供电、液冷、I/O 的系统', '面积/计算': 'TSMC 5nm；46,225 mm²；约 4 万亿晶体管；90 万 AI 核心；250 PFLOPS（sparse FP16 口径）', '片上内存': '44GB SRAM/片；CS-4 三片合计的简单容量不是系统可用容量保证', '带宽': 'WSE-3T 片上内存带宽 43.2 PB/s；CS-4 级别数字需与单片分开', '互联': '53.5 PB/s 片上 fabric；CS-4 使用 Direct Wafer Links，官方给出约 2 μs 级别系统通信口径', '状态边界': '2026-08-18 宣布 WSE-3T/CS-4；首批出货当季开始，量产规模与独立购买未确认' },
+        borrow: ['研究“把工作集留在超近片上内存”而不是只增加 HBM。', '借鉴 dataflow 与片上网络，验证 Search/Reduce/Gather 是否能形成流式链路。', '参考 WSE-3 上一代用冗余核心与路由吸收制造缺陷的做法，同时单独确认 WSE-3T 实现。'],
+        caveats: ['250 PFLOPS 与“30×”都是特定口径，不能替代 TPOT/P95/Tokens/J。', 'WSE-3T 不等于 CS-4，系统供电、液冷与 I/O 会改变真实边界。', '44GB SRAM 是容量，不自动提供索引结构或低代价随机 Gather。'],
+        sources: [
+          { label: 'Cerebras CS-4 新闻稿', url: 'https://investors.cerebras.ai/news-releases/news-release-details/cerebras-unveils-cs-4-30-times-faster-gpu-based-solutions', note: 'WSE-3T/CS-4 核心规格与状态' },
+          { label: 'CS-4 数据表', url: 'https://cdn.sanity.io/files/e4qjo92p/production/bb028ae2422089dfbcc9fd2455c021f3625c7a75.pdf', note: '单片与系统边界' },
+          { label: 'Introducing Cerebras CS-4', url: 'https://www.cerebras.ai/blog/introducing-cerebras-cs-4', note: 'Nexus、backpack、dataflow' },
+          { label: '100x Defect Tolerance', url: 'https://www.cerebras.ai/blog/100x-defect-tolerance-how-cerebras-solved-the-yield-problem', note: 'WSE-3 上一代冗余核心与路由基线' }
+        ]
+      },
+      {
+        id: 'amd', vendor: 'AMD Instinct', chip: 'MI455X', date: '2026-07-23', status: '已发布；单卡普遍现货未确认', statusKey: 'announced', route: '超级 GPU', routeKey: 'gpu', total: 76,
+        tagline: '把 HBM4、L2/LDS、低精度格式和大规模 scale-up 推到新一代 GPU 的上限，先把“容量、带宽、路宽”做强。',
+        problem: '让更大的模型和 KV 工作集留在本地，并降低多 GPU 互联的压力。',
+        eli5: '它像更大的仓库、更宽的传送带和更快的仓库间道路：432GB HBM4 能放更多东西，23.3TB/s 是更宽的主传送带，TDM 是按描述搬规则 tensor tile 的叉车，UALoE/UALink 是 GPU 间道路。叉车不会自己判断哪 k 个货架最相关，道路也不会自动把全量 score 变成候选集合，所以它是强 Move/Route 底座，不是 Retrieval Plane。',
+        innovation: {
+          title: 'HBM4 + TDM + UALoE/UALink 的分层搬运底座',
+          thesis: 'MI455X 的精髓是同时放大容量、片内搬运和 scale-up 通道，让大工作集不必先因内存与通信失血。',
+          before: '大 KV 工作集受容量限制，规则 tile 搬运消耗寄存器与线程，跨 GPU 数据又受 scale-up 带宽约束，三个瓶颈通常分开处理。',
+          mechanism: '432GB HBM4 提供 23.3 TB/s 峰值带宽，192MB L2 与约 96MB LDS 承接热点；TDM 可做最高 5D 异步传输和 DRAM↔LDS 直达，UALoE/UALink 负责多 GPU 搬运。',
+          impact: '它先把 Move/Route 的“仓库、叉车、公路”同时加宽；下一代若在内存与通信旁增加 candidate-aware Top-k/Gather，就能少走很多全量数据路径。',
+          signals: ['432GB HBM4', '23.3 TB/s', '5D TDM', 'UALoE 3.6 TB/s'],
+          boundary: 'TDM 搬的是规则 tile，不是动态 Search、精确 Top-k 或页感知 Gather；HBM 峰值带宽也不能代表随机 Gather 延迟。'
+        },
+        retrievalSummary: 'HBM / 规则搬运 / Scale-up 强；动态 Search、Top-k、page-aware Gather 未公开确认。',
+        mapping: { direct: 'HBM4、L2/LDS、TDM 描述符搬运与 UALoE/UALink 提供 Move / Route 底座。', indirect: '大容量内存能减少溢出，ROCm/通信栈可承载软件 candidate-sharding。', absent: '没有公开 Retrieval Core、Merge Top-k、KV page translator 或 indexed Gather 语义。' },
+        scores: { move: 80, exec: 75, sparse: 40, scale: 93, numeric: 90, programmable: 80 },
+        specs: { '芯片边界': 'MI455X 单颗加速器；Helios compute tray / 72-GPU rack 是系统级参考设计', '架构': 'CDNA 5；8 个 XCD + 2 个 I/O die；256 WGP、Wave32', '数值': 'MXFP4 40.3 PFLOPS；MXFP6/MXFP8/OCP FP8 各 20.1 PFLOPS；矩阵 FP16/BF16 约 5 PFLOPS', '内存': '432GB HBM4、12 stacks；峰值 23.3 TB/s；L2 192MB、LDS 约 96MB', '互联': 'Infinity Fabric 256GB/s 双向；UALoE 3.6TB/s；UALink 600GB/s', '状态边界': '2026-07-23 发布 MI455X；MI430X 预计 2027；Helios 是 reference design，不是单一售卖芯片' },
+        borrow: ['保留 HBM4 + L2/LDS + 描述符搬运层，把 TDM 扩展为 page-aware indexed Gather。', '把 candidate/block 分片与 scale-up 路径结合，在通信硬件旁增加 Local/Global Top-k。', '低精度矩阵之外，暴露 Search/Reduce 的向量与规约原语，让模型公式由编译器组合。'],
+        caveats: ['40.3 PFLOPS 是峰值规格，不是 TPOT。', 'HBM 带宽不等于随机 Gather 延迟；layout、page、地址生成与合并仍决定效果。', '互联带宽不等于 Global Top-k 已经便宜，432GB 也不等于 1M context 必然装得下。'],
+        sources: [
+          { label: 'AMD Instinct MI455X 产品页', url: 'https://www.amd.com/en/products/accelerators/instinct/mi400/mi455x.html', note: '单卡规格' },
+          { label: 'AMD CDNA 5 白皮书', url: 'https://www.amd.com/content/dam/amd/en/documents/products/technologies/cdna/amd-cdna5-whitepaper.pdf', note: 'TDM、内存与互联架构' },
+          { label: 'MI455X GPU 数据表', url: 'https://www.amd.com/content/dam/amd/en/documents/products/accelerators/instinct/amd-instinct-mi455x_brochure.pdf', note: '官方规格口径' },
+          { label: 'AMD AAI 2026 / Helios', url: 'https://ir.amd.com/news-events/press-releases/detail/1294/aai-2026-amd-delivers-full-stack-compute-for-the-agentic-ai-era', note: '平台与部署边界' }
+        ]
+      },
+      {
+        id: 'aws', vendor: 'AWS', chip: 'Trainium3 / Trn3 UltraServer', date: '2025-12-02 GA', status: '平台 GA；量产数量未确认', statusKey: 'announced', route: 'Sparse / 异构', routeKey: 'sparse', total: '83.5',
+        tagline: '把 HBM3e、SBUF/PSUM、DMA、NeuronSwitch-v1 和 NKI kernel 组合成一条更贴近长上下文推理的数据流。',
+        problem: '缓解长上下文、MoE 与多芯片推理中的 KV 搬运、Top-k/Reduce 和通信压力。',
+        eli5: '它像一个有大仓库、近端操作台和自动叉车的仓库系统：HBM 是大仓库，SBUF/PSUM 是操作台，DMA 按索引取货，NeuronSwitch 是仓库间的全互联道路。AWS 还公开了 segmented attention、KV-parallel prefill、Gather、Top-K 和稀疏 Attention Indexer 这些软件/硬件相邻能力，但它们仍不能自动等同于一颗通用 Retrieval GPU。',
+        innovation: {
+          title: '把 Top-k、Gather、分段 KV 暴露成可编程原语',
+          thesis: '十家里，Trainium3 的硬件底座与 Neuron/NKI 软件栈最接近附件动作链：它们把 Top-k、间接 Gather 和分段 Attention 做成开发者能组合的近硬件软件积木。',
+          before: 'Attention 或 Indexer 往往被拆成一长串通用 kernel、DMA 和 collective；每个边界都可能写回内存、重新排队并传输过多中间量。',
+          mechanism: 'NKI 提供接近 ISA 的 kernel 编程；NKI 0.6 在 GpSimd 上提供 Top-k/Top-k Reduce kernel，DMA 提供间接 2D 行 Gather。segmented attention 与 KV-parallel prefill 属于软件/kernel 能力，可用 online merge 合并局部结果；Sparse Attention Indexer 仍是实验性模型相关实现。',
+          impact: '这提供了一条可编程组合路径：Search/Select/Gather/Attention 可以由 scratchpad、DMA、规约和通信原语协作，并由软件随模型迭代；它不证明通用 exact Search 或全局 Top-k 已经实现。',
+          signals: ['NKI Top-k / Reduce', 'indirect DMA Gather', 'segmented attention', 'KV-parallel online merge'],
+          boundary: 'Sparse Attention Indexer 仍是实验性且模型相关；公开资料没有证明通用 exact Search、每分区 Local Top-k + 全局 P×k 通信，端到端 TPOT/Tokens/J 也不足。间接 2D 行 Gather 不等于跨 HBM 的任意 page-aware KV Gather DMA。'
+        },
+        retrievalSummary: '10 家里与附件动作最接近的一条公开路径；但专用硬件与端到端指标仍有边界。',
+        mapping: { direct: 'NKI 的间接 Gather、GpSimd Top-K、MoE Top-K Reduce、segmented attention 和 KV-parallel prefill。', indirect: 'SBUF/PSUM indirection、NeuronSwitch all-to-all、可变长度 collective 有利于数据流。', absent: '模型相关 Sparse Indexer 不等于通用 exact Search；Local/Global Top-k、P×k 通信与 TPOT/Tokens/J 端到端证据不足。' },
+        scores: { move: 85, exec: 75, sparse: 80, scale: 90, numeric: 90, programmable: 85 },
+        specs: { '芯片边界': 'Trainium3 是物理芯片；Trn3 UltraServer 是 144 芯片平台；UltraCluster 3.0 是集群', '制程/执行': '3nm；每芯片 8 个 NeuronCore-v4；Tensor、Vector、Scalar、GpSimd 四类引擎', '数值': 'FP32、BF16、MXFP8、MXFP4；官方每芯片 FP8 2.52 PFLOPS', '内存': '144GB HBM3e；产品页 4.9TB/s；每 NeuronCore 32MiB SBUF + 2MiB PSUM', '互联': '4 个 NeuronLink-v4；NeuronSwitch-v1 全互连；144 芯片 UltraServer', '状态边界': '2024-12 首次公开、窗口外；2025-12 Trn3 UltraServers GA；量产数量未确认' },
+        borrow: ['把 software-managed scratchpad、indirect DMA、流式 KV 和 Top-K/Reduce/Gather 作为可组合原语。', '把 KV-parallel 的局部计算与 online merge 连接到候选级 Global Merge。', '把通信和地址路由交给专用硬件/运行时，但用 bytes/token 与 TPOT 验收。'],
+        caveats: ['3nm 不等于绝对低功耗，Trainium3 绝对 TDP 未公开。', '144GB HBM3e 不是 144GB 片上缓存；长上下文仍受 layout 和有效容量影响。', 'segmented attention 不等于 Top-k 检索；all-to-all 不等于低通信量。'],
+        sources: [
+          { label: 'EC2 Trn3 UltraServers 产品页', url: 'https://aws.amazon.com/ec2/instance-types/trn3/', note: 'Trainium3、HBM3e、144 芯片平台' },
+          { label: 'AWS Trainium3 GA 公告', url: 'https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/', note: '2025-12-02 GA' },
+          { label: 'Neuron Trn3 Architecture', url: 'https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html', note: '芯片与平台架构' },
+          { label: 'Neuron Sparse Attention Indexer', url: 'https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/nki/library/api/sparse-attention-indexer-mx-bf16score.html', note: '附件相关的实验 kernel' },
+          { label: 'Neuron 2.30 NKI 更新', url: 'https://aws.amazon.com/about-aws/whats-new/2026/05/aws-announce-neuron-2-30-0/', note: 'segmented attention、KV-parallel 等' }
+        ]
+      },
+      {
+        id: 'groq', vendor: 'Groq', chip: 'Groq 3 LPU / LP30', date: '2026-03-16', status: '设计公开；官方称已进入生产/爬坡；LPX GA/规模部署未确认', statusKey: 'announced', route: 'Dataflow', routeKey: 'dataflow', total: 81,
+        tagline: '把 SRAM、显式数据移动、编译器静态调度和芯片间同步写进同一份时间表，追求低抖动的逐 token 解码。',
+        problem: '减少解码阶段的运行时调度、缓存不确定性和每个 token 的等待。',
+        eli5: '它像一条提前排好班次的传送带：编译器提前写好每个工位何时取料、计算和交料，SRAM 放热数据，MXM/VXM/SXM 分别处理矩阵、向量和数据交换。这样每一步的时间更可预测，但如果数据位置、分支或候选集合运行时才决定，静态传送带就不能自动变成搜索引擎。',
+        innovation: {
+          title: '把算、存、传写进同一份时间表',
+          thesis: 'Groq 的关键设计不是“没有缓存”这句口号，而是让编译器在运行前同时排定算术、SRAM 搬运和芯片链路，主动消灭资源争抢。',
+          before: '传统执行会在运行时抢 kernel 队列、缓存和网络资源；某个数据晚到或缓存 miss，就会把 token 延迟拖出长尾。',
+          mechanism: '编译器预排 MXM、VXM、SXM、SRAM 数据移动与 C2C 通信，plesiosynchronous 同步让多芯片按已知节奏协作，减少动态仲裁。',
+          impact: '解码路径的时延和抖动更可预测，数据搬运也从隐藏副作用变成可审计计划；这很适合稳定形状的逐 token 流水。',
+          signals: ['500MB SRAM / 颗', '150 TB/s SRAM 口径', 'MXM / VXM / SXM', 'C2C + plesiosynchronous'],
+          boundary: '公开架构没有原生动态 Search、Top-k 或 page-aware Gather；静态时间表依赖可预测的形状、分支与布局，SRAM 容量也限制可常驻工作集。'
+        },
+        retrievalSummary: '确定性数据流与解码时序强；动态 Search、Top-k、page-aware Gather 没有公开证据。',
+        mapping: { direct: '显式数据流、SRAM-first、C2C 链路与同步协议直接服务 per-token latency 和通信时序。', indirect: 'SXM 的 permutation/route、编译器排程可承载固定形状的规约和数据搬运。', absent: '没有公开 TOPK、MERGE_TOPK、indexed gather DMA、page translator 或动态地址簿。' },
+        scores: { move: 90, exec: 90, sparse: 40, scale: 90, numeric: 80, programmable: 85 },
+        specs: { '芯片边界': 'Groq 3 LPU/LP30；8 颗为一托盘、256 颗组成 LPX 机架；不是 GroqCloud 服务', '执行': 'MXM 矩阵、VXM 向量、SXM 数据交换；统一工作粒度 320-byte vector', '数值': 'LPX 标注 FP8；Groq 体系公开 TruePoint、FP32 logits、BFP/FP8 等，LP30 完整格式表未确认', '片上内存': '每颗 500MB SRAM；公开 SRAM 带宽 150TB/s，单颗完整有效带宽未做模型实测', '互联': '每颗 96 条 C2C link、112Gbps/link；聚合双向约 2.5TB/s；LPX 256 LPU', '状态边界': '2026-03-16 NVIDIA 一手资料首次明确 Groq 3；官方称生产/下半年可用，但 LP30 GA 与规模部署未确认' },
+        borrow: ['把算、存、传放入同一份可验证时间表，研究硬件事件图与编译器协同。', '为 Retrieval Plane 设计稳定的静态/半静态路径，同时给动态候选留出 fallback。', '将跨芯片同步与 token 流水分开测量，避免只看片上带宽。'],
+        caveats: ['500MB SRAM 很快但很小，大模型仍需分片、片外内存和跨芯片通信。', '确定性调度不等于所有请求零抖动，动态形状和云端排队仍存在。', 'Groq 3 LPX 不等于 GroqCloud，LP30 也不能套用旧 GroqChip 的 14nm/230MB/80TB/s。'],
+        sources: [
+          { label: 'NVIDIA Groq 3 LPX 技术博客', url: 'https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/', note: 'LP30、SRAM、C2C、LPX 拓扑' },
+          { label: 'Groq 与 NVIDIA 授权公告', url: 'https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale', note: '独立运营与授权边界' },
+          { label: 'Groq LPU 解释', url: 'https://groq.com/blog/the-groq-lpu-explained', note: '确定性与 LPU 原则' },
+          { label: 'Inside the LPU', url: 'https://home.cloud.groq.io/blog/inside-the-lpu-deconstructing-groq-speed', note: 'SRAM、同步与旧代基线' }
+        ]
+      },
+      {
+        id: 'dmatrix', vendor: 'd-Matrix', chip: 'Corsair / Pavehawk 3DIMC', date: '2026-06-09', status: 'Corsair full production；Pavehawk 实验室硅', statusKey: 'announced', route: 'Memory-centric', routeKey: 'memory', total: 78,
+        tagline: '把最急的推理数据和一部分数字乘加贴近 SRAM，再用 chiplet、DMX Bridge 和 JetStream 延伸到多卡多节点。',
+        problem: '降低 decode 中“读出—搬运—计算”的往返，以及低延迟交互对带宽和 I/O 的依赖。',
+        eli5: '普通推理像厨师每炒一道菜都跑去远处仓库取一小把盐；DIMC 把高频食材和一部分称量动作放到灶台旁。SRAM Performance Memory 是小而快的工作台，LPDDR5 是大而慢的容量仓库，chiplet/DMX 是灶台之间的流水线。它解决了数据离计算太远，却没有公开证明灶台会自动选出最相关的 KV page。',
+        innovation: {
+          title: 'DIMC：让计算贴近 SRAM，并继续向 3D 内存推进',
+          thesis: 'd-Matrix 把“内存墙”理解为物理距离问题：先让高频数据和乘加在 SRAM 附近相遇，再探索把 DRAM 垂直堆到计算上方。',
+          before: 'Decode 反复经历读内存、搬数据、做计算、写回的往返；批量小时，搬运和 host 参与的成本尤其显眼。',
+          mechanism: 'Corsair 用 DIMC 在 SRAM 内/旁完成计算，2GB Performance Memory 提供 150 TB/s 口径，LPDDR5 承接容量，chiplet 与 DMX 延伸多卡。JetStream 是独立 I/O 卡，单独量产状态未确认；Pavehawk test silicon 再验证 3D DRAM 堆叠。',
+          impact: '它提示一种可借鉴方向：用 DIMC 将热点 Query-Key 计算与局部规约靠近内存，减少往返；Corsair 公开材料尚未验证这类 Retrieval 语义，候选选择仍需要额外 Top-k/索引机制。',
+          signals: ['2GB SRAM @ 150 TB/s', 'LPDDR5 容量层', 'JetStream device-active I/O', 'Pavehawk 3D DRAM test silicon'],
+          boundary: 'DIMC 加速的是靠近 SRAM 的稠密 MAC，不是动态 Search、Top-k 或 KV 页 Gather；Pavehawk 仍是测试硅，不是可采购量产产品。'
+        },
+        retrievalSummary: 'Memory-centric / I/O 对 Move 和低延迟最直接；Search、Top-k、page-aware Gather 未公开确认。',
+        mapping: { direct: 'Corsair 的 DIMC + SRAM、DMX Bridge 与 PCIe，以及独立 JetStream I/O 路线，分别面向数据往返和 host round trip。', indirect: '容量内存、Aviator 编译器与 GPU prefill/Corsair decode 异构有利于流水化。', absent: '没有公开动态 Indexer、streaming Top-k、KV page translator 或 indexed Gather DMA。' },
+        scores: { move: 90, exec: 80, sparse: 27, scale: 93, numeric: 90, programmable: 80 },
+        specs: { '产品边界': 'Corsair PCIe/dual-card/服务器/机架平台；JetStream 是独立 I/O accelerator，单独量产状态未确认；Pavehawk 是 3DIMC test silicon', '制程/执行': 'Corsair TSMC N6；单卡 2,048 DIMC compute cores，另有 SIMD、RISC-V、Dispatch/Data Reshape', '数值': 'MXINT16/8/4；单卡约 600/2,400/9,600 TFLOPs 密集峰值', '性能内存': '单卡 2GB SRAM Performance Memory @ 150TB/s；双卡 4GB @ 300TB/s', '容量内存': 'LPDDR5 最高 256GB @ 400GB/s；双卡最高 512GB', '状态边界': 'Corsair 2024-11 首发早于窗口；2026-06 full production、select customers；Pavehawk 2025-08 公布仍是实验室硅' },
+        borrow: ['把高速小容量 Performance Memory 与大容量 Capacity Memory 分层，并把内存附近计算作为一等公民。', '把设备主动 I/O、片间 all-to-all 和 descriptor 路径连起来，减少 host round trip。', '研究 Pavehawk 的垂直内存路线，但先把 3DIMC 的实验目标和商品规格分开。'],
+        caveats: ['150TB/s 只对应 2GB 性能内存，不代表所有容量内存都同速。', 'full production 不等于所有客户 GA，官方仍写 select, qualified customers。', '60,000 tokens/s、10x/3x 等投影依赖模型、上下文、批大小和基线，不能替代端到端验收。'],
+        sources: [
+          { label: 'Corsair full production 公告', url: 'https://www.d-matrix.ai/announcements/d-matrix-corsair-ai-inference-platform-enters-full-production-to-meet-customer-demand/', note: '2026-06 量产与客户状态' },
+          { label: 'Corsair 产品页', url: 'https://www.d-matrix.ai/product/', note: '双卡/服务器/机架层级' },
+          { label: 'Corsair 技术白皮书', url: 'https://d-matrix.ai/pdf/d-Matrix-WhitePaper-Technical-FINAL.pdf', note: 'DIMC、SRAM、LPDDR5、DMX' },
+          { label: '3DIMC / Pavehawk 路线', url: 'https://www.d-matrix.ai/scaling-ai-inference-with-3dimc/', note: '实验硅与下一代路线' },
+          { label: 'Pavehawk 实验室验证', url: 'https://www.d-matrix.ai/going-vertical-why-we-created-a-3d-dram-solution-to-advance-low-latency-ai-inference/', note: '3D stacked DRAM 边界' }
+        ]
+      },
+      {
+        id: 'furiosa', vendor: 'FuriosaAI', chip: 'RNGD Gen 2', date: '2026-01-27量产', status: '量产并部署；第三代开发中', statusKey: 'available', route: 'Tensor contraction', routeKey: 'tensor', total: '71.8',
+        tagline: '以 Tensor Contraction Processor 和编译器共同组织张量的分片、复用和流水，而不是只固定一个 GEMM 形状。',
+        problem: '提高规则张量计算的数据复用和能效密度，降低 HBM 往返与多卡执行开销。',
+        eli5: '它像一条带缓存工作台的流水线：HBM 是远处仓库，256MB SRAM 是生产线旁的工作台，Tensor DMA 先把数据按目标布局送到工作台，TCP 再让同一批张量连续通过收缩、向量、转置等工序。它能把“张量怎么流过芯片”做得更有组织，却没有公开一个独立的 Search/Top-k/KV page 引擎。',
+        innovation: {
+          title: 'Tensor Contraction Processor + 编译器定义数据流',
+          thesis: 'RNGD 的创新是把执行单位从固定 GEMM 形状上移到更一般的 tensor contraction，再让编译器决定数据如何分片、广播和复用。',
+          before: '固定 GEMM 路径会迫使模型做额外 reshape、转置或中间结果物化，张量复用机会也容易在 HBM 往返中丢失。',
+          mechanism: 'TCP 执行张量收缩，编译器安排 sharding、broadcast、reuse 与 pipeline；256MB SRAM、Fetch network 和 Tensor DMA 维持片上数据流，HbmTensor 还暴露 indexed-gather API。',
+          impact: '同一批张量能在片上连续完成更多工序，架构能力可通过 Virtual ISA 与编译器演进；这适合作为可组合 Retrieval kernel 的通用数据流底座。',
+          signals: ['256MB SRAM', 'Tensor DMA / Fetch network', 'HbmTensor indexed-gather API（SDK）', 'Virtual ISA / TCL'],
+          boundary: 'TCP 不是 Search/Top-k 加速器；indexed-gather API 尚不能证明页感知、低延迟 KV 检索，服务路由器和 ChipShuffle 也不等于完整 Retrieval Plane。'
+        },
+        retrievalSummary: 'Tensor/Memory 数据流与编译器强；专用 Search、Top-k、page-aware Gather 未公开确认。',
+        mapping: { direct: 'TCP 张量收缩、片上 SRAM 复用、Tensor DMA、Vector/Reduce 与多卡 TP/P2P 支持。', indirect: 'HbmTensor index gather API、Prefix-Aware Router 与 compiler overlap 属于 SDK/服务层能力，可用于软件原型和接口设计启发，不能证明硬件 Retrieval 已实现。', absent: '没有公开 Retrieval Core、硬件 Top-k、KV page translator 或 candidate-aware merge collective。' },
+        scores: { move: 85, exec: 85, sparse: 30, scale: 37, numeric: 80, programmable: 85 },
+        specs: { '时间边界': 'RNGD 2024-06 公开早于窗口；2026-01 进入量产并交付首批 4,000 颗；第三代 2026-05 宣布开发', '制程/执行': 'TSMC 5nm、1.0GHz；8 个 coarse-grained PE，可按张量形状拆分为 slices；Tensor Contraction 流水', '数值': 'BF16 256 TFLOPS；FP8 512 TFLOPS；INT8 512 TOPS；INT4 1,024 TOPS', '内存': '48GB HBM3、1.5TB/s；256MB SRAM，论文给出片上 SRAM 带宽约 384TB/s', '互联/功耗': 'PCIe Gen5 x16；当前出货卡 180W，早期论文/文档 150W，官方未解释差异', '状态边界': 'RNGD Gen 2 是当前可获得量产主力；第三代 HBM4/2nm 仍无 GA/量产证据；NPUaaS/SDK 不是新芯片' },
+        borrow: ['把 HBM、scratchpad、DMA、张量流水与编译器放在同一个优化问题里。', '暴露 DOT/REDUCE/TOPK/GATHER/ROUTE/MERGE_COLLECTIVE 等可组合原语。', '保留多实例隔离和可观测性，为不规则 Retrieval kernel 留出编程空间。'],
+        caveats: ['150W 与 180W 是不同资料口径，不能用其中一个覆盖所有版本。', 'HBM3 峰值带宽不等于离散 Gather 已解决。', 'SDK 2026 的 TCL、KV 管理和 overlap 是软件演进，不要写成新芯片升级。'],
+        sources: [
+          { label: 'RNGD 当前规格页', url: 'https://furiosa.ai/renegade-spec', note: '5nm、算力、HBM、180W' },
+          { label: 'RNGD 开发者文档', url: 'https://developer.furiosa.ai/latest/en/overview/rngd.html', note: '芯片、SRAM、多实例' },
+          { label: 'Tensor Contraction Processor 论文', url: 'https://furiosa.ai/download/FuriosaAI-tensor-contraction-processor-isca24', note: 'TCP 架构原理' },
+          { label: 'RNGD 进入量产公告', url: 'https://furiosa.ai/blog/rngd-enters-mass-production-the-high-performance-ai-accelerator-for-any-data-center', note: '2026-01 量产状态' },
+          { label: '下一代平台开发公告', url: 'https://furiosa.ai/blog/furiosaai-partners-with-broadcom-to-build-next-generation-inference-platform-for-the-agentic-era', note: '第三代仅开发中' }
+        ]
+      },
+      {
+        id: 'tenstorrent', vendor: 'Tenstorrent', chip: 'Blackhole p150；Galaxy（32 ASIC 系统）', date: 'Blackhole 2025-04；Galaxy 2026-04—05', status: 'Galaxy 系统 GA、量产并规模部署', statusKey: 'available', route: 'Dataflow', routeKey: 'dataflow', total: 83,
+        tagline: '把 RISC-V 控制、Tensix、分布式 SRAM、显式 NoC 和跨卡 Ethernet 放进一套能由软件深入编排的数据流机器。',
+        problem: '让“数据放在哪里、怎样移动”与矩阵计算同等重要，并把一张卡扩展成可编程的多卡系统。',
+        eli5: '一个 Tensix 像带小仓库的加工台：本地 SRAM 是仓库，矩阵/向量单元是工具，Baby RISC-V 负责读工单，NoC 是厂区传送网。reader 把 tile 搬进来，compute 处理，writer 再送走；循环缓冲让取料和加工重叠。它给了 Retrieval Plane 足够可编程的“取数与计算底座”，但没有公开 Search、Top-k 或 KV page translator 这些专用模块。',
+        innovation: {
+          title: 'Reader–Compute–Writer + 软件可见 SRAM/NoC',
+          thesis: 'Blackhole 最值得借鉴的是“把数据流控制权交给软件”：本地 SRAM、NoC 与三个 kernel 阶段都不是不可见的硬件副作用。',
+          before: '若软件看不到数据放在哪里、何时搬、经哪条路走，编译器就很难稳定重叠访存与计算，也无法针对新模型重排数据流。',
+          mechanism: '每个 Tensix 结合本地 SRAM、RISC-V 控制与矩阵/向量单元；reader、compute、writer kernel 通过 circular buffer 流水，NoC 和板卡 Ethernet 延伸到多芯片，TT-Metalium/TTNN/TT-Forge 提供不同抽象层。',
+          impact: '开发者可以显式试验扫描、局部 Reduce/Top-k、索引搬运和 candidate 分片，并精确控制哪些步骤与通信重叠。',
+          signals: ['1.5MB 本地 SRAM / Tensix', 'reader / compute / writer', 'NoC + 4×800G', 'TT-Metalium / TT-Forge'],
+          boundary: '180MB 是分布式本地 SRAM，不是共享缓存；公开资料没有 Search/Top-k/page translator，“可由软件实现”也不等于获得专用硬件加速。'
+        },
+        retrievalSummary: '可编程 Dataflow / NoC / 显式搬运强；专用 Search、Top-k、page-aware Gather 未公开确认。',
+        mapping: { direct: 'Tensix + 本地 SRAM + reader/compute/writer、NoC、GDDR6 与 4×800G 板卡连接。', indirect: 'TT-Metalium 可手写扫描、局部 Reduce/Top-k、索引搬运和 candidate 分片。', absent: '没有公开 Search core、索引 SRAM、Merge Top-k、indexed Gather DMA 或 page-map descriptor。' },
+        scores: { move: 87, exec: 90, sparse: 47, scale: 93, numeric: 90, programmable: 90 },
+        specs: { '时间边界': 'Blackhole 首发 2025-04-03，窗口外；Galaxy Blackhole 2026-04-28/05-04 GA、量产与 36 台 supercluster 部署', '执行': '当前 p150 120 Tensix + 16 Big RISC-V；每 Tensix 5 Baby RISC-V、1.5MB 本地 SRAM', '数值': '当前卡表 664 TeraFLOPS BlockFP8；TT-Metalium 覆盖 BF16、BFLOAT8_B、BFLOAT4_B', '内存': '当前 p150 180MB 分布式 SRAM；32GB GDDR6、512GB/s；历史首发口径 140 core/210MB', '互联': 'p150 4×800G QSFP-DD；PCIe 5.0 x16；NoC 14×10 总网格、13×10 可用计算网格', 'Galaxy 边界': '32 ASIC、1TB GDDR6 @ 16TB/s、6.2GB SRAM @ 2.9PB/s、23 PFLOPS BlockFP8；系统 8–10kW 平均' },
+        borrow: ['让软件明确编排 reader/compute/writer 与 SRAM/NoC，验证 candidate-parallel Local Top-k。', '把片内 NoC、片间 Ethernet、PCIe 控制面分层，研究地址 bookkeeping 与数据路由。', '保留开放的 TT-Metalium/编译器下探能力，为模型变化留出空间。'],
+        caveats: ['当前 p150 的 120 core/180MB 与早期 140 core/210MB 不能混写。', '180MB 是分布式本地 SRAM，不是自动吸收随机 KV 的共享 L2。', 'Galaxy 的 23 PFLOPS、350+ tokens/s/user 是系统级特定工作负载结果，不是 Retrieval 专项 TPOT。'],
+        sources: [
+          { label: 'Blackhole Developer Products 首发', url: 'https://tenstorrent.com/en/newsroom/tenstorrent-launches-blackhole-developer-products-at-tenstorrent-dev-day', note: '2025-04 首发与 6nm' },
+          { label: 'Blackhole 当前卡页', url: 'https://tenstorrent.com/en/hardware/cards', note: '120 core、180MB、GDDR6、800G' },
+          { label: 'Galaxy Blackhole 产品页', url: 'https://tenstorrent.com/hardware/galaxy', note: '系统级规格与功耗' },
+          { label: 'Galaxy GA 公告', url: 'https://tenstorrent.com/newsroom/tenstorrent-enables-ai-at-scale-with-industry-leading-performance', note: '2026-04 GA 与部署' },
+          { label: 'TT-System-Firmware Blackhole 文档', url: 'https://docs.tenstorrent.com/tt-system-firmware/boards/tenstorrent/tt_blackhole/doc/index.html', note: 'SoC/板卡边界' },
+          { label: 'TT-Metalium guide', url: 'https://github.com/tenstorrent/tt-metal/blob/main/METALIUM_GUIDE.md', note: '显式数据流与软件栈' }
+        ]
+      }
+    ];
+
+    const tagLabel = { gpu: '超级 GPU', sparse: 'Sparse / 异构', dataflow: 'Dataflow', memory: 'Memory-centric', wafer: 'Wafer-scale', tensor: 'Tensor contraction' };
+    const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const safeUrl = url => /^https?:\/\//.test(url) ? url : '#';
+    const link = source => `<a href="${safeUrl(source.url)}" target="_blank" rel="noreferrer">${esc(source.label)}</a>`;
+    const scoreRows = scores => Object.entries(scoreLabels).map(([key,label]) => `<div class="score-row"><span>${label}</span><span class="score-track"><span class="score-fill" style="width:${Math.max(0, Math.min(100, Number(scores[key] || 0)))}%"></span></span><span class="score-value">${esc(scores[key])}</span></div>`).join('');
+    const list = items => (items || []).map(item => `<li>${esc(item)}</li>`).join('');
+    const specRows = specs => Object.entries(specs || {}).map(([key,value]) => `<tr><td>${esc(key)}</td><td>${esc(value)}</td></tr>`).join('');
+    const innovationChips = items => (items || []).map(item => `<span class="innovation-chip">${esc(item)}</span>`).join('');
+    const vendorText = v => [
+      v.vendor, v.chip, v.route, v.problem, v.tagline,
+      v.innovation?.title, v.innovation?.thesis, v.innovation?.before,
+      v.innovation?.mechanism, v.innovation?.impact, v.innovation?.boundary,
+      ...(v.innovation?.signals || []), ...(v.borrow || []), ...(v.caveats || [])
+    ].join(' ').toLowerCase();
+
+    function render(filter = 'all', query = '') {
+      const needle = query.trim().toLowerCase();
+      const matches = v => (filter === 'all' || v.routeKey === filter) && (!needle || vendorText(v).includes(needle));
+      const shown = vendors.filter(matches);
+      document.querySelector('#matrix-body').innerHTML = shown.map(v => `<tr><td><div class="chip-name">${esc(v.chip)}</div><div class="vendor-name">${esc(v.vendor)}</div></td><td><span class="status ${esc(v.statusKey || '')}">${esc(v.date)} · ${esc(v.status)}</span></td><td><span class="tag ${esc(v.routeKey)}">${esc(tagLabel[v.routeKey] || v.route)}</span></td><td><div class="innovation-name">${esc(v.innovation.title)}</div></td><td>${esc(v.problem)}</td><td>${esc(v.retrievalSummary)}</td><td><span class="score-pill">${esc(v.total)}/100</span></td></tr>`).join('');
+      document.querySelector('#vendor-list').innerHTML = shown.map((v, index) => `<article class="vendor-card reveal" data-route="${esc(v.routeKey)}" id="vendor-${esc(v.id)}">
+        <header class="vendor-head"><div><div class="vendor-meta"><span class="tag ${esc(v.routeKey)}">${esc(tagLabel[v.routeKey] || v.route)}</span><span class="meta-line">${esc(v.date)}</span><span class="meta-line">${esc(v.status)}</span></div><h3>${esc(v.vendor)} · ${esc(v.chip)}</h3><p>${esc(v.tagline)}</p></div><div class="vendor-index"><div class="vendor-index-label">architecture research value</div><div class="vendor-score">${esc(v.total)}<small>/ 100</small></div></div></header>
+        <div class="vendor-body"><div class="vendor-grid"><div class="plain-panel"><h4>ELI5 / 它在解决什么</h4><p class="lead">${esc(v.problem)}</p><p>${esc(v.eli5)}</p></div><div class="score-panel"><h4>六维评分</h4>${scoreRows(v.scores)}</div></div>
+          <section class="innovation-panel" aria-label="核心创新拆解">
+            <div class="innovation-top"><div class="innovation-kicker">CORE INNOVATION / 核心创新</div><div><h4>${esc(v.innovation.title)}</h4><p>${esc(v.innovation.thesis)}</p></div></div>
+            <div class="innovation-flow">
+              <article class="innovation-stage" data-stage="01 / 旧瓶颈"><h5>过去卡在哪里</h5><p>${esc(v.innovation.before)}</p></article>
+              <article class="innovation-stage" data-stage="02 / 新机制"><h5>它改了什么</h5><p>${esc(v.innovation.mechanism)}</p></article>
+              <article class="innovation-stage" data-stage="03 / 架构价值"><h5>为什么重要</h5><p>${esc(v.innovation.impact)}</p></article>
+            </div>
+            <div class="innovation-support"><div><span class="innovation-support-label">关键公开信号</span><div class="innovation-chips">${innovationChips(v.innovation.signals)}</div></div><div><span class="innovation-support-label">不能误解成</span><div class="innovation-boundary">${esc(v.innovation.boundary)}</div></div></div>
+          </section>
+          <div class="mapping-panel" style="margin-top:24px"><h4>对附件 Retrieval Plane 的映射</h4><div class="mapping-grid"><div class="mapping-item direct"><strong>直接解决或最接近</strong>${esc(v.mapping.direct)}</div><div class="mapping-item indirect"><strong>间接帮助</strong>${esc(v.mapping.indirect)}</div><div class="mapping-item absent"><strong>没有解决 / 公开资料不足</strong>${esc(v.mapping.absent)}</div></div></div>
+          <div class="vendor-bottom"><div><h4>可借鉴点</h4><ul class="borrow-list">${list(v.borrow)}</ul></div><div><h4>边界与常见误解</h4><ul class="caveat-list">${list(v.caveats)}</ul></div></div>
+          <details><summary>证据与规格</summary><table class="spec-table">${specRows(v.specs)}</table><div style="margin-top:16px"><ul class="source-list">${(v.sources || []).map(source => `<li>${link(source)} <span style="color:var(--muted)">· ${esc(source.note || '')}</span></li>`).join('')}</ul></div></details>
+        </div></article>`).join('');
+      document.querySelector('#matrix-empty').style.display = shown.length ? 'none' : 'block';
+      document.querySelector('#vendor-empty').style.display = shown.length ? 'none' : 'block';
+      observeReveals();
+    }
+
+    function observeReveals() { document.querySelectorAll('.reveal:not(.observed)').forEach((el, i) => { el.classList.add('observed'); revealObserver.observe(el); el.style.transitionDelay = `${Math.min(i * 35, 280)}ms`; }); }
+    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); revealObserver.unobserve(entry.target); } }), { threshold: .08 });
+    document.querySelectorAll('.filter-button').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('.filter-button').forEach(item => item.classList.remove('active')); button.classList.add('active'); render(button.dataset.filter, document.querySelector('.search-box').value); }));
+    document.querySelector('.search-box').addEventListener('input', event => { const active = document.querySelector('.filter-button.active'); render(active ? active.dataset.filter : 'all', event.target.value); });
+
+    const archTabButtons = [...document.querySelectorAll('.arch-tab-button')];
+    const archTabPanels = [...document.querySelectorAll('.arch-tab-panel')];
+    const activateArchTab = button => {
+      const active = button.dataset.archTab;
+      archTabButtons.forEach(item => item.setAttribute('aria-selected', String(item === button)));
+      archTabPanels.forEach(panel => { panel.hidden = panel.id !== `${active}-panel`; });
+    };
+    archTabButtons.forEach((button, index) => {
+      button.addEventListener('click', () => activateArchTab(button));
+      button.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+        event.preventDefault();
+        const next = (index + (event.key === 'ArrowRight' ? 1 : -1) + archTabButtons.length) % archTabButtons.length;
+        archTabButtons[next].focus();
+        activateArchTab(archTabButtons[next]);
+      });
+    });
+
+    const navLinks = [...document.querySelectorAll('.nav-links a')];
+    const navSections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const navObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+    }), { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+    navSections.forEach(section => navObserver.observe(section));
+
+    const progress = document.querySelector('.progress');
+    const updateProgress = () => { const max = document.documentElement.scrollHeight - innerHeight; progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`; };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+    render(); observeReveals();
+  </script>
+</body>
+</html>
