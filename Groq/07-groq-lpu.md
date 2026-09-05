@@ -123,3 +123,6 @@ Groq 的办法像一条提前排好班次的流水线。编译器在运行前把
 10. [Groq：Groq Raises $650M（2026-06-22）](https://groq.com/newsroom/groq-raises-usd650m-to-scale-its-ai-inference-cloud-business)（Groq 计划将 NVIDIA LPX 纳入 footprint；访问日 2026-08-22）。
 
 > 证据边界：截至 2026-08-22，未找到 Groq 自己发布的 LP30 完整 datasheet，亦未找到可确认 LP30 已在 GroqCloud 规模部署的官方记录；制程、单芯片功耗、TOPK/Gather 专用硬件和实测 Tokens/J 均应保留为“公开资料未确认”。
++## 2026-09-01 在线复核增补
+
+已重新打开 [Groq 3 LPX 官方公告](https://groq.com/blog/groq-among-the-first-to-bring-nvidia-groq-3-lpx-and-vera-rubin-nvl72-to-market) 与 [Groq Cloud 平台页](https://groq.com/platform)，确认 2026-08-24 公告将 LPX/Vera Rubin NVL72描述为计划部署并接入推理云；平台页把 256 LPU、40PB/s SRAM 带宽等标为机架级口径，不能写成单芯片规格。

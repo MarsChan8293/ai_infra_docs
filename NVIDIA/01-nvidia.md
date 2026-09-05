@@ -96,3 +96,6 @@ Rubin 最值得研究的地方，不是把 Tensor Core 再堆大，而是把 **H
 6. [Vera Rubin datasheet](https://dam-cdn.nvd.orangelogic.com/AssetLink/v5rf2icnf86o26e464tf6djn23r8ibhe.pdf)
 7. [第六代 NVLink 与 NVLink Switch](https://www.nvidia.com/en-gb/data-center/nvlink/)
 8. [Rubin CPX 宣布与可用时间，2025-09-09](https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference)
++## 2026-09-01 在线复核增补
+
+已重新打开 [NVIDIA Vera Rubin 官方新闻](https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion/) 与 [NVIDIA Vera Rubin 科学计算公告](https://nvidianews.nvidia.com/news/nvidia-vera-rubin-delivers-world-class-supercomputers-for-science)，确认 2026-08-24 官方文中将 Groq 3 LPX称为 full production，并把 Vera Rubin系统/多 GPU 机架单独描述；该状态不能回填为 Rubin 单 GPU 的出货或单卡零售可用。

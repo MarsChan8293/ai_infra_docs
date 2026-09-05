@@ -1,13 +1,13 @@
 # Google TPU 与附件新推理 GPU 方案对照
 
-> 研究厂商｜Google TPU  
-> 目标时间｜2025-07-01 至 2026-08-22  
-> 资料访问日｜2026-08-22  
+> 研究厂商｜Google TPU
+> 目标时间｜2025-07-01 至 2026-09-01
+> 资料访问日｜2026-09-01（本次复核）；原有 2026-08-22 访问标记保留在历史段落中
 > 研究对象｜TPU7x/Ironwood，以及窗口内后续公开的 TPU 8t、TPU 8i
 
 ## 一句话结论
 
-Ironwood最值得研究的地方，是把高密度 TensorCore、面向不规则访问的 SparseCore、HBM 和大规模 ICI 放进同一个推理与训练系统。它对附件的 Move、Route、部分 Address 和跨卡 collective 有真实对应，对 Search、精确 Top-k、score materialization 消除和 page-aware KV Gather 没有公开的专用证据。2026-04-22 宣布的 TPU 8i 更接近附件的问题定义，它增加 CAE、384 MB 片上 SRAM 和 Boardfly 低跳数互联，但截至 2026-08-22 仍标为 Coming soon，不能把宣传方向写成可用芯片的端到端结果。[Google TPU 产品页](https://cloud.google.com/tpu?hl=en)（访问日期｜2026-08-22）
+Ironwood最值得研究的地方，是把高密度 TensorCore、面向不规则访问的 SparseCore、HBM 和大规模 ICI 放进同一个推理与训练系统。它对附件的 Move、Route、部分 Address 和跨卡 collective 有真实对应，对 Search、精确 Top-k、score materialization 消除和 page-aware KV Gather 没有公开的专用证据。2026-04-22 宣布的 TPU 8i 更接近附件的问题定义，它增加 CAE、384 MB 片上 SRAM 和 Boardfly 低跳数互联，但截至 2026-09-01 仍标为 Coming soon，不能把宣传方向写成可用芯片的端到端结果。[Google TPU 产品页](https://cloud.google.com/tpu?hl=en)（本次复核日期｜2026-09-01；原有 2026-08-22 访问标记保留）
 
 ## 时间口径与产品状态
 
@@ -111,3 +111,104 @@ TPU 8i若按附件问题打分，CAE、片上 KV 容量和 Boardfly会让它的�
 6. [TPU 8t/8i architecture deep dive，含 SparseCore、CAE、Boardfly 与芯片表，2026-04-22，访问日期 2026-08-22](https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)
 7. [JAX Pallas SparseCore 开发文档，含 dynamic indexing、DMA、gather/scatter，访问日期 2026-08-22](https://docs.jax.dev/en/latest/pallas/tpu/sparsecore.html)
 8. [TPU v4 原始论文，作为 SparseCore 的上一代架构基线，访问日期 2026-08-22](https://arxiv.org/abs/2304.01433)
+
+## 2026-09-01 复核增补
+
+本节是对上文的原地核验与补充，不删除原有研究内容。证据标签统一如下。
+
+- **[官方事实]**：Google Cloud、Google、JAX/OpenXLA 或 MLCommons 页面直接写明的内容。
+- **[厂商主张]**：Google 的峰值、相对性能、价格性能、性能/瓦或自家实测；不等于独立复现。
+- **[独立基准]**：MLCommons/MLPerf 的公开基准框架或结果。若公开页面没有把具体 run 映射到 Ironwood，不能借此推出 Ironwood 分数。
+- **[分析判断]**：基于已列事实对附件 Retrieval Plane 的映射；不是 Google 的产品承诺。
+- **[未确认]**：截至本次访问没有足够公开证据，不能用路线图、媒体或传闻替代。
+
+### A. 产品家族与状态矩阵（截至 2026-09-01）
+
+| 产品 | 产品层级 | 首次披露/发布 | 流片/量产 | 出货/客户部署 | 云端状态 | 窗口内定位 |
+|---|---|---|---|---|---|---|
+| TPU v5p | ASIC/芯片、Pod、Cloud TPU 服务 | 2023-12-06 发布 | **[未确认]** Google 未公开独立流片或量产日期 | **[官方事实]** 2023 年已向 Cloud customers 提供；曾用于 Salesforce 等客户训练 | **[官方事实]** Cloud TPU v5p 已 GA；当前不是最新主力 | 上一代性能基线 |
+| TPU v6e / Trillium | ASIC/芯片、Pod、Cloud TPU 服务 | 2024-05-14 宣布；2024-12-11 GA | **[未确认]** | **[官方事实]** GA，Google 称用于训练 Gemini 2.0；独立出货数量未公开 | **[官方事实]** GA | Ironwood 的上一代可用产品 |
+| TPU7x / Ironwood | 双 chiplet ASIC、三芯片板、4 芯片/VM、Pod、Cloud TPU 服务 | 2025-04-09 首次披露（早于窗口） | **[未确认]** 没有 Google 独立量产/流片日期 | **[官方事实]** 2025-11-24 Preview；2026-03-31 GA；Cloud 文档/GKE 已有可用配置 | **[官方事实]** 产品页为 Generally available；仍可能需要 quota/reservation/access | 窗口内主力可用产品 |
+| TPU 8t | ASIC/专用训练系统、9,600 芯片 Superpod、Virgo scale-out、Cloud TPU 目标服务 | 2026-04-22 宣布 | **[未确认]** | **[未确认]** 没有公开出货或客户生产部署证据 | **[官方事实]** 产品页仍为 Coming soon；Google 仅称稍后/即将提供 | 窗口内最新训练路线 |
+| TPU 8i | ASIC/专用推理/RL 系统、Boardfly Pod、Cloud TPU 目标服务 | 2026-04-22 宣布 | **[未确认]** | **[未确认]** 没有公开出货或客户生产部署证据 | **[官方事实]** 产品页仍为 Coming soon | 窗口内最新推理路线 |
+| 更后续 TPU | 未见当前产品页列出 | **[未确认]** | **[未确认]** | **[未确认]** | **[未确认]** | 不以传闻或供应链消息补齐 |
+
+状态依据：Google Cloud 当前 TPU 产品页明确把 Ironwood 标为 “Generally available”，把 TPU 8t/8i 标为 “Coming soon”；release notes 记录 TPU7x 于 2025-11-24 Preview、2026-03-31 GA；Cloud TPU 文档当前列出的产品入口包括 Compute Engine、GKE 和 Vertex AI。[TPU 产品页](https://cloud.google.com/tpu?hl=en)（2026-09-01 访问）[Release notes](https://docs.cloud.google.com/tpu/docs/release-notes)（2026-09-01 访问）[Cloud TPU 文档](https://docs.cloud.google.com/tpu/docs)（2026-09-01 访问）
+
+对上文旧时间段的口径补充：2025-11-06 的 GA 标题是产品宣布/即将可用，release notes 将 2025-11-24 记为 Preview、2026-03-31 记为 TPU7x GA。因此状态矩阵采用 release notes 的正式 GA 日期，同时保留 2025-11-06 的宣布和 2025-11-25 的 Cloud customers available 作为历史事件，不把它们混成同一个状态。
+
+这里严格区分“产品可在云上申请/使用”与“芯片由 Google 对外出货”。Google 公开资料支持前者，不支持后者的独立日期、数量或客户交付清单。Anthropic 的“计划访问最多 100 万 TPU”属于客户/合作公告中的计划性容量表述，不能改写为已交付 100 万颗 Ironwood。[Ironwood GA 公告](https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（2025-11-06）
+
+### B. 层级拆分：芯片、板卡、主机、机架、Pod、云服务
+
+| 层级 | Ironwood 已公开内容 | 不能推出的内容 |
+|---|---|---|
+| 芯片/ASIC | 1 个 TPU 芯片由 2 个 chiplet 组成；每 chiplet 有 1 TensorCore、2 SparseCore、96 GB HBM；因此物理盘点为 2 TensorCore、4 个物理 SparseCore、192 GB HBM | 不能把 Pod 的共享 HBM 当作单芯片平坦缓存；每 chiplet 有独立内存空间 |
+| 板卡/液冷组件 | 官方图片说明 Ironwood board 上连接 3 个 TPU，并配液冷；这是板级封装/冷却证据 | 没有公开完整 BOM、板级供电、板卡内所有控制器或量产数量 |
+| 主机/VM | 每台 TPU7x VM 包含 4 个芯片、224 vCPU、960 GB RAM、2 个 NUMA 节点；PCIe 连接 CPU host | 不能把 host RAM 当成 HBM；它是较慢的可选 offload 层 |
+| Pod/系统 | 3D torus，最大 9,216 芯片；每轴双向 200 GB/s；产品页称 42.5 ExaFlops、液冷 | 42.5 ExaFlops 是 Pod 级 FP8 峰值口径，不是单芯片、板卡或云实例实测吞吐 |
+| Cloud service | 通过 Cloud TPU、Compute Engine、GKE 等形态申请/管理；GKE 文档已列 Ironwood GA 区域/版本 | GA 不保证任意区域即时有容量，也不等于 8t/8i 已可租用 |
+
+Ironwood 芯片/拓扑依据：[TPU7x 架构文档](https://docs.cloud.google.com/tpu/docs/tpu7x)（2026-09-01 访问）；板级图片与 GA 说明依据：[Ironwood GA 公告](https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（2026-09-01 访问）；GKE 云端可用依据：[About Ironwood in GKE](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/tpu-ironwood)（2026-09-01 访问）。
+
+### C. 本次核验的规格与冲突
+
+| 项目 | TPU7x / Ironwood | TPU 8t | TPU 8i | 证据边界 |
+|---|---:|---:|---:|---|
+| 单芯片峰值 | BF16 2,307 TFLOPs；FP8 4,614 TFLOPs | FP4 12.6 PFLOPs | FP4 10.1 PFLOPs | [官方事实] 文档/技术深潜表；峰值不是应用吞吐 |
+| HBM | 192 GB；约 7.37–7.38 TB/s | 216 GB；6,528 GB/s | 288 GB；8,601 GB/s | [官方事实] 单芯片口径；GB 与 GiB 需按原表理解 |
+| 片上存储 | VMEM；容量未在 TPU7x 主规格中给出 | 128 MB VMEM | 384 MB SRAM/VMEM | [官方事实] 8i 是 8t 的 3 倍片上 SRAM宣传口径 |
+| 互联 | 3D torus；每轴双向 200 GB/s；双向总 ICI 约 1,200 GB/s | ICI 为 Ironwood 的 2 倍；Virgo 最高 4 倍 DCN 带宽 | 19.2 Tb/s 以及 Boardfly；宣传为通信密集场景最高 50% 延迟改善 | [官方事实]+[厂商主张] 绝对值、方向和系统边界不可混用 |
+| Pod | 9,216 芯片；约 1.77 PB HBM 为系统总量 | 9,600 芯片；2 PB shared HBM；121 ExaFlops | 高层资料称最多 1,152 芯片；深潜拓扑又写 36 组、最多 1,024 active chips | 8i 的 1,152/1,024 是保留的官方口径冲突，不擅自消解 |
+| 功耗 | 单芯片 TDP 未公开；“近 10 MW”是旧有 Pod 级口径 | 单芯片 TDP 未公开 | 单芯片 TDP 未公开 | [未确认] 不能由性能/瓦倒算真实 TDP |
+
+SparseCore 数量需保留两种口径：Cloud TPU7x 架构页按每 chiplet 2 个、整芯片 4 个物理单元说明；JAX Pallas 运行时表按 TPU 7x 暴露 `num_cores=2`，并标注 “2 logical / 4 physical cores”。本报告采用“4 physical cores、2 logical cores”并列写法，不把两者相加。[TPU7x 架构](https://docs.cloud.google.com/tpu/docs/tpu7x)（2026-09-01 访问）[JAX SparseCore 文档](https://docs.jax.dev/en/latest/pallas/tpu/sparsecore.html)（2026-09-01 访问）
+
+### D. 软件栈与已核验的工作负载证据
+
+Google 当前产品页列出 JAX、TorchTPU/PyTorch、OpenXLA、MaxText、Tunix、vLLM；TPU7x 性能文档强调 FP8、sharding、通信优化、activation rematerialization、VMEM 调优和自定义 kernel。8t/8i 技术深潜另列 Pallas、Mosaic、XLA、Pathways、TPUDirect RDMA 和 TPU Direct Storage。[TPU 产品页](https://cloud.google.com/tpu?hl=en)（2026-09-01 访问）[Ironwood performance](https://docs.cloud.google.com/tpu/docs/ironwood-performance)（2026-09-01 访问）[8t/8i technical deep dive](https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（2026-09-01 访问）
+
+Google Developers Blog 的 Qwen 3.5-397B Ironwood playbook 给出一个可复核但属于**厂商实测/厂商优化栈**的结果：在指定 8K/1K prefill-heavy、1K/8K decode-heavy、Concurrency 64 场景，报告 3,707 tokens/s/chip 和 677 tokens/s/chip，并说明 decode 受 HBM 带宽、VPU indexing stalls 与状态更新往返影响；其 RPA 示例把 KV page 从 16 调到 256，在 Concurrency-512 的 kernel step latency 中报告 428 µs 降至 283 µs。该材料非常适合说明 KV Gather/indexing 的真实软件瓶颈，但不能当作独立 benchmark 或泛化到所有模型。[Qwen 3.5-397B Ironwood playbook](https://developers.googleblog.com/systems-engineering-playbook-optimizing-qwen-35-397b-moe-on-ironwood-tpu7x/)（2026-09-01 访问）
+
+### E. 独立基准核验
+
+MLCommons 的 MLPerf Training v6.0 页面明确说明该套件是开源、同行评审、全系统测试，并新增 DeepSeek V3 与 GPT-OSS 20B 等稀疏/MoE 基准；本轮有 Google 参与，合计 24 个提交组织。[独立基准框架事实](https://mlcommons.org/2026/06/mlperf-training-v6-0-results/)（2026-09-01 访问）
+
+截至本次打开的公开 MLCommons 新闻页，能够确认“Google 参与 MLPerf Training v6.0”和“该轮新增稀疏基准”，但页面本身没有把某个结果 run 明确标成 TPU7x/Ironwood。因此本报告不把 MLPerf v6.0 结果数字归因给 Ironwood。Trillium 的 MLPerf 4.1 引用仍是上一代产品的历史基准，不能替代 Ironwood 的独立结果。结论是：**Ironwood 有 Google 自家实测和开发者 playbook，有独立基准框架参与证据，但本次资料集没有完成 Ironwood-specific 的 MLCommons run 级归因。**
+
+### F. 对 Search / Reduce / Top-k / Address / Route / Gather / KV 的证据边界
+
+| 动作 | 公开证据 | 截至本次能下的结论 |
+|---|---|---|
+| Search | SparseCore 面向稀疏、随机访问、低至中计算量；公开操作包括 gather/scatter、sorting、unique、counts、histograms、ragged operations | [分析判断] 可承载搜索前处理或索引相关 kernel；没有 Google 公开的 Q×K 全扫描/ANN Indexer 专用单元证据 |
+| Reduce | TPU collective、SparseCore collectives；8i CAE明确面向 reduction/synchronization | [官方事实] 8i把 Reduce/同步作为专用方向；不等于 Global Top-k 已硬件化 |
+| Top-k | JAX/硬件编程资料公开排序、规约和 indexed 操作 | [未确认] 没有公开“Local Top-k + Global Merge Top-k”专用指令/单元或端到端结果 |
+| Address | Pallas SparseCore scalar subcore 可做 dynamic indexing、发起 DMA/stream；Ironwood 有多层 HBM/VMEM/host memory | [分析判断] 通用地址计算与 DMA 有编程基础；KV page translator、descriptor queue、物理地址安全检查未公开 |
+| Route | TPU7x 3D torus、collective offload；8t Virgo；8i Boardfly、OCS、CAE | [官方事实]+[分析判断] 拓扑和 collective 路径是强项；没有 candidate-aware KV Route 证据 |
+| Gather | SparseCore 明确支持 indexed fetch/send 和 gather/scatter；Qwen playbook 实际采用 Ragged Page Attention | [官方事实] 通用 indexed gather 和软件层 KV page gather 已有证据；硬件级 page-aware KV Gather DMA 未确认 |
+| KV | TPU7x 有 192 GB HBM；Google 性能文档讨论 KV cache 适配；Qwen playbook 对非连续 KV page 做了调优；8i宣传 384 MB SRAM 可容纳更大 KV 工作集 | [官方事实]+[厂商主张] “更适合 KV”成立；不能写成 KV 全部片上、无需 HBM 或已达到某个 TTFT/TPOT |
+
+所以，附件提出的 Tensor Plane + Retrieval/Data-Movement Plane 在 Google 资料里能找到的真实先例是“TensorCore 与 SparseCore/CAE、VMEM/HBM、collectives、DMA 和互联协同”，而不是已经公开的完整 Retrieval Plane。Search、精确 Top-k、score materialization 消除、page-aware KV descriptor、候选级跨卡 Route 仍属于**未确认或分析建议**。
+
+### G. 本次复核结论
+
+1. **最强已证实方向**：Ironwood 把 dense TensorCore 与面向不规则访问/通信的 SparseCore 放在同一系统；TPU7x 文档、JAX Pallas 和 Google 的 Ironwood playbook 共同证明，数据移动、索引、KV page 粒度和通信重叠是实际调优对象。
+2. **最新路线的分化**：TPU 8t 继续强化训练、embedding、FP4、Virgo 和存储直达；TPU 8i 转向采样/服务、384 MB 片上 SRAM、CAE 和 Boardfly。两者仍是 Coming soon，不能把路线图写成已量产或可租用性能。
+3. **独立性边界**：Google 自测数字可以用于“在明确 workload、软件栈、并行度下的厂商结果”；MLPerf 可用于独立方法与结果核验，但本次未将任何 v6.0 run 归因到 Ironwood。
+4. **对附件的实际启发**：优先验证 `HBM bytes/token`、跨卡 `bytes/token`、索引/地址开销、Local/Global Top-k 的召回与精确性、KV page 粒度和尾延迟；不要用峰值 FLOPs、Pod 总带宽或 SparseCore embedding 数字替代这些指标。
+
+### H. 2026-09-01 复核来源清单
+
+1. [Google Cloud TPU 产品页](https://cloud.google.com/tpu?hl=en)
+2. [Cloud TPU release notes](https://docs.cloud.google.com/tpu/docs/release-notes)
+3. [TPU7x / Ironwood 架构文档](https://docs.cloud.google.com/tpu/docs/tpu7x)
+4. [TPU7x / Ironwood 性能优化文档](https://docs.cloud.google.com/tpu/docs/ironwood-performance)
+5. [Ironwood GA 公告](https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)
+6. [TPU 8t/8i 技术深潜](https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)
+7. [Google 第八代 TPU 宣布页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)
+8. [JAX SparseCore Kernel Writing](https://docs.jax.dev/en/latest/pallas/tpu/sparsecore.html)
+9. [Google Developers：Qwen 3.5-397B Ironwood playbook](https://developers.googleblog.com/systems-engineering-playbook-optimizing-qwen-35-397b-moe-on-ironwood-tpu7x/)
+10. [MLCommons：MLPerf Training v6.0 Results](https://mlcommons.org/2026/06/mlperf-training-v6-0-results/)
+11. [TPU v6e / Trillium 架构文档](https://docs.cloud.google.com/tpu/docs/v6e)
+12. [Trillium GA 公告](https://cloud.google.com/blog/products/compute/trillium-tpu-is-ga)
+13. [TPU v5p 架构文档](https://docs.cloud.google.com/tpu/docs/v5p)
