@@ -29,8 +29,8 @@
 
 ## 直接来源链接
 
-1. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-tyty1000)、[TY1100](https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1100)、[TY1100-NX](https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1100_NX)、[TY1100-NX-PRO](https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1100NXPRO)、[TY1200](https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1200)。官网没有在这些页面中提供完整的>
-2. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495)>
+1. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-tyty1000>、[TY1100](https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1100)、[TY1100-NX](https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1100_NX)、[TY1100-NX-PRO](https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1100NXPRO)、[TY1200](https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1200)。官网没有在这些页面中提供完整的
+2. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495>
 3. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1100NXPRO>
 4. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1200>
 5. <https://www.iluvatar.com/software?fullCode=cpjs-rj-rjz>

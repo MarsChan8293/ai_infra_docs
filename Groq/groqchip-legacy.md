@@ -21,13 +21,13 @@
 
 ## 直接来源链接
 
-1. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)；整架>
-2. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)、[256>
-3. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)>
-4. <https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf)>
-5. <https://groq.com/blog/from-speed-to-scale-how-groq-is-optimized-for-moe-other-large-models)（大模型/MoE>
-6. <https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf)（旧一代规格，仅作时间边界；访问日>
-7. <https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale)（独立运营与>
+1. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>；整架
+2. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>、256
+3. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>
+4. <https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf>
+5. <https://groq.com/blog/from-speed-to-scale-how-groq-is-optimized-for-moe-other-large-models>（大模型/MoE
+6. <https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf>（旧一代规格，仅作时间边界；访问日
+7. <https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale>（独立运营与
 
 ## 证据边界
 
@@ -53,12 +53,12 @@
 
 ## 补充直接来源链接
 
-1. <https://groq.com/blog/the-groq-lpu-explained)，并说未来向>
-2. <https://groq.com/blog/the-groq-lpu-explained)>
-3. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，这是推导值>
-4. <https://home.cloud.groq.io/blog/inside-the-lpu-deconstructing-groq-speed)、FP32>
-5. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，作为主要工作存储而非传统>
-6. <https://www.nvidia.com/en-au/data-center/lpx/)，托盘侧公开为>
-7. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)、主机最多>
-8. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，单托盘>
-9. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，整架>
+1. <https://groq.com/blog/the-groq-lpu-explained>，并说未来向
+2. <https://groq.com/blog/the-groq-lpu-explained>
+3. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，这是推导值
+4. <https://home.cloud.groq.io/blog/inside-the-lpu-deconstructing-groq-speed>、FP32
+5. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，作为主要工作存储而非传统
+6. <https://www.nvidia.com/en-au/data-center/lpx/>，托盘侧公开为
+7. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>、主机最多
+8. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，单托盘
+9. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，整架

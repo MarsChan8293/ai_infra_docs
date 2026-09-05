@@ -22,7 +22,7 @@
 
 ## 直接来源链接
 
-1. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech)（宣布>
+1. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech>（宣布
 
 ## 证据边界
 

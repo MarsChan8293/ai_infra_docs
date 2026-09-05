@@ -1,6 +1,6 @@
 # AMD Instinct 与芯片：2025-06 之后最新款
 
-> 范围：AMD Instinct；目标时间：2025-07-01 至 2026-09-01；最新资料访问日期：2026-09-01。原有 2026-08-22 章节作为历史快照保留。对照基线：[《推导推理GPU新路径-ELI5.html》](/Users/chenmingmin/Documents/GitHub/ai_infra_chip/推导推理GPU新路径-ELI5.html)。
+> 范围：AMD Instinct；目标时间：2025-07-01 至 2026-09-01；最新资料访问日期：2026-09-01。原有 2026-08-22 章节作为历史快照保留。对照基线为《推导推理GPU新路径-ELI5.html》（当前目录未提供）。
 
 ## 2026-09-01 核验更新
 
@@ -131,7 +131,7 @@ MI455X 是单颗加速器；四 GPU 是 Helios compute tray；72 GPU、31 TB HBM
 
 ### 问题先行
 
-附件把新推理 GPU 的问题拆成四类：密集计算、动态检索/Indexer、Top-k/Reduce、离散 KV Gather 与跨卡通信。Indexer 要在运行时找候选、算分、保留 Top-k，再把离散索引翻译成 KV page 和物理地址；长上下文下，成本不只有 GEMM，还包括 DRAM 请求、地址 bookkeeping 和跨卡搬运。（[附件](/Users/chenmingmin/Documents/GitHub/ai_infra_chip/推导推理GPU新路径-ELI5.html)、[2]，访问日期：2026-08-22。）
+附件把新推理 GPU 的问题拆成四类：密集计算、动态检索/Indexer、Top-k/Reduce、离散 KV Gather 与跨卡通信。Indexer 要在运行时找候选、算分、保留 Top-k，再把离散索引翻译成 KV page 和物理地址；长上下文下，成本不只有 GEMM，还包括 DRAM 请求、地址 bookkeeping 和跨卡搬运。（原始附件当前目录未提供；另见 [2]，访问日期：2026-08-22。）
 
 MI455X 的路线可以类比为“更大的仓库、更宽的传送带、更快的仓库间道路”。HBM4 是货架，L2/LDS 是工作台，TDM 是按描述符搬运规则 tensor tile 的异步叉车，UALoE 是 GPU 间高速路；MXFP4/6/8 是更小的数字盒子。CDNA 5 白皮书确认 TDM 可异步搬运最多五维张量，并支持 LDS 与 DRAM 之间不经寄存器的传输；split DMA 会把 GPU 间请求分到合适链路。（[2]，访问日期：2026-08-22。）
 

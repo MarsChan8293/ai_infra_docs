@@ -45,12 +45,12 @@
 
 ## 直接来源链接
 
-1. <https://www.kunlunxin.com/news/783.html)>
-2. <https://www.kunlunxin.com/news/790.html)>
-3. <https://www.kunlunxin.com/news/843.html)>
-4. <https://www.kunlunxin.com/product/686.html)（K200>
-5. <https://www.kunlunxin.com/product/2873.html)（XPU-R、二代参数、通用/专用指令融合、虚拟化和高速互联；访问日>
-6. <https://www.kunlunxin.com/product/2837.html)（R100>
+1. <https://www.kunlunxin.com/news/783.html>
+2. <https://www.kunlunxin.com/news/790.html>
+3. <https://www.kunlunxin.com/news/843.html>
+4. <https://www.kunlunxin.com/product/686.html>（K200
+5. <https://www.kunlunxin.com/product/2873.html>（XPU-R、二代参数、通用/专用指令融合、虚拟化和高速互联；访问日
+6. <https://www.kunlunxin.com/product/2837.html>（R100
 
 ## 证据边界
 
@@ -119,14 +119,14 @@
 
 ## 补充直接来源链接
 
-1. <https://www.kunlunxin.com/company-profile)>
-2. <https://www.kunlunxin.com/company-profile)、[核心技术](https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)>
-3. <https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)>
-4. <https://www.kunlunxin.com/company-profile)、[一代>
-5. <https://www.kunlunxin.com/product/688.html)>
-6. <https://www.kunlunxin.com/wp-content/uploads/2023/02/r480..pdf)>
-7. <https://www.kunlunxin.com/news/4477.html)>
-8. <https://www.kunlunxin.com/news/4469.html)>
-9. <https://www.kunlunxin.com/news/4473.html)>
-10. <https://www.kunlunxin.com/news/4541.html)>
-11. <https://www.kunlunxin.com/news)>
+1. <https://www.kunlunxin.com/company-profile>
+2. <https://www.kunlunxin.com/company-profile>、[核心技术](https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)
+3. <https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF>
+4. <https://www.kunlunxin.com/company-profile>、一代
+5. <https://www.kunlunxin.com/product/688.html>
+6. <https://www.kunlunxin.com/wp-content/uploads/2023/02/r480..pdf>
+7. <https://www.kunlunxin.com/news/4477.html>
+8. <https://www.kunlunxin.com/news/4469.html>
+9. <https://www.kunlunxin.com/news/4473.html>
+10. <https://www.kunlunxin.com/news/4541.html>
+11. <https://www.kunlunxin.com/news>

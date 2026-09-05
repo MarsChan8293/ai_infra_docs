@@ -22,10 +22,10 @@
 
 ## 直接来源链接
 
-1. <https://mlcommons.org/2026/06/mlperf-training-v6-0-results/)>
-2. <https://docs.cloud.google.com/tpu/docs/v6e)>
-3. <https://cloud.google.com/blog/products/compute/trillium-tpu-is-ga)>
-4. <https://docs.cloud.google.com/tpu/docs/v5p)>
+1. <https://mlcommons.org/2026/06/mlperf-training-v6-0-results/>
+2. <https://docs.cloud.google.com/tpu/docs/v6e>
+3. <https://cloud.google.com/blog/products/compute/trillium-tpu-is-ga>
+4. <https://docs.cloud.google.com/tpu/docs/v5p>
 
 ## 证据边界
 

@@ -130,25 +130,25 @@
 
 ## 直接来源链接
 
-1. <https://www.metax-tech.com/prod.html?cid=107&id=37)，页面日期未标注，访问>
-2. <https://www.metax-tech.com/prod.html?cid=110&id=37)>
-3. <https://www.metax-tech.com/prod.html?cid=107&id=35)，页面日期未标注，访问>
-4. <https://www.metax-tech.com/prod.html?cid=107&id=67)，页面日期未标注，访问>
-5. <https://www.metax-tech.com/prod.html?cid=107&id=68)，页面日期未标注，访问>
-6. <https://static.sse.com.cn/stock/disclosure/announcement/c/202510/002078_20251024_OAW7.pdf)，印刷页>
-7. <https://www.metax-tech.com/about.html)；沐曦新闻《国产算力开芯局：沐曦发布全栈>
-8. <https://www.metax-tech.com/ndetail/12528.html)>
-9. <https://www.metax-tech.com/prod.html?cid=119&id=82)，访问>
-10. <https://www.metax-tech.com/prod.html?cid=110&id=83)>
-11. <https://www.metax-tech.com/prod.html?cid=110&id=84)，访问>
-12. <https://www.metax-tech.com/product_list.html?cid=110)，访问>
-13. <https://www.metax-tech.com/prod.html?cid=110&id=37)，访问>
-14. <https://www.metax-tech.com/prod.html?cid=110&id=44)，访问>
-15. <https://www.metax-tech.com/prod.html?cid=110&id=70)，访问>
-16. <https://www.metax-tech.com/prod.html?cid=110&id=71)，访问>
-17. <https://www.metax-tech.com/prod.html?cid=110&id=69)，访问>
-18. <https://www.metax-tech.com/prod.html?cid=112&id=55)，访问>
-19. <https://www.metax-tech.com/prod.html?cid=112&id=24)，访问>
+1. <https://www.metax-tech.com/prod.html?cid=107&id=37>，页面日期未标注，访问
+2. <https://www.metax-tech.com/prod.html?cid=110&id=37>
+3. <https://www.metax-tech.com/prod.html?cid=107&id=35>，页面日期未标注，访问
+4. <https://www.metax-tech.com/prod.html?cid=107&id=67>，页面日期未标注，访问
+5. <https://www.metax-tech.com/prod.html?cid=107&id=68>，页面日期未标注，访问
+6. <https://static.sse.com.cn/stock/disclosure/announcement/c/202510/002078_20251024_OAW7.pdf>，印刷页
+7. <https://www.metax-tech.com/about.html>；沐曦新闻《国产算力开芯局：沐曦发布全栈
+8. <https://www.metax-tech.com/ndetail/12528.html>
+9. <https://www.metax-tech.com/prod.html?cid=119&id=82>，访问
+10. <https://www.metax-tech.com/prod.html?cid=110&id=83>
+11. <https://www.metax-tech.com/prod.html?cid=110&id=84>，访问
+12. <https://www.metax-tech.com/product_list.html?cid=110>，访问
+13. <https://www.metax-tech.com/prod.html?cid=110&id=37>，访问
+14. <https://www.metax-tech.com/prod.html?cid=110&id=44>，访问
+15. <https://www.metax-tech.com/prod.html?cid=110&id=70>，访问
+16. <https://www.metax-tech.com/prod.html?cid=110&id=71>，访问
+17. <https://www.metax-tech.com/prod.html?cid=110&id=69>，访问
+18. <https://www.metax-tech.com/prod.html?cid=112&id=55>，访问
+19. <https://www.metax-tech.com/prod.html?cid=112&id=24>，访问
 
 ## 证据边界
 

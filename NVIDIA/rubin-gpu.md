@@ -11,7 +11,7 @@
 
 > 第 1 行：# 厂商与芯片：2025-06 之后最新款——NVIDIA Rubin GPU
 > 第 2 行：
-> 第 3 行：> 研究对象：NVIDIA Rubin GPU；Vera Rubin 是系统边界，Rubin CPX 是同代长上下文变体。研究窗口：2025-07-01 至 2026-08-22。资料访问日期：2026-08-22。
+> 第 3 行：> 研究对象：NVIDIA Rubin GPU；Vera Rubin 是系统边界，Rubin CPX 是同代长上下文变体。研究窗口：2025-07-01 至 2026-08-22。原始资料访问日期：2026-08-22；本次结构核验：2026-09-05。Hot Chips 2026 议程只作为会议证据入口，未据此新增 Rubin 规格。
 > 第 4 行：
 > 第 6 行：
 > 第 7 行：Rubin 最值得研究的地方，不是把 Tensor Core 再堆大，而是把 **HBM4、TMA 数据搬运、依赖触发和 NVLink 6** 组合成一条更紧的推理执行路径。它确实改善了密集计算、规则张量搬运、跨卡通信和 kernel 间等待；但公开资料没有证明它已经提供附件设想的独立 **Search/Indexer、精确 Local/Global Top-k、page-aware Indexed Gather DMA**。因此，它是“更强的推理 GPU + 系统协同”，还不是完整的 Retrieval GPU。[架构深读](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)；[NVLink 6](https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）。
@@ -31,14 +31,14 @@
 > 第 29 行：| 功耗 | **单 GPU TDP/功耗公开资料未确认** | datasheet 在 NVL4 对比中出现 1,800 W/GPU 的测试假设，但那是系统性能比较口径，不应当作 Rubin 单卡 TDP。来源：[datasheet](https://dam-cdn.nvd.orangelogic.com/AssetLink/v5rf2icnf86o26e464tf6djn23r8ibhe.pdf)（访问：2026-08-22）。 |
 > 第 30 行：
 > 第 32 行：
-> 第 33 行：附件把推理 GPU 拆成四个难题：[密集计算、动态检索/Indexer、Top-k/Reduce、离散 KV Gather 与跨卡通信](</Users/chenmingmin/Documents/GitHub/ai_infra_chip/推导推理GPU新路径-ELI5.html>)。Rubin 的回答是：先把“算、搬、等、跨卡传”做得更顺，但没有公开一个专门的 Retrieval Plane。
+> 第 33 行：原始 ELI5 附件（当前目录未提供）把推理 GPU 拆成四个难题：密集计算、动态检索/Indexer、Top-k/Reduce、离散 KV Gather 与跨卡通信。Rubin 的回答是：先把“算、搬、等、跨卡传”做得更顺，但没有公开一个专门的 Retrieval Plane。
 > 第 34 行：
 > 第 35 行：**类比。** Tensor Core 像大工厂，HBM4 像工厂旁的大仓库；TMA 像能按运输单把规则货箱送到工位的自动传送带；TMA 的 inline descriptor update 像同一张运输单可以在运行时改货物起点和步长，不必为每个专家重新制作一张单。生产者 kernel 做完一个 tile，消费者 kernel 可在所需输入到达后更早启动，像收货线按托盘到达开工，而不是等整车到齐。NVLink 6 则是机架内高速公路，SHARP 可在网络中做部分 collective reduction。来源：[Rubin 架构深读](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)；[NVLink 6](https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）。
 > 第 36 行：
 > 第 37 行：**技术层。** Rubin 公布了 TMA 的复杂布局搬运、运行时 descriptor 的 pointer/stride 更新、tile-level dependent-kernel triggering、device-initiated NVLink 的 counted writes，以及 attention 中把 dense QKᵀ 中间结果压成结构化 2:4 稀疏格式后再做 softmax/后续 GEMM。这些能力减少元数据、等待或中间结果写入的压力，属于对数据路径的硬件—软件协同优化。[官方解释](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)（访问：2026-08-22）。
 > 第 38 行：
 > 第 54 行：
-> 第 55 行：评分依据是[Rubin 架构深读](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)、[Rubin 官方规格](https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/)和[NVLink 6 说明](https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）；分项分数是本文的架构研究判断，不是 NVIDIA benchmark 或性能承诺。
+> 第 55 行：评分依据是[Rubin 架构深读](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)、[Rubin 官方规格](https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/)和 [NVLink 6 说明](https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）；分项分数是本文的架构研究判断，不是 NVIDIA benchmark 或性能承诺。
 > 第 56 行：
 > 第 77 行：- **可直接借鉴：descriptor 驱动的数据搬运。** 保留可复用 descriptor，并允许运行时更新 base pointer/stride；但 Retrieval GPU 还应把 page list、索引检查和合并规则纳入 descriptor。
 > 第 78 行：- **可直接借鉴：tile 级依赖触发。** 让 Search/score/Select/Gather/Attention 按 tile 或候选块流水，而不是每个阶段等整张 grid；Rubin 的公开机制证明依赖调度本身值得硬件化。
@@ -58,28 +58,28 @@
 
 ## 直接来源链接
 
-1. <https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)；[NVLink>
-2. <https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）>
-3. <https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer)；[量产](https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform)；[爬产](https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Ramps-Into-Full-Production-to-Power-Agentic-AI-Factories-Worldwide/default.aspx)；[合作伙伴部署](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)（均访问：2026-08-22）>
-4. <https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference)（访问：2026-08-22）>
-5. <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform)（访问：2026-08-22）>
-6. <https://www.nvidia.com/en-us/data-center/products/)、官方新闻和技术文中，未发现比>
-7. <https://www.nvidia.com/en-gb/data-center/nvlink/)；[架构文](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)（访问：2026-08-22）>
-8. <https://dam-cdn.nvd.orangelogic.com/AssetLink/v5rf2icnf86o26e464tf6djn23r8ibhe.pdf)（访问：2026-08-22）>
-9. <https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)（访问：2026-08-22）>
-10. <https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)、[Rubin>
-11. <https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/)和[NVLink>
-12. <https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）；分项分数是本文的架构研究判断，不是>
-13. <https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer)>
-14. <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform)>
-15. <https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Ramps-Into-Full-Production-to-Power-Agentic-AI-Factories-Worldwide/default.aspx)>
-16. <https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)>
-17. <https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/)>
-18. <https://dam-cdn.nvd.orangelogic.com/AssetLink/v5rf2icnf86o26e464tf6djn23r8ibhe.pdf)>
-19. <https://www.nvidia.com/en-gb/data-center/nvlink/)>
-20. <https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference)>
-21. <https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion/)>
-22. <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-delivers-world-class-supercomputers-for-science)，确认>
+1. <https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/>；NVLink 6
+2. <https://www.nvidia.com/en-gb/data-center/nvlink/>（访问：2026-08-22）
+3. <https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer>；[量产](https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform)；[爬产](https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Ramps-Into-Full-Production-to-Power-Agentic-AI-Factories-Worldwide/default.aspx)；[合作伙伴部署](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)（均访问：2026-08-22）
+4. <https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference>（访问：2026-08-22）
+5. <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform>（访问：2026-08-22）
+6. <https://www.nvidia.com/en-us/data-center/products/>、官方新闻和技术文中，未发现比
+7. <https://www.nvidia.com/en-gb/data-center/nvlink/>；[架构文](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)（访问：2026-08-22）
+8. <https://dam-cdn.nvd.orangelogic.com/AssetLink/v5rf2icnf86o26e464tf6djn23r8ibhe.pdf>（访问：2026-08-22）
+9. <https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/>（访问：2026-08-22）
+10. <https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/>、Rubin
+11. <https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/>和 NVLink 6
+12. <https://www.nvidia.com/en-gb/data-center/nvlink/>（访问：2026-08-22）；分项分数是本文的架构研究判断，不是
+13. <https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer>
+14. <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform>
+15. <https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Vera-Rubin-Ramps-Into-Full-Production-to-Power-Agentic-AI-Factories-Worldwide/default.aspx>
+16. <https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/>
+17. <https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/>
+18. <https://dam-cdn.nvd.orangelogic.com/AssetLink/v5rf2icnf86o26e464tf6djn23r8ibhe.pdf>
+19. <https://www.nvidia.com/en-gb/data-center/nvlink/>
+20. <https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference>
+21. <https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion/>
+22. <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-delivers-world-class-supercomputers-for-science>，确认
 
 ## 证据边界
 
@@ -109,5 +109,5 @@
 
 ## 补充直接来源链接
 
-1. <https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/)（访问：2026-08-22）>
-2. <https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/)；[datasheet](https://dam-cdn.nvd.orangelogic.com/AssetLink/v5rf2icnf86o26e464tf6djn23r8ibhe.pdf)（访问：2026-08-22）>
+1. <https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/>（访问：2026-08-22）
+2. <https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/>；[datasheet](https://dam-cdn.nvd.orangelogic.com/AssetLink/v5rf2icnf86o26e464tf6djn23r8ibhe.pdf)（访问：2026-08-22）

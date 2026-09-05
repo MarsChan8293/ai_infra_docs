@@ -128,13 +128,13 @@
 
 ## 补充直接来源链接
 
-1. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)|OpenAI>
-2. <https://aws.amazon.com/ec2/instance-types/trn3/)；每核>
-3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|[20,736>
-4. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html)，产品页约写>
-5. <https://aws.amazon.com/ec2/instance-types/trn3/)；NKI>
-6. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|[705.6>
-7. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html)，产品页四舍五入为>
-8. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|NeuronSwitch-v1>
-9. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html)，EFA>
-10. <https://aws.amazon.com/ec2/instance-types/trn3/)|不能把>
+1. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership>（OpenAI）
+2. <https://aws.amazon.com/ec2/instance-types/trn3/>；每核
+3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html>（20,736）
+4. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html>，产品页约写
+5. <https://aws.amazon.com/ec2/instance-types/trn3/>；NKI
+6. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html>（705.6）
+7. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html>，产品页四舍五入为
+8. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html>（NeuronSwitch-v1）
+9. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html>，EFA
+10. <https://aws.amazon.com/ec2/instance-types/trn3/>（不能把）

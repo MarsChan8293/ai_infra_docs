@@ -156,17 +156,17 @@
 
 ## 补充直接来源链接
 
-1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html)|2018-11-28>
-2. <https://aws.amazon.com/ai/machine-learning/inferentia/)|公开资料未确认具体>
-3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html)|2020-11>
-4. <https://aws.amazon.com/blogs/aws/amazon-ec2-trn1-instances-for-high-performance-model-training-are-now-available/)、[Trn1n>
-5. <https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-trn1n-instances-network-ai-models/)|Ricoh、Helixon、Money>
-6. <https://aws.amazon.com/ec2/instance-types/trn1/)|公开资料未确认>
-7. <https://aws.amazon.com/ai/machine-learning/trainium/)|144>
-8. <https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/)。|>
-9. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html)；FP16/BF16/TF32>
-10. <https://aws.amazon.com/ec2/instance-types/trn3/)；每核>
-11. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|[20,736>
-12. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html)，产品页约写>
-13. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/nki/library/api/sparse-attention-indexer-mx-bf16score.html)，含>
-14. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/nki/library/api/topk-reduce.html)。|可变长度>
+1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html>（2018-11-28）
+2. <https://aws.amazon.com/ai/machine-learning/inferentia/>（公开资料未确认具体）
+3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html>（2020-11）
+4. <https://aws.amazon.com/blogs/aws/amazon-ec2-trn1-instances-for-high-performance-model-training-are-now-available/>、Trn1n
+5. <https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-trn1n-instances-network-ai-models/>（Ricoh、Helixon、Money）
+6. <https://aws.amazon.com/ec2/instance-types/trn1/>（公开资料未确认）
+7. <https://aws.amazon.com/ai/machine-learning/trainium/>（144）
+8. <https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/>。
+9. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html>；FP16/BF16/TF32
+10. <https://aws.amazon.com/ec2/instance-types/trn3/>；每核
+11. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html>（20,736）
+12. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/about-neuron/arch/neuron-hardware/trn3-arch.html>，产品页约写
+13. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/nki/library/api/sparse-attention-indexer-mx-bf16score.html>，含
+14. <https://awsdocs-neuron.readthedocs-hosted.com/en/v2.32.0/nki/library/api/topk-reduce.html>。|可变长度

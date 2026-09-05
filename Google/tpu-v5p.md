@@ -17,8 +17,8 @@
 
 ## 直接来源链接
 
-1. <https://cloud.google.com/blog/products/compute/trillium-tpu-is-ga)>
-2. <https://docs.cloud.google.com/tpu/docs/v5p)>
+1. <https://cloud.google.com/blog/products/compute/trillium-tpu-is-ga>
+2. <https://docs.cloud.google.com/tpu/docs/v5p>
 
 ## 证据边界
 

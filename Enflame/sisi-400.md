@@ -57,10 +57,10 @@
 
 ## 直接来源链接
 
-1. <https://www.semi.org.cn/site/semi/article/d0701091e50a442db3476ec0b730f110.html)，2021-12-08。页面注明来源为“燧原科技>
-2. <https://www.cinn.cn/2025/07-31/Qr2w23dD.html)，2025-07-31。会议报道，确认>
-3. <https://static.nfnews.com/content/202507/28/c11556084.html?enterColumnId=22113)，2025-07-28。补充>
-4. <https://stcsm.sh.gov.cn/cmsres/a8/a80a0f20e23241fbafcc5acde70dda01/a4977e1b2c68ac042638fb95e746e18a.pdf)，公开文件。用于说明>
+1. <https://www.semi.org.cn/site/semi/article/d0701091e50a442db3476ec0b730f110.html>，2021-12-08。页面注明来源为“燧原科技
+2. <https://www.cinn.cn/2025/07-31/Qr2w23dD.html>，2025-07-31。会议报道，确认
+3. <https://static.nfnews.com/content/202507/28/c11556084.html?enterColumnId=22113>，2025-07-28。补充
+4. <https://stcsm.sh.gov.cn/cmsres/a8/a80a0f20e23241fbafcc5acde70dda01/a4977e1b2c68ac042638fb95e746e18a.pdf>，公开文件。用于说明
 
 ## 证据边界
 

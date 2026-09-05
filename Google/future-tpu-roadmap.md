@@ -15,14 +15,14 @@
 
 ## 直接来源链接
 
-1. <https://cloud.google.com/tpu?hl=en)（本次复核日期｜2026-09-01；原有>
-2. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）>
-3. <https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（访问日期｜2026-08-22）>
-4. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-google-tpu-things-to-know/)（访问日期｜2026-08-22）>
-5. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)（访问日期｜2026-08-22）>
-6. <https://cloud.google.com/tpu?hl=en)（访问日期｜2026-08-22）>
-7. <https://docs.cloud.google.com/tpu/docs/tpu7x)（访问日期｜2026-08-22）、[Ironwood>
-8. <https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（访问日期｜2026-08-22）和[首次架构宣布](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）。8t/8i>
+1. <https://cloud.google.com/tpu?hl=en>（本次复核日期｜2026-09-01；原有
+2. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/>（访问日期｜2026-08-22）
+3. <https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads>（访问日期｜2026-08-22）
+4. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-google-tpu-things-to-know/>（访问日期｜2026-08-22）
+5. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/>（访问日期｜2026-08-22）
+6. <https://cloud.google.com/tpu?hl=en>（访问日期｜2026-08-22）
+7. <https://docs.cloud.google.com/tpu/docs/tpu7x>（访问日期｜2026-08-22）、[Ironwood 架构页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)
+8. <https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads>（访问日期｜2026-08-22）和[首次架构宣布](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）。8t/8i
 
 ## 证据边界
 

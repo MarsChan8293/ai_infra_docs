@@ -39,9 +39,9 @@
 
 ## 直接来源链接
 
-1. <https://www.semi.org.cn/site/semi/article/1fc64c8ab48944e0af905228b83b9e63.html)，2020-12-22。页面注明来源为“燧原科技>
-2. <https://www.zj-inv.cn/news/142.html)，2019-12-13。转载公司发布稿，确认>
-3. <https://www.semi.org.cn/site/semi/article/d0701091e50a442db3476ec0b730f110.html)，2021-12-08。页面注明来源为“燧原科技>
+1. <https://www.semi.org.cn/site/semi/article/1fc64c8ab48944e0af905228b83b9e63.html>，2020-12-22。页面注明来源为“燧原科技
+2. <https://www.zj-inv.cn/news/142.html>，2019-12-13。转载公司发布稿，确认
+3. <https://www.semi.org.cn/site/semi/article/d0701091e50a442db3476ec0b730f110.html>，2021-12-08。页面注明来源为“燧原科技
 
 ## 证据边界
 

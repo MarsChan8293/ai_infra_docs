@@ -37,9 +37,9 @@
 
 ## 直接来源链接
 
-1. <https://static.sse.com.cn/stock/disclosure/announcement/c/202604/002175_20260416_BH8W.pdf)，2026-04-16。补充>
-2. <https://sheitc.sh.gov.cn/zxxx/20210709/dcccc65dbe3f4404ac230746b2a9bc4d.html)，2021-07-08。政府现场材料，确认邃思>
-3. <https://www.semi.org.cn/site/semi/article/1fc64c8ab48944e0af905228b83b9e63.html)，2020-12-22。页面注明来源为“燧原科技>
+1. <https://static.sse.com.cn/stock/disclosure/announcement/c/202604/002175_20260416_BH8W.pdf>，2026-04-16。补充
+2. <https://sheitc.sh.gov.cn/zxxx/20210709/dcccc65dbe3f4404ac230746b2a9bc4d.html>，2021-07-08。政府现场材料，确认邃思
+3. <https://www.semi.org.cn/site/semi/article/1fc64c8ab48944e0af905228b83b9e63.html>，2020-12-22。页面注明来源为“燧原科技
 
 ## 证据边界
 

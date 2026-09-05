@@ -19,14 +19,14 @@
 
 ## 直接来源链接
 
-1. <https://www.hygon.cn/product/cpu)>
-2. <https://www.hygon.cn/news?newsid=102)>
-3. <https://static.sse.com.cn/stock/disclosure/announcement/c/202201/001043_20220124_HGDK.pdf)>
-4. <https://static.sse.com.cn/stock/disclosure/announcement/c/202206/001043_20220622_E5LP.pdf)>
-5. <https://static.sse.com.cn/stock/disclosure/announcement/c/202203/001043_20220331_G6N6.pdf)>
-6. <https://static.sse.com.cn/stock/disclosure/announcement/c/202203/001043_20220307_T2KW.pdf)>
-7. <https://static.cninfo.com.cn/finalpage/2023-08-25/1217637267.PDF)>
-8. <https://static.cninfo.com.cn/finalpage/2026-04-08/1225083108.PDF)>
+1. <https://www.hygon.cn/product/cpu>
+2. <https://www.hygon.cn/news?newsid=102>
+3. <https://static.sse.com.cn/stock/disclosure/announcement/c/202201/001043_20220124_HGDK.pdf>
+4. <https://static.sse.com.cn/stock/disclosure/announcement/c/202206/001043_20220622_E5LP.pdf>
+5. <https://static.sse.com.cn/stock/disclosure/announcement/c/202203/001043_20220331_G6N6.pdf>
+6. <https://static.sse.com.cn/stock/disclosure/announcement/c/202203/001043_20220307_T2KW.pdf>
+7. <https://static.cninfo.com.cn/finalpage/2023-08-25/1217637267.PDF>
+8. <https://static.cninfo.com.cn/finalpage/2026-04-08/1225083108.PDF>
 
 ## 证据边界
 

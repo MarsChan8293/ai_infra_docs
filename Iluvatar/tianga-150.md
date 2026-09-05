@@ -38,8 +38,8 @@
 
 ## 直接来源链接
 
-1. <https://www.iluvatar.com/serias)>
-2. <https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1230/2025123000020_c.pdf)>
+1. <https://www.iluvatar.com/serias>
+2. <https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1230/2025123000020_c.pdf>
 
 ## 证据边界
 

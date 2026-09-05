@@ -88,12 +88,12 @@
 
 ## 直接来源链接
 
-1. <https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1230/2025123000020_c.pdf)>
-2. <https://www.iluvatar.com/newsDetails?code=tszxzpgbxpsdjglxttybdxlxncygjzls&topicId=495)>
-3. <https://www.iluvatar.com/cooperation/direct)。该目录在访问日明确给出第三方服务器型号、服务器形态、每节点最大>
-4. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495)。官方文章称>
-5. <https://www.iluvatar.com/newsDetails?code=tszxzztyGPUsljjfasldc2023sjjsdh&topicId=495)>
-6. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495)>
+1. <https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1230/2025123000020_c.pdf>
+2. <https://www.iluvatar.com/newsDetails?code=tszxzpgbxpsdjglxttybdxlxncygjzls&topicId=495>
+3. <https://www.iluvatar.com/cooperation/direct>。该目录在访问日明确给出第三方服务器型号、服务器形态、每节点最大
+4. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495>。官方文章称
+5. <https://www.iluvatar.com/newsDetails?code=tszxzztyGPUsljjfasldc2023sjjsdh&topicId=495>
+6. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495>
 7. <https://www.iluvatar.com/software?fullCode=cpjs-rj-rjz>
 8. <https://www.iluvatar.com/cooperation/direct>
 9. <https://www.iluvatar.com/newsDetails?code=tszxzpgbxpsdjglxttybdxlxncygjzls&topicId=495>

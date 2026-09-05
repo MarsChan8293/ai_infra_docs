@@ -59,14 +59,14 @@
 
 ## 直接来源链接
 
-1. <https://static.sse.com.cn/stock/disclosure/announcement/c/202606/002175_20260618_55YX.pdf)，2026-06-18。核心主来源，产品矩阵见第>
-2. <https://static.sse.com.cn/stock/disclosure/announcement/c/202604/002175_20260416_BH8W.pdf)，2026-04-16。补充>
-3. <https://sheitc.sh.gov.cn/zxxx/20210709/dcccc65dbe3f4404ac230746b2a9bc4d.html)，2021-07-08。政府现场材料，确认邃思>
-4. <https://www.semi.org.cn/site/semi/article/1fc64c8ab48944e0af905228b83b9e63.html)，2020-12-22。页面注明来源为“燧原科技>
-5. <https://www.zj-inv.cn/news/142.html)，2019-12-13。转载公司发布稿，确认>
-6. <https://www.semi.org.cn/site/semi/article/d0701091e50a442db3476ec0b730f110.html)，2021-12-08。页面注明来源为“燧原科技>
-7. <https://www.cinn.cn/2025/07-31/Qr2w23dD.html)，2025-07-31。会议报道，确认>
-8. <https://static.nfnews.com/content/202507/28/c11556084.html?enterColumnId=22113)，2025-07-28。补充>
+1. <https://static.sse.com.cn/stock/disclosure/announcement/c/202606/002175_20260618_55YX.pdf>，2026-06-18。核心主来源，产品矩阵见第
+2. <https://static.sse.com.cn/stock/disclosure/announcement/c/202604/002175_20260416_BH8W.pdf>，2026-04-16。补充
+3. <https://sheitc.sh.gov.cn/zxxx/20210709/dcccc65dbe3f4404ac230746b2a9bc4d.html>，2021-07-08。政府现场材料，确认邃思
+4. <https://www.semi.org.cn/site/semi/article/1fc64c8ab48944e0af905228b83b9e63.html>，2020-12-22。页面注明来源为“燧原科技
+5. <https://www.zj-inv.cn/news/142.html>，2019-12-13。转载公司发布稿，确认
+6. <https://www.semi.org.cn/site/semi/article/d0701091e50a442db3476ec0b730f110.html>，2021-12-08。页面注明来源为“燧原科技
+7. <https://www.cinn.cn/2025/07-31/Qr2w23dD.html>，2025-07-31。会议报道，确认
+8. <https://static.nfnews.com/content/202507/28/c11556084.html?enterColumnId=22113>，2025-07-28。补充
 
 ## 证据边界
 

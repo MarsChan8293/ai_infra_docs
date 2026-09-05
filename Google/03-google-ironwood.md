@@ -29,7 +29,7 @@ TPU 8t 与 TPU 8i 在 2026-04-22 于 Cloud Next 26 宣布，属于窗口内的�
 | 功耗 | 单芯片 TDP 未公开；近 10 MW 是大 Pod 级口径 | 单芯片 TDP 未公开；官方称较 Ironwood 最多 2 倍性能/瓦 | 单芯片 TDP 未公开；官方称较 Ironwood 最多 2 倍性能/瓦 |
 | 主要状态 | GA，当前产品页标为 Generally available | 宣布，Coming soon | 宣布，Coming soon |
 
-Ironwood 数字来自 [TPU7x 官方架构文档](https://docs.cloud.google.com/tpu/docs/tpu7x)（访问日期｜2026-08-22）、[Ironwood 系统公告](https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（访问日期｜2026-08-22）和[首次架构宣布](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）。8t/8i 数字来自 [Google 第八代架构深潜](https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（访问日期｜2026-08-22）与[第八代宣布页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)（访问日期｜2026-08-22）。这里的 PFLOPs、ExaFlops、性能/瓦都是官方峰值或宣传口径，不是本文测得的推理吞吐。
+Ironwood 数字来自 [TPU7x 官方架构文档](https://docs.cloud.google.com/tpu/docs/tpu7x)（访问日期｜2026-08-22）、[Ironwood 架构页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)、[系统公告](https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（访问日期｜2026-08-22）和[首次架构宣布](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）。8t/8i 数字来自 [Google 第八代架构深潜](https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（访问日期｜2026-08-22）与[第八代宣布页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)（访问日期｜2026-08-22）。这里的 PFLOPs、ExaFlops、性能/瓦都是官方峰值或宣传口径，不是本文测得的推理吞吐。
 
 ### 官方资料冲突
 
@@ -39,7 +39,7 @@ Ironwood 的 SparseCore 数量有单位差异。Cloud TPU 架构页和 TPU7x 规
 
 ## 先看附件提出的四类问题
 
-附件把新推理 GPU 拆成 Tensor Plane 和 Retrieval Plane，原文见[《推导推理GPU新路径-ELI5.html》](/Users/chenmingmin/Documents/GitHub/ai_infra_chip/推导推理GPU新路径-ELI5.html)。它提出的四类问题如下。
+附件把新推理 GPU 拆成 Tensor Plane 和 Retrieval Plane；原始《推导推理GPU新路径-ELI5.html》附件当前目录未提供。它提出的四类问题如下。
 
 1. **密集计算**。GEMM、FFN、Attention 等规则计算适合 TensorCore。附件的判断是，增加 FLOPS 不能自动覆盖检索、地址 bookkeeping 和数据移动造成的等待，因此 Tensor Plane 应继续负责规则计算。
 2. **动态检索与 Indexer**。Query 运行时才知道候选位置，Indexer要做打分、找位置和地址转换，形态更接近搜索引擎和地址簿。精确扫描在没有额外索引时仍可能是 O(L)，附件把“必须完整物化 score”列为待验证假设。

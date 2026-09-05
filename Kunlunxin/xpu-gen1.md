@@ -111,30 +111,30 @@
 
 ## 直接来源链接
 
-1. <https://www.kunlunxin.com/company-profile)>
-2. <https://www.kunlunxin.com/company-profile)、[核心技术](https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)>
-3. <https://www.kunlunxin.com/news/4477.html)>
-4. <https://www.kunlunxin.com/news/4469.html)>
-5. <https://www.kunlunxin.com/news/4473.html)>
-6. <https://www.kunlunxin.com/news/4541.html)>
-7. <https://www.kunlunxin.com/company-profile)（公司历程、2019/2021/2024/2025/2026-2027>
-8. <https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)（XPU、SDK、三代路线图；页面显示>
-9. <https://www.kunlunxin.com/product/688.html)（一代芯片参数和数万片部署；发布日期未显示；访问日>
-10. <https://www.kunlunxin.com/product/687.html)（K100>
-11. <https://www.kunlunxin.com/product/686.html)（K200>
-12. <https://www.kunlunxin.com/product/2873.html)（XPU-R、二代参数、通用/专用指令融合、虚拟化和高速互联；访问日>
-13. <https://www.kunlunxin.com/product/2837.html)（R100>
-14. <https://www.kunlunxin.com/news/790.html)（2022-10-10；51>
-15. <https://www.kunlunxin.com/news/813.html)（2023-02>
-16. <https://www.kunlunxin.com/news/843.html)（2022-12-30；R100>
-17. <https://www.kunlunxin.com/news/4477.html)（2025-02-06；P800>
-18. <https://www.kunlunxin.com/news/4469.html)（2025-03-27；P800/XPU-P、8>
-19. <https://www.kunlunxin.com/news/4473.html)（2025-03-31；64>
-20. <https://www.kunlunxin.com/news/4541.html)（2025-04-25；32/64>
-21. <https://www.kunlunxin.com/news/4791.html)（页面显示>
-22. <https://www.paddlepaddle.org.cn/documentation/docs/zh/3.0-beta/hardware_support/xpu/index_cn.html)（飞桨官方文档；XPU>
-23. <https://www.paddlepaddle.org.cn/documentation/docs/zh/3.0-beta/guides/hardware_support/xpu/install_cn.html)（飞桨官方文档；XPU/BKCL/XCCL>
-24. <https://cloud.tencent.cn/document/product/1397/127039)（腾讯云官方部署文档；P800>
+1. <https://www.kunlunxin.com/company-profile>
+2. <https://www.kunlunxin.com/company-profile>、[核心技术](https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)
+3. <https://www.kunlunxin.com/news/4477.html>
+4. <https://www.kunlunxin.com/news/4469.html>
+5. <https://www.kunlunxin.com/news/4473.html>
+6. <https://www.kunlunxin.com/news/4541.html>
+7. <https://www.kunlunxin.com/company-profile>（公司历程、2019/2021/2024/2025/2026-2027
+8. <https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF>（XPU、SDK、三代路线图；页面显示
+9. <https://www.kunlunxin.com/product/688.html>（一代芯片参数和数万片部署；发布日期未显示；访问日
+10. <https://www.kunlunxin.com/product/687.html>（K100
+11. <https://www.kunlunxin.com/product/686.html>（K200
+12. <https://www.kunlunxin.com/product/2873.html>（XPU-R、二代参数、通用/专用指令融合、虚拟化和高速互联；访问日
+13. <https://www.kunlunxin.com/product/2837.html>（R100
+14. <https://www.kunlunxin.com/news/790.html>（2022-10-10；51
+15. <https://www.kunlunxin.com/news/813.html>（2023-02
+16. <https://www.kunlunxin.com/news/843.html>（2022-12-30；R100
+17. <https://www.kunlunxin.com/news/4477.html>（2025-02-06；P800
+18. <https://www.kunlunxin.com/news/4469.html>（2025-03-27；P800/XPU-P、8
+19. <https://www.kunlunxin.com/news/4473.html>（2025-03-31；64
+20. <https://www.kunlunxin.com/news/4541.html>（2025-04-25；32/64
+21. <https://www.kunlunxin.com/news/4791.html>（页面显示
+22. <https://www.paddlepaddle.org.cn/documentation/docs/zh/3.0-beta/hardware_support/xpu/index_cn.html>（飞桨官方文档；XPU
+23. <https://www.paddlepaddle.org.cn/documentation/docs/zh/3.0-beta/guides/hardware_support/xpu/install_cn.html>（飞桨官方文档；XPU/BKCL/XCCL
+24. <https://cloud.tencent.cn/document/product/1397/127039>（腾讯云官方部署文档；P800
 
 ## 证据边界
 
@@ -226,7 +226,7 @@
 
 ## 补充直接来源链接
 
-1. <https://www.kunlunxin.com/company-profile)、[一代>
-2. <https://www.kunlunxin.com/news/783.html)>
-3. <https://www.kunlunxin.com/wp-content/uploads/2023/02/r480..pdf)>
-4. <https://www.kunlunxin.com/news)>
+1. <https://www.kunlunxin.com/company-profile>、一代
+2. <https://www.kunlunxin.com/news/783.html>
+3. <https://www.kunlunxin.com/wp-content/uploads/2023/02/r480..pdf>
+4. <https://www.kunlunxin.com/news>

@@ -5,9 +5,21 @@
 - 综合报告：[04-cerebras-wse.md](./04-cerebras-wse.md)
 - 文件性质：从综合报告按芯片名称/家族拆分的证据页；不新增事实，不把板卡、服务器、机架或云服务规格回填为芯片规格。
 
+## WSE-3 型号摘要
+
+| 字段 | WSE-3 当前可确认内容 |
+| --- | --- |
+| 产品层级 | 晶圆级处理器；一片 WSE-3 进入 CS-3 系统 |
+| 时间与状态 | 2024-03-13 发布，早于本次资料窗口；本页作为上一代基线，不把它写成 2026 年新芯片 |
+| 可确认边界 | CS-3 还包含供电、液冷、网络和管理；这些系统组件不属于 WSE-3 芯片规格 |
+| 与 WSE-3 Turbo 的关系 | WSE-3 Turbo/WSE-3T 是 2026-08-18 随 CS-4 宣布的后续型号；250 PFLOPS、43.2 PB/s、53.5 PB/s 等数字只在来源明确指向 WSE-3T 时使用 |
+| 与 CS-4 的关系 | CS-4 是包含三片 WSE-3T 的机架级系统，不是 WSE-3 芯片 |
+
+下方“产品定位与关键证据”和“关联表格原文”保留相邻型号的交叉证据，目的是说明代际边界。读取 WSE-3 单型号规格时，以本摘要和明确写有 `WSE-3` 的行优先；不能从 WSE-3 Turbo 或 CS-4 的系统数字反推 WSE-3。
+
 ## 产品定位与关键证据
 
-以下内容逐行摘录综合报告，保留原报告中的状态、数字、证据等级和未知项。
+以下内容逐行摘录综合报告，保留原报告中的状态、数字、证据等级和未知项；其中涉及 WSE-3 Turbo 或 CS-4 的行仅作为关联证据，不是 WSE-3 单芯片规格。
 
 > 第 1 行：# Cerebras WSE-3 Turbo / CS-4：2025-06 之后最新晶圆级 AI 芯片
 > 第 2 行：
@@ -66,7 +78,7 @@
 
 ## 补充直接来源链接
 
-1. <https://www.cerebras.ai/blog/cerebras-is-coming-to-aws)（访问日期：2026-08-22）|>
-2. <https://cdn.sanity.io/files/e4qjo92p/production/bb028ae2422089dfbcc9fd2455c021f3625c7a75.pdf)（访问日期：2026-08-22）|>
-3. <https://training-api.cerebras.ai/en/1.8.0/wsc/general/cs-1-data-formats.html)>
-4. <https://training-api.cerebras.ai/en/2.1.0/wsc/how_to_guides/cs-1-data-formats.html)（访问日期：2026-08-22）|>
+1. <https://www.cerebras.ai/blog/cerebras-is-coming-to-aws>（访问日期：2026-08-22）
+2. <https://cdn.sanity.io/files/e4qjo92p/production/bb028ae2422089dfbcc9fd2455c021f3625c7a75.pdf>（访问日期：2026-08-22）
+3. <https://training-api.cerebras.ai/en/1.8.0/wsc/general/cs-1-data-formats.html>
+4. <https://training-api.cerebras.ai/en/2.1.0/wsc/how_to_guides/cs-1-data-formats.html>（访问日期：2026-08-22）

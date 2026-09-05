@@ -86,17 +86,17 @@
 
 ## 直接来源链接
 
-1. <https://www.kunlunxin.com/company-profile)>
-2. <https://www.kunlunxin.com/news/4477.html)>
-3. <https://www.kunlunxin.com/news/4469.html)>
-4. <https://www.kunlunxin.com/news/4473.html)>
-5. <https://www.kunlunxin.com/news/4541.html)>
-6. <https://www.kunlunxin.com/news)>
-7. <https://www.kunlunxin.com/news/4469.html)（2025-03-27；P800/XPU-P、8>
-8. <https://www.kunlunxin.com/news/4473.html)（2025-03-31；64>
-9. <https://www.kunlunxin.com/news/4541.html)（2025-04-25；32/64>
-10. <https://www.kunlunxin.com/news/4791.html)（页面显示>
-11. <https://www.kunlunxin.com/news)（截至访问日可见>
+1. <https://www.kunlunxin.com/company-profile>
+2. <https://www.kunlunxin.com/news/4477.html>
+3. <https://www.kunlunxin.com/news/4469.html>
+4. <https://www.kunlunxin.com/news/4473.html>
+5. <https://www.kunlunxin.com/news/4541.html>
+6. <https://www.kunlunxin.com/news>
+7. <https://www.kunlunxin.com/news/4469.html>（2025-03-27；P800/XPU-P、8
+8. <https://www.kunlunxin.com/news/4473.html>（2025-03-31；64
+9. <https://www.kunlunxin.com/news/4541.html>（2025-04-25；32/64
+10. <https://www.kunlunxin.com/news/4791.html>（页面显示
+11. <https://www.kunlunxin.com/news>（截至访问日可见
 
 ## 证据边界
 
@@ -185,11 +185,11 @@
 
 ## 补充直接来源链接
 
-1. <https://www.kunlunxin.com/company-profile)、[核心技术](https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)>
-2. <https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)>
-3. <https://www.kunlunxin.com/company-profile)、[一代>
-4. <https://www.kunlunxin.com/product/688.html)>
-5. <https://www.kunlunxin.com/news/783.html)>
-6. <https://www.kunlunxin.com/news/790.html)>
-7. <https://www.kunlunxin.com/news/843.html)>
-8. <https://www.kunlunxin.com/wp-content/uploads/2023/02/r480..pdf)>
+1. <https://www.kunlunxin.com/company-profile>、[核心技术](https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF)
+2. <https://www.kunlunxin.com/%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF>
+3. <https://www.kunlunxin.com/company-profile>、一代
+4. <https://www.kunlunxin.com/product/688.html>
+5. <https://www.kunlunxin.com/news/783.html>
+6. <https://www.kunlunxin.com/news/790.html>
+7. <https://www.kunlunxin.com/news/843.html>
+8. <https://www.kunlunxin.com/wp-content/uploads/2023/02/r480..pdf>

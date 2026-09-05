@@ -1,6 +1,6 @@
 # 厂商与芯片：2025-06 之后最新款——NVIDIA Rubin GPU
 
-> 研究对象：NVIDIA Rubin GPU；Vera Rubin 是系统边界，Rubin CPX 是同代长上下文变体。研究窗口：2025-07-01 至 2026-08-22。资料访问日期：2026-08-22。
+> 研究对象：NVIDIA Rubin GPU；Vera Rubin 是系统边界，Rubin CPX 是同代长上下文变体。研究窗口：2025-07-01 至 2026-08-22。原始资料访问日期：2026-08-22；本次结构核验：2026-09-05。Hot Chips 2026 议程只作为会议证据入口，未据此新增 Rubin 规格。
 
 ## 一句话结论
 
@@ -30,7 +30,7 @@ Rubin 最值得研究的地方，不是把 Tensor Core 再堆大，而是把 **H
 
 ## ELI5 核心特性：为什么它和推理有关
 
-附件把推理 GPU 拆成四个难题：[密集计算、动态检索/Indexer、Top-k/Reduce、离散 KV Gather 与跨卡通信](</Users/chenmingmin/Documents/GitHub/ai_infra_chip/推导推理GPU新路径-ELI5.html>)。Rubin 的回答是：先把“算、搬、等、跨卡传”做得更顺，但没有公开一个专门的 Retrieval Plane。
+原始 ELI5 附件（当前目录未提供）把推理 GPU 拆成四个难题：密集计算、动态检索/Indexer、Top-k/Reduce、离散 KV Gather 与跨卡通信。Rubin 的回答是：先把“算、搬、等、跨卡传”做得更顺，但没有公开一个专门的 Retrieval Plane。
 
 **类比。** Tensor Core 像大工厂，HBM4 像工厂旁的大仓库；TMA 像能按运输单把规则货箱送到工位的自动传送带；TMA 的 inline descriptor update 像同一张运输单可以在运行时改货物起点和步长，不必为每个专家重新制作一张单。生产者 kernel 做完一个 tile，消费者 kernel 可在所需输入到达后更早启动，像收货线按托盘到达开工，而不是等整车到齐。NVLink 6 则是机架内高速公路，SHARP 可在网络中做部分 collective reduction。来源：[Rubin 架构深读](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)；[NVLink 6](https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）。
 
@@ -52,7 +52,7 @@ Rubin 最值得研究的地方，不是把 Tensor Core 再堆大，而是把 **H
 
 ## 创新性判断（分析判断，不是 benchmark）
 
-评分依据是[Rubin 架构深读](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)、[Rubin 官方规格](https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/)和[NVLink 6 说明](https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）；分项分数是本文的架构研究判断，不是 NVIDIA benchmark 或性能承诺。
+评分依据是[Rubin 架构深读](https://developer.nvidia.com/blog/inside-nvidia-rubin-gpu-architecture-powering-the-era-of-agentic-ai/)、[Rubin 官方规格](https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/)和 [NVLink 6 说明](https://www.nvidia.com/en-gb/data-center/nvlink/)（访问：2026-08-22）；分项分数是本文的架构研究判断，不是 NVIDIA benchmark 或性能承诺。
 
 | 维度 | 权重 | 得分 | 判断 |
 |---|---:|---:|---|

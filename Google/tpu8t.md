@@ -19,7 +19,7 @@
 > 第 20 行：| 项目 | TPU7x/Ironwood | TPU 8t | TPU 8i |
 > 第 21 行：|---|---|---|---|
 > 第 31 行：
-> 第 32 行：Ironwood 数字来自 [TPU7x 官方架构文档](https://docs.cloud.google.com/tpu/docs/tpu7x)（访问日期｜2026-08-22）、[Ironwood 系统公告](https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（访问日期｜2026-08-22）和[首次架构宣布](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）。8t/8i 数字来自 [Google 第八代架构深潜](https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（访问日期｜2026-08-22）与[第八代宣布页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)（访问日期｜2026-08-22）。这里的 PFLOPs、ExaFlops、性能/瓦都是官方峰值或宣传口径，不是本文测得的推理吞吐。
+> 第 32 行：Ironwood 数字来自 [TPU7x 官方架构文档](https://docs.cloud.google.com/tpu/docs/tpu7x)（访问日期｜2026-08-22）、[Ironwood 架构页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)、[系统公告](https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（访问日期｜2026-08-22）和[首次架构宣布](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）。8t/8i 数字来自 [Google 第八代架构深潜](https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（访问日期｜2026-08-22）与[第八代宣布页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)（访问日期｜2026-08-22）。这里的 PFLOPs、ExaFlops、性能/瓦都是官方峰值或宣传口径，不是本文测得的推理吞吐。
 > 第 33 行：
 > 第 37 行：
 > 第 38 行：8i 的 Pod 规模也有冲突。Google 的高层宣布页写 1,152，技术深潜的 Boardfly 分解写 36 组、最多 1,024 active chips。本文在讨论具体拓扑、跳数和资源规划时采用更细的 1,024，保留 1,152 作为官方未解决的高层口径。[宣布页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/)（访问日期｜2026-08-22） [技术深潜](https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（访问日期｜2026-08-22）
@@ -75,29 +75,29 @@
 
 ## 直接来源链接
 
-1. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)（访问日期｜2026-08-22）>
-2. <https://cloud.google.com/tpu?hl=en)（访问日期｜2026-08-22）>
-3. <https://docs.cloud.google.com/tpu/docs/tpu7x)（访问日期｜2026-08-22）、[Ironwood>
-4. <https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)（访问日期｜2026-08-22）和[首次架构宣布](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）。8t/8i>
-5. <https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（访问日期｜2026-08-22）与[第八代宣布页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)（访问日期｜2026-08-22）。这里的>
-6. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/)（访问日期｜2026-08-22）>
-7. <https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（访问日期｜2026-08-22）>
-8. <https://docs.cloud.google.com/tpu/docs/tpu7x)（访问日期｜2026-08-22）>
-9. <https://docs.jax.dev/en/latest/pallas/tpu/sparsecore.html)（访问日期｜2026-08-22）>
-10. <https://docs.cloud.google.com/tpu/docs/ironwood-performance)（访问日期｜2026-08-22）>
-11. <https://arxiv.org/abs/2304.01433)（访问日期｜2026-08-22）>
-12. <https://docs.cloud.google.com/tpu/docs/tpu7x-training)（访问日期｜2026-08-22）>
-13. <https://cloud.google.com/tpu?hl=en)>
-14. <https://docs.cloud.google.com/tpu/docs/tpu7x)>
-15. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)>
-16. <https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)>
-17. <https://docs.jax.dev/en/latest/pallas/tpu/sparsecore.html)>
-18. <https://cloud.google.com/tpu?hl=en)（2026-09-01>
-19. <https://docs.cloud.google.com/tpu/docs/release-notes)（2026-09-01>
-20. <https://docs.cloud.google.com/tpu/docs)（2026-09-01>
-21. <https://docs.cloud.google.com/tpu/docs/ironwood-performance)（2026-09-01>
-22. <https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive)（2026-09-01>
-23. <https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads)>
+1. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/>（访问日期｜2026-08-22）
+2. <https://cloud.google.com/tpu?hl=en>（访问日期｜2026-08-22）
+3. <https://docs.cloud.google.com/tpu/docs/tpu7x>（访问日期｜2026-08-22）、[Ironwood 架构页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)
+4. <https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads>（访问日期｜2026-08-22）和[首次架构宣布](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/)（访问日期｜2026-08-22）。8t/8i
+5. <https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive>（访问日期｜2026-08-22）与[第八代宣布页](https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/)（访问日期｜2026-08-22）。这里的
+6. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/>（访问日期｜2026-08-22）
+7. <https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive>（访问日期｜2026-08-22）
+8. <https://docs.cloud.google.com/tpu/docs/tpu7x>（访问日期｜2026-08-22）
+9. <https://docs.jax.dev/en/latest/pallas/tpu/sparsecore.html>（访问日期｜2026-08-22）
+10. <https://docs.cloud.google.com/tpu/docs/ironwood-performance>（访问日期｜2026-08-22）
+11. <https://arxiv.org/abs/2304.01433>（访问日期｜2026-08-22）
+12. <https://docs.cloud.google.com/tpu/docs/tpu7x-training>（访问日期｜2026-08-22）
+13. <https://cloud.google.com/tpu?hl=en>
+14. <https://docs.cloud.google.com/tpu/docs/tpu7x>
+15. <https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/>
+16. <https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive>
+17. <https://docs.jax.dev/en/latest/pallas/tpu/sparsecore.html>
+18. <https://cloud.google.com/tpu?hl=en>（2026-09-01
+19. <https://docs.cloud.google.com/tpu/docs/release-notes>（2026-09-01
+20. <https://docs.cloud.google.com/tpu/docs>（2026-09-01
+21. <https://docs.cloud.google.com/tpu/docs/ironwood-performance>（2026-09-01
+22. <https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive>（2026-09-01
+23. <https://cloud.google.com/blog/products/compute/ironwood-tpus-and-new-axion-based-vms-for-your-ai-workloads>
 
 ## 证据边界
 

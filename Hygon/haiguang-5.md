@@ -31,8 +31,8 @@
 
 ## 直接来源链接
 
-1. <https://developer.sourcefind.cn/dtk)>
-2. <https://yuanchuang.10jqka.com.cn/20260421/c676157793.shtml)>
+1. <https://developer.sourcefind.cn/dtk>
+2. <https://yuanchuang.10jqka.com.cn/20260421/c676157793.shtml>
 
 ## 证据边界
 
@@ -93,16 +93,16 @@
 
 ## 补充直接来源链接
 
-1. <https://www.hygon.cn/product/cpu)>
-2. <https://www.hygon.cn/news?newsid=102)>
-3. <https://static.sse.com.cn/stock/disclosure/announcement/c/202201/001043_20220124_HGDK.pdf)>
-4. <https://static.sse.com.cn/stock/disclosure/announcement/c/202206/001043_20220622_E5LP.pdf)>
-5. <https://static.sse.com.cn/stock/disclosure/announcement/c/202203/001043_20220331_G6N6.pdf)>
-6. <https://static.sse.com.cn/stock/disclosure/announcement/c/202203/001043_20220307_T2KW.pdf)>
-7. <https://static.cninfo.com.cn/finalpage/2023-08-25/1217637267.PDF)>
-8. <https://static.cninfo.com.cn/finalpage/2026-04-08/1225083108.PDF)>
-9. <https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12492765)>
-10. <https://dataclouds.cninfo.com.cn/shgonggao/investor/2025/20251210/0d17c6e844b64a66ab07bf268afaa827.PDF)>
-11. <https://developer.sourcefind.cn/)>
-12. <https://developer.sourcefind.cn/category/dynamics/detail?post_id=7d3e64c0-2cd2-11f1-854e-0242ac150003)>
-13. <https://developer.sourcefind.cn/category/dynamics/detail?post_id=8f764df5-2cb6-11f1-854e-0242ac150003)>
+1. <https://www.hygon.cn/product/cpu>
+2. <https://www.hygon.cn/news?newsid=102>
+3. <https://static.sse.com.cn/stock/disclosure/announcement/c/202201/001043_20220124_HGDK.pdf>
+4. <https://static.sse.com.cn/stock/disclosure/announcement/c/202206/001043_20220622_E5LP.pdf>
+5. <https://static.sse.com.cn/stock/disclosure/announcement/c/202203/001043_20220331_G6N6.pdf>
+6. <https://static.sse.com.cn/stock/disclosure/announcement/c/202203/001043_20220307_T2KW.pdf>
+7. <https://static.cninfo.com.cn/finalpage/2023-08-25/1217637267.PDF>
+8. <https://static.cninfo.com.cn/finalpage/2026-04-08/1225083108.PDF>
+9. <https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12492765>
+10. <https://dataclouds.cninfo.com.cn/shgonggao/investor/2025/20251210/0d17c6e844b64a66ab07bf268afaa827.PDF>
+11. <https://developer.sourcefind.cn/>
+12. <https://developer.sourcefind.cn/category/dynamics/detail?post_id=7d3e64c0-2cd2-11f1-854e-0242ac150003>
+13. <https://developer.sourcefind.cn/category/dynamics/detail?post_id=8f764df5-2cb6-11f1-854e-0242ac150003>

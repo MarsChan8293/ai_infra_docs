@@ -92,12 +92,12 @@
 
 ## 补充直接来源链接
 
-1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html)|2022>
-2. <https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-inf2-instances-generative-ai-generally-available/)|AWS>
-3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html)|AWS>
-4. <https://aws.amazon.com/blogs/aws/amazon-ec2-trn2-instances-and-trn2-ultraservers-for-aiml-training-and-inference-is-now-available/)|AWS>
-5. <https://aws.amazon.com/blogs/aws/aws-weekly-roundup-project-rainier-amazon-cloudwatch-investigations-aws-mcp-servers-and-more-june-30-2025/)|公开资料未确认>
-6. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|Trn3>
-7. <https://aws.amazon.com/ec2/instance-types/trn3/)|AWS>
-8. <https://aws.amazon.com/ai/machine-learning/trainium/customers/)|公开资料未确认>
-9. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)|OpenAI>
+1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html>（2022）
+2. <https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-inf2-instances-generative-ai-generally-available/>（AWS）
+3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html>（AWS）
+4. <https://aws.amazon.com/blogs/aws/amazon-ec2-trn2-instances-and-trn2-ultraservers-for-aiml-training-and-inference-is-now-available/>（AWS）
+5. <https://aws.amazon.com/blogs/aws/aws-weekly-roundup-project-rainier-amazon-cloudwatch-investigations-aws-mcp-servers-and-more-june-30-2025/>（公开资料未确认）
+6. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html>（Trn3）
+7. <https://aws.amazon.com/ec2/instance-types/trn3/>（AWS）
+8. <https://aws.amazon.com/ai/machine-learning/trainium/customers/>（公开资料未确认）
+9. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership>（OpenAI）

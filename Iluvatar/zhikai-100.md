@@ -60,10 +60,10 @@
 
 ## 直接来源链接
 
-1. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-tlxltt-zk100)>
-2. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495)。官方文章称>
-3. <https://www.iluvatar.com/newsDetails?code=tszxzztyGPUsljjfasldc2023sjjsdh&topicId=495)>
-4. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495)>
+1. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-tlxltt-zk100>
+2. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495>。官方文章称
+3. <https://www.iluvatar.com/newsDetails?code=tszxzztyGPUsljjfasldc2023sjjsdh&topicId=495>
+4. <https://www.iluvatar.com/newsDetails?code=tszxlhwwxqwczkGPUbktljqcsykpzcdc&topicId=495>
 5. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-xlxl-tg100>
 6. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-tlxltt-zk100>
 7. <https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-tyty1000>

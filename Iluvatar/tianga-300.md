@@ -56,9 +56,9 @@
 
 ## 直接来源链接
 
-1. <https://www.iluvatar.com/serias)>
-2. <https://developer.iluvatar.com/news/300-ai)，[官方公众号原文](https://mp.weixin.qq.com/s/TMxa68E2WCjfh_prfhOszg)>
-3. <https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1230/2025123000020_c.pdf)>
+1. <https://www.iluvatar.com/serias>
+2. <https://developer.iluvatar.com/news/300-ai>，[官方公众号原文](https://mp.weixin.qq.com/s/TMxa68E2WCjfh_prfhOszg)
+3. <https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1230/2025123000020_c.pdf>
 4. <https://www.iluvatar.com/newsDetails?code=tszxzztyGPUsljjfasldc2023sjjsdh&topicId=495>
 5. <https://developer.iluvatar.com/news/300-ai>
 6. <https://mp.weixin.qq.com/s/TMxa68E2WCjfh_prfhOszg>

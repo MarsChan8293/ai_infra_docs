@@ -27,13 +27,13 @@
 
 ## 直接来源链接
 
-1. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech)（宣布>
-2. <https://public-download.obs.cn-east-2.myhuaweicloud.com/ascend/%E6%98%87%E8%85%BE950%20NPU%E6%9E%B6%E6%9E%84%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf)，规格、SIMD/SIMT、NDDMA、L2、CCU、互联（资料可获得，访问>
-3. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech)，950PR/DT>
-4. <https://www.hiascend.com/hardware/accelerator-card)，950PR>
-5. <https://www.hiascend.com/activities/dynamic-news/20260320-3)，Atlas>
-6. <https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/900/releasenote/release-notes.md)，950PR>
-7. <https://www.hiascend.com/hardware/cluster)，当前>
+1. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech>（宣布
+2. <https://public-download.obs.cn-east-2.myhuaweicloud.com/ascend/%E6%98%87%E8%85%BE950%20NPU%E6%9E%B6%E6%9E%84%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf>，规格、SIMD/SIMT、NDDMA、L2、CCU、互联（资料可获得，访问
+3. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech>，950PR/DT
+4. <https://www.hiascend.com/hardware/accelerator-card>，950PR
+5. <https://www.hiascend.com/activities/dynamic-news/20260320-3>，Atlas
+6. <https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/900/releasenote/release-notes.md>，950PR
+7. <https://www.hiascend.com/hardware/cluster>，当前
 
 ## 证据边界
 

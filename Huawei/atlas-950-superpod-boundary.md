@@ -31,17 +31,17 @@
 
 ## 直接来源链接
 
-1. <https://public-download.obs.cn-east-2.myhuaweicloud.com/ascend/%E6%98%87%E8%85%BE950%20NPU%E6%9E%B6%E6%9E%84%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf)（资料可获得，访问>
-2. <https://www.hiascend.com/hardware/accelerator-card)（可用卡规格，访问>
-3. <https://www.hiascend.com/hardware/cluster)（系统规格，访问>
-4. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech)>
-5. <https://www.hiascend.com/hardware/cluster)（访问>
-6. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech)，950PR/DT>
-7. <https://www.hiascend.com/hardware/accelerator-card)，950PR>
-8. <https://www.hiascend.com/activities/dynamic-news/20260320-3)，Atlas>
-9. <https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/900/releasenote/release-notes.md)，950PR>
-10. <https://www.hiascend.com/hardware/cluster)，当前>
-11. <https://www.huawei.com/cn/news/2026/7/atlas-950-superpod)，1024>
+1. <https://public-download.obs.cn-east-2.myhuaweicloud.com/ascend/%E6%98%87%E8%85%BE950%20NPU%E6%9E%B6%E6%9E%84%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf>（资料可获得，访问
+2. <https://www.hiascend.com/hardware/accelerator-card>（可用卡规格，访问
+3. <https://www.hiascend.com/hardware/cluster>（系统规格，访问
+4. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech>
+5. <https://www.hiascend.com/hardware/cluster>（访问
+6. <https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech>，950PR/DT
+7. <https://www.hiascend.com/hardware/accelerator-card>，950PR
+8. <https://www.hiascend.com/activities/dynamic-news/20260320-3>，Atlas
+9. <https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/900/releasenote/release-notes.md>，950PR
+10. <https://www.hiascend.com/hardware/cluster>，当前
+11. <https://www.huawei.com/cn/news/2026/7/atlas-950-superpod>，1024
 
 ## 证据边界
 

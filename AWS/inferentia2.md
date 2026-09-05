@@ -77,7 +77,7 @@
 
 ## 补充直接来源链接
 
-1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|Trn3>
-2. <https://aws.amazon.com/ec2/instance-types/trn3/)|AWS>
-3. <https://aws.amazon.com/ai/machine-learning/trainium/customers/)|公开资料未确认>
-4. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)|OpenAI>
+1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html>（Trn3）
+2. <https://aws.amazon.com/ec2/instance-types/trn3/>（AWS）
+3. <https://aws.amazon.com/ai/machine-learning/trainium/customers/>（公开资料未确认）
+4. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership>（OpenAI）

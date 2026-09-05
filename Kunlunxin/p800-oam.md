@@ -44,11 +44,11 @@
 
 ## 直接来源链接
 
-1. <https://www.kunlunxin.com/news/4541.html)（2025-04-25；32/64>
-2. <https://www.kunlunxin.com/news/4791.html)（页面显示>
-3. <https://www.kunlunxin.com/news)（截至访问日可见>
-4. <https://www.paddlepaddle.org.cn/documentation/docs/zh/3.0-beta/guides/hardware_support/xpu/install_cn.html)（飞桨官方文档；XPU/BKCL/XCCL>
-5. <https://cloud.tencent.cn/document/product/1397/127039)（腾讯云官方部署文档；P800>
+1. <https://www.kunlunxin.com/news/4541.html>（2025-04-25；32/64
+2. <https://www.kunlunxin.com/news/4791.html>（页面显示
+3. <https://www.kunlunxin.com/news>（截至访问日可见
+4. <https://www.paddlepaddle.org.cn/documentation/docs/zh/3.0-beta/guides/hardware_support/xpu/install_cn.html>（飞桨官方文档；XPU/BKCL/XCCL
+5. <https://cloud.tencent.cn/document/product/1397/127039>（腾讯云官方部署文档；P800
 
 ## 证据边界
 
