@@ -1,145 +1,110 @@
-# Groq — Groq 3 LPU / LP30
+# Groq 3 LPU / LP30 证据页
 
-- 拆分日期：2026-09-02
-- 产品层级：LPU 芯片
-- 综合报告：[07-groq-lpu.md](./07-groq-lpu.md)
-- 文件性质：从综合报告按芯片名称/家族拆分的证据页；不新增事实，不把板卡、服务器、机架或云服务规格回填为芯片规格。
+- 研究截止日：2026-09-05
+- 核验日期：2026-09-05
+- 研究对象：Groq 3 LPU，公开资料中对应的芯片代号为 LP30
+- 产品层级：芯片；另设 LPX 托盘/机架、GroqCloud API 与 Tokens/s 服务层边界
+- 导航报告：[07-groq-lpu.md](./07-groq-lpu.md)
 
-## 产品定位与关键证据
+## 一句话结论
 
-以下内容逐行摘录综合报告，保留原报告中的状态、数字、证据等级和未知项。
+截至研究截止日，NVIDIA 的 Vera Rubin 发布材料和技术说明已公开命名 Groq 3 LPU/LP30，并给出其在 Groq 3 LPX 中的若干芯片与机架级规格；现有证据足以确认“LP30 被纳入 LPX 低延迟推理系统”的产品定位，尚不足以确认 LP30 独立 datasheet、单芯片功耗、流片/送样、已出货数量、客户部署或已在 GroqCloud 规模上线。关于量产的 “full production” 是 NVIDIA 对平台/新芯片组合的厂商口径，不能替代 LP30 的独立量产证明。[S1][S2]
 
-> 第 1 行：# Groq 最新 LPU：Groq 3 / LP30 的架构研究
-> 第 2 行：
-> 第 6 行：
-> 第 7 行：截至 2026-08-22，公开资料中最新、命名最清楚的目标是 **Groq 3 LPU，芯片代号 LP30**，但它公开呈现为 NVIDIA Vera Rubin 体系里的 **Groq 3 LPX 机架级推理加速器**，不是一张已经独立上市的 Groq 单卡。它要解决的是解码阶段每个 token 的低延迟、抖动和数据搬运问题；最值得研究的创新是把 SRAM、显式数据移动、编译器静态调度和芯片间同步组合成一个可预测的空间数据流系统。[NVIDIA 技术博客](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)
-> 第 8 行：
-> 第 14 行：|---|---|---|
-> 第 15 行：| 芯片 | Groq 3 LPU / LP30 | 不是 GroqCloud 服务，也不是整套 Vera Rubin |
-> 第 16 行：| 托盘 | 每托盘 [8 颗 LP30](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，另有主机处理器与 fabric expansion logic | 不是单颗芯片规格 |
-> 第 17 行：| 机架 | Groq 3 LPX：[32 个 1U 托盘、256 颗 LPU](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | 不是 Groq 旧式 GroqRack 的同义词 |
-> 第 18 行：| 平台 | LPX 与 Vera Rubin NVL72 协同，LPX 偏低延迟解码，Rubin GPU 负责长上下文 prefill 与 decode attention | 仅为授权/集成边界，不展开 NVIDIA 其他产品研究 |
-> 第 19 行：| 云服务 | GroqCloud 是 Groq 独立运营的 API/云服务。授权公告明确写明 Groq 继续独立运营、GroqCloud 不间断；截至窗口末，未见证据证明 GroqCloud 的在线请求已经由 LP30 规模承载。[Groq 公告](https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale) |
-> 第 20 行：
-> 第 22 行：
-> 第 23 行：- **时间边界**：Groq 第一代 LPU 于 [2019 年](https://home.cloud.groq.io/blog/inside-the-lpu-deconstructing-groq-speed)推出，窗口开始前已经进入 GroqCloud 和生产基础设施；不能把它写成窗口内首发。Groq 在 2025-08-01 的官方文章仍把它称为第一代、14 nm 芯片，并未给出 Groq 3/LP30 名称。
-> 第 24 行：- **宣布/命名**：2026-03-16，按本次核验到的公开一手资料，NVIDIA 官方发布 Vera Rubin 时首次明确写出 “NVIDIA Groq 3 LPU”；同日技术博客给出 LP30 规格。[新闻稿](https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform) [技术博客](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)
-> 第 25 行：- **量产口径**：同一新闻稿称七颗新芯片 “full production”；但新闻稿同时写 LPX 将于 2026 年下半年可用，2026-05-31 的后续公告又写 Vera Rubin 生产出货从“今年秋季”开始。[后续公告](https://nvidianews.nvidia.com/news/vera-rubin-full-production-agentic-ai-factory) 因此采用保守表述：**设计已公开，官方称已进入量产/生产爬坡；截至 2026-08-22，LP30/LPX 的 GA、客户可购与规模部署未被官方明确确认**。
-> 第 26 行：- **Groq 侧状态**：Groq 2026-06-22 说将用包括 NVIDIA 新 LPX 在内的最新推理技术改造现有云 footprint；2026-08-12 成为 NVIDIA Cloud Partner，说明集成路径已正式化，但仍不是 LP30 已在 GroqCloud 线上规模运行的证据。[Groq 2026-06-22](https://groq.com/newsroom/groq-raises-usd650m-to-scale-its-ai-inference-cloud-business) [Groq 2026-08-12](https://groq.com/newsroom/groq-becomes-an-nvidia-cloud-partner)
-> 第 27 行：
-> 第 29 行：
-> 第 30 行：| 项目 | Groq 3 / LP30 公开口径 | 研究边界 |
-> 第 31 行：|---|---|---|
-> 第 32 行：| 制程 | **公开资料未确认**。Groq 只公开说现有/第一代芯片为 [14 nm](https://groq.com/blog/the-groq-lpu-explained)，并说未来向 [4 nm](https://groq.com/blog/the-groq-lpu-explained) 发展 | 不能把 14 nm 或 4 nm 直接套到 LP30 |
-> 第 33 行：| 执行单元 | MXM 矩阵执行、VXM 向量执行、SXM 数据交换；统一工作粒度为 [320-byte vector](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | 各单元数量、频率、面积未公开确认；按 [8 颗](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) 托盘的 [9.6 PFLOPS](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) 推得约 [1.2 PFLOPS FP8/颗](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，这是推导值 |
-> 第 34 行：| 数值格式 | 公开的 LPU 方案包括 TruePoint 的 [100-bit 中间累加](https://home.cloud.groq.io/blog/inside-the-lpu-deconstructing-groq-speed)、FP32 attention logits、MoE 权重的 block floating point、FP8 activation；LPX 机架标注 FP8 inference compute | LP30 完整格式/吞吐表未公开确认 |
-> 第 35 行：| 片上内存 | 每颗 [500 MB SRAM](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，作为主要工作存储而非传统 cache | 容量有限，不能等同于整机模型容量 |
-> 第 36 行：| 片外内存 | LPX 机架另有 [12 TB DDR5](https://www.nvidia.com/en-au/data-center/lpx/)，托盘侧公开为 fabric expansion logic 最多 [256 GB](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)、主机最多 [128 GB](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | “SRAM-first”不等于整架没有片外内存；LP30 本身没有公开 HBM 规格 |
-> 第 37 行：| 带宽 | 单颗 SRAM [150 TB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，单托盘 [1.2 PB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，整架 [40 PB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | 这些是峰值/聚合口径，不是某个模型的有效 KV 带宽 |
-> 第 38 行：| 互联 | 每颗 [96 条 C2C link、112 Gbps/link、双向聚合 2.5 TB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)；整架 [640 TB/s scale-up](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)、[256 芯片](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | LPX 还有 C2C spine 与 fabric logic，不能简单复述为“完全没有系统级互联逻辑” |
-> 第 39 行：| 功耗/散热 | **LP30 单芯片功耗公开资料未确认**；LPX 公开为全液冷 | Groq 旧 GroqChip 的 [300 W max/215 W TDP/185 W average](https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf) 不能移植给 LP30，仅作时间边界 |
-> 第 40 行：
-> 第 56 行：
-> 第 57 行：附件提出的 Retrieval Plane 要独立处理 Search、Reduce、Top-k、Gather、Route、Address。Groq 3 的公开资料更接近“确定性的 Tensor/数据流平面”，而不是已经公开的 Retrieval GPU。
-> 第 58 行：
-> 第 66 行：| 跨卡通信 | 直接解决通信时序与带宽的一部分：C2C、plesiosynchronous 协议、编译器调度和大规模同步 | 可把多芯片 pipeline 做成稳定 token 流 | 不等于跨卡 Top-k merge，也不自动减少检索候选数 |
-> 第 67 行：| TPOT / TTFT / Tokens / J | 直接针对低抖动 per-token latency；官方把 LPX 定位为交互式解码 | SRAM、静态调度和流水线可能降低等待与能耗 | 公开的是机架级/预测性指标；LP30 的实测 TPOT、TTFT、Tokens/J 未确认，不能把 [1,000 tokens/sec/user](https://groq.com/platform) 当成通用 benchmark |
-> 第 68 行：
-> 第 78 行：| Scale-up/互联 | 15% | 9.0 | 96 条 C2C、2.5 TB/s/颗、256 颗机架和时钟对齐形成系统级优势 |
-> 第 79 行：| 数值格式/计算密度 | 10% | 8.0 | TruePoint、FP32/FP8/BFP 的按层选择有研究价值；LP30 完整格式表缺失 |
-> 第 80 行：| 可编程性 | 10% | 8.5 | 编译器控制算子、内存、网络，模型适配面较好；动态形状和编译成本仍是边界 |
-> 第 87 行：2. **确定性不等于所有请求都零抖动。** 它主要约束已编译的算子与通信；动态分支、外部网络、云端排队和模型装载仍可能变化。
-> 第 88 行：3. **Groq 3 不等于旧 GroqChip 规格升级版的简单换名。** [14 nm、230 MB、80 TB/s、215 W TDP](https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf) 是旧公开产品值，不能推导 LP30 的制程和功耗。
-> 第 89 行：4. **LPX 不等于 GroqCloud。** LPX 是 NVIDIA Vera Rubin 侧的机架产品；GroqCloud 是 Groq 独立运营的服务。到截止日，LP30 在 GroqCloud 的规模上线公开证据不足。
-> 第 90 行：5. **高带宽不等于 Retrieval Plane。** 没有公开 TOPK、page map、indexed gather，就不能把 Groq 的数据流互联直接写成附件方案已经实现。
-> 第 118 行：5. [Groq：与 NVIDIA 的非排他推理技术授权公告（2025-12-24）](https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale)（独立运营与 GroqCloud 连续性；访问日 2026-08-22）。
-> 第 119 行：6. [NVIDIA：Vera Rubin Opens Agentic AI Frontier（2026-03-16）](https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform)（Groq 3 命名、LPX 集成与可用时间；访问日 2026-08-22）。
-> 第 120 行：7. [NVIDIA：Inside NVIDIA Groq 3 LPX（2026-03-16）](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)（LP30、托盘、机架和互联详细规格；访问日 2026-08-22）。
-> 第 121 行：8. [NVIDIA：Vera Rubin Ramps Into Full Production（2026-05-31）](https://nvidianews.nvidia.com/news/vera-rubin-full-production-agentic-ai-factory)（量产爬坡与出货时间冲突口径；访问日 2026-08-22）。
-> 第 124 行：
-> 第 125 行：> 证据边界：截至 2026-08-22，未找到 Groq 自己发布的 LP30 完整 datasheet，亦未找到可确认 LP30 已在 GroqCloud 规模部署的官方记录；制程、单芯片功耗、TOPK/Gather 专用硬件和实测 Tokens/J 均应保留为“公开资料未确认”。
-> 第 126 行：+## 2026-09-01 在线复核增补
-> 第 127 行：
-> 第 128 行：已重新打开 [Groq 3 LPX 官方公告](https://groq.com/blog/groq-among-the-first-to-bring-nvidia-groq-3-lpx-and-vera-rubin-nvl72-to-market) 与 [Groq Cloud 平台页](https://groq.com/platform)，确认 2026-08-24 公告将 LPX/Vera Rubin NVL72描述为计划部署并接入推理云；平台页把 256 LPU、40PB/s SRAM 带宽等标为机架级口径，不能写成单芯片规格。
+## 产品层级与对象边界
 
-## 直接来源链接
+| 层级 | 本页如何使用 | 不能从该层级推导什么 |
+|---|---|---|
+| LP30 LPU 芯片 | 记录公开归属于单颗 LPU 的 SRAM、片上带宽、C2C 与执行单元信息 | 不能把 LPX 整架吞吐、内存、液冷或服务 Tokens/s 当成单芯片规格 |
+| LPX 托盘 | 公开设计为 8 颗 LPU 加主机处理器和 fabric expansion logic 的托盘 | 托盘级 9.6 PFLOPS、主机内存和 fabric 逻辑不等于 LP30 芯片规格 |
+| Groq 3 LPX 机架/服务器系统 | 公开设计为 32 个 1U 托盘、256 颗 LPU 的低延迟解码系统 | 机架级 40 PB/s、640 TB/s scale-up 或液冷不能证明每颗 LP30 的实际有效性能 |
+| Vera Rubin 平台 | NVIDIA 描述 LPX 与 Vera Rubin NVL72 协同，LPX 侧重解码路径 | NVIDIA GPU、NVL72 和 LPX 的系统能力不能回填为 LP30 硬件能力 |
+| GroqRack/旧服务器 | Groq 的历史产品与服务器边界；本页不把旧 GroqRack 当成 LPX，也不补写其配置 | 旧 GroqChip、GroqRack 或旧服务器规格不能迁移到 LP30 |
+| GroqCloud/API | Groq 运营的 API/云服务；模型、排队、网络和服务配置都在此层 | API 页面展示的 Tokens/s 不能作为 LP30 芯片 benchmark，也不能证明由 LP30 承载 |
 
-1. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>
-2. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，另有主机处理器与
-3. <https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale>
-4. <https://home.cloud.groq.io/blog/inside-the-lpu-deconstructing-groq-speed>推出，窗口开始前已经进入
-5. <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform>
-6. <https://nvidianews.nvidia.com/news/vera-rubin-full-production-agentic-ai-factory>
-7. <https://groq.com/newsroom/groq-raises-usd650m-to-scale-its-ai-inference-cloud-business>
-8. <https://groq.com/newsroom/groq-becomes-an-nvidia-cloud-partner>
-9. <https://groq.com/blog/the-groq-lpu-explained>，并说未来向
-10. <https://groq.com/blog/the-groq-lpu-explained>
-11. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，这是推导值
-12. <https://home.cloud.groq.io/blog/inside-the-lpu-deconstructing-groq-speed>、FP32
-13. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，作为主要工作存储而非传统
-14. <https://www.nvidia.com/en-au/data-center/lpx/>，托盘侧公开为
-15. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>、主机最多
-16. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，单托盘
-17. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>，整架
-18. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>；整架
-19. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>、256
-20. <https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf>
-21. <https://groq.com/platform>
-22. <https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale>（独立运营与
-23. <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform>（Groq
-24. <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/>（LP30、托盘、机架和互联详细规格；访问日
-25. <https://nvidianews.nvidia.com/news/vera-rubin-full-production-agentic-ai-factory>（量产爬坡与出货时间冲突口径；访问日
-26. <https://groq.com/blog/groq-among-the-first-to-bring-nvidia-groq-3-lpx-and-vera-rubin-nvl72-to-market>
-27. <https://groq.com/platform>，确认
+## 生命周期状态
 
-## 证据边界
+| 生命周期字段 | 截至 2026-09-05 的判断 | 证据状态与边界 |
+|---|---|---|
+| 宣布/命名 | 2026-03-16，NVIDIA 的 Vera Rubin 发布材料公开写出 Groq 3 LPU；同日技术说明使用 LP30 名称 | 已确认事实，来源是 NVIDIA 官方发布与技术博客；属于合作方公开命名，不等于独立商品上市。[S1][S2] |
+| 流片或工程样片 | 公开资料未确认 | 未找到 LP30 流片批次、工程样片或 silicon bring-up 公告 |
+| 送样/客户取样 | 公开资料未确认 | LPX 的产品规划和合作公告不构成 LP30 送样证明 |
+| 量产 | 厂商主张，LP30 独立状态未确认 | NVIDIA 发布材料使用 “full production” 描述 Vera Rubin 相关新芯片组合；同一材料仍把 LPX 可用时间放在 2026 年下半年，不能据此确认 LP30 已完成独立量产。[S1] |
+| 出货 | 公开资料未确认；系统级路线图指向 2026 年秋季起生产出货 | NVIDIA 后续公告谈 Vera Rubin 平台生产出货时间，未给出 LP30 单独出货数量或客户订单。[S3] |
+| 客户部署 | 公开资料未确认 | 截至截止日没有可核验的 LP30 客户部署、数量或生产集群清单；Groq 的“计划部署”属于路线图/厂商意图。[S4] |
+| 云或实例可用 | LP30 专属云实例未确认；GroqCloud API 本身可用 | GroqCloud 公开平台可展示模型和服务指标，但没有把当前请求后端明确映射到 LP30；“API 可用”不等于“LP30 云实例可用”。[S5] |
+| 路线图 | Groq 计划把包括 NVIDIA LPX 在内的新推理技术接入现有云 footprint；NVIDIA 将 LPX 可用时间放在 2026 年下半年 | 厂商路线图，不是已经完成的部署或 GA 证明。[S3][S4] |
 
-- 这是资料重排页，不是重新发布或重新核验的产品公告。
-- “发布、流片、送样、量产、出货、客户部署、云端可用、路线图、停产”等状态只在综合报告明确写出时保留；缺失项仍为“公开资料未确认”。
-- 若摘录同时出现芯片、板卡、服务器、机架或云服务，均按原报告层级保留，并以“产品层级”字段提醒，不做跨层级推导。
+## 芯片级规格
 
-## 关联表格原文（完整表格）
+下表只收录公开材料直接归属于 LP30/LPU 的内容。没有 LP30 专属 datasheet 的字段保留为“公开资料未确认”。
 
-以下表格块来自综合报告中与本拆分项命中的表格，完整保留表头、状态列和规格列。
+| 项目 | 公开口径 | 证据状态与边界 |
+|---|---|---|
+| 芯片名称 | Groq 3 LPU；LP30 | 已确认事实，命名来自 NVIDIA 官方材料。[S1][S2] |
+| 制程 | 公开资料未确认 | Groq 关于第一代 LPU 的 14 nm 说明不能套用到 LP30；LP30 的晶圆厂、节点和封装未公开确认 |
+| 执行单元 | MXM 矩阵执行、VXM 向量执行、SXM 数据交换；公开技术说明还给出 320-byte vector 工作粒度 | 已公开的 LP30/LPX 设计描述；单元数量、频率、面积和每单元吞吐未确认。[S2] |
+| 数值格式 | LPX 系统标注 FP8 inference compute；Groq 的通用 LPU 材料讨论 TruePoint、FP32 attention logits、BFP 和 FP8 activation | 厂商/合作方公开事实，但通用 LPU 数值格式不能自动等同于 LP30 的完整支持矩阵；LP30 专属格式与吞吐表未确认。[S2][S6] |
+| 片上存储 | 每颗 LPU 500 MB SRAM | 已公开的单 LPU 口径；不是整架模型容量，也不是 HBM 容量。[S2] |
+| 片上 SRAM 带宽 | 每颗 LPU 150 TB/s | 已公开峰值口径；不是某个模型的有效 KV 带宽。[S2] |
+| 片外内存 | LP30 单芯片 HBM、DDR 或其他片外内存配置公开资料未确认 | LPX 机架/托盘存在 DDR5、主机内存和 fabric expansion logic，但这些属于系统级部件，不回填到芯片字段。[S2][S7] |
+| 芯片间互联 | 每颗 LPU 96 条 C2C link、112 Gbps/link、双向聚合 2.5 TB/s | 合作方技术说明的单 LPU 连接口径；没有独立可复现测试。[S2] |
+| 功耗、TDP、散热 | LP30 单芯片功耗和封装散热公开资料未确认 | LPX 的全液冷是系统级信息；旧 GroqChip 的 300 W max/215 W TDP/185 W average 不能迁移。[S2][S8] |
+| 单芯片 FP8 峰值 | 公开资料未直接给出 | 9.6 PFLOPS 是 8-LPU 托盘口径；按 9.6/8 得出的约 1.2 PFLOPS 是分析推断，不作为 LP30 已确认规格。[S2] |
+| 面积、封装、频率、良率 | 公开资料未确认 | 当前直接来源没有足够字段支持这些数字 |
 
-> 来源综合报告第 13-19 行：
-> 第 13 行：| 层级 | 本文研究对象 | 不能混称的对象 |
-> 第 14 行：|---|---|---|
-> 第 15 行：| 芯片 | Groq 3 LPU / LP30 | 不是 GroqCloud 服务，也不是整套 Vera Rubin |
-> 第 16 行：| 托盘 | 每托盘 [8 颗 LP30](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，另有主机处理器与 fabric expansion logic | 不是单颗芯片规格 |
-> 第 17 行：| 机架 | Groq 3 LPX：[32 个 1U 托盘、256 颗 LPU](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | 不是 Groq 旧式 GroqRack 的同义词 |
-> 第 18 行：| 平台 | LPX 与 Vera Rubin NVL72 协同，LPX 偏低延迟解码，Rubin GPU 负责长上下文 prefill 与 decode attention | 仅为授权/集成边界，不展开 NVIDIA 其他产品研究 |
-> 第 19 行：| 云服务 | GroqCloud 是 Groq 独立运营的 API/云服务。授权公告明确写明 Groq 继续独立运营、GroqCloud 不间断；截至窗口末，未见证据证明 GroqCloud 的在线请求已经由 LP30 规模承载。[Groq 公告](https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale) |
+## LPX、GroqRack、云 API 与 Tokens/s 的分层
 
-> 来源综合报告第 30-39 行：
-> 第 30 行：| 项目 | Groq 3 / LP30 公开口径 | 研究边界 |
-> 第 31 行：|---|---|---|
-> 第 32 行：| 制程 | **公开资料未确认**。Groq 只公开说现有/第一代芯片为 [14 nm](https://groq.com/blog/the-groq-lpu-explained)，并说未来向 [4 nm](https://groq.com/blog/the-groq-lpu-explained) 发展 | 不能把 14 nm 或 4 nm 直接套到 LP30 |
-> 第 33 行：| 执行单元 | MXM 矩阵执行、VXM 向量执行、SXM 数据交换；统一工作粒度为 [320-byte vector](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | 各单元数量、频率、面积未公开确认；按 [8 颗](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) 托盘的 [9.6 PFLOPS](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) 推得约 [1.2 PFLOPS FP8/颗](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，这是推导值 |
-> 第 34 行：| 数值格式 | 公开的 LPU 方案包括 TruePoint 的 [100-bit 中间累加](https://home.cloud.groq.io/blog/inside-the-lpu-deconstructing-groq-speed)、FP32 attention logits、MoE 权重的 block floating point、FP8 activation；LPX 机架标注 FP8 inference compute | LP30 完整格式/吞吐表未公开确认 |
-> 第 35 行：| 片上内存 | 每颗 [500 MB SRAM](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，作为主要工作存储而非传统 cache | 容量有限，不能等同于整机模型容量 |
-> 第 36 行：| 片外内存 | LPX 机架另有 [12 TB DDR5](https://www.nvidia.com/en-au/data-center/lpx/)，托盘侧公开为 fabric expansion logic 最多 [256 GB](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)、主机最多 [128 GB](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | “SRAM-first”不等于整架没有片外内存；LP30 本身没有公开 HBM 规格 |
-> 第 37 行：| 带宽 | 单颗 SRAM [150 TB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，单托盘 [1.2 PB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)，整架 [40 PB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | 这些是峰值/聚合口径，不是某个模型的有效 KV 带宽 |
-> 第 38 行：| 互联 | 每颗 [96 条 C2C link、112 Gbps/link、双向聚合 2.5 TB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)；整架 [640 TB/s scale-up](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/)、[256 芯片](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) | LPX 还有 C2C spine 与 fabric logic，不能简单复述为“完全没有系统级互联逻辑” |
-> 第 39 行：| 功耗/散热 | **LP30 单芯片功耗公开资料未确认**；LPX 公开为全液冷 | Groq 旧 GroqChip 的 [300 W max/215 W TDP/185 W average](https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf) 不能移植给 LP30，仅作时间边界 |
+| 对象 | 可引用的公开事实 | 不应写成 |
+|---|---|---|
+| LPX 托盘 | 8 颗 LPU；托盘级 9.6 PFLOPS FP8 inference compute；另有主机和 fabric expansion logic | “单颗 LP30 有 9.6 PFLOPS” |
+| Groq 3 LPX 机架 | 32 个 1U 托盘、256 颗 LPU；公开资料给出机架级 40 PB/s SRAM 带宽和 640 TB/s scale-up | “LP30 单芯片有 40 PB/s 或 640 TB/s” |
+| GroqRack/旧服务器 | 作为历史 Groq 系统边界存在；本页没有把其配置并入 LP30 | “GroqRack 就是 Groq 3 LPX” |
+| GroqCloud API | Groq 运营的 API 服务，平台页面展示模型、接口和服务侧性能指标 | “GroqCloud 的 Tokens/s 就是 LP30 的吞吐” |
+| Tokens/s | 服务端指标，受模型、输入输出长度、并发、排队、网络、软件版本和后端硬件影响；平台页的 user-level 指标即使为真也仍属服务口径 | “Tokens/s/user = 芯片峰值”或“当前 GroqCloud 已由 LP30 规模承载” |
 
-> 来源综合报告第 59-67 行：
-> 第 59 行：| 附件概念 | 直接解决 | 间接帮助 | 没有解决或证据不足 |
-> 第 60 行：|---|---|---|---|
-> 第 61 行：| 密集计算 | MXM、FP8 与 SRAM 直接服务 dense FFN/MoE decode；LPX 的公开定位就是低延迟解码路径 | 编译器把矩阵、向量、传输排成流水 | 不证明对稀疏 KV 检索同样有效 |
-> 第 62 行：| Search / Indexer | — | MXM/VXM 可承载点积和扫描，静态数据流可减少 launch/调度开销 | 没有公开 Search/Indexer 专用单元或 exact retrieval 结果 |
-> 第 63 行：| Top-k / Reduce | — | VXM 与显式数据流可以实现固定规约 | 没有公开 TOPK、MERGE_TOPK 或 streaming reduction 原语 |
-> 第 64 行：| 离散 KV Gather | — | SRAM 与 SXM 的结构化搬运有利于规则化的数据交换 | 没有公开 indexed gather DMA、page table translator 或离散 KV 语义 |
-> 第 65 行：| Address / Route | — | SXM 支持 permutation/rotation/distribution/transpose，编译器能显式安排路由 | 没有证据表明它能硬件生成动态物理地址或 page-aware route |
-> 第 66 行：| 跨卡通信 | 直接解决通信时序与带宽的一部分：C2C、plesiosynchronous 协议、编译器调度和大规模同步 | 可把多芯片 pipeline 做成稳定 token 流 | 不等于跨卡 Top-k merge，也不自动减少检索候选数 |
-> 第 67 行：| TPOT / TTFT / Tokens / J | 直接针对低抖动 per-token latency；官方把 LPX 定位为交互式解码 | SRAM、静态调度和流水线可能降低等待与能耗 | 公开的是机架级/预测性指标；LP30 的实测 TPOT、TTFT、Tokens/J 未确认，不能把 [1,000 tokens/sec/user](https://groq.com/platform) 当成通用 benchmark |
+## 架构与软件证据
 
-> 来源综合报告第 73-80 行：
-> 第 73 行：| 维度 | 权重 | 分数 | 判断 |
-> 第 74 行：|---|---:|---:|---|
-> 第 75 行：| 数据搬运/存储 | 30% | 9.0 | SRAM-first、显式搬运和 [150 TB/s](https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/) 片上带宽是最强启发，但容量约束很硬 |
-> 第 76 行：| 执行架构 | 20% | 9.0 | 空间数据流、编译器静态调度、无运行时抢占是清晰的路线 |
-> 第 77 行：| 稀疏/动态计算 | 15% | 4.0 | MoE 可扩展，但公开资料没有 exact Search/Top-k/Gather 专用硬件 |
-> 第 78 行：| Scale-up/互联 | 15% | 9.0 | 96 条 C2C、2.5 TB/s/颗、256 颗机架和时钟对齐形成系统级优势 |
-> 第 79 行：| 数值格式/计算密度 | 10% | 8.0 | TruePoint、FP32/FP8/BFP 的按层选择有研究价值；LP30 完整格式表缺失 |
-> 第 80 行：| 可编程性 | 10% | 8.5 | 编译器控制算子、内存、网络，模型适配面较好；动态形状和编译成本仍是边界 |
+### 已确认的设计方向
+
+- Groq 的 LPU 架构材料把 SRAM 作为靠近计算的数据存储，并强调编译器在执行前安排算子、内存移动和通信；这支持“编译器静态调度的空间数据流”这一架构描述。[S6]
+- NVIDIA 的 LP30/LPX 技术说明将 MXM、VXM、SXM 与固定向量粒度、片上 SRAM 和 C2C 互联放在同一设计描述中。可以确认公开路线重点在低延迟解码、显式数据移动和确定性的多芯片执行。[S2]
+- 这些材料没有公开 LP30 的 TOPK、动态 page-aware address、indexed KV gather 或专用检索单元。因此，Groq 3 可以被分析为确定性的 Tensor/dataflow 平面，不能被写成已经实现 Retrieval Plane 的芯片。
+
+### 证据状态分开写
+
+| 主张 | 状态 | 限定 |
+|---|---|---|
+| 编译器可预先安排算子、内存和通信 | 厂商主张/官方架构描述 | 说明编程模型和执行路线，不等于任何模型都无需重新编译 |
+| SRAM-first 与显式数据流有助于稳定 per-token latency | 分析推断 | 需要给定模型、批量、上下文、软件版本和功耗边界的实测来量化 |
+| C2C 与同步设计支持大规模 LPU pipeline | 厂商/合作方公开事实 | 系统互联能力不等于跨卡 Top-k merge 或检索召回能力 |
+| 有专用 Search/Top-k/Gather 硬件 | 公开资料未确认 | 当前来源没有给出该类单元、指令或可复现结果 |
+
+## 性能与采用证据
+
+- NVIDIA 给出了 LPX 的托盘和机架级峰值规格，适合说明产品设计目标；这些数字没有提供完整模型、精度、批量、延迟分位数、功耗边界和软件版本，因此不能当作独立 benchmark。[S2]
+- GroqCloud 平台页面的 Tokens/s 或 tokens/s/user 属于服务层展示。页面没有把指标绑定到 LP30，也没有同时给出模型版本、测试条件、端到端延迟分位数或功耗，所以本页不把它转换为 LP30 的 TPOT、TTFT 或 Tokens/J。[S5]
+- Groq 公告称计划把 LPX/Vera Rubin NVL72 接入推理云；这是采用路线图，不能证明 LP30 已完成客户部署或已经在线承载生产请求。[S4]
+- 截至截止日，未找到 LP30 的独立测试报告、客户侧部署报告、可复现 benchmark 或按 LP30 标注的云实例 SKU。该缺口直接影响对商业成熟度和真实有效吞吐的判断。
+
+## 未确认项与冲突
+
+1. LP30 的制程、面积、封装、频率、执行单元数量、单芯片功耗、片外内存和独立可购 SKU 均未被当前直接来源完整披露。
+2. “full production”是 NVIDIA 的平台/新芯片组合表述，而 LPX 可用时间和 Vera Rubin 生产出货又被安排在 2026 年下半年或秋季，二者至少存在产品层级和时间口径差异；在未有 LP30 专属公告前，保守状态应写为“厂商称进入生产阶段，LP30 独立量产未确认”。[S1][S3]
+3. Groq 的 LPX 公告把新系统描述为计划接入推理云；计划部署、客户部署、出货和云 GA 是四个不同状态，当前不能合并。[S4]
+4. 旧 GroqChip 的 14 nm、230 MB SRAM、80 TB/s 和功耗数据只用于历史基线，不能作为 LP30 的代际规格。[S8]
+5. 当前证据不支持把 Groq 3 的静态数据流直接等同于动态 Retrieval Plane；Search、Top-k、Merge、page-aware Gather 和地址翻译仍是公开资料未确认项。
+
+## 直接来源清单
+
+| 编号 | 标题 | 主体 | 发布日期 | 核验日期 | 直接 URL |
+|---|---|---|---|---|---|
+| S1 | NVIDIA Vera Rubin Platform | NVIDIA | 2026-03-16 | 2026-09-05 | <https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform> |
+| S2 | Inside NVIDIA Groq 3 LPX: The Low-Latency Inference Accelerator for the NVIDIA Vera Rubin Platform | NVIDIA Developer Blog | 2026-03-16 | 2026-09-05 | <https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/> |
+| S3 | Vera Rubin Ramps Into Full Production for the Agentic AI Factory | NVIDIA | 2026-05-31 | 2026-09-05 | <https://nvidianews.nvidia.com/news/vera-rubin-full-production-agentic-ai-factory> |
+| S4 | Groq Among the First to Bring NVIDIA Groq 3 LPX and Vera Rubin NVL72 to Market | Groq | 2026-08-24 | 2026-09-05 | <https://groq.com/blog/groq-among-the-first-to-bring-nvidia-groq-3-lpx-and-vera-rubin-nvl72-to-market> |
+| S5 | Groq Platform | Groq | 未标注 | 2026-09-05 | <https://groq.com/platform> |
+| S6 | What Is a Language Processing Unit? | Groq | 2025-03-07 | 2026-09-05 | <https://groq.com/blog/the-groq-lpu-explained> |
+| S7 | NVIDIA LPX | NVIDIA | 未标注 | 2026-09-05 | <https://www.nvidia.com/en-au/data-center/lpx/> |
+| S8 | GroqChip Processor Product Brief | Groq | 未标注 | 2026-09-05 | <https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf> |
+
+> 证据边界：本页使用的 LP30 规格主要来自 NVIDIA 对 LPX 的合作方技术说明，Groq 自有公开材料截至截止日未提供 LP30 完整 datasheet。LP30 的独立量产、出货、客户部署、GroqCloud 云实例、单芯片功耗和独立性能仍应标记为“公开资料未确认”。

@@ -1,81 +1,81 @@
-# Amazon Web Services / 亚马逊云科技 — Trainium4（路线图）
+# AWS Trainium4 路线图证据页
 
-- 拆分日期：2026-09-02
-- 产品层级：路线图芯片
-- 综合报告：[06-aws-trainium.md](./06-aws-trainium.md)
-- 文件性质：从综合报告按芯片名称/家族拆分的证据页；不新增事实，不把板卡、服务器、机架或云服务规格回填为芯片规格。
+- 研究截止日：2026-09-05
+- 实际核验日：2026-09-05
+- 厂商：Amazon Web Services（AWS）
+- 产品层级：尚在公开路线图中的 AI 加速芯片；没有已核验的 EC2 实例或 UltraServer SKU
+- 导航：[AWS Trainium / Inferentia 综合报告](06-aws-trainium.md)
 
-## 产品定位与关键证据
+## 一句话结论
 
-以下内容逐行摘录综合报告，保留原报告中的状态、数字、证据等级和未知项。
+截至 2026-09-05，公开一手资料只确认 Trainium4 是下一代 Trainium 芯片，并在 AWS 与 OpenAI 的战略合作公告中被描述为预计于 2027 年开始交付，方向包括更高 FP4 算力、更高内存带宽和更大 HBM 容量。[S1] 目前没有足够公开证据确认 Trainium4 已流片、送样、量产、出货、部署或以 EC2/UltraServer 形态 GA；所有具体芯片规格均应保留为公开资料未确认。
 
-> 第 31 行：|Trainium3（v4，NeuronCore-v4）|8 个 NeuronCore-v4；144 GiB/GB HBM3e、产品页 4.9 TB/s（NKI 指南 4.7 TB/s）；2.52 PFLOPS MXFP8/MXFP4；128 DMA、20 CC-Cores、4 个 NeuronLink-v4。[NKI 架构](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|Trn3 UltraServer GA 2025-12-02；最多 144 颗芯片，进入 EC2 UltraClusters 3.0。具体 Trn3 EC2 instance type、区域和公开价格在本次已打开资料中未完整确认。[产品页](https://aws.amazon.com/ec2/instance-types/trn3/)|AWS 宣称 Bedrock 上 Trainium3 是最快加速器；客户页的 Anthropic、Decart、Hugging Face 等内容需要按“公司/AWS 客户页主张”读取，不能等同第三方复测。[客户页](https://aws.amazon.com/ai/machine-learning/trainium/customers/)|公开资料未确认 tape-out、送样、晶圆量产、2026 出货量、真实库存或停产；GA/云端产品可用不等于已公开量产数字。|
-> 第 32 行：|Trainium4（路线图）|本次已打开的一手资料只确认“更高 FP4 算力、更高内存带宽和更大 HBM 容量”，没有颗粒数、制程、HBM 类型、互联或功耗规格。|AWS 与 OpenAI 2026-02 战略合作公告称预计 **2027 年开始交付**；这是路线图/承诺节点，不是 GA 或云端可用日期。[官方公告](https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)|OpenAI 的容量承诺覆盖 Trainium3 与 Trainium4；不能据此推导芯片已流片、量产或客户已部署。|tape-out、送样、量产、出货、GA、区域、停产：**未确认**。|
-> 第 33 行：
-> 第 50 行：|2025-12-02|Trn3 UltraServer GA；Trainium3 产品公开。|官方 What's New。|
-> 第 51 行：|2026-02|OpenAI/AWS 公告 Trainium4，预计 2027 开始交付。|官方新闻稿；路线图，不是 GA。|
-> 第 52 行：|2026-05-26 至 2026-08-17|Neuron 2.30、2.31、2.32 逐步加入 Trainium3/NKI 新能力。|官方 release/What's New。|
-> 第 168 行：9. [AWS Inferentia customers/product page](https://aws.amazon.com/ai/machine-learning/inferentia/)
-> 第 169 行：10. [AWS OpenAI strategic partnership：Trainium4 2027 roadmap](https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)
-> 第 170 行：11. [BrazenLab independent Trainium validation](https://brazenlab.ai/research.html)
+## 产品层级与对象边界
 
-## 直接来源链接
+| 对象 | 本页如何使用 | 边界说明 |
+|---|---|---|
+| Trainium4 | 芯片路线图对象 | 只记录 AWS 已公开的方向性描述和预期时间，不把 Trainium3 的规格迁移过来。 |
+| NeuronCore / NeuronDevice | 内部架构对象 | 截至核验日没有找到 Trainium4 专属 NeuronCore 数量、版本或微架构资料。 |
+| EC2 Trn4 / 其他实例 | 云实例对象 | 没有找到公开的 Trn4 实例名称、规格、区域、价格或 GA 公告。 |
+| UltraServer / UltraCluster | 服务器/集群对象 | OpenAI 公告谈的是通过 AWS 基础设施消费 Trainium 容量，并非已公布的 Trainium4 服务器拓扑。[S1] |
+| Neuron SDK / NKI | 软件对象 | 当前 Trainium 家族软件页和 Trainium3 文档不能证明 Trainium4 已有专属软件支持。 |
 
-1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html>
-2. <https://aws.amazon.com/ec2/instance-types/trn3/>
-3. <https://aws.amazon.com/ai/machine-learning/trainium/customers/>
-4. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership>
-5. <https://aws.amazon.com/ai/machine-learning/inferentia/>
-6. <https://brazenlab.ai/research.html>
+## 生命周期与可用性
 
-## 证据边界
+| 阶段 | 截至研究截止日的证据判断 | 证据与边界 |
+|---|---|---|
+| 宣布 | 已确认事实：2026-02-27 AWS 与 OpenAI 公告称双方承诺覆盖 Trainium3 和下一代 Trainium4。[S1] AWS 2026-01-02 行业回顾也提到 AWS CEO 分享了对 Trainium4 的展望。[S2] | 这是路线图/合作公告，不是芯片产品 GA。 |
+| 流片 / 工程样片 | 公开资料未确认 | 公告没有披露 tape-out、工程样片、晶圆厂或验证平台。 |
+| 送样 | 公开资料未确认 | 没有披露送样客户、数量、时间或样片状态。 |
+| 量产 | 公开资料未确认 | “预计开始交付”是前瞻性商业时间表，不能证明晶圆或封装已量产。 |
+| 出货 | 公开资料未确认 | 2027 年预计开始交付尚未构成截至研究截止日的已出货记录；公告也没有给出芯片数量。 |
+| 客户部署 | 公开资料未确认 | OpenAI 承诺消费 Trainium 容量是未来容量安排，且覆盖 Trainium3 与 Trainium4，不能证明 Trainium4 已部署在客户生产环境。 |
+| 云 / 实例可用 | 公开资料未确认 | 本次核验未找到 `Trn4`、Trainium4 UltraServer、区域、价格、Capacity Block 或托管服务 GA 的官方页面。AWS 当前 Trainium 产品页提供家族导航，但未给出 Trainium4 SKU。[S3] |
+| 路线图 | 已确认方向性主张：Trainium4 预计于 2027 年开始交付，并针对 FP4 算力、内存带宽和 HBM 容量提升。[S1] | AWS 同一公告明确这些计算能力和交付时间属于存在不确定性的前瞻性陈述。[S1] GA 日期、区域和实际性能公开资料未确认。 |
 
-- 这是资料重排页，不是重新发布或重新核验的产品公告。
-- “发布、流片、送样、量产、出货、客户部署、云端可用、路线图、停产”等状态只在综合报告明确写出时保留；缺失项仍为“公开资料未确认”。
-- 若摘录同时出现芯片、板卡、服务器、机架或云服务，均按原报告层级保留，并以“产品层级”字段提醒，不做跨层级推导。
+## 芯片级规格
 
-## 关联表格原文（完整表格）
+| 项目 | 截至 2026-09-05 的公开口径 | 证据状态 |
+|---|---|---|
+| 产品代际 | 下一代 Trainium；公告将其与 Trainium3 并列。[S1] | 已确认路线图身份 |
+| FP4 算力 | “significantly higher FP4 compute performance”，没有数值。[S1] | 厂商方向性主张；数值公开资料未确认。 |
+| HBM 容量 | “increased high-bandwidth memory capacity”，没有容量、代际或颗粒数。[S1] | 厂商方向性主张；具体规格公开资料未确认。 |
+| 内存带宽 | “expanded memory bandwidth”，没有带宽数值或接口定义。[S1] | 厂商方向性主张；具体规格公开资料未确认。 |
+| NeuronCore 数量与版本 | 公开资料未确认 | 不把 Trainium3 的 8 个 NeuronCore-v4 或其他代际数字代入。 |
+| Tensor / Vector / Scalar / GPSIMD 结构 | 公开资料未确认 | 当前 Trainium3 架构文档只证明 Trainium3 的结构，不证明 Trainium4 复用或新增的硬件。 |
+| HBM 类型、封装、制程、芯片面积、TDP | 公开资料未确认 | 2 GW 容量承诺和 2027 时间表都不能推出这些芯片参数。 |
+| DMA、NeuronLink、集合通信、主机接口 | 公开资料未确认 | 没有 Trainium4 专属架构或数据手册。 |
+| 物理芯片数量 | 公开资料未确认 | OpenAI 的 2 GW 是基础设施容量，不是 Trainium4 芯片数量。 |
 
-以下表格块来自综合报告中与本拆分项命中的表格，完整保留表头、状态列和规格列。
+## 架构、软件与云产品证据
 
-> 来源综合报告第 25-32 行：
-> 第 25 行：|家族/对象|芯片级公开口径|产品与云端节点|客户/部署证据|流片、送样、量产、出货、停产|
-> 第 26 行：|---|---|---|---|---|
-> 第 27 行：|Inferentia（v1）|4 个 NeuronCore-v1；8 GB DDR4、50 GB/s；128 INT8 TOPS、64 FP16/BF16 TFLOPS。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html)|2018-11-28 首次公开；Inf1 于 2019-12 GA（AWS 后续回顾）。|AWS 列出 Finch AI、Sprinklr、Money Forward、Amazon Alexa；Amazon Search 和 ByteDance 也有 AWS 案例入口。[产品页](https://aws.amazon.com/ai/machine-learning/inferentia/)|公开资料未确认具体 tape-out、送样、晶圆量产、出货量；未查到停产公告。|
-> 第 28 行：|Trainium（v1，NeuronCore-v2）|2 个 NeuronCore-v2；32 GiB HBM、0.8 TB/s；191 FP8、191 BF16/FP16/TF32、48 FP32 TFLOPS；NeuronLink-v2 384 GB/s/chip。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html)|2020-11 re:Invent 公开路线；Trn1 预览 2021-11-30，GA 2022-10-10；Trn1n GA 2023-04-13。[Trn1 GA](https://aws.amazon.com/blogs/aws/amazon-ec2-trn1-instances-for-high-performance-model-training-are-now-available/)、[Trn1n GA](https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-trn1n-instances-network-ai-models/)|Ricoh、Helixon、Money Forward、Magic、Cactus、Watashiha 等案例在 Trn1 产品页；Trn1/Trn1n 已面向生产使用。[客户案例](https://aws.amazon.com/ec2/instance-types/trn1/)|公开资料未确认 tape-out、送样、量产和累计出货；未查到停产公告。|
-> 第 29 行：|Inferentia2（v2，NeuronCore-v2）|2 个 NeuronCore-v2；32 GB HBM；190 FP16/BF16/cFP8/TF32 TFLOPS、47.5 FP32 TFLOPS；NeuronLink 384 GB/s/chip。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html)|2022 re:Invent 预览；Inf2 GA 2023-04-13，4 种实例规格、最多 12 颗芯片，初始公开区域为 us-east-1/us-east-2。[GA 公告](https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-inf2-instances-generative-ai-generally-available/)|AWS 列出 Leonardo.ai、Deutsche Telekom、Qualtrics；Inf2 支持 175B 级模型的单实例分片。[产品页](https://aws.amazon.com/ai/machine-learning/inferentia/)|公开资料未确认 tape-out、送样、量产和累计出货；未查到停产公告。|
-> 第 30 行：|Trainium2（v3，NeuronCore-v3）|8 个 NeuronCore-v3；96 GiB HBM、2.9 TB/s；1,299 FP8、667 BF16/FP16/TF32、181 FP32 TFLOPS；3.5 TB/s DMA、1.28 TB/s/chip NeuronLink、16 CC-Cores。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html)|AWS 于 2023-11 公开下一代；Trn2 实例 GA 2024-12-03，Trn2 UltraServer 当时为 preview；Neuron 2.21 于 2024-12-23 增加 Trn2 支持。[Trn2 公告](https://aws.amazon.com/blogs/aws/amazon-ec2-trn2-instances-and-trn2-ultraservers-for-aiml-training-and-inference-is-now-available/)|AWS 称数万 Trainium 已支撑服务，Trn2 已用于 Amazon Bedrock 的 Llama 3.1 405B、Claude 3.5 Haiku；Project Rainier 由 Anthropic 使用 Trainium2，属于客户/平台部署叙述。[Project Rainier](https://aws.amazon.com/blogs/aws/aws-weekly-roundup-project-rainier-amazon-cloudwatch-investigations-aws-mcp-servers-and-more-june-30-2025/)|公开资料未确认 Trainium2 tape-out、送样、晶圆量产和累计出货；未查到停产公告。|
-> 第 31 行：|Trainium3（v4，NeuronCore-v4）|8 个 NeuronCore-v4；144 GiB/GB HBM3e、产品页 4.9 TB/s（NKI 指南 4.7 TB/s）；2.52 PFLOPS MXFP8/MXFP4；128 DMA、20 CC-Cores、4 个 NeuronLink-v4。[NKI 架构](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|Trn3 UltraServer GA 2025-12-02；最多 144 颗芯片，进入 EC2 UltraClusters 3.0。具体 Trn3 EC2 instance type、区域和公开价格在本次已打开资料中未完整确认。[产品页](https://aws.amazon.com/ec2/instance-types/trn3/)|AWS 宣称 Bedrock 上 Trainium3 是最快加速器；客户页的 Anthropic、Decart、Hugging Face 等内容需要按“公司/AWS 客户页主张”读取，不能等同第三方复测。[客户页](https://aws.amazon.com/ai/machine-learning/trainium/customers/)|公开资料未确认 tape-out、送样、晶圆量产、2026 出货量、真实库存或停产；GA/云端产品可用不等于已公开量产数字。|
-> 第 32 行：|Trainium4（路线图）|本次已打开的一手资料只确认“更高 FP4 算力、更高内存带宽和更大 HBM 容量”，没有颗粒数、制程、HBM 类型、互联或功耗规格。|AWS 与 OpenAI 2026-02 战略合作公告称预计 **2027 年开始交付**；这是路线图/承诺节点，不是 GA 或云端可用日期。[官方公告](https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)|OpenAI 的容量承诺覆盖 Trainium3 与 Trainium4；不能据此推导芯片已流片、量产或客户已部署。|tape-out、送样、量产、出货、GA、区域、停产：**未确认**。|
+- **专属芯片架构，公开资料未确认。** 本次核验没有找到 Trainium4 的 AWS Neuron architecture、NKI architecture、数据手册、封装图或 NeuronCore 版本页面。
+- **家族软件边界，已确认但不外推。** AWS 当前 Trainium 产品页介绍 Trainium 家族和已发布代际的 NeuronCore、Neuron SDK/NKI 入口。[S3] 这些页面不能证明 Trainium4 已经可编译、可运行或拥有特定硬件指令。
+- **云产品边界，公开资料未确认。** Trainium3 UltraServer GA 公告只能说明前一代产品已存在，[S4] 不能推断 Trainium4 已有 Trn4 实例、UltraServer 互联、UltraCluster 规模或 Bedrock 可用性。
+- **分析推断。** “更高 FP4 算力、更高内存带宽、更大 HBM”说明公开路线图针对计算密度和内存系统，但没有足够证据判断它采用何种 NeuronCore、互联、制程或封装路线。
 
-> 来源综合报告第 38-52 行：
-> 第 38 行：|日期|事件|证据等级|
-> 第 39 行：|---|---|---|
-> 第 40 行：|2018-11-28|AWS 首次公开 Inferentia，目标是 2019 可用。|官方新闻稿；“预计可用”不等于 GA。|
-> 第 41 行：|2019-12|Inf1/Inferentia GA。|AWS 后续官方博客回顾；未找到当日 GA 原始公告。|
-> 第 42 行：|2020-11|re:Invent 公开 Trainium，目标为 2021 年下半年。|官方 re:Invent 直播记录；目标日期不等于出货。|
-> 第 43 行：|2021-11-30|Trn1 预览。|官方 What's New。|
-> 第 44 行：|2022-10-10|Trn1 GA。|官方 AWS News Blog。|
-> 第 45 行：|2022 re:Invent|Inferentia2/Inf2 预览。|官方 Inf2 GA 博客回顾。|
-> 第 46 行：|2023-04-13|Inf2 与 Trn1n GA。|官方 What's New。|
-> 第 47 行：|2023-11|AWS 公开 Trainium2。|本次已打开的一手材料确认“下一代已宣布”，未在报告中补写未核实的具体日。|
-> 第 48 行：|2024-12-03|Trn2 实例 GA；Trn2 UltraServer 为 preview。|官方 AWS News Blog。|
-> 第 49 行：|2024-12-23|Neuron 2.21 加入 Trainium2、Trn2、NxD Inference。|官方 What's New。|
-> 第 50 行：|2025-12-02|Trn3 UltraServer GA；Trainium3 产品公开。|官方 What's New。|
-> 第 51 行：|2026-02|OpenAI/AWS 公告 Trainium4，预计 2027 开始交付。|官方新闻稿；路线图，不是 GA。|
-> 第 52 行：|2026-05-26 至 2026-08-17|Neuron 2.30、2.31、2.32 逐步加入 Trainium3/NKI 新能力。|官方 release/What's New。|
+## 性能与采用证据
 
-## 补充直接来源链接
+| 证据 | 可以写成什么 | 不能写成什么 |
+|---|---|---|
+| AWS/OpenAI 战略合作公告 | OpenAI 承诺通过 AWS 基础设施消费约 2 GW Trainium 容量，承诺范围覆盖 Trainium3 和 Trainium4。[S1] | 不能把 2 GW 换算成 Trainium4 颗数、已部署数量或单芯片功耗。 |
+| 公告中的 Trainium4 描述 | AWS 预计 Trainium4 在 2027 年开始交付，并将提供更高 FP4 算力、更高内存带宽和更大 HBM 容量。[S1] | 不能写成已量产、已出货、已部署、EC2 GA 或已完成性能测试。 |
+| AWS 2026 行业回顾 | AWS CEO 在 re:Invent 2025 展望了下一代 Trainium4。[S2] | 该回顾没有芯片规格、基准结果或可用性承诺。 |
+| 独立验证 | 本次核验未定位到 Trainium4 的独立芯片样片测试或公开 benchmark。 | 不填写 FP4 吞吐、能效、延迟、成本或集群扩展数字。 |
 
-1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html>（2018-11-28）
-2. <https://aws.amazon.com/ai/machine-learning/inferentia/>（公开资料未确认具体）
-3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html>（2020-11）
-4. <https://aws.amazon.com/blogs/aws/amazon-ec2-trn1-instances-for-high-performance-model-training-are-now-available/>、Trn1n
-5. <https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-trn1n-instances-network-ai-models/>（Ricoh、Helixon、Money）
-6. <https://aws.amazon.com/ec2/instance-types/trn1/>（公开资料未确认）
-7. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html>（2022）
-8. <https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-inf2-instances-generative-ai-generally-available/>（AWS）
-9. <https://aws.amazon.com/ai/machine-learning/inferentia/>（公开资料未确认）
-10. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html>（AWS）
-11. <https://aws.amazon.com/blogs/aws/amazon-ec2-trn2-instances-and-trn2-ultraservers-for-aiml-training-and-inference-is-now-available/>（AWS）
-12. <https://aws.amazon.com/blogs/aws/aws-weekly-roundup-project-rainier-amazon-cloudwatch-investigations-aws-mcp-servers-and-more-june-30-2025/>（公开资料未确认）
+## 未确认项与冲突
+
+1. **“交付”不等于 GA。** 公告的 “expected to begin delivery in 2027” 是前瞻性路线图措辞，未定义是芯片交付、服务器容量交付还是云实例可用，也没有给出 GA 日期。[S1]
+2. **2 GW 不等于芯片数量。** 公告把容量承诺放在 AWS 基础设施层，且同时覆盖 Trainium3 与 Trainium4；Trainium4 的分配、功耗、部署地点和芯片数都公开资料未确认。[S1]
+3. **前代证据不能跨代升级。** Trainium3 的 NeuronCore-v4、HBM、NeuronLink、Trn3 UltraServer 和 Bedrock 生产工作负载均属于前代或平台证据，不能直接作为 Trainium4 规格。[S3][S4]
+4. **官方公告含前瞻性陈述免责说明。** AWS/Amazon 明确提示 Trainium 芯片的计算能力、性能特征和交付时间存在不确定性，实际结果可能发生重大变化。[S1]
+5. **公开资料未确认** tape-out、工程样片、送样、量产、出货、客户部署、EC2/UltraServer/UltraCluster SKU、区域、价格、HBM 类型与容量、NeuronCore 版本、制程、封装、TDP、互联和独立性能。
+
+## 直接来源
+
+核验日期均为 2026-09-05；当前家族页未显示独立发布日期时，明确标注为“页面日期未标明”。S3、S4 是边界参照，不把它们当作 Trainium4 芯片规格证据。
+
+1. **OpenAI and Amazon Announce Strategic Partnership**，发布主体 Amazon Web Services / OpenAI，发布日期：2026-02-27，核验日期：2026-09-05。[直接新闻稿](https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)
+2. **AWS re:Invent 2025 Recap for Automotive and Manufacturing**，发布主体 AWS for Industries，发布日期：2026-01-02，核验日期：2026-09-05。[直接文章](https://aws.amazon.com/blogs/industries/aws-reinvent-2025-recap-for-automotive-and-manufacturing/)
+3. **AWS Trainium — AI accelerator**，发布主体 AWS，发布日期：页面日期未标明（当前家族产品页），核验日期：2026-09-05。[直接产品页](https://aws.amazon.com/ai/machine-learning/trainium/)
+4. **Announcing Amazon EC2 Trn3 UltraServers for faster, lower-cost generative AI training**，发布主体 AWS，发布日期：2025-12-02，核验日期：2026-09-05。[直接公告](https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-ec2-trn3-ultraservers/)

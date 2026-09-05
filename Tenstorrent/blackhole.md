@@ -1,9 +1,13 @@
 # Tenstorrent — Blackhole p150 / Galaxy
 
 - 产品层级：Blackhole p150 为 ASIC/加速卡；Galaxy 为 32 ASIC 系统
-- 资料状态：从历史架构资料恢复的证据页；芯片与系统数字严格分开
+- 研究截止日：2026-09-05
+- 核验日期：2026-09-05
+- 页面性质：基于直接来源整理的自包含证据页；芯片、加速卡、系统、软件和云服务分层记录
 
-## Blackhole p150
+## 产品定位与对象边界
+
+### Blackhole p150
 
 | 字段 | 当前资料口径 | 边界 |
 | --- | --- | --- |
@@ -16,7 +20,18 @@
 
 Galaxy 是 32 ASIC 系统。旧版资料记录 1 TB GDDR6、16 TB/s、约 6.2 GB SRAM、约 2.9 PB/s 和 23 PFLOPS BlockFP8 等系统级口径；这些数字不能写入 Blackhole 单芯片行。350+ tokens/s/user 也属于特定系统工作负载，不能替代 Retrieval 专项 TPOT。
 
-## 来源
+## 生命周期状态
+
+| 阶段 | Blackhole / Galaxy 的公开状态 | 证据边界 |
+| --- | --- | --- |
+| 宣布/发布 | Blackhole developer products 已有官方首发材料；Galaxy 有官方产品页和 GA 公告 | 直接来源确认产品公开，不自动证明裸芯片流片或量产批次 |
+| 流片/工程样片 | 公开资料未确认 | Developer card/产品页不能替代晶圆或样片披露 |
+| 量产/出货 | 公开资料未确认裸芯片独立批次；Galaxy 的系统可用性按系统产品口径记录 | 系统页面数字不回填到 Blackhole 单芯片 |
+| 客户部署 | 公开资料未确认 | 开发者产品销售/展示不等于客户生产部署 |
+| 云/实例可用 | 公开资料未确认 | 软件和系统资料不能推导公有云实例 |
+| 路线图 | 公开资料未确认后续芯片型号 | 不以传闻补齐代际 |
+
+## 直接来源
 
 - [Blackhole Developer Products 首发](https://tenstorrent.com/en/newsroom/tenstorrent-launches-blackhole-developer-products-at-tenstorrent-dev-day)
 - [Blackhole 当前卡页](https://tenstorrent.com/en/hardware/cards)

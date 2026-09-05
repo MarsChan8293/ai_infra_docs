@@ -1,103 +1,96 @@
-# Amazon Web Services / 亚马逊云科技 — Inferentia（v1）
+# AWS Inferentia（v1）芯片证据页
 
-- 拆分日期：2026-09-02
-- 产品层级：芯片/EC2 实例边界
-- 综合报告：[06-aws-trainium.md](./06-aws-trainium.md)
-- 文件性质：从综合报告按芯片名称/家族拆分的证据页；不新增事实，不把板卡、服务器、机架或云服务规格回填为芯片规格。
+- 研究截止日：2026-09-05
+- 实际核验日：2026-09-05
+- 厂商：Amazon Web Services（AWS）
+- 产品层级：AI 推理芯片；对应的云产品是 Amazon EC2 Inf1
+- 导航：[AWS Trainium / Inferentia 综合报告](06-aws-trainium.md)
 
-## 产品定位与关键证据
+## 一句话结论
 
-以下内容逐行摘录综合报告，保留原报告中的状态、数字、证据等级和未知项。
+Inferentia v1 是 AWS 第一代推理专用芯片，每颗芯片包含 4 个 NeuronCore-v1，公开 Neuron 架构资料给出 128 INT8 TOPS、64 FP16/BF16 TFLOPS、8 GiB 设备 DRAM 和 50 GiB/s 带宽；芯片级流片、送样、晶圆量产和出货记录没有在本次核验的公开资料中确认，但搭载它的 EC2 Inf1 已于 2019-12-03 正式可用。[S1][S3][S4]
 
-> 第 26 行：|---|---|---|---|---|
-> 第 27 行：|Inferentia（v1）|4 个 NeuronCore-v1；8 GB DDR4、50 GB/s；128 INT8 TOPS、64 FP16/BF16 TFLOPS。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html)|2018-11-28 首次公开；Inf1 于 2019-12 GA（AWS 后续回顾）。|AWS 列出 Finch AI、Sprinklr、Money Forward、Amazon Alexa；Amazon Search 和 ByteDance 也有 AWS 案例入口。[产品页](https://aws.amazon.com/ai/machine-learning/inferentia/)|公开资料未确认具体 tape-out、送样、晶圆量产、出货量；未查到停产公告。|
-> 第 28 行：|Trainium（v1，NeuronCore-v2）|2 个 NeuronCore-v2；32 GiB HBM、0.8 TB/s；191 FP8、191 BF16/FP16/TF32、48 FP32 TFLOPS；NeuronLink-v2 384 GB/s/chip。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html)|2020-11 re:Invent 公开路线；Trn1 预览 2021-11-30，GA 2022-10-10；Trn1n GA 2023-04-13。[Trn1 GA](https://aws.amazon.com/blogs/aws/amazon-ec2-trn1-instances-for-high-performance-model-training-are-now-available/)、[Trn1n GA](https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-trn1n-instances-network-ai-models/)|Ricoh、Helixon、Money Forward、Magic、Cactus、Watashiha 等案例在 Trn1 产品页；Trn1/Trn1n 已面向生产使用。[客户案例](https://aws.amazon.com/ec2/instance-types/trn1/)|公开资料未确认 tape-out、送样、量产和累计出货；未查到停产公告。|
-> 第 33 行：
-> 第 34 行：**代际命名提醒。** AWS Neuron 文档把 Trainium / Inferentia2 归入 NeuronCore-v2，把 Trainium2 归入 v3，把 Trainium3 归入 v4；“Trainium1/2/3”是产品代际，“NeuronCore-v1/v2/v3/v4”是核心架构代际，不能混成同一列。Inf1/Trn1/Inf2/Trn2/Trn3 是 EC2 实例或平台名称，也不能反推单颗芯片数量。
-> 第 35 行：
-> 第 39 行：|---|---|---|
-> 第 40 行：|2018-11-28|AWS 首次公开 Inferentia，目标是 2019 可用。|官方新闻稿；“预计可用”不等于 GA。|
-> 第 41 行：|2019-12|Inf1/Inferentia GA。|AWS 后续官方博客回顾；未找到当日 GA 原始公告。|
-> 第 42 行：|2020-11|re:Invent 公开 Trainium，目标为 2021 年下半年。|官方 re:Invent 直播记录；目标日期不等于出货。|
-> 第 58 行：- **芯片：** AWS 自研加速器，不向客户单独购买裸片；本报告不把芯片型号当成可直接采购的 PCIe 卡。
-> 第 59 行：- **实例/服务器：** Inf1、Inf2、Trn1/Trn1n、Trn2 是 EC2 实例产品；Trn2/Trn3 UltraServer 是更大 scale-up 平台，不能把平台 HBM、带宽和 PFLOPS 回填为单芯片规格。
-> 第 60 行：- **集群/云服务：** UltraCluster 是跨服务器的网络与调度边界；Amazon Bedrock 是托管模型 API。Bedrock 上的模型可用只证明云服务路径存在，不证明用户能租到对应的裸芯片或固定 Trn3 拓扑。
-> 第 61 行：- **客户部署：** AWS 的 Trn1 客户案例和 Inferentia 客户名单是采用证据；Project Rainier、Anthropic 的近百万 Trainium2 口径是 AWS 客户页/博客中的公司叙述；对 Trainium3 只能写“产品 GA/客户页提及”，不把“预计继续扩展”写成已完成装机。
-> 第 62 行：- **Inferentia 与 Trainium 的角色：** Inferentia 优先面向推理，Trainium 优先面向训练，但 Trainium 实例也可用于推理。架构、软件和实例边界比营销标签更重要。
-> 第 63 行：
-> 第 123 行：|BrazenLab Trn1/Trn2|独立作者公开了可复核的实验范围与部分结果|不能把 Trn1/Trn2 结果外推成 Trainium3；不能把独立分片吞吐当单作业延迟|
-> 第 124 行：|MLCommons Training v6.0 公共参考/结果索引|本次查验未定位到 AWS Trainium/Inferentia 的 MLPerf 正式提交|不能据此证明全球绝对没有任何其他第三方基准，也不能把 reference implementation 当提交结果。[MLCommons training](https://github.com/mlcommons/training)、[MLCommons results](https://github.com/mlcommons/training_results_v6.0)|
-> 第 125 行：
-> 第 167 行：8. [AWS Trainium customers](https://aws.amazon.com/ai/machine-learning/trainium/customers/)
-> 第 168 行：9. [AWS Inferentia customers/product page](https://aws.amazon.com/ai/machine-learning/inferentia/)
-> 第 169 行：10. [AWS OpenAI strategic partnership：Trainium4 2027 roadmap](https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)
+## 产品层级与对象边界
 
-## 直接来源链接
+| 对象 | 本页如何使用 | 边界说明 |
+|---|---|---|
+| Inferentia v1 | 芯片级事实 | AWS 的第一代推理加速器；本页的规格默认指单颗芯片。 |
+| NeuronCore-v1 | 芯片内部计算单元 | 不是另一颗芯片；4 个 NeuronCore-v1 组成一颗 Inferentia v1。 |
+| EC2 Inf1 | 实例级事实 | 一台实例可包含 1、4 或 16 颗 Inferentia；实例总吞吐和设备内存不能回写为单芯片规格。[S1] |
+| Neuron SDK / Neuron Runtime | 软件事实 | 编译器、运行时和框架支持不等于芯片新增硬件单元。 |
+| Inf1 上的服务器、EFA、云区域 | 系统/云事实 | 只用于说明实例可用性和扩展边界，不代表芯片封装或芯片互联的独立规格。 |
 
-1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html>
-2. <https://aws.amazon.com/ai/machine-learning/inferentia/>
-3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html>
-4. <https://aws.amazon.com/blogs/aws/amazon-ec2-trn1-instances-for-high-performance-model-training-are-now-available/>
-5. <https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-trn1n-instances-network-ai-models/>
-6. <https://aws.amazon.com/ec2/instance-types/trn1/>
-7. <https://github.com/mlcommons/training>
-8. <https://github.com/mlcommons/training_results_v6.0>
-9. <https://aws.amazon.com/ai/machine-learning/trainium/customers/>
-10. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership>
+## 生命周期与可用性
 
-## 证据边界
+| 阶段 | 截至研究截止日的证据判断 | 证据与边界 |
+|---|---|---|
+| 宣布 | 已确认事实：2018-11-28 AWS 宣布 Inferentia，公告使用“将可用于”表述，并列出 SageMaker、EC2 和 Elastic Inference 作为计划承载产品。[S3] | 这是产品宣布和计划，不是芯片送样或实例 GA。 |
+| 流片 / 工程样片 | 公开资料未确认 | 本次核验未找到 AWS 对 Inferentia v1 tape-out、工程样片或封装验证日期的直接披露。 |
+| 送样 | 公开资料未确认 | EC2 产品发布不能反推芯片曾以何种形式对外送样。 |
+| 量产 | 公开资料未确认 | Inf1 GA 证明云实例可销售，不提供晶圆代工、封装测试或芯片累计量产数字。 |
+| 出货 | 公开资料未确认 | 本次核验未找到按 Inferentia v1 单独披露的出货量或出货日期。 |
+| 客户部署 | 厂商/客户采用主张：AWS 2020 年回顾称已有客户和 Amazon 服务将 Inf1 用于生产工作负载，并举例 Alexa TTS 迁移。[S5] | 这是 AWS 的客户采用叙述，不是独立部署审计，也没有给出芯片数量。 |
+| 云 / 实例可用 | 已确认事实：EC2 Inf1 于 2019-12-03 GA，提供四种实例规格，初始公告覆盖美国东部（弗吉尼亚北部）和美国西部（俄勒冈）。[S4] | 这是 EC2 实例层可用性；不等于 AWS 公布了芯片量产状态。2020 年 AWS 又宣布扩展到五个区域。[S5] |
+| 路线图 | 公开资料未确认 | Inferentia2 的出现只能证明后续代际存在，不能据此推断 v1 的停产、EOL 或剩余库存。 |
 
-- 这是资料重排页，不是重新发布或重新核验的产品公告。
-- “发布、流片、送样、量产、出货、客户部署、云端可用、路线图、停产”等状态只在综合报告明确写出时保留；缺失项仍为“公开资料未确认”。
-- 若摘录同时出现芯片、板卡、服务器、机架或云服务，均按原报告层级保留，并以“产品层级”字段提醒，不做跨层级推导。
+## 芯片级规格
 
-## 关联表格原文（完整表格）
+下表只记录单颗 Inferentia v1 或其内部 NeuronCore-v1 的资料；Inf1 的聚合数字另列在后文。
 
-以下表格块来自综合报告中与本拆分项命中的表格，完整保留表头、状态列和规格列。
+| 项目 | 公开口径 | 证据状态 |
+|---|---|---|
+| 计算单元 | 4 个 NeuronCore-v1 / 芯片。[S1] | 已确认事实 |
+| NeuronCore-v1 结构 | 每个 NeuronCore-v1 是独立的异构计算单元，包含 Tensor、Vector、Scalar 引擎和软件管理的 SRAM。[S2] | 已确认事实 |
+| INT8 算力 | 128 TOPS / 芯片。[S1] | 已确认事实；数据类型和计量单位按 AWS Neuron 文档保留。 |
+| FP16 / BF16 算力 | 64 TFLOPS / 芯片。[S1] | 已确认事实；不能与 Inf1 实例总值混用。 |
+| 设备内存 | 8 GiB device DRAM。[S1] AWS 产品页同时写作 8 GB DDR4。[S6] | 已确认事实；两个页面的单位/命名不同，本页不擅自换算。 |
+| 设备内存带宽 | 50 GiB/s。[S1] | 已确认事实；产品页采用 GB/s 口径时不与 GiB/s 强行等同。 |
+| 片上 SRAM 容量 | NeuronCore-v1 使用软件管理的 SRAM；本次核验的直接页面没有给出每颗芯片的容量数字。[S2] | 部分确认；容量公开资料未确认。 |
+| 芯片间互联 | NeuronLink-v1 用于多芯片协同；本次芯片页面未单独给出链路额定带宽。[S1] | 能力已确认；芯片级数字公开资料未确认。 |
+| 支持数据类型 | Neuron 架构页列出 FP16、BF16、FP32、INT8 等类型。[S1][S2] | 已确认事实；支持类型不等于每种类型都有同一算力。 |
+| 制程、封装、功耗 | 公开资料未确认 | 本次核验不以 EC2 服务器功耗或后代工艺信息代填。 |
 
-> 来源综合报告第 25-32 行：
-> 第 25 行：|家族/对象|芯片级公开口径|产品与云端节点|客户/部署证据|流片、送样、量产、出货、停产|
-> 第 26 行：|---|---|---|---|---|
-> 第 27 行：|Inferentia（v1）|4 个 NeuronCore-v1；8 GB DDR4、50 GB/s；128 INT8 TOPS、64 FP16/BF16 TFLOPS。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html)|2018-11-28 首次公开；Inf1 于 2019-12 GA（AWS 后续回顾）。|AWS 列出 Finch AI、Sprinklr、Money Forward、Amazon Alexa；Amazon Search 和 ByteDance 也有 AWS 案例入口。[产品页](https://aws.amazon.com/ai/machine-learning/inferentia/)|公开资料未确认具体 tape-out、送样、晶圆量产、出货量；未查到停产公告。|
-> 第 28 行：|Trainium（v1，NeuronCore-v2）|2 个 NeuronCore-v2；32 GiB HBM、0.8 TB/s；191 FP8、191 BF16/FP16/TF32、48 FP32 TFLOPS；NeuronLink-v2 384 GB/s/chip。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html)|2020-11 re:Invent 公开路线；Trn1 预览 2021-11-30，GA 2022-10-10；Trn1n GA 2023-04-13。[Trn1 GA](https://aws.amazon.com/blogs/aws/amazon-ec2-trn1-instances-for-high-performance-model-training-are-now-available/)、[Trn1n GA](https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-trn1n-instances-network-ai-models/)|Ricoh、Helixon、Money Forward、Magic、Cactus、Watashiha 等案例在 Trn1 产品页；Trn1/Trn1n 已面向生产使用。[客户案例](https://aws.amazon.com/ec2/instance-types/trn1/)|公开资料未确认 tape-out、送样、量产和累计出货；未查到停产公告。|
-> 第 29 行：|Inferentia2（v2，NeuronCore-v2）|2 个 NeuronCore-v2；32 GB HBM；190 FP16/BF16/cFP8/TF32 TFLOPS、47.5 FP32 TFLOPS；NeuronLink 384 GB/s/chip。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html)|2022 re:Invent 预览；Inf2 GA 2023-04-13，4 种实例规格、最多 12 颗芯片，初始公开区域为 us-east-1/us-east-2。[GA 公告](https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-inf2-instances-generative-ai-generally-available/)|AWS 列出 Leonardo.ai、Deutsche Telekom、Qualtrics；Inf2 支持 175B 级模型的单实例分片。[产品页](https://aws.amazon.com/ai/machine-learning/inferentia/)|公开资料未确认 tape-out、送样、量产和累计出货；未查到停产公告。|
-> 第 30 行：|Trainium2（v3，NeuronCore-v3）|8 个 NeuronCore-v3；96 GiB HBM、2.9 TB/s；1,299 FP8、667 BF16/FP16/TF32、181 FP32 TFLOPS；3.5 TB/s DMA、1.28 TB/s/chip NeuronLink、16 CC-Cores。[架构文档](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html)|AWS 于 2023-11 公开下一代；Trn2 实例 GA 2024-12-03，Trn2 UltraServer 当时为 preview；Neuron 2.21 于 2024-12-23 增加 Trn2 支持。[Trn2 公告](https://aws.amazon.com/blogs/aws/amazon-ec2-trn2-instances-and-trn2-ultraservers-for-aiml-training-and-inference-is-now-available/)|AWS 称数万 Trainium 已支撑服务，Trn2 已用于 Amazon Bedrock 的 Llama 3.1 405B、Claude 3.5 Haiku；Project Rainier 由 Anthropic 使用 Trainium2，属于客户/平台部署叙述。[Project Rainier](https://aws.amazon.com/blogs/aws/aws-weekly-roundup-project-rainier-amazon-cloudwatch-investigations-aws-mcp-servers-and-more-june-30-2025/)|公开资料未确认 Trainium2 tape-out、送样、晶圆量产和累计出货；未查到停产公告。|
-> 第 31 行：|Trainium3（v4，NeuronCore-v4）|8 个 NeuronCore-v4；144 GiB/GB HBM3e、产品页 4.9 TB/s（NKI 指南 4.7 TB/s）；2.52 PFLOPS MXFP8/MXFP4；128 DMA、20 CC-Cores、4 个 NeuronLink-v4。[NKI 架构](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html)|Trn3 UltraServer GA 2025-12-02；最多 144 颗芯片，进入 EC2 UltraClusters 3.0。具体 Trn3 EC2 instance type、区域和公开价格在本次已打开资料中未完整确认。[产品页](https://aws.amazon.com/ec2/instance-types/trn3/)|AWS 宣称 Bedrock 上 Trainium3 是最快加速器；客户页的 Anthropic、Decart、Hugging Face 等内容需要按“公司/AWS 客户页主张”读取，不能等同第三方复测。[客户页](https://aws.amazon.com/ai/machine-learning/trainium/customers/)|公开资料未确认 tape-out、送样、晶圆量产、2026 出货量、真实库存或停产；GA/云端产品可用不等于已公开量产数字。|
-> 第 32 行：|Trainium4（路线图）|本次已打开的一手资料只确认“更高 FP4 算力、更高内存带宽和更大 HBM 容量”，没有颗粒数、制程、HBM 类型、互联或功耗规格。|AWS 与 OpenAI 2026-02 战略合作公告称预计 **2027 年开始交付**；这是路线图/承诺节点，不是 GA 或云端可用日期。[官方公告](https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership)|OpenAI 的容量承诺覆盖 Trainium3 与 Trainium4；不能据此推导芯片已流片、量产或客户已部署。|tape-out、送样、量产、出货、GA、区域、停产：**未确认**。|
+## EC2 Inf1、服务器与互联边界
 
-> 来源综合报告第 38-52 行：
-> 第 38 行：|日期|事件|证据等级|
-> 第 39 行：|---|---|---|
-> 第 40 行：|2018-11-28|AWS 首次公开 Inferentia，目标是 2019 可用。|官方新闻稿；“预计可用”不等于 GA。|
-> 第 41 行：|2019-12|Inf1/Inferentia GA。|AWS 后续官方博客回顾；未找到当日 GA 原始公告。|
-> 第 42 行：|2020-11|re:Invent 公开 Trainium，目标为 2021 年下半年。|官方 re:Invent 直播记录；目标日期不等于出货。|
-> 第 43 行：|2021-11-30|Trn1 预览。|官方 What's New。|
-> 第 44 行：|2022-10-10|Trn1 GA。|官方 AWS News Blog。|
-> 第 45 行：|2022 re:Invent|Inferentia2/Inf2 预览。|官方 Inf2 GA 博客回顾。|
-> 第 46 行：|2023-04-13|Inf2 与 Trn1n GA。|官方 What's New。|
-> 第 47 行：|2023-11|AWS 公开 Trainium2。|本次已打开的一手材料确认“下一代已宣布”，未在报告中补写未核实的具体日。|
-> 第 48 行：|2024-12-03|Trn2 实例 GA；Trn2 UltraServer 为 preview。|官方 AWS News Blog。|
-> 第 49 行：|2024-12-23|Neuron 2.21 加入 Trainium2、Trn2、NxD Inference。|官方 What's New。|
-> 第 50 行：|2025-12-02|Trn3 UltraServer GA；Trainium3 产品公开。|官方 What's New。|
-> 第 51 行：|2026-02|OpenAI/AWS 公告 Trainium4，预计 2027 开始交付。|官方新闻稿；路线图，不是 GA。|
-> 第 52 行：|2026-05-26 至 2026-08-17|Neuron 2.30、2.31、2.32 逐步加入 Trainium3/NKI 新能力。|官方 release/What's New。|
+| 实例 | Inferentia 芯片数 | 设备侧聚合口径 | 实例侧其他信息 |
+|---|---:|---|---|
+| Inf1.xlarge | 1 | 64 FP16/BF16 TFLOPS、128 INT8 TOPS、8 GiB 设备内存 | 4 vCPU、8 GiB 主机内存；无 NeuronLink。 |
+| Inf1.2xlarge | 1 | 同上 | 8 vCPU、16 GiB 主机内存；无 NeuronLink。 |
+| Inf1.6xlarge | 4 | 256 FP16/BF16 TFLOPS、512 INT8 TOPS、32 GiB 设备内存 | 24 vCPU、48 GiB 主机内存；NeuronLink-v1，文档给出 32 GiB/s/chip 的实例互联口径。 |
+| Inf1.24xlarge | 16 | 1,024 FP16/BF16 TFLOPS、2,048 INT8 TOPS、128 GiB 设备内存 | 96 vCPU、192 GiB 主机内存；NeuronLink-v1，文档给出 32 GiB/s/chip 的实例互联口径。 |
 
-> 来源综合报告第 119-124 行：
-> 第 119 行：|证据|可写成什么|不能写成什么|
-> 第 120 行：|---|---|---|
-> 第 121 行：|AWS Trn3 产品页：2.52 PFLOPS/chip、4.9 TB/s、4.4x/4x、Bedrock 3x|官方规格或 AWS 自测/主张，取决于字段|不能写成独立实验、全模型平均或跨供应商普适优势|
-> 第 122 行：|AWS Neuron NKI/库函数|API/编程能力已公开；包括 segmented attention、KV-parallel prefill、Gather、Top-k Reduce 等|不能写成硬件已有独立 Search Core，或证明每 token 的跨卡通信量已降到某个复杂度|
-> 第 123 行：|BrazenLab Trn1/Trn2|独立作者公开了可复核的实验范围与部分结果|不能把 Trn1/Trn2 结果外推成 Trainium3；不能把独立分片吞吐当单作业延迟|
-> 第 124 行：|MLCommons Training v6.0 公共参考/结果索引|本次查验未定位到 AWS Trainium/Inferentia 的 MLPerf 正式提交|不能据此证明全球绝对没有任何其他第三方基准，也不能把 reference implementation 当提交结果。[MLCommons training](https://github.com/mlcommons/training)、[MLCommons results](https://github.com/mlcommons/training_results_v6.0)|
+以上是 `inf1-arch` 的实例表；其中的总算力、总设备内存和 NeuronLink 数字属于实例/多芯片拓扑，不应当写入芯片规格表。[S7]
 
-## 补充直接来源链接
+## 架构与软件证据
 
-1. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia2.html>（2022）
-2. <https://aws.amazon.com/about-aws/whats-new/2023/04/amazon-ec2-inf2-instances-generative-ai-generally-available/>（AWS）
-3. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium2.html>（AWS）
-4. <https://aws.amazon.com/blogs/aws/amazon-ec2-trn2-instances-and-trn2-ultraservers-for-aiml-training-and-inference-is-now-available/>（AWS）
-5. <https://aws.amazon.com/blogs/aws/aws-weekly-roundup-project-rainier-amazon-cloudwatch-investigations-aws-mcp-servers-and-more-june-30-2025/>（公开资料未确认）
-6. <https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/guides/architecture/trainium3_arch.html>（Trn3）
-7. <https://aws.amazon.com/ec2/instance-types/trn3/>（AWS）
-8. <https://aws.amazon.com/ai/machine-learning/trainium/customers/>（公开资料未确认）
-9. <https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership>（OpenAI）
+- **芯片架构，已确认事实。** NeuronCore-v1 将 Tensor、Vector、Scalar 三类执行引擎组合在一个独立计算单元中，并让软件管理片上 SRAM；Neuron 文档还给出每个 Tensor 引擎 16 FP16/BF16 TFLOPS 的口径。[S2]
+- **软件栈，已确认事实。** AWS 的 Inf1 GA 公告说明 Neuron SDK 提供编译器、运行时和性能分析工具，并与 TensorFlow、PyTorch、MXNet 预集成。[S4] 2018 年公告还列出 ONNX 支持计划。[S3]
+- **边界判断，分析推断。** NeuronCore 的编程模型可以解释为什么 AWS 能在实例层提供模型编译和流水线能力，但不能从 SDK、框架或运行时页面推导出未被硬件页面明确列出的片上搜索、稀疏或额外专用单元。
+
+## 性能与采用证据
+
+| 证据 | 可保留的表述 | 不能扩大的结论 |
+|---|---|---|
+| AWS Inf1 GA 公告 | AWS 宣称相对 EC2 G4 最高 3 倍吞吐、每次推理成本降低最高 40%。[S4] | 这是 AWS 的比较主张；公告未构成独立复测，也不说明适用于所有模型、批量和延迟目标。 |
+| AWS 当前 Inferentia 产品页 | AWS 当前页面给出相对可比 EC2 最高 2.3 倍吞吐、最高 70% 成本下降，并列出多家采用 Inf1 的客户。[S6] | 该页面与 2019 GA 公告的比较基线/数字不同；本页保留差异，不择一当作普适性能。 |
+| AWS 2020 Inf1 回顾 | AWS 称客户和 Amazon 服务已将 Inf1 用于生产工作负载，并具体提到 Alexa TTS。[S5] | 属于 AWS/客户案例主张；未给出完整模型、批量、精度、功耗和独立测试数据。 |
+| 独立验证 | 本次核验未定位到满足相同模型、精度、批量、延迟和功耗条件的独立 Inferentia v1 芯片级对比。 | 因此不填写独立吞吐、能效或成本数字。 |
+
+## 未确认项与冲突
+
+1. **芯片状态不能由实例状态替代。** Inf1 GA 和客户生产使用已经确认云产品成熟度，但不能证明具体晶圆批次、封装量产、累计出货或芯片库存。
+2. **8 GB 与 8 GiB 的单位差异。** AWS 产品页写 8 GB DDR4，Neuron 架构页写 8 GiB device DRAM；来源页面没有在本次核验中给出统一换算说明，因此按原页面分别保留。
+3. **芯片与实例算力边界。** 128 INT8 TOPS 和 64 FP16/BF16 TFLOPS 是单颗芯片口径；2,048 INT8 TOPS 等是 16 芯片 Inf1.24xlarge 的聚合值。
+4. **公开资料未确认** tape-out、工程样片、对外送样、晶圆量产、累计出货、制程节点、封装、TDP、退市时间和当前每个区域的库存。
+
+## 直接来源
+
+核验日期均为 2026-09-05；在线文档/当前产品页未显示独立发布日期时，明确标注为“页面日期未标明”。
+
+1. **Inferentia — AWS Neuron architecture**，发布主体 AWS Neuron，发布日期：页面日期未标明（在线文档），核验日期：2026-09-05。[直接页面](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inferentia.html)
+2. **NeuronCore-v1 — AWS Neuron architecture**，发布主体 AWS Neuron，发布日期：页面日期未标明（在线文档），核验日期：2026-09-05。[直接页面](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/neuron-core-v1.html)
+3. **Announcing Amazon Inferentia machine learning inference microchip**，发布主体 AWS，发布日期：2018-11-28，核验日期：2026-09-05。[直接公告](https://aws.amazon.com/about-aws/whats-new/2018/11/announcing-amazon-inferentia-machine-learning-inference-microchip/)
+4. **Introducing Amazon EC2 Inf1 instances**，发布主体 AWS，发布日期：2019-12-03，核验日期：2026-09-05。[直接公告](https://aws.amazon.com/about-aws/whats-new/2019/12/introducing-amazon-ec2-inf1-instances-high-performance-and-the-lowest-cost-machine-learning-inference-in-the-cloud/)
+5. **Amazon EC2 Inf1 instances ... now available in five new regions and with improved performance**，发布主体 AWS Machine Learning Blog，发布日期：2020-08-13，核验日期：2026-09-05。[直接文章](https://aws.amazon.com/blogs/machine-learning/amazon-ec2-inf1-instances-featuring-aws-inferentia-chips-now-available-in-five-new-regions-and-with-improved-performance/)
+6. **AWS Inferentia — AI inference chip**，发布主体 AWS，发布日期：页面日期未标明（当前产品页），核验日期：2026-09-05。[直接产品页](https://aws.amazon.com/ai/machine-learning/inferentia/)
+7. **Inf1 architecture**，发布主体 AWS Neuron，发布日期：页面日期未标明（在线文档），核验日期：2026-09-05。[直接页面](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/inf1-arch.html)
