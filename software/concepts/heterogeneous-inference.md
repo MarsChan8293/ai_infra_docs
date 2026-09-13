@@ -58,4 +58,4 @@ NVIDIA / Ascend / AMD / 其他 GPU、NPU
 - [[software/concepts/pd-disaggregation|Prefill / Decode 分离]]
 - [[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]
 
-返回 [[software/README|AI Infra 软件栈地图]] 或 [[README|仓库知识图谱入口]]。
+返回 [[software/README|AI Infra 软件栈地图]] 或 [[00-ai-infra-map|AI Infra 知识图谱入口]]。
