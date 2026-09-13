@@ -1,4 +1,20 @@
+---
+title: AI Infra Chip 资料库入口
+aliases:
+  - Chip MOC
+  - AI 芯片与基础设施资料库
+tags:
+  - moc
+  - chip
+  - ai-infra
+  - obsidian
+---
+
 # AI Infra Chip 资料库入口
+
+上级入口：[[README|AI Infra 知识图谱入口]]
+
+跨域关联：[[software/README|AI Infra 软件栈地图]] · [[software/concepts/accelerator-resource-model|加速器资源模型]] · [[software/concepts/topology-aware-scheduling|拓扑感知调度]] · [[software/concepts/heterogeneous-inference|异构推理]]
 
 这是本地 AI 芯片与基础设施资料库的总入口。资料按厂商目录保存；每个厂家目录只保留一个总描述文档，其余 Markdown 均按单一芯片、芯片家族或芯片关联产品对象拆分。
 
@@ -8,6 +24,7 @@
 2. 在总描述文档的“芯片页关系导航”中进入独立芯片页或与芯片强绑定的产品页；其中的 `[[...]]` 链接可直接形成 Obsidian 图谱边。
 3. 跨芯片的平台、服务器、机架、集群和云服务等边界统一收在对应厂家总描述文档中；与单一芯片强绑定的板卡/模组只保留在对应芯片页。
 4. 网络交换芯片、PIM 与 CXL computational memory 作为 AI 基础设施边界对象单独建档，不与 GPU/NPU 的算力、显存口径混排。
+5. 需要从硬件事实跳到软件调度或推理选型时，不在每个芯片页机械链接所有软件，而是优先经过 [[software/concepts/accelerator-resource-model|加速器资源模型]]、[[software/concepts/topology-aware-scheduling|拓扑感知调度]] 和 [[software/concepts/heterogeneous-inference|异构推理]] 这类概念节点。
 
 ## 厂商目录
 
@@ -39,7 +56,7 @@
 | Sunrise | [曦望-概览](./Sunrise/曦望-概览.md) |
 | Tenstorrent | [Tenstorrent-overview](./Tenstorrent/Tenstorrent-overview.md) |
 | XCENA | [XCENA-overview](./XCENA/XCENA-overview.md) |
-| Xiaomi | [小米-概览](./Xiaomi/小米-概览.md) |
+| Xiaomi | [小米-overview](./Xiaomi/小米-overview.md) |
 | openai | [openai-overview](./openai/openai-overview.md) |
 
 ## 根级资料
