@@ -12,7 +12,7 @@ tags:
 
 # AI Infra Chip 资料库入口
 
-上级入口：[[README|AI Infra 知识图谱入口]]
+上级入口：[[00-ai-infra-map|AI Infra 知识图谱入口]]
 
 跨域关联：[[software/README|AI Infra 软件栈地图]] · [[software/concepts/accelerator-resource-model|加速器资源模型]] · [[software/concepts/topology-aware-scheduling|拓扑感知调度]] · [[software/concepts/heterogeneous-inference|异构推理]]
 
