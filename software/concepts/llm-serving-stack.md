@@ -43,4 +43,4 @@ GPU / NPU / NIC / Memory
 
 ## 入口
 
-返回 [[software/README|AI Infra 软件栈地图]]，或回到 [[README|仓库知识图谱入口]]。
+返回 [[software/README|AI Infra 软件栈地图]]，或回到 [[00-ai-infra-map|AI Infra 知识图谱入口]]。
