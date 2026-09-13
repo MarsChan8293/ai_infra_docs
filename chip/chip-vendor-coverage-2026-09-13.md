@@ -45,7 +45,7 @@
 | 厂商/产品 | 对象层级 | 核心公开信息 | 生命周期（截至 2026-09-13） | 资料页 |
 | --- | --- | --- | --- | --- |
 | Intel Crescent Island | 数据中心推理 GPU / PCIe 卡 | Xe3P；32 Xe Core；256 XMX；最高 480GB LPDDR5X；350W | 规格已公开；量产/出货未确认 | [Crescent Island](./Intel/crescent-island.md) |
-| Microsoft Maia 200 | 推理加速器 SoC | TSMC 3nm；>140B transistor；216GB HBM3e / 7TB/s；272MB SRAM；>10 PF4 / >5 PF8；750W | 已在 Iowa/Arizona production 数据中心 live | [Maia 200](./Microsoft/maia-200.md) |
+| Microsoft Maia 200 | 推理加速器 SoC | TSMC 3nm；>140B transistor；216GB HBM3e / 7TB/s；272MB SRAM；>10 petaFLOPS FP4 / >5 petaFLOPS FP8；750W | 已在 Iowa/Arizona production 数据中心 live | [Maia 200](./Microsoft/maia-200.md) |
 | Meta MTIA 300 | 自研加速器 | 1 compute chiplet + 2 network chiplets；RISC-V PE；HBM | R&R training 已在 production | [MTIA 300](./Meta/mtia-300.md) |
 | Meta MTIA 400 | 自研加速器 | 2 compute chiplets；FP8 +400%、HBM BW +51% vs 300；72-device scale-up 系统 | lab testing 完成，走向数据中心部署 | [MTIA 400](./Meta/mtia-400.md) |
 | Meta MTIA 450 | GenAI inference 加速器 | HBM BW 2× vs 400；MX4 +75%；attention/FFN 加速 | 计划 2027 年初 mass deployment | [MTIA 450](./Meta/mtia-450.md) |
