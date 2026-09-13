@@ -56,7 +56,7 @@ tags:
 | Sunrise | [曦望-概览](./Sunrise/曦望-概览.md) |
 | Tenstorrent | [Tenstorrent-overview](./Tenstorrent/Tenstorrent-overview.md) |
 | XCENA | [XCENA-overview](./XCENA/XCENA-overview.md) |
-| Xiaomi | [小米-overview](./Xiaomi/小米-overview.md) |
+| Xiaomi | [小米-概览](./Xiaomi/小米-概览.md) |
 | openai | [openai-overview](./openai/openai-overview.md) |
 
 ## 根级资料
