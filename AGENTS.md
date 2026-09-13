@@ -31,7 +31,7 @@
 
 ## Obsidian 知识图谱与内部链接
 
-本仓库同时是 GitHub Markdown 文档库和 Obsidian Vault。文档组织不仅要考虑目录树，也要考虑“节点和边”。根入口为 [[README|AI Infra 知识图谱入口]]，软件入口为 [[software/README|AI Infra 软件栈地图]]，芯片入口为 [[chip/00-project-index|AI 芯片与基础设施资料库]]。
+本仓库同时是 GitHub Markdown 文档库和 Obsidian Vault。文档组织不仅要考虑目录树，也要考虑“节点和边”。根入口为 [[00-ai-infra-map|AI Infra 知识图谱入口]]，软件入口为 [[software/README|AI Infra 软件栈地图]]，芯片入口为 [[chip/00-project-index|AI 芯片与基础设施资料库]]。
 
 - 仓库内部的语义关系优先使用 Obsidian Wiki Link，统一写成 `[[vault/root/path|显示名]]`。路径从仓库根开始，不写 `.md`，以减少同名文件歧义和移动后的误解析。
 - 外部官方资料、论文、博客和 GitHub 上游项目仍使用普通 URL，不要把外链伪装成 Wiki Link。
