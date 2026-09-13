@@ -1,0 +1,40 @@
+# Google / 谷歌 — TPU v6e / Trillium
+
+- 研究截止日：2026-09-05
+- 核验日期：2026-09-05
+- 产品层级：TPU ASIC/Cloud TPU
+- 厂商总览：[Google TPU](./Google-overview.md) · [[Google-overview|图谱总览]]
+- 页面性质：从综合报告按芯片名称/家族拆分的证据页；不新增事实，不把板卡、服务器、机架或云服务规格回填为芯片规格。
+
+## 产品定位与关键证据
+
+以下内容按对象边界重排自现有综合报告，并以本页直接来源清单核验；不能由相邻产品层级推导的项目保留为“公开资料未确认”。
+
+截至本次打开的公开 MLCommons 新闻页，能够确认“Google 参与 MLPerf Training v6.0”和“该轮新增稀疏基准”，但页面本身没有把某个结果 run 明确标成 TPU7x/Ironwood。因此本报告不把 MLPerf v6.0 结果数字归因给 Ironwood。Trillium 的 MLPerf 4.1 引用仍是上一代产品的历史基准，不能替代 Ironwood 的独立结果。结论是：**Ironwood 有 Google 自家实测和开发者 playbook，有独立基准框架参与证据，但本次资料集没有完成 Ironwood-specific 的 MLCommons run 级归因。**
+
+## 关联证据与规格
+
+本节保留与本对象相关的关联规格和生命周期证据；其中的卡、模块、服务器、机架、集群或云数据保持原产品层级，不能回填为芯片规格。
+
+| 产品 | 产品层级 | 首次披露/发布 | 流片/量产 | 出货/客户部署 | 云端状态 | 窗口内定位 |
+|---|---|---|---|---|---|---|
+| TPU v5p | ASIC/芯片、Pod、Cloud TPU 服务 | 2023-12-06 发布 | **[未确认]** Google 未公开独立流片或量产日期 | **[官方事实]** 2023 年已向 Cloud customers 提供；曾用于 Salesforce 等客户训练 | **[官方事实]** Cloud TPU v5p 已 GA；当前不是最新主力 | 上一代性能基线 |
+| TPU v6e / Trillium | ASIC/芯片、Pod、Cloud TPU 服务 | 2024-05-14 宣布；2024-12-11 GA | **[未确认]** | **[官方事实]** GA，Google 称用于训练 Gemini 2.0；独立出货数量未公开 | **[官方事实]** GA | Ironwood 的上一代可用产品 |
+| TPU7x / Ironwood | 双 chiplet ASIC、三芯片板、4 芯片/VM、Pod、Cloud TPU 服务 | 2025-04-09 首次披露（早于窗口） | **[未确认]** 没有 Google 独立量产/流片日期 | **[官方事实]** 2025-11-24 Preview；2026-03-31 GA；Cloud 文档/GKE 已有可用配置 | **[官方事实]** 产品页为 Generally available；仍可能需要 quota/reservation/access | 窗口内主力可用产品 |
+| TPU 8t | ASIC/专用训练系统、9,600 芯片 Superpod、Virgo scale-out、Cloud TPU 目标服务 | 2026-04-22 宣布 | **[未确认]** | **[未确认]** 没有公开出货或客户生产部署证据 | **[官方事实]** 产品页仍为 Coming soon；Google 仅称稍后/即将提供 | 窗口内最新训练路线 |
+| TPU 8i | ASIC/专用推理/RL 系统、Boardfly Pod、Cloud TPU 目标服务 | 2026-04-22 宣布 | **[未确认]** | **[未确认]** 没有公开出货或客户生产部署证据 | **[官方事实]** 产品页仍为 Coming soon | 窗口内最新推理路线 |
+| 更后续 TPU | 未见当前产品页列出 | **[未确认]** | **[未确认]** | **[未确认]** | **[未确认]** | 不以传闻或供应链消息补齐 |
+
+## 直接来源
+
+1. [MLCommons：MLPerf Training v6.0 Results](https://mlcommons.org/2026/06/mlperf-training-v6-0-results/)；核验日期：2026-09-05。
+2. [TPU v6e / Trillium 架构文档](https://docs.cloud.google.com/tpu/docs/v6e)；核验日期：2026-09-05。
+3. [Trillium GA 公告](https://cloud.google.com/blog/products/compute/trillium-tpu-is-ga)；核验日期：2026-09-05。
+4. [TPU v5p 架构文档](https://docs.cloud.google.com/tpu/docs/v5p)；核验日期：2026-09-05。
+
+## 证据边界
+
+- 芯片、封装、卡/模组、服务器/机架、集群、软件和云服务按来源原层级记录；系统、卡、模块或集群数据不自动回填为芯片规格。
+- “宣布、流片/工程样片、送样、量产、出货、客户部署、云/实例可用、路线图、停产”分别判断；没有直接证据的阶段写为“公开资料未确认”。
+- 官方发布、产品页或软件支持不能单独证明量产、出货或独立性能；厂商主张、独立验证和分析推断不混写。
+- 本页是基于现有综合报告和直接来源的证据重排页；引用以文末直接 URL 为准，不再使用综合报告行号作为外部引用。
