@@ -57,7 +57,7 @@ def canonical_object_type(value: object) -> tuple[str, str | None]:
 
 def infer_layer(object_type: str) -> str:
     value = object_type.casefold()
-    if "family" in value or value in {"architecture", "generation"}:
+    if "family" in value or "architecture" in value or value == "generation":
         return "family"
     if any(k in value for k in ("network", "switch", "nic")):
         return "network"
@@ -79,6 +79,8 @@ def infer_layer(object_type: str) -> str:
         return "system"
     if any(k in value for k in ("accelerator", "card", "device")):
         return "accelerator"
+    if value in {"gpu", "npu", "tpu", "xpu", "lpu", "ppu"}:
+        return "chip"
     if any(k in value for k in ("chip", "processor", "asic", "wafer")):
         return "chip"
     return "unknown"
@@ -92,7 +94,7 @@ def normalized_status(value: object) -> tuple[str, str | None]:
     aliases = {
         "planned": "roadmap", "future": "roadmap", "preview": "announced",
         "sample": "sampling", "samples": "sampling", "prototype": "sampling", "pre-production": "sampling",
-        "in-production": "production", "mass-production": "production", "mass-produced": "production",
+        "in-production": "production", "mass-production": "production", "mass-produced": "production", "production-ramp": "production",
         "available": "ga", "current": "ga", "commercial": "ga", "launched": "ga", "released": "ga",
         "deployed": "production", "retired": "eol", "discontinued": "eol", "end-of-life": "eol",
     }
@@ -169,7 +171,7 @@ def migrate_file(path: pathlib.Path, accessed: str) -> bool:
     fm["schema_version"] = "chip-v0.2"
     object_type, legacy_object_type = canonical_object_type(fm.get("object_type"))
     fm["object_type"] = object_type
-    if legacy_object_type:
+    if legcy_object_type:
         fm.setdefault("legacy_object_type", legacy_object_type)
     fm["layer"] = infer_layer(fm["object_type"])
     status, legacy_status = normalized_status(fm.get("status"))

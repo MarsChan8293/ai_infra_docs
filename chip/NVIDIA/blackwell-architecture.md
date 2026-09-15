@@ -19,16 +19,18 @@ lifecycle:
   full_production_platform: confirmed
 updated: 2026-09-15
 schema_version: chip-v0.2
-layer: unknown
+layer: family
 memory: {}
 compute: {}
 interconnect: {}
 power: {}
-relations: {}
+relations:
+  architecture-of:
+  - chip/NVIDIA/b200
 evidence:
   S1:
     url: https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/
-    source_type: other
+    source_type: official
     accessed: '2026-09-16'
 evidence_map:
   __page__:
