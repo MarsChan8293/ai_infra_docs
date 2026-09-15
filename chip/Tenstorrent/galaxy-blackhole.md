@@ -1,15 +1,52 @@
 ---
-title: "Tenstorrent Galaxy Blackhole"
+title: Tenstorrent Galaxy Blackhole
 vendor: Tenstorrent
 object_type: system
 status: ga
-architecture: "32x Blackhole ASIC"
+architecture: 32x Blackhole ASIC
 accelerators: 32
-memory: {gddr6_tb: 1, aggregate_bandwidth_tb_s: 16, aggregate_sram_gb: 6.2, aggregate_sram_bandwidth_pb_s: 2.9}
-compute: {blockfp8_pflops: 23}
-power: {value_w: null, scope: system}
-lifecycle: {ga: confirmed}
+memory:
+  gddr6_tb: 1
+  aggregate_bandwidth_tb_s: 16
+  aggregate_sram_gb: 6.2
+  aggregate_sram_bandwidth_pb_s: 2.9
+compute:
+  blockfp8_pflops: 23
+power:
+  value_w: null
+  scope: system
+lifecycle:
+  ga: confirmed
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: system
+process: null
+interconnect: {}
+relations: {}
+evidence:
+  S1:
+    url: https://tenstorrent.com/hardware/galaxy
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  compute.blockfp8_pflops:
+  - S1
+  lifecycle.ga:
+  - S1
+  memory.aggregate_bandwidth_tb_s:
+  - S1
+  memory.aggregate_sram_bandwidth_pb_s:
+  - S1
+  memory.aggregate_sram_gb:
+  - S1
+  memory.gddr6_tb:
+  - S1
+  power.scope:
+  - S1
 ---
 # Tenstorrent Galaxy Blackhole
 

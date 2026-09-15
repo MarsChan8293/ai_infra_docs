@@ -1,5 +1,5 @@
 ---
-title: "Xiaomi 澎湃 S1"
+title: Xiaomi 澎湃 S1
 vendor: Xiaomi
 object_type: mobile-soc
 status: legacy
@@ -7,9 +7,31 @@ architecture: null
 process: null
 compute: {}
 memory: {}
-power: {value_w: null, scope: soc}
-lifecycle: {product_use: 2017, device: "Xiaomi 5C"}
+power:
+  value_w: null
+  scope: soc
+lifecycle:
+  product_use: 2017
+  device: Xiaomi 5C
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: soc
+interconnect: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.mi.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  lifecycle.device:
+  - S1
+  lifecycle.product_use:
+  - S1
+  power.scope:
+  - S1
 ---
 # Xiaomi 澎湃 S1
 

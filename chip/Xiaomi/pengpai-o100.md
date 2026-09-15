@@ -1,16 +1,51 @@
 ---
-title: "Xiaomi XRING O100 / 玄戒 O100"
+title: Xiaomi XRING O100 / 玄戒 O100
 vendor: Xiaomi
 object_type: edge-ai-accelerator
-status: engineering-validated
-architecture: "large-model edge accelerator"
-process: "6nm + 3D wafer-on-wafer"
-memory: {dedicated_ai_memory_gb: 3.5, bandwidth_tb_s: 1.22}
+status: unknown
+architecture: large-model edge accelerator
+process: 6nm + 3D wafer-on-wafer
+memory:
+  dedicated_ai_memory_gb: 3.5
+  bandwidth_tb_s: 1.22
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {announced_event: 2026-08-24, silicon_validation: confirmed_by_public_event_reports, planned_commercial: 2027}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced_event: 2026-08-24
+  silicon_validation: confirmed_by_public_event_reports
+  planned_commercial: 2027
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: accelerator
+legacy_status: engineering-validated
+relations: {}
+evidence:
+  S1:
+    url: https://ir.mi.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  lifecycle.announced_event:
+  - S1
+  lifecycle.planned_commercial:
+  - S1
+  lifecycle.silicon_validation:
+  - S1
+  memory.bandwidth_tb_s:
+  - S1
+  memory.dedicated_ai_memory_gb:
+  - S1
+  power.scope:
+  - S1
+  process:
+  - S1
 ---
 # Xiaomi XRING O100 / 玄戒 O100
 

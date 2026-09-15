@@ -1,16 +1,55 @@
 ---
-title: "彤央 TY1200"
+title: 彤央 TY1200
 vendor: Iluvatar CoreX
 object_type: edge-system
 status: current-catalog
-architecture: "self-developed GPGPU + x86"
-memory: {hbm: {type: HBM2e, capacity_gb: 32}, system: {type: LPDDR5x, capacity_gb: 16}}
-cpu: "16-Core x86"
-storage: {ssd_gb: 512, nvme_max_tb: 2}
-compute: {vendor_claim_tops: 300}
-dimensions_mm: "150x150x56"
-lifecycle: {announced_family: 2026-01-26, mass_production: null}
+architecture: self-developed GPGPU + x86
+memory:
+  hbm:
+    type: HBM2e
+    capacity_gb: 32
+  system:
+    type: LPDDR5x
+    capacity_gb: 16
+cpu: 16-Core x86
+storage:
+  ssd_gb: 512
+  nvme_max_tb: 2
+compute:
+  vendor_claim_tops: 300
+dimensions_mm: 150x150x56
+lifecycle:
+  announced_family: 2026-01-26
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: system
+process: null
+interconnect: {}
+power: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1200
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  compute.vendor_claim_tops:
+  - S1
+  lifecycle.announced_family:
+  - S1
+  memory.hbm.capacity_gb:
+  - S1
+  memory.hbm.type:
+  - S1
+  memory.system.capacity_gb:
+  - S1
+  memory.system.type:
+  - S1
 ---
 # 彤央 TY1200
 

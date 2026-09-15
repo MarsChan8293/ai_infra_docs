@@ -1,18 +1,31 @@
 ---
 title: "AI 芯片与硬件资料库"
 tags: [moc, chip]
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # AI 芯片与硬件资料库
 
-本目录已按 **Chip Schema V0.1** 全量重建。Markdown 是唯一事实源；每个对象通过 YAML frontmatter 提供机器可读字段，正文只保留结论、核心规格、生命周期/边界和直接来源。
+本目录已按 **Chip Schema V0.2** 组织为可验证硬件事实库。Markdown 是唯一事实源；每个硬件对象通过 YAML frontmatter 提供机器可读字段，正文保留结论、核心规格、生命周期/边界和直接来源。
 
 ## 数据规则
-- 每个硬件对象一页；芯片、板卡、模组、服务器、机架、集群、内存与网络 ASIC 分层。
-- 未有直接证据的值保持 `null` / “公开资料未确认”，不从相邻 SKU 或系统反推。
+- 每个硬件对象一页；细粒度 `object_type` 同时映射到稳定 `layer`，用于跨厂商比较。
+- 未有直接证据的值保持 `null` / “公开资料未确认”，不从相邻 SKU、软件能力或系统数据反推。
 - 生命周期拆分宣布、流片/样片、量产、出货、客户部署、云可用、EOL。
 - 厂商峰值、第三方测试、分析推断和系统聚合值不混写。
-- 对象定义见 [[chip/SCHEMA|Chip Schema V0.1]]；迁移原则见 [[chip/MIGRATION|Migration Notes]]。
+- `evidence` 记录来源，`evidence_map` 区分页面级与字段级追溯；`__page__` 不冒充字段级证据。
+- `relations` 只记录可确认的 typed relation；无法确认语义时继续使用普通 Wiki Link。
+- 对象定义见 [[chip/SCHEMA|Chip Schema V0.2]]；迁移原则见 [[chip/MIGRATION|Migration Notes]]。
+
+## 自动校验与派生数据
+
+```bash
+python3 scripts/validate-chip.py --root . --report generated/chip-validation.json
+python3 scripts/build-chip-catalog.py --root . --output generated
+python3 scripts/build-knowledge-graph.py --root . --output generated
+python3 scripts/enrich-knowledge-graph.py --generated generated
+```
+
+`generated/chip-health.md` 展示 Schema、来源、字段级 Evidence、Memory/Compute/Interconnect/Power/Lifecycle 完整度和陈旧数据；`generated/chip-comparison.md` / `.csv` 从相同 frontmatter 自动生成横向比较，均不手工维护。
 
 ## 厂商索引
 | 厂商 | 总览 |

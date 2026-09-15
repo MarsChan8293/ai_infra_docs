@@ -1,16 +1,37 @@
 ---
-title: "天垓 100 / TG Gen1"
+title: 天垓 100 / TG Gen1
 vendor: Iluvatar CoreX
 object_type: chip
 status: production
-architecture: "general-purpose GPU"
+architecture: general-purpose GPU
 process: null
 memory: {}
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2021-03, mass_production: confirmed, deployed: confirmed}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2021-03
+  mass_production: confirmed
+  deployed: confirmed
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-xlxl-tg100
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1230/2025123000020_c.pdf
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # 天垓 100 / TG Gen1
 

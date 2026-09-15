@@ -1,19 +1,46 @@
 ---
-title: "Cerebras WSE-3 Turbo / WSE-3T"
+title: Cerebras WSE-3 Turbo / WSE-3T
 vendor: Cerebras
 object_type: wafer-scale-processor
 status: announced
-architecture: "Wafer-Scale Engine"
-process: "TSMC 5nm"
+architecture: Wafer-Scale Engine
+process: TSMC 5nm
 area_mm2: 46225
 transistors_trillion: 4
-cores: {active: 900000}
-memory: {type: SRAM, capacity_gb: 44, bandwidth_pb_s: 43.2}
-compute: {sparse_fp16_pflops: 250}
-interconnect: {on_wafer_fabric_pb_s: 53.5, external_io_tbit_s: 2.4}
-power: {value_w: null, scope: processor}
-lifecycle: {announced: 2026-08-18, independent_chip_shipping: null}
+cores:
+  active: 900000
+memory:
+  type: SRAM
+  capacity_gb: 44
+  bandwidth_pb_s: 43.2
+compute:
+  sparse_fp16_pflops: 250
+interconnect:
+  on_wafer_fabric_pb_s: 53.5
+  external_io_tbit_s: 2.4
+power:
+  value_w: null
+  scope: processor
+lifecycle:
+  announced: 2026-08-18
+  independent_chip_shipping: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://investors.cerebras.ai/news-releases/news-release-details/cerebras-unveils-cs-4-30-times-faster-gpu-based-solutions
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www.cerebras.ai/cs4
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Cerebras WSE-3 Turbo / WSE-3T
 

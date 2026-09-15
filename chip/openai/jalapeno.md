@@ -1,16 +1,53 @@
 ---
-title: "OpenAI Jalapeño"
+title: OpenAI Jalapeño
 vendor: OpenAI
 object_type: chip
-status: engineering-sample
-architecture: "custom LLM inference accelerator"
+status: unknown
+architecture: custom LLM inference accelerator
 process: null
-memory: {type: null, capacity_gb: null, bandwidth_tb_s: null}
+memory:
+  type: null
+  capacity_gb: null
+  bandwidth_tb_s: null
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {officially_disclosed: 2026-06-24, tapeout: completed, engineering_sample: confirmed, initial_measurements: 2026-08-25, initial_deployment_plan: 2026-end, mass_production: null}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  officially_disclosed: 2026-06-24
+  tapeout: completed
+  engineering_sample: confirmed
+  initial_measurements: 2026-08-25
+  initial_deployment_plan: 2026-end
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+legacy_status: engineering-sample
+relations: {}
+evidence:
+  S1:
+    url: https://openai.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  lifecycle.engineering_sample:
+  - S1
+  lifecycle.initial_deployment_plan:
+  - S1
+  lifecycle.initial_measurements:
+  - S1
+  lifecycle.officially_disclosed:
+  - S1
+  lifecycle.tapeout:
+  - S1
+  power.scope:
+  - S1
 ---
 # OpenAI Jalapeño
 

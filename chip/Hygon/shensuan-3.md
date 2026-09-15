@@ -1,5 +1,5 @@
 ---
-title: "海光 深算三号"
+title: 海光 深算三号
 vendor: Hygon
 object_type: dcu-generation
 status: shipping
@@ -7,10 +7,36 @@ architecture: GPGPU
 process: null
 memory: {}
 compute: {}
-interconnect: {scale_up: HSL}
-power: {value_w: null, scope: chip}
-lifecycle: {market_available: confirmed_2025, customer_recognition: vendor_claim}
+interconnect:
+  scale_up: HSL
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  market_available: confirmed_2025
+  customer_recognition: vendor_claim
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+relations: {}
+evidence:
+  S1:
+    url: https://www.hygon.cn/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  interconnect.scale_up:
+  - S1
+  lifecycle.customer_recognition:
+  - S1
+  lifecycle.market_available:
+  - S1
+  power.scope:
+  - S1
 ---
 # 海光 深算三号
 

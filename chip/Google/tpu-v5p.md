@@ -1,16 +1,47 @@
 ---
-title: "Google TPU v5p"
+title: Google TPU v5p
 vendor: Google
 object_type: chip
 status: ga
 architecture: TPU
 process: null
-memory: {type: HBM, capacity_gb: null, bandwidth_tb_s: null}
+memory:
+  type: HBM
+  capacity_gb: null
+  bandwidth_tb_s: null
 compute: {}
-interconnect: {scale_up: ICI}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2023-12-06, cloud_available: confirmed}
+interconnect:
+  scale_up: ICI
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2023-12-06
+  cloud_available: confirmed
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://docs.cloud.google.com/tpu/docs/v5p
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  interconnect.scale_up:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.cloud_available:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
 ---
 # Google TPU v5p
 

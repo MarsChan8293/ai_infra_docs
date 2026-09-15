@@ -37,11 +37,20 @@ jobs:
       - name: Install graph validation dependencies
         run: python -m pip install -r scripts/requirements.txt
 
+      - name: Validate Chip Schema V0.2
+        run: python scripts/validate-chip.py --root . --report generated/chip-validation.json
+
       - name: Validate repository schema and links
         run: python scripts/validate-repo.py --root . --report generated/validation.json
 
+      - name: Build chip catalog and data-quality reports
+        run: python scripts/build-chip-catalog.py --root . --output generated
+
       - name: Build knowledge graph artifacts
         run: python scripts/build-knowledge-graph.py --root . --output generated
+
+      - name: Enrich chip typed relations
+        run: python scripts/enrich-knowledge-graph.py --generated generated
 
       - name: Upload graph audit artifacts
         if: always()
@@ -75,6 +84,8 @@ jobs:
           cp -R software "$QUARTZ_DIR/content/software"
           cp -R models "$QUARTZ_DIR/content/models"
           cp generated/graph-summary.md "$QUARTZ_DIR/content/generated/graph-summary.md"
+          cp generated/chip-health.md "$QUARTZ_DIR/content/generated/chip-health.md"
+          cp generated/chip-comparison.md "$QUARTZ_DIR/content/generated/chip-comparison.md"
 
           echo "Staged Markdown files: $(find "$QUARTZ_DIR/content" -type f -name '*.md' | wc -l)"
 

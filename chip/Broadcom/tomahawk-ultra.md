@@ -1,16 +1,36 @@
 ---
-title: "Broadcom Tomahawk Ultra"
+title: Broadcom Tomahawk Ultra
 vendor: Broadcom
 object_type: network-asic
 status: shipping
-architecture: "Ethernet scale-up switch ASIC"
+architecture: Ethernet scale-up switch ASIC
 process: null
 memory: {}
 compute: {}
-interconnect: {switch_capacity_tb_s: 51.2}
-power: {value_w: null, scope: asic}
-lifecycle: {shipping: 2025-07-15}
+interconnect:
+  switch_capacity_tb_s: 51.2
+power:
+  value_w: null
+  scope: asic
+lifecycle:
+  shipping: 2025-07-15
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: network
+relations: {}
+evidence:
+  S1:
+    url: https://www.broadcom.com/company/news/product-releases/63341
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www.broadcom.com/products/ethernet-connectivity/switching/strataxgs/bcm78920-series
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Broadcom Tomahawk Ultra
 

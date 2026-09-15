@@ -1,17 +1,49 @@
 ---
-title: "Microsoft Maia 200"
+title: Microsoft Maia 200
 vendor: Microsoft
 object_type: chip
 status: production
 architecture: Maia
-process: "TSMC 3nm"
-transistors_billion: ">140"
-memory: {type: HBM3e, capacity_gb: 216, bandwidth_tb_s: 7, sram_mb: 272}
-compute: {fp4_pflops: ">10", fp8_pflops: ">5"}
-interconnect: {on_die_nic_tb_s_one_way: 1.4, bidirectional_tb_s: 2.8, scale_up: ATL_Ethernet}
-power: {value_w: 750, scope: soc_tdp}
-lifecycle: {announced: 2026-01-26, production_data_centers: [Iowa, Arizona], customer_inference_capacity: confirmed}
+process: TSMC 3nm
+transistors_billion: '>140'
+memory:
+  type: HBM3e
+  capacity_gb: 216
+  bandwidth_tb_s: 7
+  sram_mb: 272
+compute:
+  fp4_pflops: '>10'
+  fp8_pflops: '>5'
+interconnect:
+  on_die_nic_tb_s_one_way: 1.4
+  bidirectional_tb_s: 2.8
+  scale_up: ATL_Ethernet
+power:
+  value_w: 750
+  scope: soc_tdp
+lifecycle:
+  announced: 2026-01-26
+  production_data_centers:
+  - Iowa
+  - Arizona
+  customer_inference_capacity: confirmed
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://blogs.microsoft.com/blog/2026/01/26/maia-200-the-ai-accelerator-built-for-inference/
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://techcommunity.microsoft.com/blog/azureinfrastructureblog/deep-dive-into-the-maia-200-architecture/4489312
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Microsoft Maia 200
 

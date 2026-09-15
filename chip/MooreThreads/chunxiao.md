@@ -1,16 +1,37 @@
 ---
-title: "Moore Threads 春晓"
+title: Moore Threads 春晓
 vendor: Moore Threads
 object_type: chip-family
 status: legacy
-architecture: "第一代 MUSA / 春晓"
+architecture: 第一代 MUSA / 春晓
 process: null
 memory: {}
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2022-11, mass_production_date: null}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2022-11
+  mass_production_date: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: family
+relations: {}
+evidence:
+  S1:
+    url: https://www.mthreads.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  lifecycle.announced:
+  - S1
+  power.scope:
+  - S1
 ---
 # Moore Threads 春晓
 

@@ -1,16 +1,48 @@
 ---
-title: "NVIDIA Blackwell Architecture"
+title: NVIDIA Blackwell Architecture
 vendor: NVIDIA
 object_type: gpu-architecture
 status: production
 architecture: Blackwell
-process: "TSMC 4NP"
+process: TSMC 4NP
 transistors_billion: 208
 dies: 2
 inter_die_link_tb_s: 10
-features: ["2nd-gen Transformer Engine", FP4, "5th-gen NVLink", RAS, Decompression_Engine]
-lifecycle: {announced: 2024-03-18, full_production_platform: confirmed}
+features:
+- 2nd-gen Transformer Engine
+- FP4
+- 5th-gen NVLink
+- RAS
+- Decompression_Engine
+lifecycle:
+  announced: 2024-03-18
+  full_production_platform: confirmed
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: family
+memory: {}
+compute: {}
+interconnect: {}
+power: {}
+relations:
+  architecture-of:
+  - chip/NVIDIA/b200
+evidence:
+  S1:
+    url: https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/
+    source_type: official
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.full_production_platform:
+  - S1
+  process:
+  - S1
 ---
 # NVIDIA Blackwell Architecture
 

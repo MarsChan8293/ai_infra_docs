@@ -1,16 +1,51 @@
 ---
-title: "XCENA MX1"
+title: XCENA MX1
 vendor: XCENA
 object_type: computational-memory
-status: poc
-architecture: "CXL Type-3 + near-data RISC-V processing"
+status: unknown
+architecture: CXL Type-3 + near-data RISC-V processing
 process: null
-compute_units: {riscv_cores: "thousands", frequency_ghz: 1.4, vector_formats: [FP32, FP16]}
-memory: {ddr5_channels: 4, speed_mt_s: 8400, dpc: 2, max_aic_capacity_tb: 2}
-interconnect: {cxl: "3.2 Type-3", host: "PCIe 6.0 dual x8", storage_path: "PCIe 6.0 / NVMe"}
-power: {value_w: null, scope: card_or_controller}
-lifecycle: {fms_public: 2025, working_samples_plan: 2025-10, production_ready_plan: 2026}
+compute_units:
+  riscv_cores: thousands
+  frequency_ghz: 1.4
+  vector_formats:
+  - FP32
+  - FP16
+memory:
+  ddr5_channels: 4
+  speed_mt_s: 8400
+  dpc: 2
+  max_aic_capacity_tb: 2
+interconnect:
+  cxl: 3.2 Type-3
+  host: PCIe 6.0 dual x8
+  storage_path: PCIe 6.0 / NVMe
+power:
+  value_w: null
+  scope: card_or_controller
+lifecycle:
+  fms_public: 2025
+  working_samples_plan: 2025-10
+  production_ready_plan: 2026
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: memory
+legacy_status: poc
+compute: {}
+relations: {}
+evidence:
+  S1:
+    url: https://xcena.com/computational_memory
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www.xcena.com/newsroom/?bmode=view&idx=170962702&t=board
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # XCENA MX1
 

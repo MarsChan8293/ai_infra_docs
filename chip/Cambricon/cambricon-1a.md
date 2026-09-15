@@ -1,16 +1,36 @@
 ---
-title: "Cambricon-1A"
+title: Cambricon-1A
 vendor: Cambricon
 object_type: ip
 status: legacy
-architecture: "first-generation terminal AI processor IP"
+architecture: first-generation terminal AI processor IP
 process: null
 memory: {}
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: ip}
-lifecycle: {introduced: 2016, eol: null}
+power:
+  value_w: null
+  scope: ip
+lifecycle:
+  introduced: 2016
+  eol: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: ip
+relations: {}
+evidence:
+  S1:
+    url: https://www.cambricon.com/index.php?a=show&c=index&catid=127&id=19&m=content
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www.cambricon.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Cambricon-1A
 

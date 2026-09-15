@@ -1,16 +1,40 @@
 ---
-title: "Huawei Ascend 910B"
+title: Huawei Ascend 910B
 vendor: Huawei
 object_type: chip
 status: ga
 architecture: Ascend
 process: null
-memory: {type: null, capacity_gb: null, bandwidth_tb_s: null}
+memory:
+  type: null
+  capacity_gb: null
+  bandwidth_tb_s: null
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {cloud_resource_support: confirmed, mass_production_date: null}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  cloud_resource_support: confirmed
+  mass_production_date: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://www.hiascend.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  lifecycle.cloud_resource_support:
+  - S1
+  power.scope:
+  - S1
 ---
 # Huawei Ascend 910B
 

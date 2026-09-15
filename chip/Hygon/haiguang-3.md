@@ -1,13 +1,41 @@
 ---
-title: "海光三号 CPU"
+title: 海光三号 CPU
 vendor: Hygon
 object_type: cpu-generation
-status: commercialized
+status: unknown
 architecture: x86
 process: null
-cpu: {cores_max: 32, threads_max: 64, pcie: "128 lanes PCIe 4.0", memory_speed_mhz: 3200}
-lifecycle: {mass_production: 2022-03, launch_event: 2022-06-07}
+cpu:
+  cores_max: 32
+  threads_max: 64
+  pcie: 128 lanes PCIe 4.0
+  memory_speed_mhz: 3200
+lifecycle:
+  mass_production: 2022-03
+  launch_event: 2022-06-07
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+legacy_status: commercialized
+memory: {}
+compute: {}
+interconnect: {}
+power: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.hygon.cn/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  lifecycle.launch_event:
+  - S1
+  lifecycle.mass_production:
+  - S1
 ---
 # 海光三号 CPU
 

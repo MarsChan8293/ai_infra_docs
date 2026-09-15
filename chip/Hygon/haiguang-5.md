@@ -1,12 +1,36 @@
 ---
-title: "海光五号 CPU"
+title: 海光五号 CPU
 vendor: Hygon
 object_type: cpu-generation
 status: roadmap
 architecture: x86
 process: null
-lifecycle: {roadmap_visible: 2023, customer_validation_r_and_d: 2026-04, mass_production: null}
+lifecycle:
+  roadmap_visible: 2023
+  customer_validation_r_and_d: 2026-04
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+memory: {}
+compute: {}
+interconnect: {}
+power: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.hygon.cn/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  lifecycle.customer_validation_r_and_d:
+  - S1
+  lifecycle.roadmap_visible:
+  - S1
 ---
 # 海光五号 CPU
 

@@ -1,16 +1,46 @@
 ---
-title: "Broadcom Thor Ultra"
+title: Broadcom Thor Ultra
 vendor: Broadcom
 object_type: nic-silicon
 status: sampling
-architecture: "AI Ethernet NIC"
+architecture: AI Ethernet NIC
 process: null
 memory: {}
 compute: {}
-interconnect: {ethernet_gbps: 800, host: "PCIe Gen6 x16"}
-power: {value_w: null, scope: adapter}
-lifecycle: {announced: 2025-10-14, sampling: 2025-10-14, mass_production: null}
+interconnect:
+  ethernet_gbps: 800
+  host: PCIe Gen6 x16
+power:
+  value_w: null
+  scope: adapter
+lifecycle:
+  announced: 2025-10-14
+  sampling: 2025-10-14
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: network
+relations: {}
+evidence:
+  S1:
+    url: https://investors.broadcom.com/news-releases/news-release-details/broadcom-introduces-industrys-first-800g-ai-ethernet-nic
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  interconnect.ethernet_gbps:
+  - S1
+  interconnect.host:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.sampling:
+  - S1
+  power.scope:
+  - S1
 ---
 # Broadcom Thor Ultra
 

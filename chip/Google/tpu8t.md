@@ -1,16 +1,42 @@
 ---
-title: "Google TPU 8t"
+title: Google TPU 8t
 vendor: Google
 object_type: chip
 status: announced
 architecture: TPU Gen8 training
 process: null
-memory: {type: HBM, capacity_gb: 216, bandwidth_tb_s: 6.528, vmem_mb: 128}
-compute: {fp4_pflops: 12.6}
-interconnect: {ici: "2x Ironwood bandwidth; absolute chip value not public"}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2026-04-22, cloud_ga: null}
+memory:
+  type: HBM
+  capacity_gb: 216
+  bandwidth_tb_s: 6.528
+  vmem_mb: 128
+compute:
+  fp4_pflops: 12.6
+interconnect:
+  ici: 2x Ironwood bandwidth; absolute chip value not public
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2026-04-22
+  cloud_ga: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://cloud.google.com/blog/products/compute/tpu-8t-and-tpu-8i-technical-deep-dive
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://cloud.google.com/tpu
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Google TPU 8t
 

@@ -1,16 +1,43 @@
 ---
-title: "天垓 300"
+title: 天垓 300
 vendor: Iluvatar CoreX
 object_type: chip
 status: announced
-architecture: "SIMT general-purpose GPU"
+architecture: SIMT general-purpose GPU
 process: null
 memory: {}
-compute: {units: [scalar, vector, tensor]}
+compute:
+  units:
+  - scalar
+  - vector
+  - tensor
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2026-07-19, mass_production: null}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2026-07-19
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://developer.iluvatar.com/news/300-ai
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  compute.units:
+  - S1
+  lifecycle.announced:
+  - S1
+  power.scope:
+  - S1
 ---
 # 天垓 300
 

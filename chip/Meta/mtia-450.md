@@ -1,16 +1,46 @@
 ---
-title: "Meta MTIA 450"
+title: Meta MTIA 450
 vendor: Meta
 object_type: chip
 status: roadmap
 architecture: MTIA
 process: null
-memory: {type: HBM, bandwidth_vs_mtia400: "2x", capacity_gb: null}
-compute: {mx4_vs_mtia400: "+75%"}
+memory:
+  type: HBM
+  bandwidth_vs_mtia400: 2x
+  capacity_gb: null
+compute:
+  mx4_vs_mtia400: +75%
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {planned_large_scale_deployment: 2027-early}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  planned_large_scale_deployment: 2027-early
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://ai.meta.com/blog/meta-mtia-scale-ai-chips-for-billions/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  architecture:
+  - S1
+  compute.mx4_vs_mtia400:
+  - S1
+  lifecycle.planned_large_scale_deployment:
+  - S1
+  memory.bandwidth_vs_mtia400:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
 ---
 # Meta MTIA 450
 

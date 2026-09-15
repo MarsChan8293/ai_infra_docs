@@ -1,18 +1,48 @@
 ---
-title: "Xiaomi XRING O1 / 玄戒 O1"
+title: Xiaomi XRING O1 / 玄戒 O1
 vendor: Xiaomi
 object_type: mobile-soc
 status: shipping
 architecture: XRING
-process: "2nd-generation 3nm"
+process: 2nd-generation 3nm
 transistors_billion: 19
-cpu: {cores: 10}
-gpu: {cores: 16, type: "Immortalis-G925"}
-npu: {cores: 6, tops: 44}
-isp: "4th-generation"
-power: {value_w: null, scope: soc}
-lifecycle: {announced: 2025-05-22, shipping_devices: ["Xiaomi 15S Pro", "Xiaomi Pad 7 Ultra"]}
+cpu:
+  cores: 10
+gpu:
+  cores: 16
+  type: Immortalis-G925
+npu:
+  cores: 6
+  tops: 44
+isp: 4th-generation
+power:
+  value_w: null
+  scope: soc
+lifecycle:
+  announced: 2025-05-22
+  shipping_devices:
+  - Xiaomi 15S Pro
+  - Xiaomi Pad 7 Ultra
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: soc
+memory: {}
+compute: {}
+interconnect: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.mi.com/global/event/2025/xiaomi-15s-pro-pad-7-ultra/
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://ir.mi.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Xiaomi XRING O1 / 玄戒 O1
 

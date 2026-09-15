@@ -1,16 +1,41 @@
 ---
-title: "GroqChip Processor"
+title: GroqChip Processor
 vendor: Groq
 object_type: chip
 status: legacy
 architecture: LPU
 process: 14nm
-memory: {type: SRAM, capacity_mb: 230, bandwidth_tb_s: 80}
+memory:
+  type: SRAM
+  capacity_mb: 230
+  bandwidth_tb_s: 80
 compute: {}
 interconnect: {}
-power: {max_w: 300, tdp_w: 215, average_w: 185, scope: chip}
-lifecycle: {product_object_confirmed: true, mass_production_date: null}
+power:
+  max_w: 300
+  tdp_w: 215
+  average_w: 185
+  scope: chip
+lifecycle:
+  product_object_confirmed: true
+  mass_production_date: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://www.groq.com/GroqDocs/Product%20Spec%20Sheet%20-%20GroqChip%E2%84%A2%20Processor.pdf
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://groq.com/blog/the-groq-lpu-explained
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # GroqChip Processor
 
