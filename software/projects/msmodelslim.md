@@ -2,7 +2,7 @@
 schema_version: software-v0.1
 name: msModelSlim
 object_type: project
-category: other
+category: optimization
 organization: Ascend
 status: active
 repo: null
@@ -17,7 +17,7 @@ capabilities:
 integrations: []
 backends:
   - ascend
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # msModelSlim
 
@@ -25,7 +25,7 @@ updated: 2026-09-15
 
 ## 核心能力
 
-关注量化、压缩与部署前模型优化，用于降低推理资源占用并适配 Ascend 执行路径。
+关注量化、压缩与部署前模型优化，用于降低推理资源占用并适配 Ascend 执行路径。[S1]
 
 ## 边界
 
@@ -47,4 +47,4 @@ updated: 2026-09-15
 
 ## 直接来源
 
-- https://github.com/Ascend
+- [S1] https://github.com/Ascend

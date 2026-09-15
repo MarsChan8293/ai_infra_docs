@@ -2,7 +2,7 @@
 schema_version: software-v0.1
 name: FlagOS
 object_type: project
-category: other
+category: ecosystem
 organization: flagos-ai
 status: active
 repo: https://github.com/flagos-ai/FlagOS
@@ -16,7 +16,7 @@ capabilities:
   - ecosystem-integration
 integrations: []
 backends: []
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # FlagOS
 
@@ -24,7 +24,7 @@ updated: 2026-09-15
 
 ## 核心能力
 
-FlagOS 作为生态入口，把训练、kernel、通信、性能评测和推理插件等项目串成一个异构 AI 软件体系。
+FlagOS 作为生态入口，把训练、kernel、通信、性能评测和推理插件等项目串成一个异构 AI 软件体系。[S1]
 
 ## 边界
 
@@ -54,4 +54,4 @@ FlagOS 更像生态与上层组织入口，具体技术能力应落到 FlagScale
 
 ## 直接来源
 
-- https://github.com/flagos-ai/FlagOS
+- [S1] https://github.com/flagos-ai/FlagOS

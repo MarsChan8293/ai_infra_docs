@@ -24,14 +24,18 @@ integrations:
   - llm-d
   - mooncake
   - flashinfer
-  - sglang-plugin-fl
+relations:
+  alternative-to:
+    - vllm
+    - tensorrt-llm
+    - llama-cpp
 backends:
   - nvidia
   - amd
   - intel
   - ascend
   - tpu
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # SGLang
 
@@ -39,12 +43,12 @@ updated: 2026-09-15
 
 ## 核心能力
 
-| 能力 | 说明 |
-|---|---|
-| RadixAttention / Prefix Cache | 围绕共享前缀和 KV 复用优化请求执行 |
-| Serving Runtime | 提供在线服务、调度与模型执行 |
-| 分布式执行 | 支持多 GPU、多节点及多种并行方式 |
-| 多硬件后端 | 覆盖 NVIDIA、AMD、Ascend、TPU 等路径 |
+| 能力 | 说明 | 证据 |
+|---|---|---|
+| RadixAttention / Prefix Cache | 围绕共享前缀和 KV 复用优化请求执行 | [S1] |
+| Serving Runtime | 提供在线服务、调度与模型执行 | [S1] |
+| 分布式执行 | 支持多 GPU、多节点及多种并行方式 | [S1] |
+| 多硬件后端 | 覆盖 NVIDIA、AMD、Ascend、TPU 等路径 | [S1] |
 
 ## 边界
 
@@ -55,12 +59,10 @@ SGLang 的主战场是模型推理执行与 serving runtime；集群级 Pod plac
 - [[software/projects/nvidia-dynamo|NVIDIA Dynamo]]、[[software/projects/ray-serve|Ray Serve]]、[[software/projects/llm-d|llm-d]]：分布式 serving 与路由层。
 - [[software/projects/mooncake|Mooncake]]：高性能数据 / KV 传输集成。
 - [[software/projects/flashinfer|FlashInfer]]：serving kernel 后端之一。
-- [[software/projects/sglang-plugin-fl|sglang-plugin-FL]]：FlagOS 异构适配插件路径。
 
 ## 关联项目
 
-- 同层引擎：[[software/projects/vllm|vLLM]]、[[software/projects/tensorrt-llm|TensorRT-LLM]]、[[software/projects/llama-cpp|llama.cpp]]、[[software/projects/lightllm|LightLLM]]、[[software/projects/ktransformers|KTransformers]]。
-- 性能与生态：[[software/projects/tokenspeed|TokenSpeed]]、[[software/projects/flagperf|FlagPerf]]。
+- 同层引擎：[[software/projects/vllm|vLLM]]、[[software/projects/tensorrt-llm|TensorRT-LLM]]、[[software/projects/llama-cpp|llama.cpp]]。
 - Kernel / 编译：[[software/projects/triton|Triton]]、[[software/projects/flashattention|FlashAttention]]、[[software/projects/deepep|DeepEP]]。
 - AMD 通信路径：[[software/projects/rccl|RCCL]]。
 
@@ -70,5 +72,5 @@ SGLang 的主战场是模型推理执行与 serving runtime；集群级 Pod plac
 
 ## 直接来源
 
-- https://docs.sglang.ai/
-- https://github.com/sgl-project/sglang
+- [S1] https://docs.sglang.ai/
+- [S2] https://github.com/sgl-project/sglang

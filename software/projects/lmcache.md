@@ -23,7 +23,7 @@ integrations:
   - nixl
 backends:
   - nvidia
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # LMCache
 
@@ -31,12 +31,12 @@ updated: 2026-09-15
 
 ## 核心能力
 
-| 能力 | 说明 |
-|---|---|
-| KV Offload | 把 KV 从 GPU 扩展到 CPU、存储或远端层级 |
-| 跨实例复用 | 在多个 worker 之间共享可复用 KV |
-| KV Transfer | 支持 P/D 分离中的 KV 搬运路径 |
-| Cache Observability | 观察命中、存取和传输成本 |
+| 能力 | 说明 | 证据 |
+|---|---|---|
+| KV Offload | 把 KV 从 GPU 扩展到 CPU、存储或远端层级 | [S1] |
+| 跨实例复用 | 在多个 worker 之间共享可复用 KV | [S1] |
+| KV Transfer | 支持 P/D 分离中的 KV 搬运路径 | [S1] |
+| Cache Observability | 观察命中、存取和传输成本 | [S1] |
 
 ## 边界
 
@@ -51,7 +51,6 @@ LMCache 不执行模型 forward，也不替代请求路由器；其职责是 KV 
 ## 关联项目
 
 - 同类 / 相邻 KV 系统：[[software/projects/mooncake|Mooncake]]。
-- 更通用的 AI 存储数据面：[[software/projects/3fs|3FS]]。
 
 ## 版本快照
 
@@ -59,5 +58,5 @@ LMCache 不执行模型 forward，也不替代请求路由器；其职责是 KV 
 
 ## 直接来源
 
-- https://docs.lmcache.ai/
-- https://github.com/LMCache/LMCache
+- [S1] https://docs.lmcache.ai/
+- [S2] https://github.com/LMCache/LMCache

@@ -2,7 +2,7 @@
 schema_version: software-v0.1
 name: DeepSeek-Infra
 object_type: project
-category: other
+category: ecosystem
 organization: deepseek-ai
 status: active
 repo: https://github.com/deepseek-ai
@@ -18,7 +18,7 @@ capabilities:
   - storage
 integrations: []
 backends: []
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # DeepSeek-Infra
 
@@ -26,7 +26,7 @@ updated: 2026-09-15
 
 ## 核心能力
 
-该生态覆盖存储、MoE 通信、GEMM、JIT、attention 等基础组件，适合作为 DeepSeek 系统工程路线的总入口。
+该生态覆盖存储、MoE 通信、GEMM、JIT、attention 等基础组件，适合作为 DeepSeek 系统工程路线的总入口。[S1]
 
 ## 边界
 
@@ -54,4 +54,4 @@ DeepSeek-Infra 是项目族而不是单一 runtime；具体技术事实应落到
 
 ## 直接来源
 
-- https://github.com/deepseek-ai
+- [S1] https://github.com/deepseek-ai

@@ -19,10 +19,9 @@ capabilities:
 integrations:
   - vllm
   - gateway-api-inference-extension
-  - triton-inference-server
 backends:
   - kubernetes
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # KServe
 
@@ -30,12 +29,12 @@ updated: 2026-09-15
 
 ## 核心能力
 
-| 能力 | 说明 |
-|---|---|
-| InferenceService | 标准化模型部署与服务入口 |
-| LLMInferenceService | 面向生成式 AI 的 LLM serving API |
-| 多节点 / 分离式工作负载 | 可表达多节点并行与 Prefill/Decode 分离 |
-| Gateway 集成 | 通过 Kubernetes Gateway 体系暴露和路由服务 |
+| 能力 | 说明 | 证据 |
+|---|---|---|
+| InferenceService | 标准化模型部署与服务入口 | [S1] |
+| LLMInferenceService | 面向生成式 AI 的 LLM serving API | [S1] |
+| 多节点 / 分离式工作负载 | 可表达多节点并行与 Prefill/Decode 分离 | [S1] |
+| Gateway 集成 | 通过 Kubernetes Gateway 体系暴露和路由服务 | [S1] |
 
 ## 边界
 
@@ -43,15 +42,13 @@ KServe 主要负责 Kubernetes 模型服务生命周期和 API 编排，不负�
 
 ## 集成与后端
 
-- [[software/projects/vllm|vLLM]]：高性能 LLM runtime 之一。
-- [[software/projects/gateway-api-inference-extension|Gateway API Inference Extension]]：LLM 路由基础设施之一。
-- [[software/projects/triton-inference-server|Triton Inference Server]]：通用模型 serving backend 路线。
+- [[software/projects/vllm|vLLM]]：KServe 生成式推理 runtime 的主要高性能后端之一。
+- [[software/projects/gateway-api-inference-extension|Gateway API Inference Extension]]：LLMInferenceService 路由基础设施之一。
 
 ## 关联项目
 
-- [[software/projects/aibrix|AIBrix]]：同处 Kubernetes LLM 基础设施控制层。
-- [[software/projects/llm-d|llm-d]]：分布式推理编排。
-- [[software/projects/ray-serve|Ray Serve]]：另一条分布式服务路线。
+- 分布式推理编排：[[software/projects/llm-d|llm-d]]。
+- 另一条分布式服务路线：[[software/projects/ray-serve|Ray Serve]]。
 
 ## 版本快照
 
@@ -59,5 +56,5 @@ KServe 主要负责 Kubernetes 模型服务生命周期和 API 编排，不负�
 
 ## 直接来源
 
-- https://kserve.github.io/website/
-- https://github.com/kserve/kserve
+- [S1] https://kserve.github.io/website/
+- [S2] https://github.com/kserve/kserve

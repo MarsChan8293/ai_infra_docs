@@ -2,7 +2,7 @@
 schema_version: software-v0.1
 name: OneFlow
 object_type: project
-category: other
+category: training
 organization: Oneflow-Inc
 status: active
 repo: https://github.com/Oneflow-Inc/oneflow
@@ -19,7 +19,7 @@ integrations: []
 backends:
   - nvidia
   - cpu
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # OneFlow
 
@@ -27,7 +27,7 @@ updated: 2026-09-15
 
 ## 核心能力
 
-提供 tensor 计算、自动求导与分布式执行能力，是 AI Infra 中训练 runtime / framework 侧的重要节点。
+提供 tensor 计算、自动求导与分布式执行能力，是 AI Infra 中训练 runtime / framework 侧的重要节点。[S1]
 
 ## 边界
 
@@ -49,4 +49,4 @@ OneFlow 不是 LLM serving control plane；在本仓库中主要用于补足训�
 
 ## 直接来源
 
-- https://github.com/Oneflow-Inc/oneflow
+- [S1] https://github.com/Oneflow-Inc/oneflow
