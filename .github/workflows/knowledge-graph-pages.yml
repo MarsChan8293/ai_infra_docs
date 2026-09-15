@@ -140,11 +140,46 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Check GitHub Pages enablement
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          status="$(curl --silent --show-error \
+            --output /tmp/pages.json \
+            --write-out '%{http_code}' \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/pages")"
+
+          if [ "$status" = "200" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "$status" = "404" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=GitHub Pages setup required::Open Settings > Pages and set Source to GitHub Actions once, then run this workflow again."
+            exit 0
+          fi
+
+          cat /tmp/pages.json
+          echo "Unexpected GitHub Pages API status: $status"
+          exit 1
+
       - name: Configure GitHub Pages
+        if: steps.pages.outputs.enabled == 'true'
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Deploy to GitHub Pages
+        if: steps.pages.outputs.enabled == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Pages setup required
+        if: steps.pages.outputs.enabled != 'true'
+        run: |
+          echo "Knowledge graph build is ready."
+          echo "Enable GitHub Pages once at Settings > Pages > Build and deployment > Source > GitHub Actions."
+          echo "Then use Actions > Build and Deploy AI Infra Knowledge Graph > Run workflow."
