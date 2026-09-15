@@ -3,7 +3,7 @@ schema_version: software-v0.1
 name: Mooncake
 object_type: project
 category: kv-cache
-organization: kvcache-ai
+organization: KVCache.AI / Moonshot ecosystem
 status: active
 repo: https://github.com/kvcache-ai/Mooncake
 docs: https://github.com/kvcache-ai/Mooncake
@@ -24,7 +24,7 @@ backends:
   - cambricon
   - hygon
   - iluvatar
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # Mooncake
 
@@ -32,12 +32,12 @@ updated: 2026-09-15
 
 ## 核心能力
 
-| 能力 | 说明 |
-|---|---|
-| Transfer Engine | 在 GPU、DRAM 等位置间搬运大块数据 |
-| Mooncake Store | 提供分布式 KV Cache 存储能力 |
-| RDMA / GPUDirect | 面向高吞吐、低拷贝的数据路径 |
-| Serving Integration | 与主流 LLM serving 引擎衔接 |
+| 能力 | 说明 | 证据 |
+|---|---|---|
+| Transfer Engine | 在 GPU、DRAM 等位置间搬运大块数据 | [S1] |
+| Mooncake Store | 提供分布式 KV Cache 存储能力 | [S1] |
+| RDMA / GPUDirect | 面向高吞吐、低拷贝的数据路径 | [S1] |
+| Serving Integration | 与主流 LLM serving 引擎衔接 | [S1] |
 
 ## 边界
 
@@ -51,7 +51,6 @@ Mooncake 的主战场是 KV 与数据面，不负责完整模型 forward 或通�
 
 - KV 管理：[[software/projects/lmcache|LMCache]]。
 - 数据传输抽象：[[software/projects/nixl|NIXL]]。
-- 更通用的 AI 存储数据面：[[software/projects/3fs|3FS]]。
 
 ## 版本快照
 
@@ -59,4 +58,4 @@ Mooncake 的主战场是 KV 与数据面，不负责完整模型 forward 或通�
 
 ## 直接来源
 
-- https://github.com/kvcache-ai/Mooncake
+- [S1] https://github.com/kvcache-ai/Mooncake

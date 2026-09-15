@@ -19,9 +19,13 @@ capabilities:
 integrations:
   - vllm
   - sglang
+relations:
+  backend-for:
+    - vllm
+    - sglang
 backends:
   - nvidia
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # FlashInfer
 
@@ -29,12 +33,12 @@ updated: 2026-09-15
 
 ## 核心能力
 
-| 能力 | 说明 |
-|---|---|
-| Attention Kernels | 提供 FlashAttention、Paged Attention 等高性能实现 |
-| Serving-oriented | 围绕动态 batch、KV layout 等 serving 场景优化 |
-| Kernel Generation | 支持 JIT / 预编译 kernel 管理 |
-| LoRA 等算子 | 覆盖多类 LLM serving 核心算子 |
+| 能力 | 说明 | 证据 |
+|---|---|---|
+| Attention Kernels | 提供 FlashAttention、Paged Attention 等高性能实现 | [S1] |
+| Serving-oriented | 围绕动态 batch、KV layout 等 serving 场景优化 | [S1] |
+| Kernel Generation | 支持 JIT / 预编译 kernel 管理 | [S1] |
+| LoRA 等算子 | 覆盖多类 LLM serving 核心算子 | [S1] |
 
 ## 边界
 
@@ -46,9 +50,8 @@ FlashInfer 负责 GPU kernel 与算子层，不承担完整请求服务、分布
 
 ## 关联项目
 
-- Attention：[[software/projects/flashattention|FlashAttention]]、[[software/projects/flashmla|FlashMLA]]、[[software/projects/flagattention|FlagAttention]]。
-- Kernel / 编译：[[software/projects/triton|Triton]]、[[software/projects/cutlass|CUTLASS]]、[[software/projects/tilelang|TileLang]]、[[software/projects/flaggems|FlagGems]]。
-- 性能研究：[[software/projects/tokenspeed|TokenSpeed]]。
+- Attention：[[software/projects/flashattention|FlashAttention]]。
+- Kernel / 编译：[[software/projects/triton|Triton]]、[[software/projects/cutlass|CUTLASS]]。
 
 ## 版本快照
 
@@ -56,5 +59,5 @@ FlashInfer 负责 GPU kernel 与算子层，不承担完整请求服务、分布
 
 ## 直接来源
 
-- https://docs.flashinfer.ai/
-- https://github.com/flashinfer-ai/flashinfer
+- [S1] https://docs.flashinfer.ai/
+- [S2] https://github.com/flashinfer-ai/flashinfer

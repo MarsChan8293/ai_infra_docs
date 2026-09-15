@@ -2,7 +2,7 @@
 schema_version: software-v0.1
 name: 3FS
 object_type: project
-category: other
+category: storage
 organization: deepseek-ai
 status: active
 repo: https://github.com/deepseek-ai/3FS
@@ -17,7 +17,7 @@ capabilities:
 integrations: []
 backends:
   - linux
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # 3FS
 
@@ -25,7 +25,7 @@ updated: 2026-09-15
 
 ## 核心能力
 
-面向 AI/HPC 数据路径提供高吞吐、分布式存储能力，是训练数据、checkpoint 与基础设施数据面值得关注的节点。
+面向 AI/HPC 数据路径提供高吞吐、分布式存储能力，是训练数据、checkpoint 与基础设施数据面值得关注的节点。[S1]
 
 ## 边界
 
@@ -47,4 +47,4 @@ updated: 2026-09-15
 
 ## 直接来源
 
-- https://github.com/deepseek-ai/3FS
+- [S1] https://github.com/deepseek-ai/3FS

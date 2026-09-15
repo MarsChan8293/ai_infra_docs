@@ -2,7 +2,7 @@
 schema_version: software-v0.1
 name: FlagRelease
 object_type: project
-category: other
+category: ecosystem
 organization: flagos-ai
 status: active
 repo: https://github.com/flagos-ai/FlagRelease
@@ -16,7 +16,7 @@ capabilities:
   - ecosystem-packaging
 integrations: []
 backends: []
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # FlagRelease
 
@@ -24,7 +24,7 @@ updated: 2026-09-15
 
 ## 核心能力
 
-用于组织异构 AI 软件栈的发布与组合，帮助观察生态中不同组件如何形成可交付的软件版本。
+用于组织异构 AI 软件栈的发布与组合，帮助观察生态中不同组件如何形成可交付的软件版本。[S1]
 
 ## 边界
 
@@ -46,4 +46,4 @@ FlagRelease 本身不是执行 runtime 或 kernel。
 
 ## 直接来源
 
-- https://github.com/flagos-ai/FlagRelease
+- [S1] https://github.com/flagos-ai/FlagRelease

@@ -2,7 +2,7 @@
 schema_version: software-v0.1
 name: Colossal-AI
 object_type: project
-category: other
+category: training
 organization: hpcaitech
 status: active
 repo: https://github.com/hpcaitech/ColossalAI
@@ -18,7 +18,7 @@ capabilities:
 integrations: []
 backends:
   - nvidia
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # Colossal-AI
 
@@ -26,7 +26,7 @@ updated: 2026-09-15
 
 ## 核心能力
 
-覆盖分布式训练、并行策略、内存优化等，是当前软件图谱从推理向训练侧延伸的重要入口。
+覆盖分布式训练、并行策略、内存优化等，是当前软件图谱从推理向训练侧延伸的重要入口。[S1]
 
 ## 边界
 
@@ -48,4 +48,4 @@ Colossal-AI 主线是训练与大模型系统，不应和 [[software/projects/vl
 
 ## 直接来源
 
-- https://github.com/hpcaitech/ColossalAI
+- [S1] https://github.com/hpcaitech/ColossalAI

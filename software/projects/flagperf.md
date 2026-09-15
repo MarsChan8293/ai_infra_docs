@@ -2,7 +2,7 @@
 schema_version: software-v0.1
 name: FlagPerf
 object_type: project
-category: other
+category: benchmark
 organization: flagos-ai
 status: active
 repo: https://github.com/flagos-ai/FlagPerf
@@ -16,7 +16,7 @@ capabilities:
   - heterogeneous-benchmark
 integrations: []
 backends: []
-updated: 2026-09-15
+updated: 2026-09-16
 ---
 # FlagPerf
 
@@ -24,7 +24,7 @@ updated: 2026-09-15
 
 ## 核心能力
 
-提供跨软件栈、跨硬件的性能评测入口，适合把理论能力和实际 workload 表现连接起来。
+提供跨软件栈、跨硬件的性能评测入口，适合把理论能力和实际 workload 表现连接起来。[S1]
 
 ## 边界
 
@@ -47,4 +47,4 @@ FlagPerf 是 benchmark/评测项目，不负责模型执行或资源调度。
 
 ## 直接来源
 
-- https://github.com/flagos-ai/FlagPerf
+- [S1] https://github.com/flagos-ai/FlagPerf
