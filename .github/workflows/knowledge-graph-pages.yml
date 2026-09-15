@@ -1,0 +1,148 @@
+name: Build and Deploy AI Infra Knowledge Graph
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ai-infra-knowledge-graph-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  QUARTZ_DIR: /tmp/quartz
+  SITE_BASE_URL: MarsChan8293.github.io/ai_infra_docs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Build knowledge graph artifacts
+        run: python3 scripts/build-knowledge-graph.py --root . --output generated
+
+      - name: Upload graph audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: knowledge-graph-${{ github.sha }}
+          path: generated
+          if-no-files-found: error
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Fetch Quartz v5
+        run: |
+          git clone --depth 1 --branch v5 https://github.com/jackyzha0/quartz.git "$QUARTZ_DIR"
+          cd "$QUARTZ_DIR"
+          npm ci
+
+      - name: Stage AI Infra content
+        run: |
+          rm -rf "$QUARTZ_DIR/content"
+          mkdir -p "$QUARTZ_DIR/content/generated"
+
+          cp 00-ai-infra-map.md "$QUARTZ_DIR/content/index.md"
+          cp README.md "$QUARTZ_DIR/content/README.md"
+          cp AGENTS.md "$QUARTZ_DIR/content/AGENTS.md"
+          cp -R chip "$QUARTZ_DIR/content/chip"
+          cp -R software "$QUARTZ_DIR/content/software"
+          cp -R models "$QUARTZ_DIR/content/models"
+          cp generated/graph-summary.md "$QUARTZ_DIR/content/generated/graph-summary.md"
+
+          echo "Staged Markdown files: $(find "$QUARTZ_DIR/content" -type f -name '*.md' | wc -l)"
+
+      - name: Configure Quartz
+        working-directory: ${{ env.QUARTZ_DIR }}
+        run: |
+          cp quartz.config.default.yaml quartz.config.yaml
+          node --input-type=module <<'NODE'
+          import fs from "node:fs"
+          import YAML from "yaml"
+
+          const path = "quartz.config.yaml"
+          const config = YAML.parse(fs.readFileSync(path, "utf8"))
+
+          config.configuration.pageTitle = "AI Infra Knowledge Graph"
+          config.configuration.pageTitleSuffix = ""
+          config.configuration.locale = "zh-CN"
+          config.configuration.baseUrl = process.env.SITE_BASE_URL
+
+          for (const plugin of config.plugins ?? []) {
+            const source = String(plugin.source ?? "")
+            if (source.includes("footer")) {
+              plugin.options ??= {}
+              plugin.options.links = {
+                "知识图谱探索器": "https://MarsChan8293.github.io/ai_infra_docs/graph-explorer/",
+                GitHub: "https://github.com/MarsChan8293/ai_infra_docs",
+              }
+            }
+            if (source.includes("graph")) {
+              plugin.options ??= {}
+              plugin.options.localGraph = {
+                ...(plugin.options.localGraph ?? {}),
+                depth: 1,
+                scale: 1.1,
+                focusOnHover: true,
+              }
+              plugin.options.globalGraph = {
+                ...(plugin.options.globalGraph ?? {}),
+                depth: 2,
+                scale: 0.8,
+                focusOnHover: true,
+                enableRadial: true,
+              }
+            }
+            if (source.includes("og-image") || source.includes("cname")) {
+              plugin.enabled = false
+            }
+          }
+
+          fs.writeFileSync(path, YAML.stringify(config))
+          NODE
+
+      - name: Build Quartz site
+        working-directory: ${{ env.QUARTZ_DIR }}
+        run: npx quartz build
+
+      - name: Build focused graph explorer
+        run: |
+          python3 scripts/build-graph-explorer.py \
+            --generated generated \
+            --output "$QUARTZ_DIR/public/graph-explorer" \
+            --base-path "/ai_infra_docs"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ env.QUARTZ_DIR }}/public
+
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
