@@ -7,38 +7,40 @@ updated: 2026-09-15
 ---
 # 异构推理
 
-> 不把不同 GPU/NPU 伪装成同一种设备，而是保留硬件、软件和 SLA 差异后再做选择。
+> 保留不同硬件、runtime、通信和模型的真实差异，再由控制面根据 workload 与 SLA 做选择。
 
 ## 问题
 
-不同加速器在显存/HBM、互联、量化、算子覆盖、推理引擎兼容性和成本上差异明显。只用理论 FLOPS 选择硬件容易得到错误结论。
+NVIDIA、AMD、Ascend、CPU/边缘设备在算子支持、显存、带宽、互联、量化、通信和软件成熟度上都不同，不能只用理论 FLOPS 做选择。
 
 ## 核心机制
 
 ```text
-模型 / 请求画像
-  + Benchmark
-  + SLA / 成本目标
+模型 / Workload / SLA
         ↓
-控制面
-  ├── 选择推理引擎
-  ├── 请求级路由
-  ├── Pod 级 placement
-  └── 设备资源分配
+Inference Engine
+  [[software/projects/vllm|vLLM]] / [[software/projects/sglang|SGLang]] / [[software/projects/llama-cpp|llama.cpp]]
         ↓
-不同 GPU / NPU 资源池
+Runtime / Communication
+  [[software/projects/flashinfer|FlashInfer]] / [[software/projects/triton|Triton]]
+  [[software/projects/nccl|NCCL]] / [[software/projects/rccl|RCCL]]
+        ↓
+Resource / Placement
+  [[software/projects/kai-scheduler|KAI-Scheduler]] / [[software/projects/kubernetes-dra|DRA]] / [[software/projects/hami|HAMi]]
+        ↓
+不同 GPU / NPU / CPU
 ```
 
 ## 判断要点
 
-- 硬件选择应基于真实 workload benchmark，而不是单一峰值指标。
-- P/D 分离可以让不同阶段选择不同资源，但 KV 格式和传输兼容性会成为新约束。
-- 跨厂商透明 KV 复用通常比同硬件池内复用更困难。
-- 调度还必须结合 [[software/concepts/topology-aware-scheduling|拓扑感知调度]]。
+- 记录功能支持度，而不仅是“能启动”。
+- Benchmark 必须绑定 engine、版本、模型、量化和硬件。
+- P/D 分离允许不同阶段使用不同资源池，但 KV 格式和数据路径可能成为新约束。
+- 同一个 API 并不意味着不同 backend 性能和功能等价。
 
 ## 相关项目与概念
 
-- [[software/projects/vllm|vLLM]]
-- [[software/projects/llm-d|llm-d]]
+- [[software/concepts/pd-disaggregation|Prefill / Decode 分离]]
 - [[software/concepts/accelerator-resource-model|加速器资源模型]]
-- [[chip/00-project-index|芯片与硬件资料库]]
+- [[software/concepts/topology-aware-scheduling|拓扑感知调度]]
+- [[chip/00-project-index|芯片与基础设施资料库]]

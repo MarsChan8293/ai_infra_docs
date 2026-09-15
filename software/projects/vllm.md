@@ -21,8 +21,13 @@ capabilities:
   - expert-parallel
 integrations:
   - lmcache
-  - nixl
   - llm-d
+  - nvidia-dynamo
+  - kserve
+  - ray-serve
+  - mooncake
+  - flashinfer
+  - bentoml
 backends:
   - nvidia
   - amd
@@ -39,31 +44,34 @@ updated: 2026-09-15
 | 能力 | 说明 |
 |---|---|
 | Continuous Batching | 动态组织活跃请求，提高设备利用率 |
-| Paged KV Cache | 分页管理 KV，降低连续显存预留和碎片问题 |
-| Prefix Caching | 对重复前缀复用已生成 KV |
-| Speculative Decoding | 支持推测式解码路径 |
-| TP / PP / EP | 提供多 GPU / 多 worker 的模型并行能力 |
+| Paged KV Cache | 分页管理 KV，降低连续显存预留与碎片 |
+| Prefix Caching | 复用重复前缀对应的 KV |
+| 多并行策略 | 支持 TP、PP、EP 等模型并行路径 |
 
 ## 边界
 
-vLLM 负责模型执行、请求批处理、活跃 KV 管理和模型并行。它不是 Kubernetes 集群调度器，也不等价于完整的跨实例 serving 控制面。
-
-Paged KV、Continuous Batching 等通用机制不在本页展开，相关原理见 [[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]] 与 [[software/concepts/llm-serving-stack|LLM Serving 软件栈]]。
+vLLM 负责模型执行、请求批处理、活跃 KV 管理和模型并行；不负责 Kubernetes 集群资源治理，也不等价于完整的跨实例 serving 控制面。
 
 ## 集成与后端
 
-- LMCache：外部 KV Cache、复用与迁移。
-- NIXL：高性能数据 / KV 传输路径之一。
-- llm-d：在 vLLM worker 之上做请求路由与分布式编排。
-- 已确认存在 NVIDIA、AMD、Intel、Ascend 等支持路径；不同后端的功能和性能不应默认等价。
+- [[software/projects/lmcache|LMCache]]：外部 KV Cache、复用与迁移。
+- [[software/projects/llm-d|llm-d]]：请求路由与分布式推理编排。
+- [[software/projects/nvidia-dynamo|NVIDIA Dynamo]]：分布式推理控制面。
+- [[software/projects/kserve|KServe]]、[[software/projects/ray-serve|Ray Serve]]、[[software/projects/bentoml|BentoML]]：上层模型服务与部署入口。
+- [[software/projects/mooncake|Mooncake]]：分布式 KV / 数据传输路径。
+- [[software/projects/flashinfer|FlashInfer]]：高性能 serving kernel。
+
+## 关联项目
+
+- 同层引擎：[[software/projects/sglang|SGLang]]、[[software/projects/tensorrt-llm|TensorRT-LLM]]、[[software/projects/llama-cpp|llama.cpp]]。
+- Kernel / 编译：[[software/projects/triton|Triton]]、[[software/projects/flashattention|FlashAttention]]。
+- 通信：[[software/projects/nccl|NCCL]]、[[software/projects/rccl|RCCL]]。
 
 ## 版本快照
 
-本页未绑定单一 release 或 commit，因此 `snapshot.version` 与 `snapshot.commit` 保持 `null`。能力判断以 2026-09-15 前现有官方文档和仓库资料为快照，后续版本变化应更新 frontmatter。
+本页不绑定单一 release 或 commit；能力判断以 2026-09-15 前官方资料为快照。
 
 ## 直接来源
 
 - https://docs.vllm.ai/
 - https://github.com/vllm-project/vllm
-- https://docs.lmcache.ai/
-- https://llm-d.ai/

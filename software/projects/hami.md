@@ -12,14 +12,14 @@ snapshot:
   commit: null
   as_of: 2026-09-15
 capabilities:
-  - accelerator-sharing
-  - device-isolation
+  - gpu-sharing
+  - memory-isolation
   - device-plugin
+  - heterogeneous-accelerators
   - topology-aware-allocation
-  - heterogeneous-device-management
 integrations:
-  - kubernetes-dra
   - kai-scheduler
+  - kubernetes-dra
 backends:
   - nvidia
   - ascend
@@ -38,31 +38,30 @@ updated: 2026-09-15
 
 | 能力 | 说明 |
 |---|---|
-| Accelerator Sharing | 允许多个 workload 更细粒度共享设备 |
-| Device Isolation | 在具体后端能力允许的范围内限制显存 / 算力使用 |
-| Device Plugin | 向 Kubernetes 暴露和分配设备 |
-| Topology-aware Allocation | 在分配时考虑设备与节点拓扑 |
-| Heterogeneous Devices | 面向多个 GPU / NPU 厂商提供管理路径 |
+| GPU/NPU Sharing | 支持比整卡更细粒度的资源分配 |
+| Isolation | 对部分后端提供显存/算力约束 |
+| Device Resource | 参与设备发现、分配和容器注入 |
+| 异构设备 | 覆盖多厂商 GPU/NPU 路径 |
 
 ## 边界
 
-HAMi 解决“设备如何暴露、共享、隔离、分配给容器”，不理解 token、KV Cache 或 P/D 请求流。共享调度与运行时硬隔离也不是同一件事，隔离强度必须按具体后端验证。
-
-资源模型见 [[software/concepts/accelerator-resource-model|加速器资源模型]]。
+HAMi 解决设备资源与共享，不理解 token、KV Cache 或 LLM request routing。
 
 ## 集成与后端
 
-- Kubernetes DRA：动态资源声明与分配模型。
-- KAI-Scheduler：上层队列、Gang、抢占与 placement。
-- 当前资料记录 NVIDIA、Ascend、Cambricon、Hygon、Iluvatar、MetaX、Moore Threads 等支持路径；不同后端能力粒度不应默认相同。
+- [[software/projects/kai-scheduler|KAI-Scheduler]]：上层 AI workload 调度组合路径。
+- [[software/projects/kubernetes-dra|Kubernetes DRA]]：通过 DRA 路线表达和分配复杂设备资源。
+
+## 关联项目
+
+- NVIDIA Device Plugin 路线：[[software/projects/nvidia-k8s-device-plugin|NVIDIA k8s-device-plugin]]。
+- NVIDIA 节点软件生命周期：[[software/projects/nvidia-gpu-operator|NVIDIA GPU Operator]]。
 
 ## 版本快照
 
-当前页未绑定 release 或 commit。后端列表和能力以 2026-09-15 的现有项目资料为快照，后续应随官方支持矩阵更新。
+本页不绑定单一 release；能力判断以 2026-09-15 前官方资料为快照。
 
 ## 直接来源
 
-- https://github.com/Project-HAMi/HAMi
 - https://project-hami.io/
-- https://github.com/Project-HAMi/HAMi-dra
-- https://github.com/Project-HAMi/KAI-resource-isolator
+- https://github.com/Project-HAMi/HAMi

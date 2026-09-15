@@ -1,37 +1,44 @@
 ---
 schema_version: software-v0.1
-name: Prefill / Decode 分离
+name: Prefill / Decode Disaggregation
 object_type: concept
 category: serving-architecture
 updated: 2026-09-15
 ---
 # Prefill / Decode 分离
 
-> 将 Prefill 与 Decode 放到不同 worker 或资源池，以分别优化两种不同资源特征的阶段。
+> 把 Prefill 与 Decode 放到不同 worker 或资源池，使两个阶段可以独立调度和扩缩容。
 
 ## 问题
 
-Prefill 通常更偏计算密集，Decode 通常更依赖 HBM 带宽和低逐 token 延迟。混在同一资源池时，两类请求容易互相干扰。
+Prefill 更偏计算密集，Decode 更偏 KV/HBM 带宽与逐 token 延迟。两阶段混跑时容易互相干扰，但拆分后又引入 KV 搬运与网络成本。
 
 ## 核心机制
 
 ```text
-Request
-  → [[software/projects/llm-d|llm-d]] 选择 P / D worker
-  → [[software/projects/vllm|vLLM]] Prefill 生成 KV
-  → [[software/projects/lmcache|LMCache]] / transport 搬运 KV
-  → Decode worker 继续生成 token
+Router / Orchestrator
+  [[software/projects/llm-d|llm-d]] / [[software/projects/nvidia-dynamo|Dynamo]]
+        ↓
+Prefill Engine
+  [[software/projects/vllm|vLLM]] / [[software/projects/sglang|SGLang]] / [[software/projects/tensorrt-llm|TensorRT-LLM]]
+        ↓
+KV State / Transfer
+  [[software/projects/lmcache|LMCache]] / [[software/projects/mooncake|Mooncake]] / [[software/projects/nixl|NIXL]]
+        ↓
+Decode Engine
 ```
+
+Kubernetes 部署侧还可能由 [[software/projects/kserve|KServe]] 表达分离式 workload，底层 placement 由 [[software/projects/kai-scheduler|KAI-Scheduler]] 等系统完成。
 
 ## 判断要点
 
-- KV 搬运成本必须低于重新计算或混跑造成的损失。
-- 同时观察 TTFT、TPOT、KV 大小、网络带宽、排队和失败恢复。
-- worker 如何放置是集群调度问题，请结合 [[software/concepts/topology-aware-scheduling|拓扑感知调度]]。
+- KV 传输时间必须小于拆分带来的计算/排队收益。
+- TTFT 与 TPOT 要分别观察。
+- Prefill/Decode 池之间的 NIC、RDMA、NUMA 与 GPU 拓扑是一级变量。
+- 故障恢复、rollout 与 KV 一致性会增加控制面复杂度。
 
 ## 相关项目与概念
 
-- [[software/projects/vllm|vLLM]]
-- [[software/projects/lmcache|LMCache]]
-- [[software/projects/llm-d|llm-d]]
 - [[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]
+- [[software/concepts/topology-aware-scheduling|拓扑感知调度]]
+- [[software/concepts/llm-serving-stack|LLM Serving 软件栈]]

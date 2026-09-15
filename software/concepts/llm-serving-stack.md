@@ -7,35 +7,40 @@ updated: 2026-09-15
 ---
 # LLM Serving 软件栈
 
-> 把请求路由、模型执行、KV、集群调度和设备资源管理分层观察。
+> 把 API/Gateway、请求编排、模型执行、KV、通信、调度和设备资源分层观察。
 
 ## 问题
 
-LLM serving 同时存在 request 级、worker 级、Pod/Job 级和设备级控制。如果把这些职责都叫“调度”，项目边界会迅速混乱。
+LLM serving 同时存在 API 路由、request 级路由、模型 worker 执行、KV 数据路径、Pod/Job placement 和设备分配。如果都叫“调度”，项目边界会迅速混乱。
 
 ## 核心机制
 
 ```text
-Request / API
-  ↓
-[[software/projects/llm-d|llm-d]]          请求级路由与编排
-  ↓
-[[software/projects/vllm|vLLM]]           模型执行
-  ↕
-[[software/projects/lmcache|LMCache]]      KV 外部生命周期
-  ↓
-[[software/projects/kai-scheduler|KAI]]    Pod / Job placement
-  ↓
-[[software/projects/kubernetes-dra|DRA]] / [[software/projects/hami|HAMi]]
-  ↓
-GPU / NPU / NIC / Memory
+API / Gateway
+  [[software/projects/litellm|LiteLLM]] / [[software/projects/gateway-api-inference-extension|Gateway API Inference Extension]]
+        ↓
+Distributed Serving
+  [[software/projects/llm-d|llm-d]] / [[software/projects/nvidia-dynamo|Dynamo]] / [[software/projects/kserve|KServe]] / [[software/projects/ray-serve|Ray Serve]]
+        ↓
+Inference Engine
+  [[software/projects/vllm|vLLM]] / [[software/projects/sglang|SGLang]] / [[software/projects/tensorrt-llm|TensorRT-LLM]] / [[software/projects/llama-cpp|llama.cpp]]
+        ↕
+KV / Data
+  [[software/projects/lmcache|LMCache]] / [[software/projects/mooncake|Mooncake]] / [[software/projects/nixl|NIXL]]
+        ↓
+Kernel / Communication
+  [[software/projects/flashinfer|FlashInfer]] / [[software/projects/triton|Triton]] / [[software/projects/nccl|NCCL]] / [[software/projects/deepep|DeepEP]]
+        ↓
+Scheduler / Device
+  [[software/projects/kai-scheduler|KAI]] / [[software/projects/volcano|Volcano]] / [[software/projects/kueue|Kueue]]
+  [[software/projects/kubernetes-dra|DRA]] / [[software/projects/hami|HAMi]] / [[software/projects/nvidia-gpu-operator|GPU Operator]]
 ```
 
 ## 判断要点
 
-- request routing 与 Pod placement 是两级不同的调度。
-- KV 状态跨越执行、缓存和路由层。
-- 项目可以跨层实现能力，但仍应有一个主定位。
+- API routing、request routing 与 Pod placement 是不同层级。
+- KV 状态横跨执行、缓存、传输和路由。
+- Kernel、集合通信和设备资源层会直接影响上层 serving 性能，但职责不能混写。
 
 ## 相关项目与概念
 
