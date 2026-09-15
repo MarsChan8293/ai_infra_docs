@@ -1,24 +1,70 @@
 ---
-title: "AI Infra Software Project Index"
-tags: [moc, software]
-updated: 2026-09-15
+title: Software Project Index
+aliases:
+  - AI Infra Software Index
+  - 软件项目索引
+tags:
+  - moc
+  - software
+  - ai-infra
 ---
-# AI Infra Software Project Index
+# Software Project Index
 
-软件目录采用最小模型：**Project + Concept**。
+当前 Software V0.1 收录 30 个项目。项目事实统一位于 `software/projects/`；跨项目稳定机制位于 `software/concepts/`。
 
-项目页回答“这个软件是什么、当前调查快照是什么、核心能力是什么、和谁集成”；概念页回答“这个机制为什么存在、如何工作”。
+## Inference Engine
 
-## Projects
+- [[software/projects/vllm|vLLM]]
+- [[software/projects/sglang|SGLang]]
+- [[software/projects/tensorrt-llm|TensorRT-LLM]]
+- [[software/projects/llama-cpp|llama.cpp]]
 
-| 项目 | 主分类 | 一句话定位 |
-|---|---|---|
-| [[software/projects/vllm|vLLM]] | inference-engine | LLM 推理执行与 serving runtime |
-| [[software/projects/lmcache|LMCache]] | kv-cache | 外部 KV Cache 管理与迁移 |
-| [[software/projects/llm-d|llm-d]] | distributed-serving | Kubernetes 原生分布式 LLM serving 编排 |
-| [[software/projects/kai-scheduler|KAI-Scheduler]] | scheduler | 面向 AI/GPU workload 的 Kubernetes 调度器 |
-| [[software/projects/hami|HAMi]] | device-resource | 异构加速器共享、隔离与设备管理 |
-| [[software/projects/kubernetes-dra|Kubernetes DRA]] | device-resource | Kubernetes 动态设备资源声明与分配框架 |
+## Distributed Serving / Gateway
+
+- [[software/projects/llm-d|llm-d]]
+- [[software/projects/nvidia-dynamo|NVIDIA Dynamo]]
+- [[software/projects/kserve|KServe]]
+- [[software/projects/ray-serve|Ray Serve]]
+- [[software/projects/gateway-api-inference-extension|Gateway API Inference Extension]]
+- [[software/projects/bentoml|BentoML]]
+- [[software/projects/litellm|LiteLLM]]
+
+## KV Cache
+
+- [[software/projects/lmcache|LMCache]]
+- [[software/projects/mooncake|Mooncake]]
+
+## Communication
+
+- [[software/projects/nixl|NIXL]]
+- [[software/projects/nccl|NCCL]]
+- [[software/projects/rccl|RCCL]]
+- [[software/projects/deepep|DeepEP]]
+- [[software/projects/ucx|UCX]]
+
+## Runtime / Kernel
+
+- [[software/projects/flashinfer|FlashInfer]]
+- [[software/projects/flashattention|FlashAttention]]
+- [[software/projects/cutlass|CUTLASS]]
+- [[software/projects/deepgemm|DeepGEMM]]
+
+## Compiler
+
+- [[software/projects/triton|Triton]]
+
+## Scheduler
+
+- [[software/projects/kai-scheduler|KAI-Scheduler]]
+- [[software/projects/volcano|Volcano]]
+- [[software/projects/kueue|Kueue]]
+
+## Device Resource
+
+- [[software/projects/hami|HAMi]]
+- [[software/projects/kubernetes-dra|Kubernetes DRA]]
+- [[software/projects/nvidia-gpu-operator|NVIDIA GPU Operator]]
+- [[software/projects/nvidia-k8s-device-plugin|NVIDIA k8s-device-plugin]]
 
 ## Concepts
 
@@ -29,13 +75,4 @@ updated: 2026-09-15
 - [[software/concepts/accelerator-resource-model|加速器资源模型]]
 - [[software/concepts/heterogeneous-inference|异构推理]]
 
-## 维护规则
-
-- 一个项目一页，不按“它属于哪一层”复制多份。
-- `snapshot.as_of` 必填；未固定版本时 `version`、`commit` 保持 `null`。
-- `capabilities` 只写当前调查已确认的能力，不记录营销形容词。
-- `integrations` 只表示存在明确集成关系，不暗示性能或成熟度一致。
-- `backends` 表示存在已确认支持路径，不代表不同后端功能完全等价。
-- 通用原理只写入 `concepts/`，项目页只保留必要边界说明。
-
-硬件入口：[[chip/00-project-index|AI 芯片与硬件资料库]]。
+维护约束见 [[software/SCHEMA|Software Schema V0.1]]。

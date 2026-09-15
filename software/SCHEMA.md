@@ -66,9 +66,12 @@ Concept 不记录版本、后端和 capability matrix，只解释稳定机制。
 ## 核心能力
 ## 边界
 ## 集成与后端
+## 关联项目
 ## 版本快照
 ## 直接来源
 ```
+
+`集成与后端` 只写可确认的集成事实；`关联项目` 可以放同层对照、上下游或强相关项目，但不能把“相关”偷换成“已集成”。
 
 ## Concept Markdown 固定结构
 
@@ -91,3 +94,6 @@ Concept 不记录版本、后端和 capability matrix，只解释稳定机制。
 5. `integrations` 只说明存在集成，不自动表示稳定、原生或高性能。
 6. `backends` 只说明存在支持路径，不自动表示功能对齐或生产成熟。
 7. 项目事实写 `projects/`，跨项目原理写 `concepts/`，避免重复维护。
+8. 仓库内软件引用必须使用 canonical Wiki Link：`[[software/projects/<slug>|Name]]`；概念引用使用 `[[software/concepts/<slug>|Name]]`。
+9. 双链规则：若 A 项目页在 `集成与后端` 或 `关联项目` 中链接仓库内 B 项目，则 B 项目页也必须保留指向 A 的反向 Wiki Link。frontmatter 的 `integrations` 仍按事实语义填写，不为了对称而伪造集成。
+10. 不为了 Graph View 制造无意义的全互联；只保留能说明架构关系的边。
