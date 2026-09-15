@@ -59,6 +59,12 @@ def parse_frontmatter(text: str, path: str, errors: list[str]) -> dict:
     return data
 
 
+def link_scan_text(text: str) -> str:
+    text = re.sub(r"```.*?```", "", text, flags=re.S)
+    text = re.sub(r"`[^`\n]*`", "", text)
+    return text
+
+
 def strip_md(value: str) -> str:
     value = value.strip().replace("\\", "/")
     value = value.split("#", 1)[0].strip()
@@ -238,20 +244,19 @@ def main() -> int:
     incoming = defaultdict(int)
     unresolved: list[dict] = []
     for source_id, text in texts.items():
-        for match in WIKILINK_RE.finditer(text):
+        scan = link_scan_text(text)
+        for match in WIKILINK_RE.finditer(scan):
             raw = strip_md(match.group(1).split("|", 1)[0])
             if not raw:
                 continue
-            candidates: list[str] = []
             if raw in ids:
-                candidates.append(raw)
+                incoming[raw] += 1
+                continue
             relative = strip_md(str(pathlib.PurePosixPath(source_id).parent / raw))
-            if relative in ids and relative not in candidates:
-                candidates.append(relative)
-            basename = pathlib.PurePosixPath(raw).name.casefold()
-            for item in by_basename.get(basename, []):
-                if item not in candidates:
-                    candidates.append(item)
+            if relative in ids:
+                incoming[relative] += 1
+                continue
+            candidates = list(dict.fromkeys(by_basename.get(pathlib.PurePosixPath(raw).name.casefold(), [])))
             if len(candidates) == 1:
                 incoming[candidates[0]] += 1
             elif source_id.startswith("software/"):
