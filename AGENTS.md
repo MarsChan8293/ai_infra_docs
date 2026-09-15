@@ -47,7 +47,21 @@
 
 推荐的软件概念骨架：[[software/concepts/llm-serving-stack|LLM Serving 软件栈]]、[[software/concepts/pd-disaggregation|Prefill / Decode 分离]]、[[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]、[[software/concepts/topology-aware-scheduling|拓扑感知调度]]、[[software/concepts/accelerator-resource-model|加速器资源模型]]、[[software/concepts/heterogeneous-inference|异构推理]]。
 
+## 在线知识图谱与派生数据
+
+本仓库参考 `ai_infra_relationship` 的知识图谱发布方式，但图谱实体改为 AI Infra 文档本身，而不是人物关系。Markdown 是唯一事实源，在线图谱是从 Markdown 自动派生的视图。
+
+- `scripts/build-knowledge-graph.py` 扫描仓库 Markdown，将文档建模为节点，将 Wiki Link / 本地 Markdown Link 建模为边，并生成 `generated/nodes.json`、`generated/edges.json`、`generated/metrics.json`、`generated/unresolved-links.json` 和 `generated/graph-summary.md`。
+- `scripts/build-graph-explorer.py` 根据上述派生数据生成一个独立的关系探索器，支持 1-hop / 2-hop 邻域、领域/节点类型/关系类型筛选和最短路径。
+- `.github/workflows/knowledge-graph-pages.yml` 在 GitHub Actions 中运行图谱构建，使用 Quartz 发布知识库，并把关系探索器挂到 `/graph-explorer/`。
+- `generated/` 下的图谱文件是派生物，不作为人工编辑入口。需要改变关系时，应修改 Markdown、frontmatter 或内部链接，然后重新生成。
+- 关系分类只能从真实文档边派生，不能为了图形更漂亮虚构边。当前允许的主要关系视图包括 `navigation`、`vendor-chip`、`concept-link`、`cross-domain` 和普通 `wikilink`。
+- 新增顶级领域目录时，要同步检查 `build-knowledge-graph.py` 的 domain/kind 分类逻辑，并确认 Quartz workflow 会把该目录复制到站点内容目录。
+- 在线图谱必须和 Obsidian 图谱保持同一事实源。禁止单独在前端 JSON 中手工添加只存在于网站、不存在于 Markdown 的实体关系。
+- 本地验收至少运行 `python3 scripts/build-knowledge-graph.py --root . --output generated`，检查 unresolved links、isolated nodes 和 graph summary 是否出现异常跳变。
+
 ## 验收与 Git
 
 - 研究或整理完成后，至少检查 Markdown 链接、Wiki Link、重复标题/alias、孤立节点、文件边界和 `git diff --check`。
+- 涉及知识图谱结构的改动，还要运行图谱构建脚本并检查 `generated/graph-summary.md` 与 `generated/unresolved-links.json`，必要时通过 Pull Request 的 Pages 构建验证 Quartz 和 graph explorer。
 - 主代理统一处理根级汇总和 Git 操作。只暂存本次任务文件，不使用 `git add -A`，不提交或发布未授权的外部变更。
