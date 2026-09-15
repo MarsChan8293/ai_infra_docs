@@ -49,7 +49,7 @@ UCX 是底层通信框架，不理解 LLM 请求、KV 生命周期或 Kubernetes
 
 ## 关联项目
 
-当前只保留已建立双向关系的 NIXL 节点，避免把所有通用通信库机械互链。
+- 集合通信与异构通信对照：[[software/projects/vccl|VCCL]]。
 
 ## 版本快照
 

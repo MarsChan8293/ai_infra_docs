@@ -28,6 +28,9 @@ integrations:
   - mooncake
   - flashinfer
   - bentoml
+  - aibrix
+  - vllm-ascend
+  - vllm-plugin-fl
 backends:
   - nvidia
   - amd
@@ -57,13 +60,16 @@ vLLM 负责模型执行、请求批处理、活跃 KV 管理和模型并行；�
 - [[software/projects/lmcache|LMCache]]：外部 KV Cache、复用与迁移。
 - [[software/projects/llm-d|llm-d]]：请求路由与分布式推理编排。
 - [[software/projects/nvidia-dynamo|NVIDIA Dynamo]]：分布式推理控制面。
+- [[software/projects/aibrix|AIBrix]]：vLLM 社区中的 Kubernetes LLM 基础设施控制层。
 - [[software/projects/kserve|KServe]]、[[software/projects/ray-serve|Ray Serve]]、[[software/projects/bentoml|BentoML]]：上层模型服务与部署入口。
 - [[software/projects/mooncake|Mooncake]]：分布式 KV / 数据传输路径。
 - [[software/projects/flashinfer|FlashInfer]]：高性能 serving kernel。
+- [[software/projects/vllm-ascend|vLLM-Ascend]]、[[software/projects/vllm-plugin-fl|vllm-plugin-FL]]：面向异构硬件的后端/插件适配路线。
 
 ## 关联项目
 
-- 同层引擎：[[software/projects/sglang|SGLang]]、[[software/projects/tensorrt-llm|TensorRT-LLM]]、[[software/projects/llama-cpp|llama.cpp]]。
+- 同层引擎：[[software/projects/sglang|SGLang]]、[[software/projects/tensorrt-llm|TensorRT-LLM]]、[[software/projects/llama-cpp|llama.cpp]]、[[software/projects/lightllm|LightLLM]]、[[software/projects/ktransformers|KTransformers]]。
+- 性能与生态：[[software/projects/tokenspeed|TokenSpeed]]、[[software/projects/flagperf|FlagPerf]]。
 - Kernel / 编译：[[software/projects/triton|Triton]]、[[software/projects/flashattention|FlashAttention]]。
 - 通信：[[software/projects/nccl|NCCL]]、[[software/projects/rccl|RCCL]]。
 

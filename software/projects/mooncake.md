@@ -3,7 +3,7 @@ schema_version: software-v0.1
 name: Mooncake
 object_type: project
 category: kv-cache
-organization: KVCache.AI / Moonshot ecosystem
+organization: kvcache-ai
 status: active
 repo: https://github.com/kvcache-ai/Mooncake
 docs: https://github.com/kvcache-ai/Mooncake
@@ -51,6 +51,7 @@ Mooncake 的主战场是 KV 与数据面，不负责完整模型 forward 或通�
 
 - KV 管理：[[software/projects/lmcache|LMCache]]。
 - 数据传输抽象：[[software/projects/nixl|NIXL]]。
+- 更通用的 AI 存储数据面：[[software/projects/3fs|3FS]]。
 
 ## 版本快照
 

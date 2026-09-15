@@ -46,8 +46,9 @@ FlashInfer 负责 GPU kernel 与算子层，不承担完整请求服务、分布
 
 ## 关联项目
 
-- Attention：[[software/projects/flashattention|FlashAttention]]。
-- Kernel / 编译：[[software/projects/triton|Triton]]、[[software/projects/cutlass|CUTLASS]]。
+- Attention：[[software/projects/flashattention|FlashAttention]]、[[software/projects/flashmla|FlashMLA]]、[[software/projects/flagattention|FlagAttention]]。
+- Kernel / 编译：[[software/projects/triton|Triton]]、[[software/projects/cutlass|CUTLASS]]、[[software/projects/tilelang|TileLang]]、[[software/projects/flaggems|FlagGems]]。
+- 性能研究：[[software/projects/tokenspeed|TokenSpeed]]。
 
 ## 版本快照
 

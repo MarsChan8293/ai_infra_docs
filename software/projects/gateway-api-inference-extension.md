@@ -47,6 +47,7 @@ updated: 2026-09-15
 
 ## 关联项目
 
+- Kubernetes LLM 基础设施：[[software/projects/aibrix|AIBrix]]。
 - 更上层的模型 Gateway：[[software/projects/litellm|LiteLLM]]。
 
 ## 版本快照

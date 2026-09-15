@@ -42,12 +42,14 @@ DeepGEMM 专注 NVIDIA GPU 计算 kernel；通信、请求路由、KV Cache 和�
 
 ## 集成与后端
 
-- [[software/projects/cutlass|CUTLASS]]：当前构建要求与 kernel 基础设施关系明确。
+- [[software/projects/cutlass|CUTLASS]]：kernel 基础设施关系。
 
 ## 关联项目
 
-- Kernel DSL：[[software/projects/triton|Triton]]。
+- 生态入口：[[software/projects/deepseek-infra|DeepSeek-Infra]]。
+- 编译/JIT：[[software/projects/triton|Triton]]、[[software/projects/deepjit|DeepJIT]]。
 - MoE 通信：[[software/projects/deepep|DeepEP]]。
+- Attention / Kernel：[[software/projects/flashmla|FlashMLA]]、[[software/projects/flaggems|FlagGems]]。
 
 ## 版本快照
 

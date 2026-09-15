@@ -24,6 +24,7 @@ integrations:
   - llm-d
   - mooncake
   - flashinfer
+  - sglang-plugin-fl
 backends:
   - nvidia
   - amd
@@ -54,10 +55,12 @@ SGLang 的主战场是模型推理执行与 serving runtime；集群级 Pod plac
 - [[software/projects/nvidia-dynamo|NVIDIA Dynamo]]、[[software/projects/ray-serve|Ray Serve]]、[[software/projects/llm-d|llm-d]]：分布式 serving 与路由层。
 - [[software/projects/mooncake|Mooncake]]：高性能数据 / KV 传输集成。
 - [[software/projects/flashinfer|FlashInfer]]：serving kernel 后端之一。
+- [[software/projects/sglang-plugin-fl|sglang-plugin-FL]]：FlagOS 异构适配插件路径。
 
 ## 关联项目
 
-- 同层引擎：[[software/projects/vllm|vLLM]]、[[software/projects/tensorrt-llm|TensorRT-LLM]]、[[software/projects/llama-cpp|llama.cpp]]。
+- 同层引擎：[[software/projects/vllm|vLLM]]、[[software/projects/tensorrt-llm|TensorRT-LLM]]、[[software/projects/llama-cpp|llama.cpp]]、[[software/projects/lightllm|LightLLM]]、[[software/projects/ktransformers|KTransformers]]。
+- 性能与生态：[[software/projects/tokenspeed|TokenSpeed]]、[[software/projects/flagperf|FlagPerf]]。
 - Kernel / 编译：[[software/projects/triton|Triton]]、[[software/projects/flashattention|FlashAttention]]、[[software/projects/deepep|DeepEP]]。
 - AMD 通信路径：[[software/projects/rccl|RCCL]]。
 

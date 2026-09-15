@@ -51,6 +51,7 @@ LMCache 不执行模型 forward，也不替代请求路由器；其职责是 KV 
 ## 关联项目
 
 - 同类 / 相邻 KV 系统：[[software/projects/mooncake|Mooncake]]。
+- 更通用的 AI 存储数据面：[[software/projects/3fs|3FS]]。
 
 ## 版本快照
 

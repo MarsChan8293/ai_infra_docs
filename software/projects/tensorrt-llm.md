@@ -20,6 +20,7 @@ capabilities:
   - disaggregated-serving
 integrations:
   - nvidia-dynamo
+  - triton-inference-server
 backends:
   - nvidia
 updated: 2026-09-15
@@ -44,11 +45,12 @@ TensorRT-LLM 深度绑定 NVIDIA GPU/TensorRT 技术栈，不追求跨厂商硬�
 ## 集成与后端
 
 - [[software/projects/nvidia-dynamo|NVIDIA Dynamo]]：可作为 TensorRT-LLM 之上的分布式推理控制面。
+- [[software/projects/triton-inference-server|Triton Inference Server]]：通用模型服务入口之一。
 - NVIDIA GPU 是其主要硬件后端。
 
 ## 关联项目
 
-- 同层引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
+- 同层引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]、[[software/projects/lightllm|LightLLM]]。
 - Kernel：[[software/projects/cutlass|CUTLASS]]。
 - 通信：[[software/projects/nccl|NCCL]]。
 
