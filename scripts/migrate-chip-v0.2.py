@@ -5,12 +5,13 @@ import argparse
 import datetime as dt
 import pathlib
 import re
-
 import yaml
 
 URL_RE = re.compile(r"https?://[^\s)>\]]+")
 OBJECT_TYPE_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 EXCLUDED_NAMES = {"SCHEMA.md", "MIGRATION.md", "00-project-index.md"}
+NUMERIC_SUFFIXES = ("_gb", "_tb_s", "_gb_s", "_tflops", "_tops", "_w", "_kw", "_nm", "_mhz", "_ghz")
+SLASH_NUMBERS_RE = re.compile(r"^\d+(?:\.\d+)?(?:/\d+(?:\.\d+)?)+$")
 
 
 def parse_frontmatter(text: str) -> tuple[dict, str] | None:
@@ -106,6 +107,55 @@ def default_block(fm: dict, key: str) -> None:
         fm[key] = {}
 
 
+def normalize_numeric_fields(value: object) -> None:
+    if not isinstance(value, dict):
+        return
+    pending_notes: dict[str, str] = {}
+    for key, child in list(value.items()):
+        if isinstance(child, dict):
+            normalize_numeric_fields(child)
+            continue
+        if not key.endswith(NUMERIC_SUFFIXES) or not isinstance(child, str):
+            continue
+        raw = child.strip()
+        if SLASH_NUMBERS_RE.match(raw):
+            items = []
+            for part in raw.split("/"):
+                number = float(part) if "." in part else int(part)
+                items.append(number)
+            value[key] = items
+        elif "numeric unknown" in raw.casefold():
+            value[key] = None
+            stem = key
+            for suffix in NUMERIC_SUFFIXES:
+                if stem.endswith(suffix):
+                    stem = stem[: -len(suffix)]
+                    break
+            pending_notes[f"{stem}_note"] = raw
+    value.update(pending_notes)
+
+
+def fact_paths(fm: dict) -> list[str]:
+    out: list[str] = []
+    for root_key in ("architecture", "process", "memory", "compute", "interconnect", "power", "lifecycle"):
+        root_value = fm.get(root_key)
+        if root_value is None or root_value == {} or root_value == [] or root_value == "":
+            continue
+        if isinstance(root_value, dict):
+            stack = [(root_key, root_value)]
+            while stack:
+                prefix, mapping = stack.pop()
+                for key, child in mapping.items():
+                    path = f"{prefix}.{key}"
+                    if isinstance(child, dict):
+                        stack.append((path, child))
+                    elif child is not None and child != "" and child != []:
+                        out.append(path)
+        else:
+            out.append(root_key)
+    return sorted(set(out))
+
+
 def migrate_file(path: pathlib.Path, accessed: str) -> bool:
     text = path.read_text(encoding="utf-8")
     parsed = parse_frontmatter(text)
@@ -131,6 +181,7 @@ def migrate_file(path: pathlib.Path, accessed: str) -> bool:
             fm[key] = None
     for key in ("memory", "compute", "interconnect", "power", "lifecycle"):
         default_block(fm, key)
+        normalize_numeric_fields(fm.get(key))
     if not isinstance(fm.get("relations"), dict):
         fm["relations"] = {}
 
@@ -155,6 +206,10 @@ def migrate_file(path: pathlib.Path, accessed: str) -> bool:
     evidence_map = fm.get("evidence_map") if isinstance(fm.get("evidence_map"), dict) else {}
     if "__page__" not in evidence_map:
         evidence_map["__page__"] = list(evidence)
+    if len(evidence) == 1 and not any(key != "__page__" for key in evidence_map):
+        only_source = next(iter(evidence))
+        for field_path in fact_paths(fm):
+            evidence_map[field_path] = [only_source]
     fm["evidence_map"] = evidence_map
 
     if "updated" not in fm:
