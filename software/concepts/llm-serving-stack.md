@@ -1,46 +1,45 @@
 ---
-title: LLM Serving 软件栈
-aliases:
-  - LLM Serving Stack
-  - LLM 推理软件栈
-tags:
-  - concept
-  - serving
-  - ai-infra
+schema_version: software-v0.1
+name: LLM Serving 软件栈
+object_type: concept
+category: serving-architecture
+updated: 2026-09-15
 ---
-
 # LLM Serving 软件栈
 
-这是软件目录的核心概念节点，用来把“请求级编排、推理执行、KV Cache、集群调度、设备资源”串成一张关系图。
+> 把请求路由、模型执行、KV、集群调度和设备资源管理分层观察。
 
-## 分层关系
+## 问题
+
+LLM serving 同时存在 request 级、worker 级、Pod/Job 级和设备级控制。如果把这些职责都叫“调度”，项目边界会迅速混乱。
+
+## 核心机制
 
 ```text
-请求 / API
+Request / API
   ↓
-[[software/distributed-serving/llm-d|llm-d]]
+[[software/projects/llm-d|llm-d]]          请求级路由与编排
   ↓
-[[software/inference-engine/vllm|vLLM]]
+[[software/projects/vllm|vLLM]]           模型执行
   ↕
-[[software/kv-cache/lmcache|LMCache]]
+[[software/projects/lmcache|LMCache]]      KV 外部生命周期
   ↓
-[[software/scheduling/kai-scheduler|KAI-Scheduler]]
+[[software/projects/kai-scheduler|KAI]]    Pod / Job placement
   ↓
-[[software/device-resource/dra|Kubernetes DRA]] / [[software/device-resource/hami|HAMi]]
+[[software/projects/kubernetes-dra|DRA]] / [[software/projects/hami|HAMi]]
   ↓
 GPU / NPU / NIC / Memory
 ```
 
-这里最重要的是区分两类“调度”：[[software/distributed-serving/llm-d|llm-d]] 面向请求级路由，理解 prefix、KV 与 P/D 阶段；[[software/scheduling/kai-scheduler|KAI-Scheduler]] 面向 Pod/Job placement，理解队列、配额、Gang、拓扑和设备资源。二者是上下两级控制面，不是替代关系。
+## 判断要点
 
-## 关键横向机制
+- request routing 与 Pod placement 是两级不同的调度。
+- KV 状态跨越执行、缓存和路由层。
+- 项目可以跨层实现能力，但仍应有一个主定位。
 
-- [[software/concepts/pd-disaggregation|Prefill / Decode 分离]]：跨越 serving、推理引擎、KV 传输和底层网络。
-- [[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]：跨越 vLLM、LMCache、路由和存储。
-- [[software/concepts/topology-aware-scheduling|拓扑感知调度]]：把 NUMA、PCIe、NVLink、NIC 距离映射到 placement。
-- [[software/concepts/accelerator-resource-model|加速器资源模型]]：把 GPU/NPU 属性、共享和 claim 纳入 Kubernetes。
-- [[software/concepts/heterogeneous-inference|异构推理]]：把模型画像、Benchmark、SLA 与硬件差异连接起来。
+## 相关项目与概念
 
-## 入口
-
-返回 [[software/README|AI Infra 软件栈地图]]，或回到 [[00-ai-infra-map|AI Infra 知识图谱入口]]。
+- [[software/concepts/pd-disaggregation|Prefill / Decode 分离]]
+- [[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]
+- [[software/concepts/topology-aware-scheduling|拓扑感知调度]]
+- [[software/concepts/accelerator-resource-model|加速器资源模型]]

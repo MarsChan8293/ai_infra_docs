@@ -1,40 +1,37 @@
 ---
-title: Prefill / Decode 分离
-aliases:
-  - P/D Disaggregation
-  - PD 分离
-  - Prefill Decode Disaggregation
-tags:
-  - concept
-  - inference
-  - pd-disaggregation
+schema_version: software-v0.1
+name: Prefill / Decode 分离
+object_type: concept
+category: serving-architecture
+updated: 2026-09-15
 ---
-
 # Prefill / Decode 分离
 
-P/D 分离把 LLM 推理中的 Prefill 与 Decode 拆到不同 worker 或不同资源池运行。它的核心动机是：Prefill 更偏计算密集，Decode 更偏 HBM 带宽和低延迟，两阶段的最优硬件与调度策略往往不同。
+> 将 Prefill 与 Decode 放到不同 worker 或资源池，以分别优化两种不同资源特征的阶段。
 
-## 关键链路
+## 问题
+
+Prefill 通常更偏计算密集，Decode 通常更依赖 HBM 带宽和低逐 token 延迟。混在同一资源池时，两类请求容易互相干扰。
+
+## 核心机制
 
 ```text
-请求
-  → [[software/distributed-serving/llm-d|llm-d]] 选择 Prefill / Decode worker
-  → [[software/inference-engine/vllm|vLLM]] Prefill 生成 KV
-  → [[software/kv-cache/lmcache|LMCache]] / 高速传输搬运 KV
-  → [[software/inference-engine/vllm|vLLM]] Decode 持续生成 token
+Request
+  → [[software/projects/llm-d|llm-d]] 选择 P / D worker
+  → [[software/projects/vllm|vLLM]] Prefill 生成 KV
+  → [[software/projects/lmcache|LMCache]] / transport 搬运 KV
+  → Decode worker 继续生成 token
 ```
 
-底层 placement 由 [[software/scheduling/kai-scheduler|KAI-Scheduler]] 等调度器完成，设备声明与共享可由 [[software/device-resource/dra|Kubernetes DRA]]、[[software/device-resource/hami|HAMi]] 等组件参与。
+## 判断要点
 
-## 是否值得拆分
+- KV 搬运成本必须低于重新计算或混跑造成的损失。
+- 同时观察 TTFT、TPOT、KV 大小、网络带宽、排队和失败恢复。
+- worker 如何放置是集群调度问题，请结合 [[software/concepts/topology-aware-scheduling|拓扑感知调度]]。
 
-P/D 分离成立的关键，不是“架构更漂亮”，而是 KV 搬运成本必须低于重新计算或阶段混跑造成的代价。要同时观察 TTFT、TPOT、KV 大小、网络带宽、worker 排队、故障恢复和拓扑距离。
+## 相关项目与概念
 
-## 相关概念
-
+- [[software/projects/vllm|vLLM]]
+- [[software/projects/lmcache|LMCache]]
+- [[software/projects/llm-d|llm-d]]
 - [[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]
-- [[software/concepts/topology-aware-scheduling|拓扑感知调度]]
-- [[software/concepts/heterogeneous-inference|异构推理]]
-- [[software/concepts/llm-serving-stack|LLM Serving 软件栈]]
-
-返回 [[software/README|AI Infra 软件栈地图]]。

@@ -1,40 +1,38 @@
 ---
-title: 拓扑感知调度
-aliases:
-  - Topology-aware Scheduling
-  - AI 拓扑调度
-tags:
-  - concept
-  - scheduling
-  - topology
+schema_version: software-v0.1
+name: 拓扑感知调度
+object_type: concept
+category: scheduling
+updated: 2026-09-15
 ---
-
 # 拓扑感知调度
 
-AI workload 的“8 张空闲卡”并不等价于“8 张适合一起工作的卡”。拓扑感知调度要把 CPU NUMA、PCIe Root/Switch、NVLink/NVSwitch、RDMA NIC、跨节点网络等距离纳入 placement。
+> AI workload 的“若干张空闲卡”不等价于“若干张适合一起工作的卡”。
 
-## 典型关系
+## 问题
+
+TP、EP、KV offload 和 P/D 分离都会受 CPU NUMA、PCIe Root/Switch、NVLink/NVSwitch、RDMA NIC 和跨节点网络距离影响。
+
+## 核心机制
 
 ```text
-[[software/scheduling/kai-scheduler|KAI-Scheduler]]：决定 Pod / Job 放置
+[[software/projects/kai-scheduler|KAI-Scheduler]] 负责 placement
         ↓
-[[software/device-resource/dra|Kubernetes DRA]] / [[software/device-resource/hami|HAMi]]：表达、分配和隔离设备
+[[software/projects/kubernetes-dra|DRA]] / [[software/projects/hami|HAMi]] 表达与分配设备
         ↓
 NUMA / PCIe / NVLink / NIC / GPU / NPU
-        ↑
-[[software/inference-engine/vllm|vLLM]] 的 TP / EP / KV offload 性能
 ```
 
-## 推理场景
+## 判断要点
 
-TP 多卡通常希望落在同一高速互联域；MoE EP 要减少 All-to-All 慢链路；CPU/KV offload 要关注 GPU 与本地 NUMA memory；[[software/concepts/pd-disaggregation|P/D 分离]] 还要求 Prefill 与 Decode 池之间有足够的网络带宽和较低尾延迟。
+- TP/EP 优先关注设备间高速互联。
+- CPU/KV offload 关注 GPU 与本地 NUMA memory。
+- P/D 分离还要关注 Prefill / Decode 池之间的网络带宽和尾延迟。
+- 具体硬件拓扑事实应回到 [[chip/00-project-index|芯片与硬件资料库]] 核对。
 
-拓扑策略应和具体硬件事实一起评估，可从 [[chip/00-project-index|芯片与基础设施资料库]] 进入厂商和产品页面，而不是只根据抽象 GPU 数量做判断。
+## 相关项目与概念
 
-## 相关概念
-
+- [[software/projects/kai-scheduler|KAI-Scheduler]]
+- [[software/projects/kubernetes-dra|Kubernetes DRA]]
+- [[software/projects/hami|HAMi]]
 - [[software/concepts/accelerator-resource-model|加速器资源模型]]
-- [[software/concepts/heterogeneous-inference|异构推理]]
-- [[software/concepts/llm-serving-stack|LLM Serving 软件栈]]
-
-返回 [[software/README|AI Infra 软件栈地图]]。
