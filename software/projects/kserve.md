@@ -19,6 +19,7 @@ capabilities:
 integrations:
   - vllm
   - gateway-api-inference-extension
+  - triton-inference-server
 backends:
   - kubernetes
 updated: 2026-09-15
@@ -42,13 +43,15 @@ KServe 主要负责 Kubernetes 模型服务生命周期和 API 编排，不负�
 
 ## 集成与后端
 
-- [[software/projects/vllm|vLLM]]：KServe 生成式推理 runtime 的主要高性能后端之一。
-- [[software/projects/gateway-api-inference-extension|Gateway API Inference Extension]]：LLMInferenceService 路由基础设施之一。
+- [[software/projects/vllm|vLLM]]：高性能 LLM runtime 之一。
+- [[software/projects/gateway-api-inference-extension|Gateway API Inference Extension]]：LLM 路由基础设施之一。
+- [[software/projects/triton-inference-server|Triton Inference Server]]：通用模型 serving backend 路线。
 
 ## 关联项目
 
-- 分布式推理编排：[[software/projects/llm-d|llm-d]]。
-- 另一条分布式服务路线：[[software/projects/ray-serve|Ray Serve]]。
+- [[software/projects/aibrix|AIBrix]]：同处 Kubernetes LLM 基础设施控制层。
+- [[software/projects/llm-d|llm-d]]：分布式推理编排。
+- [[software/projects/ray-serve|Ray Serve]]：另一条分布式服务路线。
 
 ## 版本快照
 

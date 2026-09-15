@@ -49,6 +49,7 @@ GPU Operator 负责 NVIDIA GPU 节点软件生命周期，不负责 AI workload 
 
 ## 关联项目
 
+- 模型 serving：[[software/projects/triton-inference-server|Triton Inference Server]]。
 - 异构设备共享路线：[[software/projects/hami|HAMi]]。
 
 ## 版本快照

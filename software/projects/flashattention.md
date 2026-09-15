@@ -45,7 +45,8 @@ FlashAttention 是 attention kernel 项目，不是完整 inference engine；KV 
 ## 关联项目
 
 - 上层推理：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
-- Kernel 生态：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/triton|Triton]]。
+- Attention 对照：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/flashmla|FlashMLA]]、[[software/projects/flagattention|FlagAttention]]。
+- Kernel 编译：[[software/projects/triton|Triton]]。
 
 ## 版本快照
 

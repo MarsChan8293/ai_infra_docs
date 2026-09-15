@@ -50,7 +50,7 @@ llm-d 负责运行时请求与 worker 编排，不负责 GPU kernel，也不替�
 
 ## 关联项目
 
-- 同层分布式推理框架：[[software/projects/nvidia-dynamo|NVIDIA Dynamo]]。
+- 同层分布式推理框架：[[software/projects/nvidia-dynamo|NVIDIA Dynamo]]、[[software/projects/aibrix|AIBrix]]。
 - Kubernetes 模型服务控制面：[[software/projects/kserve|KServe]]。
 
 ## 版本快照

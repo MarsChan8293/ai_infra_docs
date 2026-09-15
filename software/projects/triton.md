@@ -37,7 +37,7 @@ updated: 2026-09-15
 
 ## 边界
 
-Triton 是 kernel 开发与编译层，不负责模型 serving 或集群编排。
+Triton 是 kernel 开发与编译层，不负责模型 serving 或集群编排。它与 [[software/projects/triton-inference-server|Triton Inference Server]] 名称相近，但后者是模型服务服务器，职责完全不同。
 
 ## 集成与后端
 
@@ -47,6 +47,8 @@ V0.1 暂不把“项目内部存在 Triton kernel”自动升级为强集成关�
 
 - 上层推理：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
 - Kernel 库：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/flashattention|FlashAttention]]、[[software/projects/cutlass|CUTLASS]]、[[software/projects/deepgemm|DeepGEMM]]。
+- DSL / Compiler 对照：[[software/projects/tilelang|TileLang]]、[[software/projects/deepjit|DeepJIT]]、[[software/projects/flagtree|FlagTree]]。
+- 名称辨析：[[software/projects/triton-inference-server|Triton Inference Server]]。
 
 ## 版本快照
 

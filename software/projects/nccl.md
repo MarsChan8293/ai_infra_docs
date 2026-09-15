@@ -45,11 +45,12 @@ NCCL 只解决通信原语，不负责模型并行策略本身、请求调度或
 ## 集成与后端
 
 - [[software/projects/vllm|vLLM]]、[[software/projects/tensorrt-llm|TensorRT-LLM]]：NVIDIA 多 GPU 推理的重要通信底座。
-- [[software/projects/deepep|DeepEP]]：当前 DeepEP V2 使用 NCCL Gin backend。
+- [[software/projects/deepep|DeepEP]]：DeepEP 的通信后端关系。
 
 ## 关联项目
 
-- AMD 对应集合通信栈：[[software/projects/rccl|RCCL]]。
+- 通信对照：[[software/projects/rccl|RCCL]]、[[software/projects/vccl|VCCL]]、[[software/projects/flagcx|FlagCX]]。
+- 训练框架：[[software/projects/colossal-ai|Colossal-AI]]、[[software/projects/oneflow|OneFlow]]。
 
 ## 版本快照
 

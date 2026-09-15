@@ -34,9 +34,9 @@ updated: 2026-09-15
 - `name`：项目标准名称。
 - `object_type`：V0.1 仅允许 `project` 或 `concept`。
 - `category`：项目主分类。V0.1 推荐 `inference-engine`、`distributed-serving`、`kv-cache`、`scheduler`、`device-resource`、`compiler`、`communication`、`runtime`、`other`。
-- `organization`：主要维护组织；未知为 `null`。
+- `organization`：canonical upstream namespace 或明确治理组织；不是主要贡献公司列表。无法确认时为 `null`。
 - `status`：`active`、`maintenance`、`deprecated`、`archived`、`unknown`。
-- `repo` / `docs`：官方入口；没有独立入口时为 `null`。
+- `repo` / `docs`：官方入口；没有独立入口或无法确认 canonical 项目地址时为 `null`。
 - `snapshot.version` / `snapshot.commit`：本页绑定的软件版本或提交；未固定时为 `null`。
 - `snapshot.as_of`：事实快照日期，必填。
 - `capabilities`：已确认核心能力的 kebab-case 标识。
@@ -93,7 +93,9 @@ Concept 不记录版本、后端和 capability matrix，只解释稳定机制。
 4. `capabilities` 只记录可由当前来源确认的能力。
 5. `integrations` 只说明存在集成，不自动表示稳定、原生或高性能。
 6. `backends` 只说明存在支持路径，不自动表示功能对齐或生产成熟。
-7. 项目事实写 `projects/`，跨项目原理写 `concepts/`，避免重复维护。
-8. 仓库内软件引用必须使用 canonical Wiki Link：`[[software/projects/<slug>|Name]]`；概念引用使用 `[[software/concepts/<slug>|Name]]`。
-9. 双链规则：若 A 项目页在 `集成与后端` 或 `关联项目` 中链接仓库内 B 项目，则 B 项目页也必须保留指向 A 的反向 Wiki Link。frontmatter 的 `integrations` 仍按事实语义填写，不为了对称而伪造集成。
-10. 不为了 Graph View 制造无意义的全互联；只保留能说明架构关系的边。
+7. 项目事实写 `projects/`，跨项目原理写 `concepts/`，上游社区/namespace 视图写 `COMMUNITIES.md`，避免把不同维度混在一个目录层级。
+8. `organization` 优先使用项目实际采用的上游 GitHub/GitCode/Gitee namespace 或明确治理组织；不要因为某家公司贡献很大就机械改成公司名。
+9. 公司贡献关系与项目治理关系分离。Software V0.1 暂不新增 `companies` 字段，避免 schema 膨胀；需要公司关系时链接到独立关系库或后续版本。
+10. 仓库内软件引用必须使用 canonical Wiki Link：`[[software/projects/<slug>|Name]]`；概念引用使用 `[[software/concepts/<slug>|Name]]`。
+11. 双链规则：若 A 项目页在 `集成与后端` 或 `关联项目` 中链接仓库内 B 项目，则 B 项目页也必须保留指向 A 的反向 Wiki Link。frontmatter 的 `integrations` 仍按事实语义填写，不为了对称而伪造集成。
+12. 不为了 Graph View 制造无意义的全互联；只保留能说明架构关系的边。

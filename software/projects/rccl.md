@@ -45,7 +45,7 @@ V0.1 将框架使用 RCCL 的关系记录在关联区，不自动把所有 ROCm 
 
 ## 关联项目
 
-- NVIDIA 对应通信栈：[[software/projects/nccl|NCCL]]。
+- 通信对照：[[software/projects/nccl|NCCL]]、[[software/projects/vccl|VCCL]]、[[software/projects/flagcx|FlagCX]]。
 - AMD 推理引擎路径：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
 
 ## 版本快照

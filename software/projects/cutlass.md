@@ -41,12 +41,12 @@ CUTLASS 聚焦 NVIDIA CUDA kernel 构建，不负责模型图执行、Serving AP
 
 ## 集成与后端
 
-- [[software/projects/deepgemm|DeepGEMM]]：当前官方要求中使用 CUTLASS 组件，并借鉴 CuTe/CUTLASS 相关实现思想。
+- [[software/projects/deepgemm|DeepGEMM]]：kernel 基础设施关系。
 
 ## 关联项目
 
 - 推理 runtime：[[software/projects/tensorrt-llm|TensorRT-LLM]]。
-- Kernel 生态：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/triton|Triton]]。
+- Kernel / DSL 生态：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/triton|Triton]]、[[software/projects/tilelang|TileLang]]。
 
 ## 版本快照
 

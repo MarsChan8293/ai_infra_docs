@@ -42,11 +42,12 @@ DeepEP 重点解决 MoE 专家并行通信，不提供完整模型 serving 或�
 
 ## 集成与后端
 
-- [[software/projects/nccl|NCCL]]：当前 V2 使用 NCCL Gin backend。
+- [[software/projects/nccl|NCCL]]：当前通信 backend 关系。
 
 ## 关联项目
 
-- MoE 推理：[[software/projects/sglang|SGLang]]。
+- 生态入口：[[software/projects/deepseek-infra|DeepSeek-Infra]]。
+- MoE 推理：[[software/projects/sglang|SGLang]]、[[software/projects/ktransformers|KTransformers]]。
 - MoE 计算 kernel：[[software/projects/deepgemm|DeepGEMM]]。
 
 ## 版本快照

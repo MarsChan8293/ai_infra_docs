@@ -43,10 +43,11 @@ llama.cpp 更强调便携、本地和边缘推理，不以大规模 Kubernetes �
 
 ## 集成与后端
 
-当前 V0.1 不记录特定上层系统为强集成；硬件支持范围广，但不同 backend 的性能与功能不应视为等价。
+硬件支持范围广，但不同 backend 的性能与功能不应视为等价。
 
 ## 关联项目
 
+- 异构 CPU/GPU 大模型执行：[[software/projects/ktransformers|KTransformers]]。
 - 数据中心推理引擎对照：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
 
 ## 版本快照
