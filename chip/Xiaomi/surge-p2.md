@@ -24,6 +24,10 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.public_product_use:
+  - S1
 ---
 # Xiaomi 澎湃 P2
 

@@ -30,6 +30,22 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.announced_event:
+  - S1
+  lifecycle.planned_commercial:
+  - S1
+  lifecycle.silicon_validation:
+  - S1
+  memory.bandwidth_tb_s:
+  - S1
+  memory.dedicated_ai_memory_gb:
+  - S1
+  power.scope:
+  - S1
+  process:
+  - S1
 ---
 # Xiaomi XRING O100 / 玄戒 O100
 

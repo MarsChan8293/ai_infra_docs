@@ -30,6 +30,14 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  compute.fp4:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.planned_delivery:
+  - S1
+  power.scope:
+  - S1
 ---
 # AWS Trainium4
 

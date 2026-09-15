@@ -25,6 +25,12 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.customer_validation_r_and_d:
+  - S1
+  lifecycle.roadmap_visible:
+  - S1
 ---
 # 海光五号 CPU
 

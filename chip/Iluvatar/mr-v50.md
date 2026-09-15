@@ -32,6 +32,20 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.formats:
+  - S1
+  interconnect.host:
+  - S1
+  memory.capacity_gb:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
+  power.value_w:
+  - S1
 ---
 # Iluvatar MR-V50
 

@@ -30,6 +30,14 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.units:
+  - S1
+  lifecycle.announced:
+  - S1
+  power.scope:
+  - S1
 ---
 # 天垓 300
 

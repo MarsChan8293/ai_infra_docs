@@ -36,6 +36,22 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.multi_chip_fusion:
+  - S1
+  lifecycle.announced_event:
+  - S1
+  lifecycle.planned_commercial:
+  - S1
+  lifecycle.silicon_validation:
+  - S1
+  memory.capacity_gb_max:
+  - S1
+  power.scope:
+  - S1
+  process:
+  - S1
 ---
 # Xiaomi XRING D100 / 玄戒 D100
 

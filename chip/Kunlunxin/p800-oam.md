@@ -34,6 +34,24 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.formats:
+  - S1
+  interconnect.cluster:
+  - S1
+  interconnect.host:
+  - S1
+  memory.capacity_gb:
+  - S1
+  memory.source_level:
+  - S1
+  power.scope:
+  - S1
+  power.source_level:
+  - S1
+  power.value_w:
+  - S1
 ---
 # 昆仑芯 P800 OAM
 

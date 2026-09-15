@@ -29,6 +29,12 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.cloud_resource_support:
+  - S1
+  power.scope:
+  - S1
 ---
 # Huawei Ascend 910B
 

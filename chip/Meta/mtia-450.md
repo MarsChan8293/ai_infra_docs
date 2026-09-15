@@ -29,6 +29,18 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.mx4_vs_mtia400:
+  - S1
+  lifecycle.planned_large_scale_deployment:
+  - S1
+  memory.bandwidth_vs_mtia400:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
 ---
 # Meta MTIA 450
 

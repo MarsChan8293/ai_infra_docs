@@ -25,6 +25,12 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.mass_production_shipping:
+  - S1
+  power.scope:
+  - S1
 ---
 # Moore Threads 苏堤
 

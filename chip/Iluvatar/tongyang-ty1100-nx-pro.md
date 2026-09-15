@@ -31,6 +31,16 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  memory.hbm.capacity_gb:
+  - S1
+  memory.hbm.type:
+  - S1
+  memory.system.capacity_gb:
+  - S1
+  memory.system.type:
+  - S1
 ---
 # 彤央 TY1100-NX-PRO
 

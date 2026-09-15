@@ -8,7 +8,8 @@ process: null
 memory:
   type: null
   capacity_gb: null
-  bandwidth_tb_s: higher; numeric unknown
+  bandwidth_tb_s: null
+  bandwidth_note: higher; numeric unknown
 compute:
   formats:
   - FP8

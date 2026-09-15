@@ -7,7 +7,9 @@ architecture: self-developed GPGPU + Arm
 memory:
   shared_or_system:
     type: LPDDR5x
-    capacity_gb: 32/64
+    capacity_gb:
+    - 32
+    - 64
   additional_lpddr5x_gb: 16
 cpu: 12-Core Arm
 dimensions_mm: 130x130x63
@@ -28,6 +30,14 @@ evidence:
     accessed: '2026-09-16'
 evidence_map:
   __page__:
+  - S1
+  architecture:
+  - S1
+  memory.additional_lpddr5x_gb:
+  - S1
+  memory.shared_or_system.capacity_gb:
+  - S1
+  memory.shared_or_system.type:
   - S1
 ---
 # 彤央 TY1100-NX

@@ -33,6 +33,20 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.scale_up_domain_accelerators:
+  - S1
+  interconnect.scope_note:
+  - S1
+  lifecycle.data_center_deployment:
+  - S1
+  lifecycle.lab_testing_complete:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
 ---
 # Meta MTIA 400
 

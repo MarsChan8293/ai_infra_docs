@@ -32,6 +32,20 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.vendor_claim_inference_speed_vs_previous:
+  - S1
+  compute.vendor_claim_power_reduction:
+  - S1
+  lifecycle.announced_event:
+  - S1
+  lifecycle.mass_production_claim:
+  - S1
+  lifecycle.planned_first_device:
+  - S1
+  process:
+  - S1
 ---
 # Xiaomi XRING O3 / 玄戒 O3
 

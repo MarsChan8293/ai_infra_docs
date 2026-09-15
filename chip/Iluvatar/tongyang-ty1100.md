@@ -7,7 +7,9 @@ architecture: self-developed GPGPU + Arm
 memory:
   hbm:
     type: HBM2e
-    capacity_gb: 16/32
+    capacity_gb:
+    - 16
+    - 32
   system:
     type: LPDDR5x
     capacity_gb: 16
@@ -30,6 +32,16 @@ evidence:
     accessed: '2026-09-16'
 evidence_map:
   __page__:
+  - S1
+  architecture:
+  - S1
+  memory.hbm.capacity_gb:
+  - S1
+  memory.hbm.type:
+  - S1
+  memory.system.capacity_gb:
+  - S1
+  memory.system.type:
   - S1
 ---
 # 彤央 TY1100

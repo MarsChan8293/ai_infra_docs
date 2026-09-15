@@ -25,6 +25,12 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.first_device:
+  - S1
 ---
 # Xiaomi 澎湃 P1
 

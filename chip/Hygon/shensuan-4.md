@@ -29,6 +29,16 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.scale_up:
+  - S1
+  lifecycle.customer_validation:
+  - S1
+  lifecycle.r_and_d:
+  - S1
+  power.scope:
+  - S1
 ---
 # 海光 深算四号
 

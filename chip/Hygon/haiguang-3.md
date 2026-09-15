@@ -30,6 +30,12 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.launch_event:
+  - S1
+  lifecycle.mass_production:
+  - S1
 ---
 # 海光三号 CPU
 

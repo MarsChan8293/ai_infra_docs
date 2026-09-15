@@ -28,6 +28,14 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.scale_up:
+  - S1
+  lifecycle.announced:
+  - S1
+  power.scope:
+  - S1
 ---
 # Moore Threads 曲院
 

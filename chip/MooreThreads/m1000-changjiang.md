@@ -33,6 +33,10 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  power.scope:
+  - S1
 ---
 # Moore Threads M1000 / 长江
 

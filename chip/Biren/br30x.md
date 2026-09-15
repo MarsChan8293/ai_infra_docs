@@ -29,6 +29,12 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.planned_commercial_launch:
+  - S1
+  power.scope:
+  - S1
 ---
 # Biren BR30X
 

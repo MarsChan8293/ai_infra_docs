@@ -26,6 +26,12 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.research_project:
+  - S1
+  lifecycle.silicon_validation_signal:
+  - S1
 ---
 # 海光四号 CPU
 

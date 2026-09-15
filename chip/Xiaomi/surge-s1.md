@@ -26,6 +26,12 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  lifecycle.device:
+  - S1
+  lifecycle.product_use:
+  - S1
+  power.scope:
+  - S1
 ---
 # Xiaomi 澎湃 S1
 

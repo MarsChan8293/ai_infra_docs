@@ -37,6 +37,28 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.sparse_fp16_pflops:
+  - S1
+  interconnect.external_io_tbit_s:
+  - S1
+  interconnect.on_wafer_fabric_pb_s:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.commercial_system_shipping:
+  - S1
+  memory.bandwidth_pb_s:
+  - S1
+  memory.capacity_gb:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
+  process:
+  - S1
 ---
 # Cerebras WSE-3
 

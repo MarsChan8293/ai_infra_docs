@@ -33,6 +33,14 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.production_deployment:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
 ---
 # Meta MTIA 300
 

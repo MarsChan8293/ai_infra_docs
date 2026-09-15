@@ -27,6 +27,14 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.first_device:
+  - S1
+  power.scope:
+  - S1
 ---
 # Xiaomi XRING T1 / 玄戒 T1
 

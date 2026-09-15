@@ -33,6 +33,14 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.formats:
+  - S1
+  lifecycle.published:
+  - S1
+  power.scope:
+  - S1
 ---
 # Cambricon-1M
 

@@ -30,6 +30,20 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.board_ai_pflops:
+  - S1
+  compute.qualifier:
+  - S1
+  interconnect.aggregate_nvlink_tb_s:
+  - S1
+  interconnect.per_gpu_nvlink_tb_s:
+  - S1
+  memory.aggregate_hbm3e_tb:
+  - S1
+  power.scope:
+  - S1
 ---
 # NVIDIA HGX B200
 

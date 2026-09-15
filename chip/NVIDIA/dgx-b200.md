@@ -28,6 +28,18 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.aggregate_nvlink_tb_s:
+  - S1
+  memory.aggregate_gpu_memory_gb:
+  - S1
+  memory.aggregate_hbm_bandwidth_tb_s:
+  - S1
+  power.max_system_kw:
+  - S1
+  power.scope:
+  - S1
 ---
 # NVIDIA DGX B200
 

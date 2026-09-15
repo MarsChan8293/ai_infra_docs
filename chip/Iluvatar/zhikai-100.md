@@ -31,6 +31,16 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.formats:
+  - S1
+  lifecycle.cloud_platform_available:
+  - S1
+  lifecycle.commercialized:
+  - S1
+  power.scope:
+  - S1
 ---
 # 智铠 100
 

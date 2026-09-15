@@ -31,6 +31,22 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.blockfp8_pflops:
+  - S1
+  lifecycle.ga:
+  - S1
+  memory.aggregate_bandwidth_tb_s:
+  - S1
+  memory.aggregate_sram_bandwidth_pb_s:
+  - S1
+  memory.aggregate_sram_gb:
+  - S1
+  memory.gddr6_tb:
+  - S1
+  power.scope:
+  - S1
 ---
 # Tenstorrent Galaxy Blackhole
 

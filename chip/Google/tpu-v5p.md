@@ -30,6 +30,18 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.scale_up:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.cloud_available:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
 ---
 # Google TPU v5p
 

@@ -26,6 +26,14 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.customer_validation:
+  - S1
+  lifecycle.first_revenue:
+  - S1
+  lifecycle.mass_production:
+  - S1
 ---
 # 海光一号 CPU
 

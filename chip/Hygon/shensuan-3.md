@@ -27,6 +27,16 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.scale_up:
+  - S1
+  lifecycle.customer_recognition:
+  - S1
+  lifecycle.market_available:
+  - S1
+  power.scope:
+  - S1
 ---
 # 海光 深算三号
 

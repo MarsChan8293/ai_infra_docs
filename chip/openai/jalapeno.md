@@ -34,6 +34,20 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.engineering_sample:
+  - S1
+  lifecycle.initial_deployment_plan:
+  - S1
+  lifecycle.initial_measurements:
+  - S1
+  lifecycle.officially_disclosed:
+  - S1
+  lifecycle.tapeout:
+  - S1
+  power.scope:
+  - S1
 ---
 # OpenAI Jalapeño
 

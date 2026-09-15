@@ -30,6 +30,20 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.nvfp4_pflops_max:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.planned_available:
+  - S1
+  memory.capacity_gb:
+  - S1
+  memory.type:
+  - S1
+  power.scope:
+  - S1
 ---
 # NVIDIA Rubin CPX
 

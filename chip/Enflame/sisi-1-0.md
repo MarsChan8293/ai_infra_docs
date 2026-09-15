@@ -27,6 +27,16 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.scale_up:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.commercialized:
+  - S1
+  power.scope:
+  - S1
 ---
 # Enflame 邃思 1.0
 

@@ -29,6 +29,18 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  interconnect.ethernet_gbps:
+  - S1
+  interconnect.host:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.sampling:
+  - S1
+  power.scope:
+  - S1
 ---
 # Broadcom Thor Ultra
 

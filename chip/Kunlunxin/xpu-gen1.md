@@ -7,7 +7,9 @@ architecture: XPU-K
 process: null
 memory:
   type: GDDR6
-  capacity_gb: 16/32
+  capacity_gb:
+  - 16
+  - 32
 compute:
   int8_tops: 256
   int16_tops: 128
@@ -32,6 +34,26 @@ evidence:
     accessed: '2026-09-16'
 evidence_map:
   __page__:
+  - S1
+  architecture:
+  - S1
+  compute.int16_tops:
+  - S1
+  compute.int32_tops:
+  - S1
+  compute.int8_tops:
+  - S1
+  lifecycle.large_scale_deployment:
+  - S1
+  lifecycle.roadmap:
+  - S1
+  memory.capacity_gb:
+  - S1
+  memory.type:
+  - S1
+  power.reported_w:
+  - S1
+  power.scope:
   - S1
 ---
 # 昆仑芯一代 XPU

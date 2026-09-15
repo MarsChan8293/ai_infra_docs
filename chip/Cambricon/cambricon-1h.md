@@ -33,6 +33,20 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  compute.1H16.fp16_tops:
+  - S1
+  compute.1H16.int8_tops:
+  - S1
+  compute.1H8.int8_tops:
+  - S1
+  compute.1H8mini.int8_tops:
+  - S1
+  lifecycle.published:
+  - S1
+  power.scope:
+  - S1
 ---
 # Cambricon-1H
 

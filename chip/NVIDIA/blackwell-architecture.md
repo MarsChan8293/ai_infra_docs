@@ -33,6 +33,14 @@ evidence:
 evidence_map:
   __page__:
   - S1
+  architecture:
+  - S1
+  lifecycle.announced:
+  - S1
+  lifecycle.full_production_platform:
+  - S1
+  process:
+  - S1
 ---
 # NVIDIA Blackwell Architecture
 
