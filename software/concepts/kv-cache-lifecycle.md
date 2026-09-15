@@ -1,38 +1,37 @@
 ---
-title: KV Cache 生命周期
-aliases:
-  - KV Cache Lifecycle
-  - KV 缓存生命周期
-tags:
-  - concept
-  - kv-cache
-  - inference
+schema_version: software-v0.1
+name: KV Cache 生命周期
+object_type: concept
+category: inference-memory
+updated: 2026-09-15
 ---
-
 # KV Cache 生命周期
 
-KV Cache 不是单一“缓存文件”，而是一条贯穿生成、驻留、复用、迁移、卸载和回收的生命周期。理解这条链路，是判断 prefix cache、外部 KV、P/D 分离是否值得的基础。
+> KV Cache 是一条生成、驻留、复用、迁移、卸载和回收的数据生命周期，而不只是一个缓存文件。
 
-## 生命周期
+## 问题
+
+长上下文、多轮对话和重复前缀会产生大量可复用计算，但 KV 本身也会占用昂贵的显存、内存、存储和网络资源。
+
+## 核心机制
 
 ```text
 Prompt
-  → [[software/inference-engine/vllm|vLLM]] Prefill 生成 KV
-  → GPU HBM 中驻留
-  → 命中时直接复用
-  → [[software/kv-cache/lmcache|LMCache]] 外部化 / 卸载 / 迁移
-  → [[software/distributed-serving/llm-d|llm-d]] 根据 KV 状态进行请求路由
-  → 冷却、淘汰或请求结束后释放
+  → [[software/projects/vllm|vLLM]] Prefill 生成 KV
+  → GPU HBM 驻留
+  → 命中时复用
+  → [[software/projects/lmcache|LMCache]] 外部化 / 卸载 / 迁移
+  → 路由层利用 KV 状态
+  → 淘汰或释放
 ```
 
-## 关键问题
+## 判断要点
 
-任何 KV 方案都应回答四件事：命中率是否足够高、搬运是否比重算更便宜、元数据是否能准确定位缓存、失效与多租户隔离是否可靠。只看“能不能存 KV”很容易得到一座昂贵的缓存仓库，却没有真正降低 TTFT。
+任何 KV 方案至少回答四件事：命中率是否足够高、搬运是否比重算便宜、元数据能否准确定位、失效与租户隔离是否可靠。
 
-## 关联
+## 相关项目与概念
 
-- [[software/concepts/pd-disaggregation|Prefill / Decode 分离]] 会把 KV 传输从可选优化变成关键数据路径。
-- [[software/concepts/topology-aware-scheduling|拓扑感知调度]] 决定 GPU、CPU 内存和 NIC 之间的搬运成本。
-- [[software/concepts/llm-serving-stack|LLM Serving 软件栈]] 给出 KV 在整体软件栈中的位置。
-
-返回 [[software/README|AI Infra 软件栈地图]]。
+- [[software/projects/vllm|vLLM]]
+- [[software/projects/lmcache|LMCache]]
+- [[software/projects/llm-d|llm-d]]
+- [[software/concepts/pd-disaggregation|Prefill / Decode 分离]]

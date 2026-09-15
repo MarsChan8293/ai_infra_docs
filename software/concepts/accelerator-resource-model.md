@@ -1,40 +1,35 @@
 ---
-title: 加速器资源模型
-aliases:
-  - Accelerator Resource Model
-  - GPU NPU 资源模型
-tags:
-  - concept
-  - resource-management
-  - kubernetes
+schema_version: software-v0.1
+name: 加速器资源模型
+object_type: concept
+category: resource-management
+updated: 2026-09-15
 ---
-
 # 加速器资源模型
 
-加速器资源模型回答的是：Kubernetes 和上层 AI 控制面应该如何描述、申请、分配、共享和隔离 GPU、NPU、NIC 等复杂设备。
+> 描述、申请、分配、共享和隔离 GPU、NPU、NIC 等复杂设备的统一思考框架。
 
-## 核心关系
+## 问题
+
+简单的 `gpu: 1` 无法表达型号、显存、拓扑、共享能力、健康状态和组合资源需求，异构 AI 集群因此需要更丰富的资源模型。
+
+## 核心机制
 
 ```text
 Workload
-  → [[software/device-resource/dra|Kubernetes DRA]] 表达设备需求
-  → [[software/scheduling/kai-scheduler|KAI-Scheduler]] 做集群级 placement
-  → [[software/device-resource/hami|HAMi]] 等组件完成共享、隔离或设备注入
-  → 具体 GPU / NPU / NIC
+  → [[software/projects/kubernetes-dra|Kubernetes DRA]] 表达设备需求
+  → [[software/projects/kai-scheduler|KAI-Scheduler]] 做 placement
+  → [[software/projects/hami|HAMi]] 等组件负责共享 / 隔离 / 注入
+  → GPU / NPU / NIC
 ```
 
-DRA 更像标准 API 层，HAMi 更接近设备资源与虚拟化实现层，KAI-Scheduler 则负责队列、公平性、Gang、抢占和 placement。三者职责不同，但组合后才能形成完整的 AI 资源控制链路。
+## 判断要点
 
-## 应显式建模的属性
+至少应显式保留厂商、型号、容量、互联、NUMA/PCIe/NVLink/RoCE 拓扑、驱动/runtime、共享能力和健康状态。统一资源入口不应把硬件差异抹掉，而应把差异变成可调度属性。
 
-厂商、型号、显存/HBM 容量与带宽、互联方式、NUMA、PCIe/NVLink/HCCS/RoCE 拓扑、驱动/runtime、可共享能力、健康状态，以及对 Prefill、Decode、MoE、KV Transfer 等角色的适配度。
+## 相关项目与概念
 
-硬件事实可继续从 [[chip/00-project-index|芯片与基础设施资料库]] 进入，调度侧关系见 [[software/concepts/topology-aware-scheduling|拓扑感知调度]]。
-
-## 相关概念
-
+- [[software/projects/kubernetes-dra|Kubernetes DRA]]
+- [[software/projects/kai-scheduler|KAI-Scheduler]]
+- [[software/projects/hami|HAMi]]
 - [[software/concepts/heterogeneous-inference|异构推理]]
-- [[software/concepts/llm-serving-stack|LLM Serving 软件栈]]
-- [[software/concepts/pd-disaggregation|Prefill / Decode 分离]]
-
-返回 [[software/README|AI Infra 软件栈地图]]。
