@@ -20,7 +20,7 @@ lifecycle:
   planned_available: 2026-end
 updated: 2026-09-15
 schema_version: chip-v0.2
-layer: unknown
+layer: chip
 relations: {}
 evidence:
   S1:

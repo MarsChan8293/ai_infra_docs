@@ -29,7 +29,7 @@ lifecycle:
   ramp: 2026-05-31
 updated: 2026-09-15
 schema_version: chip-v0.2
-layer: unknown
+layer: chip
 legacy_status: production-ramp
 relations: {}
 evidence:

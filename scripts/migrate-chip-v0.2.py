@@ -171,7 +171,7 @@ def migrate_file(path: pathlib.Path, accessed: str) -> bool:
     fm["schema_version"] = "chip-v0.2"
     object_type, legacy_object_type = canonical_object_type(fm.get("object_type"))
     fm["object_type"] = object_type
-    if legcy_object_type:
+    if legacy_object_type:
         fm.setdefault("legacy_object_type", legacy_object_type)
     fm["layer"] = infer_layer(fm["object_type"])
     status, legacy_status = normalized_status(fm.get("status"))
