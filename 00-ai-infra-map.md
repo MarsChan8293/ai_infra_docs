@@ -25,6 +25,7 @@ tags:
 
 - [[chip/00-project-index|AI 芯片与基础设施资料库]]
 - [[software/README|AI Infra 软件栈地图]]
+- [[models/00-model-index|AI Model Index]]
 - [[AGENTS|协作约定与知识图谱规则]]
 
 ## 核心软件概念节点

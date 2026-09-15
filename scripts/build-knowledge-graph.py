@@ -22,13 +22,11 @@ GENERIC_RELATIONS = {"wikilink", "navigation", "vendor-chip", "concept-link", "c
 
 def link_scan_text(text: str) -> str:
     text = re.sub(r"```.*?```", "", text, flags=re.S)
-    text = re.sub(r"`[^`\n]*`", "", text)
-    return text
+    return re.sub(r"`[^`\n]*`", "", text)
 
 
 def strip_md(value: str) -> str:
-    value = value.strip().replace("\\", "/")
-    value = value.split("#", 1)[0].strip()
+    value = value.strip().replace("\\", "/").split("#", 1)[0].strip()
     if value.endswith(".md"):
         value = value[:-3]
     return value.strip("/")
@@ -61,12 +59,15 @@ def extract_sources(text: str) -> list[dict]:
     sec = section(text, "直接来源")
     explicit = {m.group(1): m.group(2) for m in EVIDENCE_DEF_RE.finditer(sec)}
     if explicit:
-        return [{"id": k, "url": v, "explicit": True} for k, v in sorted(explicit.items())]
+        return [{"id": key, "url": url, "explicit": True} for key, url in sorted(explicit.items())]
     return [{"id": f"S{i}", "url": url, "explicit": False} for i, url in enumerate(URL_RE.findall(sec), 1)]
 
 
 def claim_evidence_ids(text: str) -> list[str]:
-    return sorted(set(EVIDENCE_REF_RE.findall(section(text, "核心能力"))))
+    refs: set[str] = set()
+    for heading in ("核心能力", "核心规格", "架构特征", "AI Infra 关注点"):
+        refs.update(EVIDENCE_REF_RE.findall(section(text, heading)))
+    return sorted(refs)
 
 
 def relation_entries(value: object) -> list[tuple[str, str]]:
@@ -76,7 +77,7 @@ def relation_entries(value: object) -> list[tuple[str, str]]:
             if isinstance(targets, str):
                 targets = [targets]
             if isinstance(targets, list):
-                out.extend((str(rel), str(t)) for t in targets)
+                out.extend((str(rel), str(target)) for target in targets)
     elif isinstance(value, list):
         for item in value:
             if isinstance(item, dict) and "type" in item and "target" in item:
@@ -91,18 +92,20 @@ def node_domain(rel: pathlib.PurePosixPath) -> str:
 
 
 def node_kind(rel: pathlib.PurePosixPath, fm: dict) -> str:
-    object_type = fm.get("object_type")
-    if rel.parts[:2] == ("software", "projects") and object_type == "project":
-        return str(fm.get("category") or "project")
-    if rel.parts[:2] == ("software", "concepts") or object_type == "concept":
-        return "concept"
     tags = fm.get("tags") or []
     if isinstance(tags, str):
         tags = [tags]
     tags = {str(tag).casefold() for tag in tags}
     stem = rel.stem.casefold()
-    if "moc" in tags or stem in {"readme", "00-ai-infra-map", "00-project-index"}:
+    if "moc" in tags or stem in {"readme", "00-ai-infra-map", "00-project-index", "00-model-index"}:
         return "moc"
+    object_type = fm.get("object_type")
+    if object_type == "model":
+        return "model"
+    if rel.parts[:2] == ("software", "projects") and object_type == "project":
+        return str(fm.get("category") or "project")
+    if rel.parts[:2] == ("software", "concepts") or object_type == "concept":
+        return "concept"
     if rel.parts and rel.parts[0] == "chip":
         if stem.endswith("overview") or "概览" in rel.stem:
             return "vendor"
@@ -112,7 +115,9 @@ def node_kind(rel: pathlib.PurePosixPath, fm: dict) -> str:
     if rel.parts and rel.parts[0] == "software":
         return rel.parts[1].replace("_", "-") if len(rel.parts) >= 3 else "software"
     if rel.parts and rel.parts[0] == "models":
-        return "model"
+        if stem == "schema":
+            return "model-schema"
+        return "model-note"
     return "note"
 
 
@@ -179,7 +184,6 @@ def main() -> int:
     texts: dict[str, str] = {}
     by_basename: dict[str, list[str]] = defaultdict(list)
     project_by_slug: dict[str, str] = {}
-
     for path in markdown_files(root):
         rel = pathlib.PurePosixPath(path.relative_to(root).as_posix())
         node_id = rel.with_suffix("").as_posix()
@@ -244,7 +248,7 @@ def main() -> int:
         typed: list[tuple[str, str]] = []
         integrations = fm.get("integrations") or []
         if isinstance(integrations, list):
-            typed.extend(("integrates-with", str(t)) for t in integrations)
+            typed.extend(("integrates-with", str(target)) for target in integrations)
         typed.extend(relation_entries(fm.get("relations")))
         for relation, slug in typed:
             target_id = project_by_slug.get(slug)
@@ -255,7 +259,7 @@ def main() -> int:
                     del edge_map[key]
             add_edge(source_id, target_id, relation, "frontmatter")
 
-    edges = sorted(edge_map.values(), key=lambda e: (e["source"], e["target"], e["relation"]))
+    edges = sorted(edge_map.values(), key=lambda edge: (edge["source"], edge["target"], edge["relation"]))
     incoming = defaultdict(int)
     outgoing = defaultdict(int)
     cross = defaultdict(int)
@@ -304,7 +308,7 @@ def main() -> int:
     for edge in edges:
         relations[edge["relation"]] += 1
 
-    top_nodes = sorted(nodes, key=lambda n: (n["bridge_score"], n["degree"]), reverse=True)[:25]
+    top_nodes = sorted(nodes, key=lambda node: (node["bridge_score"], node["degree"]), reverse=True)[:25]
     summary = [
         "---", "title: AI Infra 知识图谱构建报告", "tags:", "  - generated", "  - knowledge-graph", "---", "",
         "# AI Infra 知识图谱构建报告", "",
@@ -314,10 +318,10 @@ def main() -> int:
     for key, value in sorted(domains.items()):
         summary.append(f"- `{key}`：{value}")
     summary.extend(["", "## 按节点类型", ""])
-    for key, value in sorted(kinds.items(), key=lambda x: (-x[1], x[0])):
+    for key, value in sorted(kinds.items(), key=lambda item: (-item[1], item[0])):
         summary.append(f"- `{key}`：{value}")
     summary.extend(["", "## 按关系类型", ""])
-    for key, value in sorted(relations.items(), key=lambda x: (-x[1], x[0])):
+    for key, value in sorted(relations.items(), key=lambda item: (-item[1], item[0])):
         summary.append(f"- `{key}`：{value}")
     summary.extend(["", "## Evidence coverage", ""])
     for key, value in sorted(evidence.items()):
@@ -327,7 +331,6 @@ def main() -> int:
         summary.append(f"| `[[{node['id']}|{node['name']}]]` | {node['degree']} | {node['cross_domain']} | {node['bridge_score']} |")
     summary.extend(["", "## 说明", "", "该报告由 `scripts/build-knowledge-graph.py` 自动生成；Markdown/YAML 仍是唯一事实源。", ""])
     (output / "graph-summary.md").write_text("\n".join(summary), encoding="utf-8")
-
     print(f"nodes={len(nodes)} edges={len(edges)} unresolved={len(unresolved)} isolated={len(isolated)}")
     return 0
 
