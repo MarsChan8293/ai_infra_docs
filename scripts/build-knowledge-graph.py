@@ -20,6 +20,12 @@ EXCLUDED_DIRS = {".git", ".github", ".obsidian", ".codex", "generated", "scripts
 GENERIC_RELATIONS = {"wikilink", "navigation", "vendor-chip", "concept-link", "cross-domain"}
 
 
+def link_scan_text(text: str) -> str:
+    text = re.sub(r"```.*?```", "", text, flags=re.S)
+    text = re.sub(r"`[^`\n]*`", "", text)
+    return text
+
+
 def strip_md(value: str) -> str:
     value = value.strip().replace("\\", "/")
     value = value.split("#", 1)[0].strip()
@@ -133,15 +139,12 @@ def resolve_target(target: str, source_id: str, ids: set[str], by_basename: dict
     raw = strip_md(target)
     if not raw:
         return None, "empty"
-    candidates: list[str] = []
     if raw in ids:
-        candidates.append(raw)
+        return raw, None
     relative = strip_md(str(pathlib.PurePosixPath(source_id).parent / raw))
-    if relative in ids and relative not in candidates:
-        candidates.append(relative)
-    for item in by_basename.get(pathlib.PurePosixPath(raw).name.casefold(), []):
-        if item not in candidates:
-            candidates.append(item)
+    if relative in ids:
+        return relative, None
+    candidates = list(dict.fromkeys(by_basename.get(pathlib.PurePosixPath(raw).name.casefold(), [])))
     if len(candidates) == 1:
         return candidates[0], None
     if len(candidates) > 1:
@@ -216,14 +219,15 @@ def main() -> int:
             edge["syntaxes"].append(syntax)
 
     for source_id, text in texts.items():
-        for match in WIKILINK_RE.finditer(text):
+        scan = link_scan_text(text)
+        for match in WIKILINK_RE.finditer(scan):
             target = match.group(1).split("|", 1)[0].strip()
             target_id, reason = resolve_target(target, source_id, ids, by_basename)
             if target_id is None:
                 unresolved.append({"source": source_id, "target": target, "reason": reason, "syntax": "wikilink"})
             elif target_id != source_id:
                 add_edge(source_id, target_id, classify_edge(records[source_id], records[target_id]), "wikilink")
-        for match in MD_LINK_RE.finditer(text):
+        for match in MD_LINK_RE.finditer(scan):
             target = match.group(1).strip()
             if target.startswith(("http://", "https://", "mailto:")):
                 continue
@@ -271,7 +275,13 @@ def main() -> int:
     nodes = []
     for node_id, node in sorted(records.items()):
         degree = len(neighbors[node_id])
-        metric = {"degree": degree, "incoming": incoming[node_id], "outgoing": outgoing[node_id], "cross_domain": cross[node_id], "bridge_score": degree + 3 * cross[node_id]}
+        metric = {
+            "degree": degree,
+            "incoming": incoming[node_id],
+            "outgoing": outgoing[node_id],
+            "cross_domain": cross[node_id],
+            "bridge_score": degree + 3 * cross[node_id],
+        }
         metrics[node_id] = metric
         nodes.append({**node, **metric, "backlinks": sorted(backlinks[node_id])})
 
@@ -295,7 +305,12 @@ def main() -> int:
         relations[edge["relation"]] += 1
 
     top_nodes = sorted(nodes, key=lambda n: (n["bridge_score"], n["degree"]), reverse=True)[:25]
-    summary = ["---", "title: AI Infra 知识图谱构建报告", "tags:", "  - generated", "  - knowledge-graph", "---", "", "# AI Infra 知识图谱构建报告", "", f"- 节点数：**{len(nodes)}**", f"- 有向边数：**{len(edges)}**", f"- 未解析内部链接：**{len(unresolved)}**", f"- 孤立节点：**{len(isolated)}**", "", "## 按领域", ""]
+    summary = [
+        "---", "title: AI Infra 知识图谱构建报告", "tags:", "  - generated", "  - knowledge-graph", "---", "",
+        "# AI Infra 知识图谱构建报告", "",
+        f"- 节点数：**{len(nodes)}**", f"- 有向边数：**{len(edges)}**", f"- 未解析内部链接：**{len(unresolved)}**", f"- 孤立节点：**{len(isolated)}**", "",
+        "## 按领域", "",
+    ]
     for key, value in sorted(domains.items()):
         summary.append(f"- `{key}`：{value}")
     summary.extend(["", "## 按节点类型", ""])
