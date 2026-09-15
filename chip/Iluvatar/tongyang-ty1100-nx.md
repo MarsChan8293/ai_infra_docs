@@ -1,14 +1,34 @@
 ---
-title: "彤央 TY1100-NX"
+title: 彤央 TY1100-NX
 vendor: Iluvatar CoreX
 object_type: edge-system
 status: current-catalog
-architecture: "self-developed GPGPU + Arm"
-memory: {shared_or_system: {type: LPDDR5x, capacity_gb: "32/64"}, additional_lpddr5x_gb: 16}
-cpu: "12-Core Arm"
-dimensions_mm: "130x130x63"
-lifecycle: {mass_production: null}
+architecture: self-developed GPGPU + Arm
+memory:
+  shared_or_system:
+    type: LPDDR5x
+    capacity_gb: 32/64
+  additional_lpddr5x_gb: 16
+cpu: 12-Core Arm
+dimensions_mm: 130x130x63
+lifecycle:
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: system
+process: null
+compute: {}
+interconnect: {}
+power: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-ytxl-TY1100_NX
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # 彤央 TY1100-NX
 

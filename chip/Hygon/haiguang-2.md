@@ -1,12 +1,31 @@
 ---
-title: "海光二号 CPU"
+title: 海光二号 CPU
 vendor: Hygon
 object_type: cpu-generation
 status: legacy
 architecture: x86
 process: null
-lifecycle: {mass_production: 2020-01, customer_validation: 2020-02, first_revenue: 2020-04, eol: null}
+lifecycle:
+  mass_production: 2020-01
+  customer_validation: 2020-02
+  first_revenue: 2020-04
+  eol: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+memory: {}
+compute: {}
+interconnect: {}
+power: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.hygon.cn/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # 海光二号 CPU
 

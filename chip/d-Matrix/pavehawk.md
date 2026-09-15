@@ -1,16 +1,40 @@
 ---
-title: "d-Matrix Pavehawk 3DIMC"
+title: d-Matrix Pavehawk 3DIMC
 vendor: d-Matrix
 object_type: experimental-silicon
-status: lab-validation
-architecture: "3D DIMC"
+status: unknown
+architecture: 3D DIMC
 process: null
-memory: {type: "3D stacked DRAM", capacity_gb: null, bandwidth_tb_s: null}
+memory:
+  type: 3D stacked DRAM
+  capacity_gb: null
+  bandwidth_tb_s: null
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: silicon}
-lifecycle: {lab_validation: confirmed, mass_production: null}
+power:
+  value_w: null
+  scope: silicon
+lifecycle:
+  lab_validation: confirmed
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+legacy_status: lab-validation
+relations: {}
+evidence:
+  S1:
+    url: https://www.d-matrix.ai/scaling-ai-inference-with-3dimc/
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www.d-matrix.ai/going-vertical-why-we-created-a-3d-dram-solution-to-advance-low-latency-ai-inference/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # d-Matrix Pavehawk 3DIMC
 

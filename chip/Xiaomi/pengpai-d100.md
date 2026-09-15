@@ -1,17 +1,41 @@
 ---
-title: "Xiaomi XRING D100 / 玄戒 D100"
+title: Xiaomi XRING D100 / 玄戒 D100
 vendor: Xiaomi
 object_type: automotive-ai-chip
-status: engineering-validated
+status: unknown
 architecture: XRING automotive
 process: 3nm
-cpu: {cores: 20}
-npu: {cores: 16, tops: null}
-memory: {capacity_gb_max: 160, type: null}
-interconnect: {multi_chip_fusion: true}
-power: {value_w: null, scope: chip}
-lifecycle: {announced_event: 2026-08-24, silicon_validation: confirmed_by_public_event_reports, planned_commercial: 2027}
+cpu:
+  cores: 20
+npu:
+  cores: 16
+  tops: null
+memory:
+  capacity_gb_max: 160
+  type: null
+interconnect:
+  multi_chip_fusion: true
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced_event: 2026-08-24
+  silicon_validation: confirmed_by_public_event_reports
+  planned_commercial: 2027
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+legacy_status: engineering-validated
+compute: {}
+relations: {}
+evidence:
+  S1:
+    url: https://ir.mi.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Xiaomi XRING D100 / 玄戒 D100
 

@@ -1,16 +1,35 @@
 ---
-title: "Enflame 邃思 400"
+title: Enflame 邃思 400
 vendor: Enflame
 object_type: chip
 status: sampling
-architecture: "GCU-CARA Gen4"
+architecture: GCU-CARA Gen4
 process: null
 memory: {}
-compute: {formats: [FP8]}
-interconnect: {scale_up: "large-scale / 128-card single-layer direction"}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2025, silicon_returned: confirmed, mass_production: false_as_of_2026-06-18}
+compute:
+  formats:
+  - FP8
+interconnect:
+  scale_up: large-scale / 128-card single-layer direction
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2025
+  silicon_returned: confirmed
+  mass_production: false_as_of_2026-06-18
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://www.enflame-tech.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Enflame 邃思 400
 

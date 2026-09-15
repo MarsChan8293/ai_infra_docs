@@ -1,12 +1,31 @@
 ---
-title: "海光四号 CPU"
+title: 海光四号 CPU
 vendor: Hygon
 object_type: cpu-generation
-status: development-or-limited-public
+status: unknown
 architecture: x86
 process: null
-lifecycle: {silicon_validation_signal: 2022, research_project: 2023, mass_production: null}
+lifecycle:
+  silicon_validation_signal: 2022
+  research_project: 2023
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+legacy_status: development-or-limited-public
+memory: {}
+compute: {}
+interconnect: {}
+power: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.hygon.cn/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # 海光四号 CPU
 

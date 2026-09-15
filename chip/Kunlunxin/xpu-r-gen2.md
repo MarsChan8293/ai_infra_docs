@@ -1,16 +1,39 @@
 ---
-title: "昆仑芯二代 XPU-R"
+title: 昆仑芯二代 XPU-R
 vendor: Kunlunxin
 object_type: chip
 status: shipping
 architecture: XPU-R
 process: null
-memory: {type: GDDR6, capacity_gb: "16/32"}
-compute: {int8_tops: 256, int16_tops: 128, int32_tops: 128}
+memory:
+  type: GDDR6
+  capacity_gb: 16/32
+compute:
+  int8_tops: 256
+  int16_tops: 128
+  int32_tops: 128
 interconnect: {}
-power: {reported_w: [150,160], scope: chip_or_product_variant}
-lifecycle: {roadmap: 2021, mass_production: 2021-08, customer_delivery_started: 2022}
+power:
+  reported_w:
+  - 150
+  - 160
+  scope: chip_or_product_variant
+lifecycle:
+  roadmap: 2021
+  mass_production: 2021-08
+  customer_delivery_started: 2022
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://www.kunlunxin.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # 昆仑芯二代 XPU-R
 

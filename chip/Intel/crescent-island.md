@@ -1,17 +1,40 @@
 ---
-title: "Intel Crescent Island"
+title: Intel Crescent Island
 vendor: Intel
 object_type: accelerator-card
 status: announced
 architecture: Xe3P
 process: null
-compute_units: {xe_cores: 32, xmx_engines: 256}
-memory: {type: LPDDR5X, capacity_gb_max: 480, bandwidth_tb_s: null}
+compute_units:
+  xe_cores: 32
+  xmx_engines: 256
+memory:
+  type: LPDDR5X
+  capacity_gb_max: 480
+  bandwidth_tb_s: null
 compute: {}
-interconnect: {host: PCIe}
-power: {value_w: 350, scope: board, cooling: air}
-lifecycle: {public_architecture: 2026-08-24, sampling: null, mass_production: null}
+interconnect:
+  host: PCIe
+power:
+  value_w: 350
+  scope: board
+  cooling: air
+lifecycle:
+  public_architecture: 2026-08-24
+  sampling: null
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: accelerator
+relations: {}
+evidence:
+  S1:
+    url: https://www.intel.com/content/www/us/en/newsroom/news/client-computing/intel-outlines-architectures-for-agentic-ai-at-hot-chips-2026.html
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Intel Crescent Island
 

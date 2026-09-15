@@ -1,16 +1,40 @@
 ---
-title: "Google TPU v6e / Trillium"
+title: Google TPU v6e / Trillium
 vendor: Google
 object_type: chip
 status: ga
 architecture: TPU
 process: null
-memory: {type: HBM, capacity_gb: null, bandwidth_tb_s: null}
+memory:
+  type: HBM
+  capacity_gb: null
+  bandwidth_tb_s: null
 compute: {}
-interconnect: {scale_up: ICI}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2024-05-14, cloud_ga: 2024-12-11}
+interconnect:
+  scale_up: ICI
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2024-05-14
+  cloud_ga: 2024-12-11
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://docs.cloud.google.com/tpu/docs/v6e
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://cloud.google.com/blog/products/compute/trillium-tpu-is-ga
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Google TPU v6e / Trillium
 

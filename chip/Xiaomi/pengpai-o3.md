@@ -1,15 +1,37 @@
 ---
-title: "Xiaomi XRING O3 / 玄戒 O3"
+title: Xiaomi XRING O3 / 玄戒 O3
 vendor: Xiaomi
 object_type: mobile-soc
-status: production-claim
+status: unknown
 architecture: XRING
 process: 3nm
 transistors_billion: 24
-npu: {llm_optimized: true, absolute_tops: null}
-compute: {vendor_claim_inference_speed_vs_previous: "+45%", vendor_claim_power_reduction: "26%"}
-lifecycle: {announced_event: 2026-08-24, mass_production_claim: true, planned_first_device: 2026-09}
+npu:
+  llm_optimized: true
+  absolute_tops: null
+compute:
+  vendor_claim_inference_speed_vs_previous: +45%
+  vendor_claim_power_reduction: 26%
+lifecycle:
+  announced_event: 2026-08-24
+  mass_production_claim: true
+  planned_first_device: 2026-09
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: soc
+legacy_status: production-claim
+memory: {}
+interconnect: {}
+power: {}
+relations: {}
+evidence:
+  S1:
+    url: https://ir.mi.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Xiaomi XRING O3 / 玄戒 O3
 

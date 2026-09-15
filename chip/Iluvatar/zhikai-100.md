@@ -1,16 +1,36 @@
 ---
-title: "智铠 100"
+title: 智铠 100
 vendor: Iluvatar CoreX
 object_type: chip-or-product-family
-status: commercialized
-architecture: "general-purpose inference GPU"
+status: unknown
+architecture: general-purpose inference GPU
 process: null
 memory: {}
-compute: {formats: [FP32, FP16, INT8]}
+compute:
+  formats:
+  - FP32
+  - FP16
+  - INT8
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {commercialized: confirmed, cloud_platform_available: 2024-12}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  commercialized: confirmed
+  cloud_platform_available: 2024-12
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: family
+legacy_status: commercialized
+relations: {}
+evidence:
+  S1:
+    url: https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-tlxltt-zk100
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # 智铠 100
 

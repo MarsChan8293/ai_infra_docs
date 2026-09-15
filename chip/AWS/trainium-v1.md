@@ -1,16 +1,45 @@
 ---
-title: "AWS Trainium"
+title: AWS Trainium
 vendor: AWS
 object_type: chip
 status: ga
 architecture: NeuronCore-v2
 process: null
-memory: {type: HBM, capacity_gb: 32, bandwidth_tb_s: 0.8}
-compute: {fp8_tflops: 191, fp16_tflops: 191, bf16_tflops: 191, fp32_tflops: 48}
-interconnect: {scale_up: NeuronLink-v2, bandwidth_tb_s_per_chip: 0.384}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2020-11, cloud_available: 2022-10-10}
+memory:
+  type: HBM
+  capacity_gb: 32
+  bandwidth_tb_s: 0.8
+compute:
+  fp8_tflops: 191
+  fp16_tflops: 191
+  bf16_tflops: 191
+  fp32_tflops: 48
+interconnect:
+  scale_up: NeuronLink-v2
+  bandwidth_tb_s_per_chip: 0.384
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2020-11
+  cloud_available: 2022-10-10
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://aws.amazon.com/ec2/instance-types/trn1/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # AWS Trainium
 

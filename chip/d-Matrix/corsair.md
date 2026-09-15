@@ -1,16 +1,46 @@
 ---
-title: "d-Matrix Corsair"
+title: d-Matrix Corsair
 vendor: d-Matrix
 object_type: inference-platform
 status: production
 architecture: DIMC
 process: null
-memory: {performance_sram_gb: 2, performance_sram_bandwidth_tb_s: 150, capacity_memory: "LPDDR5 up to 256GB / 400GB/s platform-level"}
-compute: {units: [DIMC, SIMD, RISC-V, Dispatch, Data_Reshape]}
-interconnect: {chiplet_bridge: DMX_Bridge}
-power: {value_w: null, scope: platform}
-lifecycle: {full_production_claim: 2026-06, customers: "select/qualified"}
+memory:
+  performance_sram_gb: 2
+  performance_sram_bandwidth_tb_s: 150
+  capacity_memory: LPDDR5 up to 256GB / 400GB/s platform-level
+compute:
+  units:
+  - DIMC
+  - SIMD
+  - RISC-V
+  - Dispatch
+  - Data_Reshape
+interconnect:
+  chiplet_bridge: DMX_Bridge
+power:
+  value_w: null
+  scope: platform
+lifecycle:
+  full_production_claim: 2026-06
+  customers: select/qualified
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+relations: {}
+evidence:
+  S1:
+    url: https://www.d-matrix.ai/announcements/d-matrix-corsair-ai-inference-platform-enters-full-production-to-meet-customer-demand/
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www.d-matrix.ai/product/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # d-Matrix Corsair
 

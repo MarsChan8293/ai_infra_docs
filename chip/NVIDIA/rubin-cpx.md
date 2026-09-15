@@ -1,16 +1,35 @@
 ---
-title: "NVIDIA Rubin CPX"
+title: NVIDIA Rubin CPX
 vendor: NVIDIA
 object_type: gpu
 status: roadmap
 architecture: Rubin-family
 process: null
-memory: {type: GDDR7, capacity_gb: 128, bandwidth_tb_s: null}
-compute: {nvfp4_pflops_max: 30}
+memory:
+  type: GDDR7
+  capacity_gb: 128
+  bandwidth_tb_s: null
+compute:
+  nvfp4_pflops_max: 30
 interconnect: {}
-power: {value_w: null, scope: gpu}
-lifecycle: {announced: 2025-09-09, planned_available: 2026-end}
+power:
+  value_w: null
+  scope: gpu
+lifecycle:
+  announced: 2025-09-09
+  planned_available: 2026-end
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+relations: {}
+evidence:
+  S1:
+    url: https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # NVIDIA Rubin CPX
 

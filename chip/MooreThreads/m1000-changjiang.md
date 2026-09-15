@@ -1,16 +1,38 @@
 ---
-title: "Moore Threads M1000 / 长江"
+title: Moore Threads M1000 / 长江
 vendor: Moore Threads
 object_type: soc
-status: current-platform
+status: unknown
 architecture: 长江
 process: null
-components: [CPU, GPU, NPU, VPU, DPU, ISP, Audio_DSP]
+components:
+- CPU
+- GPU
+- NPU
+- VPU
+- DPU
+- ISP
+- Audio_DSP
 memory: {}
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: soc}
+power:
+  value_w: null
+  scope: soc
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: soc
+legacy_status: current-platform
+lifecycle: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.mthreads.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Moore Threads M1000 / 长江
 

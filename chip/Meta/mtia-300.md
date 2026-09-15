@@ -1,18 +1,38 @@
 ---
-title: "Meta MTIA 300"
+title: Meta MTIA 300
 vendor: Meta
 object_type: chip
 status: production
 architecture: MTIA
 process: null
-chiplets: {compute: 1, network: 2}
-memory: {type: HBM, capacity_gb: null, bandwidth_tb_s: null}
-compute_units: {processing_element: "2 RISC-V vector cores + DPE + SFU + Reduction Engine + DMA"}
+chiplets:
+  compute: 1
+  network: 2
+memory:
+  type: HBM
+  capacity_gb: null
+  bandwidth_tb_s: null
+compute_units:
+  processing_element: 2 RISC-V vector cores + DPE + SFU + Reduction Engine + DMA
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {production_deployment: confirmed}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  production_deployment: confirmed
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://ai.meta.com/blog/meta-mtia-scale-ai-chips-for-billions/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Meta MTIA 300
 

@@ -1,16 +1,44 @@
 ---
-title: "Biren BR20X / BR2xx"
+title: Biren BR20X / BR2xx
 vendor: Biren
 object_type: chip-family
 status: roadmap
 architecture: 第二代架构
 process: null
-memory: {type: null, capacity_gb: null, bandwidth_tb_s: "higher; numeric unknown"}
-compute: {formats: [FP8, FP4]}
-interconnect: {native_supernode: vendor_claim}
-power: {value_w: null, scope: unknown}
-lifecycle: {announced: 2025-12-22, tapeout: null, mass_production: null}
+memory:
+  type: null
+  capacity_gb: null
+  bandwidth_tb_s: higher; numeric unknown
+compute:
+  formats:
+  - FP8
+  - FP4
+interconnect:
+  native_supernode: vendor_claim
+power:
+  value_w: null
+  scope: unknown
+lifecycle:
+  announced: 2025-12-22
+  tapeout: null
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: family
+relations: {}
+evidence:
+  S1:
+    url: https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1222/2025122200019.pdf
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www.birentech.com/news/odug5ugc29npl8m6slum8d9k/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Biren BR20X / BR2xx
 

@@ -1,15 +1,39 @@
 ---
-title: "昆仑芯 P800 OAM"
+title: 昆仑芯 P800 OAM
 vendor: Kunlunxin
 object_type: module
 status: product
-architecture: "P800 / XPU-P based"
+architecture: P800 / XPU-P based
 process: null
-memory: {capacity_gb: 96, source_level: integration_partner, type: null}
-compute: {formats: [FP16, FP32, INT8]}
-interconnect: {host: "PCIe Gen5 x16", cluster: "IB or RoCE"}
-power: {value_w: 400, scope: module, source_level: integration_partner}
+memory:
+  capacity_gb: 96
+  source_level: integration_partner
+  type: null
+compute:
+  formats:
+  - FP16
+  - FP32
+  - INT8
+interconnect:
+  host: PCIe Gen5 x16
+  cluster: IB or RoCE
+power:
+  value_w: 400
+  scope: module
+  source_level: integration_partner
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: module
+lifecycle: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.kunlunxin.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # 昆仑芯 P800 OAM
 

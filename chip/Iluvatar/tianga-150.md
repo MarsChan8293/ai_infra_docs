@@ -1,16 +1,31 @@
 ---
-title: "天垓 150"
+title: 天垓 150
 vendor: Iluvatar CoreX
 object_type: chip
 status: current-catalog
-architecture: "general-purpose GPU"
+architecture: general-purpose GPU
 process: null
 memory: {}
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: chip}
-lifecycle: {catalog_visible: true, mass_production: null}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  catalog_visible: true
+  mass_production: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://www.iluvatar.com/serias
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # 天垓 150
 

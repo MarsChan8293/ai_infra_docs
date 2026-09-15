@@ -1,16 +1,35 @@
 ---
-title: "AWS Trainium4"
+title: AWS Trainium4
 vendor: AWS
 object_type: chip
 status: roadmap
 architecture: null
 process: null
-memory: {type: null, capacity_gb: null, bandwidth_tb_s: null}
-compute: {fp4: "higher than Trainium3; absolute value unknown"}
+memory:
+  type: null
+  capacity_gb: null
+  bandwidth_tb_s: null
+compute:
+  fp4: higher than Trainium3; absolute value unknown
 interconnect: {}
-power: {value_w: null, scope: unknown}
-lifecycle: {announced: 2026-02, planned_delivery: 2027}
+power:
+  value_w: null
+  scope: unknown
+lifecycle:
+  announced: 2026-02
+  planned_delivery: 2027
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+relations: {}
+evidence:
+  S1:
+    url: https://press.aboutamazon.com/2026/2/openai-and-amazon-announce-strategic-partnership
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # AWS Trainium4
 

@@ -1,14 +1,37 @@
 ---
-title: "Iluvatar MR-V50"
+title: Iluvatar MR-V50
 vendor: Iluvatar CoreX
 object_type: board
-status: commercialized
-architecture: "智铠 inference GPU"
-memory: {type: HBM2e, capacity_gb: 16}
-compute: {formats: [FP32, FP16, INT8]}
-interconnect: {host: "PCIe Gen4 x16"}
-power: {value_w: 75, scope: board}
+status: unknown
+architecture: 智铠 inference GPU
+memory:
+  type: HBM2e
+  capacity_gb: 16
+compute:
+  formats:
+  - FP32
+  - FP16
+  - INT8
+interconnect:
+  host: PCIe Gen4 x16
+power:
+  value_w: 75
+  scope: board
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: board
+legacy_status: commercialized
+process: null
+lifecycle: {}
+relations: {}
+evidence:
+  S1:
+    url: https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-tlxltt-zk100
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Iluvatar MR-V50
 

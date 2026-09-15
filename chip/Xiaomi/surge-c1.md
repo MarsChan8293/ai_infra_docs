@@ -1,15 +1,32 @@
 ---
-title: "Xiaomi 澎湃 C1"
+title: Xiaomi 澎湃 C1
 vendor: Xiaomi
 object_type: isp
-status: commercialized
-architecture: "dedicated image signal processor"
+status: unknown
+architecture: dedicated image signal processor
 process: null
 compute: {}
 memory: {}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2021, first_device: "MIX FOLD"}
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2021
+  first_device: MIX FOLD
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: unknown
+legacy_status: commercialized
+interconnect: {}
+relations: {}
+evidence:
+  S1:
+    url: https://ir.mi.com/
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Xiaomi 澎湃 C1
 

@@ -1,16 +1,34 @@
 ---
-title: "Biren BR31X"
+title: Biren BR31X
 vendor: Biren
 object_type: chip-family
 status: roadmap
 architecture: null
 process: null
-memory: {type: null, capacity_gb: null, bandwidth_tb_s: null}
+memory:
+  type: null
+  capacity_gb: null
+  bandwidth_tb_s: null
 compute: {}
 interconnect: {}
-power: {value_w: null, scope: unknown}
-lifecycle: {announced: 2025-12-22, planned_commercial_launch: 2028}
+power:
+  value_w: null
+  scope: unknown
+lifecycle:
+  announced: 2025-12-22
+  planned_commercial_launch: 2028
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: family
+relations: {}
+evidence:
+  S1:
+    url: https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1222/2025122200019.pdf
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
 ---
 # Biren BR31X
 

@@ -1,17 +1,68 @@
 ---
-title: "Huawei Ascend 950PR"
+title: Huawei Ascend 950PR
 vendor: Huawei
 object_type: chip
-status: commercial-product
-architecture: "Ascend 950"
+status: unknown
+architecture: Ascend 950
 process: null
-compute_units: {ai_subsystems_max: 36, cube_variants: [32,28], vector_variants: [64,56]}
-memory: {technology: "HiBL 1.0", max_capacity_gb: 128, max_bandwidth_tb_s: 1.6, product_variant_capacity_gb: 112, product_variant_bandwidth_tb_s: 1.4, l2_mb: 128}
-compute: {mxfp4_tflops: [1784,1561], fp8_tflops: [919,804], bf16_tflops: [486,425]}
-interconnect: {unified_bus_2_0_gb_s_bidirectional: 2016, pcie: "Gen5 x16, 128GB/s bidirectional"}
-power: {value_w: null, scope: chip, related_card_max_w: 600}
-lifecycle: {announced: 2025-09-18, atlas_350_launch: 2026-03-20}
+compute_units:
+  ai_subsystems_max: 36
+  cube_variants:
+  - 32
+  - 28
+  vector_variants:
+  - 64
+  - 56
+memory:
+  technology: HiBL 1.0
+  max_capacity_gb: 128
+  max_bandwidth_tb_s: 1.6
+  product_variant_capacity_gb: 112
+  product_variant_bandwidth_tb_s: 1.4
+  l2_mb: 128
+compute:
+  mxfp4_tflops:
+  - 1784
+  - 1561
+  fp8_tflops:
+  - 919
+  - 804
+  bf16_tflops:
+  - 486
+  - 425
+interconnect:
+  unified_bus_2_0_gb_s_bidirectional: 2016
+  pcie: Gen5 x16, 128GB/s bidirectional
+power:
+  value_w: null
+  scope: chip
+  related_card_max_w: 600
+lifecycle:
+  announced: 2025-09-18
+  atlas_350_launch: 2026-03-20
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+legacy_status: commercial-product
+relations: {}
+evidence:
+  S1:
+    url: https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://www.hiascend.com/activities/dynamic-news/20260320-3
+    source_type: other
+    accessed: '2026-09-16'
+  S3:
+    url: https://public-download.obs.cn-east-2.myhuaweicloud.com/ascend/%E6%98%87%E8%85%BE950%20NPU%E6%9E%B6%E6%9E%84%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
+  - S3
 ---
 # Huawei Ascend 950PR
 

@@ -1,16 +1,46 @@
 ---
-title: "Groq 3 LPU / LP30"
+title: Groq 3 LPU / LP30
 vendor: Groq
 object_type: chip
-status: production-ramp
-architecture: "LPU / spatial dataflow"
+status: unknown
+architecture: LPU / spatial dataflow
 process: null
-memory: {type: SRAM, capacity_mb: 500, bandwidth_tb_s: 150}
-compute: {fp8_pflops_inferred: 1.2, inferred_from: "8-chip tray 9.6 PFLOPS"}
-interconnect: {c2c_links: 96, gbps_per_link: 112, bidirectional_tb_s: 2.5}
-power: {value_w: null, scope: chip}
-lifecycle: {announced: 2026-03-16, platform_full_production_claim: 2026-03-16, broad_ga: null}
+memory:
+  type: SRAM
+  capacity_mb: 500
+  bandwidth_tb_s: 150
+compute:
+  fp8_pflops_inferred: 1.2
+  inferred_from: 8-chip tray 9.6 PFLOPS
+interconnect:
+  c2c_links: 96
+  gbps_per_link: 112
+  bidirectional_tb_s: 2.5
+power:
+  value_w: null
+  scope: chip
+lifecycle:
+  announced: 2026-03-16
+  platform_full_production_claim: 2026-03-16
+  broad_ga: null
 updated: 2026-09-15
+schema_version: chip-v0.2
+layer: chip
+legacy_status: production-ramp
+relations: {}
+evidence:
+  S1:
+    url: https://developer.nvidia.com/blog/inside-nvidia-groq-3-lpx-the-low-latency-inference-accelerator-for-the-nvidia-vera-rubin-platform/
+    source_type: other
+    accessed: '2026-09-16'
+  S2:
+    url: https://groq.com/newsroom/groq-and-nvidia-enter-non-exclusive-inference-technology-licensing-agreement-to-accelerate-ai-inference-at-global-scale
+    source_type: other
+    accessed: '2026-09-16'
+evidence_map:
+  __page__:
+  - S1
+  - S2
 ---
 # Groq 3 LPU / LP30
 
