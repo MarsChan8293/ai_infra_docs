@@ -37,8 +37,8 @@
 - 外部官方资料、论文、博客和 GitHub 上游项目仍使用普通 URL，不要把外链伪装成 Wiki Link。
 - 不要求每条关系都手写 A→B 和 B→A 两份链接。Obsidian Backlinks 已能显示反向边。需要显式双向导航时，应有明确语义，例如“厂商总览 ↔ 芯片页”“MOC ↔ 主题页”。
 - 使用 MOC（Map of Content）和概念节点表达跨目录关系。MOC 负责“有哪些节点”，概念页负责“为什么这些节点有关”。不要为了让 Graph View 更密而制造无意义的全互联。
-- 每个重要文档都应至少存在一条从 MOC、概念页或上级总览可达的入边，避免孤岛节点。新建软件文档时，至少连接 `[[software/README]]`、一个相关概念节点，并在适用时连接一个上游或下游组件。
-- 软件项目之间应按真实架构关系建边，例如推理引擎 ↔ KV Cache、请求路由 ↔ 推理引擎、调度器 ↔ 设备资源；机制类关系优先连接到 `software/concepts/`，例如 P/D 分离、KV 生命周期、拓扑感知、异构推理。
+- 每个重要文档都应至少存在一条从 MOC、概念页或上级总览可达的入边，避免孤岛节点。Software Project 的 canonical 事实已迁入 `ai_infra_relationship`；本仓库 `software/projects/*` 只保留兼容 redirect。新增项目事实应更新 relationship canonical project，不在 docs 新建第二份完整项目页。
+- 技术机制继续优先建模在 `software/concepts/`，例如 P/D 分离、KV 生命周期、拓扑感知、异构推理。项目级能力、集成、维护者和组织关系由 `ai_infra_relationship` Project v3 维护；docs 的 project redirect 不复制这些事实。
 - 芯片与软件跨域关系应通过“加速器资源模型”“拓扑感知调度”“异构推理”等概念节点连接，避免在每个芯片页机械链接所有软件。
 - 新增或重命名文档时，检查 Wiki Link 的目标是否唯一。移动文件时同步更新显式路径链接，不能只依赖 Obsidian 的本地自动重写。
 - 页面标题尽量唯一；需要多个常用名称时使用 YAML frontmatter 的 `aliases`。MOC、概念页建议使用 `tags` 标记角色，但不要把 tags 当成双链替代品。
