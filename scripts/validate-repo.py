@@ -173,11 +173,45 @@ def main() -> int:
         "schema_version", "name", "object_type", "category", "organization", "status",
         "repo", "docs", "snapshot", "capabilities", "integrations", "backends", "updated",
     }
+    sw_redirect_required = {"schema_version", "name", "object_type", "canonical", "updated"}
+    software_redirects = 0
 
     for node_id, rec in sorted(software_projects.items()):
         path = rec["path"].as_posix()
         fm = rec["frontmatter"]
         text = texts[node_id]
+
+        if fm.get("object_type") == "project-redirect":
+            software_redirects += 1
+            missing = sorted(sw_redirect_required - set(fm))
+            if missing:
+                errors.append(f"{path}: project-redirect 缺少字段 {', '.join(missing)}")
+                continue
+            if fm.get("schema_version") != "software-redirect-v0.1":
+                errors.append(f"{path}: project-redirect schema_version 必须为 software-redirect-v0.1")
+            canonical = fm.get("canonical")
+            if not valid_url(canonical):
+                errors.append(f"{path}: canonical 必须为 http(s) URL")
+            elif "github.com/MarsChan8293/ai_infra_relationship/" not in str(canonical):
+                errors.append(f"{path}: canonical 必须指向 MarsChan8293/ai_infra_relationship")
+            if not valid_date(fm.get("updated")):
+                errors.append(f"{path}: updated 必须是 YYYY-MM-DD")
+            name = str(fm.get("name", "")).strip()
+            if not name:
+                errors.append(f"{path}: name 不能为空")
+            elif name.casefold() in software_names:
+                errors.append(f"{path}: name 与 {software_names[name.casefold()]} 重复: {name}")
+            else:
+                software_names[name.casefold()] = path
+            forbidden = {
+                "category", "organization", "status", "repo", "docs", "snapshot",
+                "capabilities", "integrations", "relations", "backends",
+            }
+            extra = sorted(forbidden & set(fm))
+            if extra:
+                errors.append(f"{path}: project-redirect 不应继续维护项目事实字段: {', '.join(extra)}")
+            continue
+
         missing = sorted(sw_required - set(fm))
         if missing:
             errors.append(f"{path}: 缺少字段 {', '.join(missing)}")
@@ -394,6 +428,7 @@ def main() -> int:
 
     summary = {
         "software_projects": len(software_projects),
+        "software_redirects": software_redirects,
         "software_page_evidence": software_page_evidence,
         "software_claim_evidence": software_claim_evidence,
         "models": len(models),
@@ -408,9 +443,9 @@ def main() -> int:
         report.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(
-        "software_projects={} software_page_evidence={} software_claim_evidence={} "
+        "software_projects={} software_redirects={} software_page_evidence={} software_claim_evidence={} "
         "models={} model_page_evidence={} model_claim_evidence={} errors={} warnings={}".format(
-            len(software_projects), software_page_evidence, software_claim_evidence,
+            len(software_projects), software_redirects, software_page_evidence, software_claim_evidence,
             len(models), model_page_evidence, model_claim_evidence, len(errors), len(warnings)
         )
     )
