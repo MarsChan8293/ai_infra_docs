@@ -1,59 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: llama.cpp
-object_type: project
-category: inference-engine
-organization: ggml-org
-status: active
-repo: https://github.com/ggml-org/llama.cpp
-docs: https://github.com/ggml-org/llama.cpp
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - gguf
-  - quantization
-  - local-inference
-  - openai-compatible-server
-integrations: []
-backends:
-  - cpu
-  - nvidia
-  - amd
-  - apple
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/ggml-org/llama.cpp/llama.cpp.md
+updated: 2026-09-19
 ---
 # llama.cpp
 
-> 以 C/C++ 为核心、强调本地与广泛硬件适配的 LLM/VLM 推理项目。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-| 能力 | 说明 |
-|---|---|
-| GGUF 生态 | 围绕 GGUF 模型格式进行加载、量化和执行 |
-| 本地推理 | 强调低依赖、本地设备和边缘环境 |
-| llama-server | 提供 OpenAI-compatible 服务入口 |
-| 多硬件路径 | 覆盖 CPU 与多类 GPU/加速后端 |
-
-## 边界
-
-llama.cpp 更强调便携、本地和边缘推理，不以大规模 Kubernetes 分布式 serving 为主要设计中心。
-
-## 集成与后端
-
-硬件支持范围广，但不同 backend 的性能与功能不应视为等价。
-
-## 关联项目
-
-- 异构 CPU/GPU 大模型执行：[[software/projects/ktransformers|KTransformers]]。
-- 数据中心推理引擎对照：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
-
-## 版本快照
-
-本页不绑定单一 release 或 commit；能力判断以 2026-09-15 前官方仓库为快照。
-
-## 直接来源
-
-- https://github.com/ggml-org/llama.cpp
+- Canonical project: [llama.cpp](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/ggml-org/llama.cpp/llama.cpp.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
