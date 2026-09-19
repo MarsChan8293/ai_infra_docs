@@ -1,57 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: FlashAttention
-object_type: project
-category: runtime
-organization: Dao-AILab
-status: active
-repo: https://github.com/Dao-AILab/flash-attention
-docs: https://github.com/Dao-AILab/flash-attention
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - exact-attention
-  - io-aware-attention
-  - memory-efficient-attention
-integrations: []
-backends:
-  - nvidia
-  - amd
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/Dao-AILab/FlashAttention/FlashAttention.md
+updated: 2026-09-19
 ---
 # FlashAttention
 
-> 面向 Transformer 的 IO-aware、内存高效 exact attention kernel 实现。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-| 能力 | 说明 |
-|---|---|
-| IO-aware Attention | 减少 HBM 与片上存储之间的数据搬运 |
-| Exact Attention | 保持精确 attention 语义而非近似算法 |
-| GPU Kernel | 围绕不同 GPU 架构持续优化 |
-| 生态基准 | 成为推理与训练框架 attention 优化的重要参照 |
-
-## 边界
-
-FlashAttention 是 attention kernel 项目，不是完整 inference engine；KV 管理、请求调度和 serving API 由上层系统承担。
-
-## 集成与后端
-
-本页将上层框架使用关系记录为“关联”，不自动视作稳定项目级集成。
-
-## 关联项目
-
-- 上层推理：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
-- Attention 对照：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/flashmla|FlashMLA]]、[[software/projects/flagattention|FlagAttention]]。
-- Kernel 编译：[[software/projects/triton|Triton]]。
-
-## 版本快照
-
-本页不绑定单一 release 或 commit；能力判断以 2026-09-15 前官方仓库为快照。
-
-## 直接来源
-
-- https://github.com/Dao-AILab/flash-attention
+- Canonical project: [FlashAttention](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/Dao-AILab/FlashAttention/FlashAttention.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
