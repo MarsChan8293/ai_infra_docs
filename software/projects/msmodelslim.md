@@ -1,50 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: msModelSlim
-object_type: project
-category: optimization
-organization: Ascend
-status: active
-repo: null
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - model-compression
-  - quantization
-integrations: []
-backends:
-  - ascend
-updated: 2026-09-16
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/Ascend/msModelSlim/msModelSlim.md
+updated: 2026-09-19
 ---
 # msModelSlim
 
-> Ascend 生态中的模型压缩与量化工具链。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-关注量化、压缩与部署前模型优化，用于降低推理资源占用并适配 Ascend 执行路径。[S1]
-
-## 边界
-
-它是模型优化工具，不是 serving engine 或集群控制面。
-
-## 集成与后端
-
-与 [[software/projects/mindie-llm|MindIE-LLM]]、[[software/projects/mindie-sd|MindIE-SD]] 构成模型优化到推理执行的上下游关系。
-
-## 关联项目
-
-- [[software/projects/mindie-llm|MindIE-LLM]]
-- [[software/projects/mindie-sd|MindIE-SD]]
-- [[software/projects/vllm-ascend|vLLM-Ascend]]
-
-## 版本快照
-
-本页以 2026-09-15 前 Ascend 公开生态资料为快照；未确认独立 canonical GitHub 仓库。
-
-## 直接来源
-
-- [S1] https://github.com/Ascend
+- Canonical project: [msModelSlim](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/Ascend/msModelSlim/msModelSlim.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
