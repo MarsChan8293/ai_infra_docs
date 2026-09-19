@@ -10,7 +10,7 @@ tags:
 ---
 # Software Project Index
 
-当前 Software V0.1 收录 59 个项目。项目事实统一位于 `software/projects/`；跨项目稳定机制位于 `software/concepts/`；上游社区视图见 [[software/COMMUNITIES|开源社区与上游组织]]。
+当前 Software Project Index 保留 59 个稳定本地入口。`software/projects/` 现为兼容 redirect，canonical 项目事实统一维护在 `ai_infra_relationship`；跨项目稳定机制继续位于 `software/concepts/`；上游社区视图见 [[software/COMMUNITIES|开源社区与上游组织]]。
 
 ## Inference Engine
 
@@ -111,4 +111,4 @@ tags:
 - [[software/concepts/accelerator-resource-model|加速器资源模型]]
 - [[software/concepts/heterogeneous-inference|异构推理]]
 
-维护约束见 [[software/SCHEMA|Software Schema V0.1]]。
+维护约束见 [[software/SCHEMA|Software Schema V0.2]]。
