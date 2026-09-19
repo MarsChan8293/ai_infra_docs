@@ -1,60 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: Triton
-object_type: project
-category: compiler
-organization: triton-lang
-status: active
-repo: https://github.com/triton-lang/triton
-docs: https://triton-lang.org/main/index.html
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - gpu-kernel-dsl
-  - compiler
-  - jit
-  - mlir
-integrations: []
-backends:
-  - nvidia
-  - amd
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/triton-lang/Triton/Triton.md
+updated: 2026-09-19
 ---
 # Triton
 
-> 用于编写高性能并行计算与深度学习 kernel 的语言和编译器。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-| 能力 | 说明 |
-|---|---|
-| Python DSL | 用 Python 风格语言描述 GPU kernel |
-| Compiler | 把 Triton 程序编译到底层 GPU 代码 |
-| JIT | 支持运行时特化与编译 |
-| MLIR | 使用 Triton MLIR dialect 表达和优化程序 |
-
-## 边界
-
-Triton 是 kernel 开发与编译层，不负责模型 serving 或集群编排。它与 [[software/projects/triton-inference-server|Triton Inference Server]] 名称相近，但后者是模型服务服务器，职责完全不同。
-
-## 集成与后端
-
-V0.1 暂不把“项目内部存在 Triton kernel”自动升级为强集成关系。
-
-## 关联项目
-
-- 上层推理：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
-- Kernel 库：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/flashattention|FlashAttention]]、[[software/projects/cutlass|CUTLASS]]、[[software/projects/deepgemm|DeepGEMM]]。
-- DSL / Compiler 对照：[[software/projects/tilelang|TileLang]]、[[software/projects/deepjit|DeepJIT]]、[[software/projects/flagtree|FlagTree]]。
-- 名称辨析：[[software/projects/triton-inference-server|Triton Inference Server]]。
-
-## 版本快照
-
-本页不绑定单一 release 或 commit；能力判断以 2026-09-15 前官方资料为快照。
-
-## 直接来源
-
-- https://triton-lang.org/main/index.html
-- https://github.com/triton-lang/triton
+- Canonical project: [Triton](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/triton-lang/Triton/Triton.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
