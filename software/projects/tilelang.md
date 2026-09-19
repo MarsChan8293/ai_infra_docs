@@ -1,52 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: TileLang
-object_type: project
-category: compiler
-organization: tile-ai
-status: active
-repo: https://github.com/tile-ai/tilelang
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - kernel-dsl
-  - gpu-kernel-generation
-integrations: []
-backends:
-  - gpu
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/tile-ai/TileLang/TileLang.md
+updated: 2026-09-19
 ---
 # TileLang
 
-> 面向高性能 GPU kernel 开发的 tile-oriented DSL / compiler 路线。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-用于更高层地表达矩阵、attention 等计算，并生成面向 GPU 的高性能实现。
-
-## 边界
-
-TileLang 位于 kernel 编译层，不负责模型 serving 或请求调度。
-
-## 集成与后端
-
-适合与 [[software/projects/triton|Triton]]、[[software/projects/cutlass|CUTLASS]]、[[software/projects/flashinfer|FlashInfer]] 进行 kernel 编程模型对比。
-
-## 关联项目
-
-- [[software/projects/triton|Triton]]
-- [[software/projects/cutlass|CUTLASS]]
-- [[software/projects/flashinfer|FlashInfer]]
-- [[software/projects/deepjit|DeepJIT]]
-- [[software/projects/flagtree|FlagTree]]
-
-## 版本快照
-
-本页以 2026-09-15 前公开资料为快照。
-
-## 直接来源
-
-- https://github.com/tile-ai/tilelang
+- Canonical project: [TileLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/tile-ai/TileLang/TileLang.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
