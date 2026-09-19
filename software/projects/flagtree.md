@@ -1,52 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: FlagTree
-object_type: project
-category: compiler
-organization: flagos-ai
-status: active
-repo: https://github.com/flagos-ai/FlagTree
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - kernel-dsl
-  - compiler
-  - heterogeneous-codegen
-integrations: []
-backends: []
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flagos-ai/FlagTree/FlagTree.md
+updated: 2026-09-19
 ---
 # FlagTree
 
-> FlagOS 生态中的异构 kernel DSL / compiler 项目。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-用于表达和生成面向不同加速器的高性能 kernel，是异构编译路线的重要观察对象。
-
-## 边界
-
-FlagTree 处于编译层，不承担模型 serving 或训练调度。
-
-## 集成与后端
-
-适合与 [[software/projects/triton|Triton]]、[[software/projects/tilelang|TileLang]]、[[software/projects/deepjit|DeepJIT]] 比较 DSL 和 codegen 模型。
-
-## 关联项目
-
-- [[software/projects/flagos|FlagOS]]
-- [[software/projects/flaggems|FlagGems]]
-- [[software/projects/triton|Triton]]
-- [[software/projects/tilelang|TileLang]]
-- [[software/projects/deepjit|DeepJIT]]
-
-## 版本快照
-
-本页以 2026-09-15 前公开资料为快照。
-
-## 直接来源
-
-- https://github.com/flagos-ai/FlagTree
+- Canonical project: [FlagTree](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flagos-ai/FlagTree/FlagTree.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
