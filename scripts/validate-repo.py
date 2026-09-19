@@ -280,6 +280,12 @@ def main() -> int:
         else:
             warnings.append(f"{path}: 尚未使用 [S1] claim-level evidence；当前按 page-level evidence 验证")
 
+    if software_redirects != len(software_projects):
+        errors.append(
+            "所有 software/projects 页面都必须是 project-redirect："
+            f"{software_redirects}/{len(software_projects)} 已迁移"
+        )
+
     models = {
         node_id: rec for node_id, rec in records.items()
         if rec["path"].parts and rec["path"].parts[0] == "models"
