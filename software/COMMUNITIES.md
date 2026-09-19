@@ -1,13 +1,13 @@
 ---
-schema_version: software-v0.1
+schema_version: software-v0.2
 name: 开源社区与上游组织
 object_type: concept
 category: ecosystem
-updated: 2026-09-15
+updated: 2026-09-19
 ---
 # 开源社区与上游组织
 
-> 按 canonical upstream namespace / 治理组织观察 AI Infra 软件生态；项目事实仍以 `software/projects/` 为准。
+> 按 canonical upstream namespace / 治理组织观察 AI Infra 软件生态；本页只做导航。项目 canonical 事实维护在 `ai_infra_relationship`，下列 `software/projects/*` 链接仅是本仓库兼容 redirect。
 
 ## 组织与项目
 
@@ -38,9 +38,9 @@ updated: 2026-09-15
 ## 维护规则
 
 - 目录仍按项目平铺，不按组织重新嵌套。
-- `organization` 使用 canonical upstream namespace 或明确治理组织。
-- 公司贡献关系不等于项目组织关系；V0.1 暂不把公司关系塞进 frontmatter。
-- 项目能力、版本、来源仍回到各自项目页维护。
+- upstream namespace / 治理组织只作为导航分组，不在本页复制 Project v3 事实。
+- 公司贡献关系不等于项目组织关系；组织/公司/维护者关系统一在 relationship canonical project 中核验。
+- 项目能力、版本、集成、硬件支持和来源更新到 `ai_infra_relationship`；本页只维护导航入口。
 
 ## 参考发现源
 
