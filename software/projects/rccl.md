@@ -1,58 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: RCCL
-object_type: project
-category: communication
-organization: AMD ROCm
-status: active
-repo: https://github.com/ROCm/rocm-systems
-docs: https://rocm.docs.amd.com/projects/rccl/en/latest/
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - all-reduce
-  - all-gather
-  - reduce-scatter
-  - all-to-all
-  - point-to-point
-integrations: []
-backends:
-  - amd
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/ROCm/RCCL/RCCL.md
+updated: 2026-09-19
 ---
 # RCCL
 
-> AMD ROCm 面向多 GPU、多节点的集合通信库。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-| 能力 | 说明 |
-|---|---|
-| Collectives | 覆盖 AllReduce、AllGather、AllToAll 等原语 |
-| xGMI / PCIe | 优化 AMD GPU 节点内高速互联 |
-| RDMA / Network | 支持跨节点 InfiniBand、RoCE 等通信路径 |
-| P2P | 支持 GPU 到 GPU 点到点通信 |
-
-## 边界
-
-RCCL 位于通信层，不负责模型执行、Serving 或调度策略。
-
-## 集成与后端
-
-V0.1 将框架使用 RCCL 的关系记录在关联区，不自动把所有 ROCm 使用者标为强集成。
-
-## 关联项目
-
-- 通信对照：[[software/projects/nccl|NCCL]]、[[software/projects/vccl|VCCL]]、[[software/projects/flagcx|FlagCX]]。
-- AMD 推理引擎路径：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]。
-
-## 版本快照
-
-本页不绑定单一 release；能力判断以 2026-09-15 前 ROCm RCCL 官方文档为快照。
-
-## 直接来源
-
-- https://rocm.docs.amd.com/projects/rccl/en/latest/
-- https://github.com/ROCm/rocm-systems
+- Canonical project: [RCCL](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/ROCm/RCCL/RCCL.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
