@@ -1,51 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: Colossal-AI
-object_type: project
-category: training
-organization: hpcaitech
-status: active
-repo: https://github.com/hpcaitech/ColossalAI
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - distributed-training
-  - parallelism
-  - large-model-training
-integrations: []
-backends:
-  - nvidia
-updated: 2026-09-16
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/hpcaitech/Colossal-AI/Colossal-AI.md
+updated: 2026-09-19
 ---
 # Colossal-AI
 
-> 面向大模型训练与分布式并行的开源系统。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-覆盖分布式训练、并行策略、内存优化等，是当前软件图谱从推理向训练侧延伸的重要入口。[S1]
-
-## 边界
-
-Colossal-AI 主线是训练与大模型系统，不应和 [[software/projects/vllm|vLLM]] 这类在线推理引擎混为一类。
-
-## 集成与后端
-
-与 [[software/projects/oneflow|OneFlow]]、[[software/projects/flagscale|FlagScale]] 构成训练/分布式系统对照组。
-
-## 关联项目
-
-- [[software/projects/oneflow|OneFlow]]
-- [[software/projects/flagscale|FlagScale]]
-- [[software/projects/nccl|NCCL]]
-
-## 版本快照
-
-本页以 2026-09-15 前公开资料为快照。
-
-## 直接来源
-
-- [S1] https://github.com/hpcaitech/ColossalAI
+- Canonical project: [Colossal-AI](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/hpcaitech/Colossal-AI/Colossal-AI.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
