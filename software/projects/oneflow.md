@@ -1,52 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: OneFlow
-object_type: project
-category: training
-organization: Oneflow-Inc
-status: active
-repo: https://github.com/Oneflow-Inc/oneflow
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - deep-learning-framework
-  - distributed-training
-  - tensor-runtime
-integrations: []
-backends:
-  - nvidia
-  - cpu
-updated: 2026-09-16
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/Oneflow-Inc/OneFlow/OneFlow.md
+updated: 2026-09-19
 ---
 # OneFlow
 
-> 面向深度学习与分布式训练的开源框架和 tensor runtime。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-提供 tensor 计算、自动求导与分布式执行能力，是 AI Infra 中训练 runtime / framework 侧的重要节点。[S1]
-
-## 边界
-
-OneFlow 不是 LLM serving control plane；在本仓库中主要用于补足训练与 runtime 方向。
-
-## 集成与后端
-
-与 [[software/projects/colossal-ai|Colossal-AI]]、[[software/projects/flagscale|FlagScale]] 做训练框架与分布式执行对照。
-
-## 关联项目
-
-- [[software/projects/colossal-ai|Colossal-AI]]
-- [[software/projects/flagscale|FlagScale]]
-- [[software/projects/nccl|NCCL]]
-
-## 版本快照
-
-本页以 2026-09-15 前公开资料为快照。
-
-## 直接来源
-
-- [S1] https://github.com/Oneflow-Inc/oneflow
+- Canonical project: [OneFlow](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/Oneflow-Inc/OneFlow/OneFlow.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
