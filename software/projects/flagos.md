@@ -1,57 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: FlagOS
-object_type: project
-category: ecosystem
-organization: flagos-ai
-status: active
-repo: https://github.com/flagos-ai/FlagOS
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - heterogeneous-ai-stack
-  - ecosystem-integration
-integrations: []
-backends: []
-updated: 2026-09-16
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flagos-ai/FlagOS/FlagOS.md
+updated: 2026-09-19
 ---
 # FlagOS
 
-> 面向异构 AI 软件栈的社区级聚合与协同项目。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-FlagOS 作为生态入口，把训练、kernel、通信、性能评测和推理插件等项目串成一个异构 AI 软件体系。[S1]
-
-## 边界
-
-FlagOS 更像生态与上层组织入口，具体技术能力应落到 FlagScale、FlagGems、FlagCX、FlagTree 等独立项目页。
-
-## 集成与后端
-
-- 训练：[[software/projects/flagscale|FlagScale]]。
-- Kernel：[[software/projects/flaggems|FlagGems]]、[[software/projects/flagattention|FlagAttention]]。
-- 通信：[[software/projects/flagcx|FlagCX]]。
-- 编译：[[software/projects/flagtree|FlagTree]]。
-- 性能与发布：[[software/projects/flagperf|FlagPerf]]、[[software/projects/flagrelease|FlagRelease]]。
-
-## 关联项目
-
-- [[software/projects/flagscale|FlagScale]]
-- [[software/projects/flaggems|FlagGems]]
-- [[software/projects/flagcx|FlagCX]]
-- [[software/projects/flagtree|FlagTree]]
-- [[software/projects/flagattention|FlagAttention]]
-- [[software/projects/flagperf|FlagPerf]]
-- [[software/projects/flagrelease|FlagRelease]]
-
-## 版本快照
-
-本页以 2026-09-15 前 FlagOS 社区公开资料为快照。
-
-## 直接来源
-
-- [S1] https://github.com/flagos-ai/FlagOS
+- Canonical project: [FlagOS](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flagos-ai/FlagOS/FlagOS.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
