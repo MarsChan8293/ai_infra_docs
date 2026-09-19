@@ -1,60 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: DeepGEMM
-object_type: project
-category: runtime
-organization: deepseek-ai
-status: active
-repo: https://github.com/deepseek-ai/DeepGEMM
-docs: https://github.com/deepseek-ai/DeepGEMM
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - gemm
-  - fp8
-  - fp4
-  - moe-kernels
-  - jit
-integrations:
-  - cutlass
-backends:
-  - nvidia
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/deepseek-ai/DeepSeek-Infra/DeepGEMM.md
+updated: 2026-09-19
 ---
 # DeepGEMM
 
-> DeepSeek 开源的高性能 Tensor Core kernel 库，覆盖现代 LLM 的 GEMM 与 MoE 核心计算。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-| 能力 | 说明 |
-|---|---|
-| 低精度 GEMM | 覆盖 FP8、FP4、BF16 等矩阵乘 |
-| MoE Kernels | 面向专家模型的融合计算路径 |
-| JIT | 运行时编译与特化 kernel |
-| 轻量实现 | 强调较小而清晰的高性能 CUDA 代码 |
-
-## 边界
-
-DeepGEMM 专注 NVIDIA GPU 计算 kernel；通信、请求路由、KV Cache 和集群管理由其他层处理。
-
-## 集成与后端
-
-- [[software/projects/cutlass|CUTLASS]]：kernel 基础设施关系。
-
-## 关联项目
-
-- 生态入口：[[software/projects/deepseek-infra|DeepSeek-Infra]]。
-- 编译/JIT：[[software/projects/triton|Triton]]、[[software/projects/deepjit|DeepJIT]]。
-- MoE 通信：[[software/projects/deepep|DeepEP]]。
-- Attention / Kernel：[[software/projects/flashmla|FlashMLA]]、[[software/projects/flaggems|FlagGems]]。
-
-## 版本快照
-
-本页不绑定单一 release 或 commit；能力判断以 2026-09-15 前官方仓库为快照。
-
-## 直接来源
-
-- https://github.com/deepseek-ai/DeepGEMM
+- Canonical project: [DeepGEMM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/deepseek-ai/DeepSeek-Infra/DeepGEMM.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
