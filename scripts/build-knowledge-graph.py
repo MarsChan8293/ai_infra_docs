@@ -102,6 +102,8 @@ def node_kind(rel: pathlib.PurePosixPath, fm: dict) -> str:
     object_type = fm.get("object_type")
     if object_type == "model":
         return "model"
+    if rel.parts[:2] == ("software", "projects") and object_type == "project-redirect":
+        return "project-redirect"
     if rel.parts[:2] == ("software", "projects") and object_type == "project":
         return str(fm.get("category") or "project")
     if rel.parts[:2] == ("software", "concepts") or object_type == "concept":
