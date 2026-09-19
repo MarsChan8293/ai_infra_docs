@@ -1,49 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: FlagRelease
-object_type: project
-category: ecosystem
-organization: flagos-ai
-status: active
-repo: https://github.com/flagos-ai/FlagRelease
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - software-release
-  - ecosystem-packaging
-integrations: []
-backends: []
-updated: 2026-09-16
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flagos-ai/FlagRelease/FlagRelease.md
+updated: 2026-09-19
 ---
 # FlagRelease
 
-> FlagOS 生态的软件发布、集成与版本协同项目。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-用于组织异构 AI 软件栈的发布与组合，帮助观察生态中不同组件如何形成可交付的软件版本。[S1]
-
-## 边界
-
-FlagRelease 本身不是执行 runtime 或 kernel。
-
-## 集成与后端
-
-与 [[software/projects/flagos|FlagOS]]、[[software/projects/flagperf|FlagPerf]] 一起承担生态级发布与验证角色。
-
-## 关联项目
-
-- [[software/projects/flagos|FlagOS]]
-- [[software/projects/flagperf|FlagPerf]]
-- [[software/projects/flagscale|FlagScale]]
-
-## 版本快照
-
-本页以 2026-09-15 前公开资料为快照。
-
-## 直接来源
-
-- [S1] https://github.com/flagos-ai/FlagRelease
+- Canonical project: [FlagRelease](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flagos-ai/FlagRelease/FlagRelease.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
