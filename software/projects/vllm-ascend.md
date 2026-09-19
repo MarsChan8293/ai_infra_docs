@@ -1,52 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: vLLM-Ascend
-object_type: project
-category: inference-engine
-organization: vllm-project
-status: active
-repo: https://github.com/vllm-project/vllm-ascend
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - vllm-ascend-backend
-  - ascend-inference
-integrations:
-  - vllm
-backends:
-  - ascend
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM-Ascend/vLLM-Ascend.md
+updated: 2026-09-19
 ---
 # vLLM-Ascend
 
-> 把 vLLM 推理栈适配到华为 Ascend/CANN 生态的开源项目。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-项目承接 vLLM 的 serving/runtime 抽象，并把设备执行、算子与通信路径适配到 Ascend 后端。
-
-## 边界
-
-它不是独立于 vLLM 的全新 serving 架构；很多上层语义仍来自 [[software/projects/vllm|vLLM]]，硬件能力则受 Ascend/CANN 软件栈约束。
-
-## 集成与后端
-
-- 上游：[[software/projects/vllm|vLLM]]。
-- Ascend 侧可与 [[software/projects/mindie-llm|MindIE-LLM]]、[[software/projects/ops-transformer|ops-transformer]] 做路线对照。
-
-## 关联项目
-
-- [[software/projects/vllm|vLLM]]
-- [[software/projects/mindie-llm|MindIE-LLM]]
-- [[software/projects/ops-transformer|ops-transformer]]
-
-## 版本快照
-
-Ascend 后端支持变化较快，本页以 2026-09-15 前公开资料为快照，不默认与 CUDA 路径功能完全对齐。
-
-## 直接来源
-
-- https://github.com/vllm-project/vllm-ascend
+- Canonical project: [vLLM-Ascend](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM-Ascend/vLLM-Ascend.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
