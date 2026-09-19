@@ -1,51 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: DeepJIT
-object_type: project
-category: compiler
-organization: deepseek-ai
-status: active
-repo: https://github.com/deepseek-ai/DeepJIT
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - jit-compilation
-  - gpu-kernel-generation
-integrations: []
-backends:
-  - gpu
-updated: 2026-09-15
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/deepseek-ai/DeepSeek-Infra/DeepJIT.md
+updated: 2026-09-19
 ---
 # DeepJIT
 
-> DeepSeek 开源的 GPU kernel JIT / 编译探索项目。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-关注高性能 kernel 的即时生成和编译执行，为模型算子提供更灵活的性能优化路径。
-
-## 边界
-
-DeepJIT 位于编译与 kernel 层，不负责 serving、路由或集群调度。
-
-## 集成与后端
-
-适合与 [[software/projects/triton|Triton]]、[[software/projects/tilelang|TileLang]]、[[software/projects/flagtree|FlagTree]] 对比不同 kernel DSL / compiler 路线。
-
-## 关联项目
-
-- [[software/projects/deepseek-infra|DeepSeek-Infra]]
-- [[software/projects/triton|Triton]]
-- [[software/projects/tilelang|TileLang]]
-- [[software/projects/deepgemm|DeepGEMM]]
-
-## 版本快照
-
-本页以 2026-09-15 前公开资料为快照。
-
-## 直接来源
-
-- https://github.com/deepseek-ai/DeepJIT
+- Canonical project: [DeepJIT](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/deepseek-ai/DeepSeek-Infra/DeepJIT.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
