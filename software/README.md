@@ -14,10 +14,10 @@ tags:
 
 上游社区与 namespace 入口：[[software/COMMUNITIES|开源社区与上游组织]]。
 
-`software/` 采用 Software Schema V0.1：具体软件统一放在 `projects/`，稳定机制放在 `concepts/`。Markdown 是事实源，YAML frontmatter 用于机器索引。
+`software/` 采用 Software Schema V0.2：稳定技术机制继续放在 `concepts/`；`projects/` 只保留兼容 redirect。软件项目的 canonical 事实已迁入 `ai_infra_relationship`，本仓库不再维护第二份完整项目事实。
 
-项目之间的仓库内引用统一使用 Wiki Link，例如 `[[software/projects/vllm|vLLM]]`。同仓库项目之间的明确关系要求双向可达：A 页面引用 B 时，B 页面也应保留到 A 的反向链接。
+docs 内对项目的引用继续使用 `[[software/projects/vllm|vLLM]]` 这类本地 Wiki Link，由 redirect 保持 Obsidian / Quartz 可达；项目间能力、集成、组织和维护者关系统一在 `ai_infra_relationship` canonical Project v3 中维护。
 
-社区视图用于记录 canonical upstream namespace 与项目归属，不替代项目事实页，也不把“公司贡献关系”混同为“项目组织关系”。
+社区视图只做 upstream namespace / 治理组织导航，不再承担项目事实数据库职责，也不把“公司贡献关系”混同为“项目组织关系”。
 
-Schema 与维护规则见 [[software/SCHEMA|Software Schema V0.1]]。
+Schema 与维护规则见 [[software/SCHEMA|Software Schema V0.2]]。
