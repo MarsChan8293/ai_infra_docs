@@ -1,50 +1,14 @@
 ---
-schema_version: software-v0.1
+schema_version: software-redirect-v0.1
 name: FlagPerf
-object_type: project
-category: benchmark
-organization: flagos-ai
-status: active
-repo: https://github.com/flagos-ai/FlagPerf
-docs: null
-snapshot:
-  version: null
-  commit: null
-  as_of: 2026-09-15
-capabilities:
-  - ai-benchmark
-  - heterogeneous-benchmark
-integrations: []
-backends: []
-updated: 2026-09-16
+object_type: project-redirect
+canonical: https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flagos-ai/FlagPerf/FlagPerf.md
+updated: 2026-09-19
 ---
 # FlagPerf
 
-> 面向异构 AI 系统与模型的性能评测项目。
+> 此项目的 canonical 记录已迁移至 `ai_infra_relationship`。
 
-## 核心能力
-
-提供跨软件栈、跨硬件的性能评测入口，适合把理论能力和实际 workload 表现连接起来。[S1]
-
-## 边界
-
-FlagPerf 是 benchmark/评测项目，不负责模型执行或资源调度。
-
-## 集成与后端
-
-可用于观察 [[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]] 等引擎在不同硬件栈上的真实性能差异。
-
-## 关联项目
-
-- [[software/projects/flagos|FlagOS]]
-- [[software/projects/flagrelease|FlagRelease]]
-- [[software/projects/vllm|vLLM]]
-- [[software/projects/sglang|SGLang]]
-
-## 版本快照
-
-本页以 2026-09-15 前公开资料为快照。
-
-## 直接来源
-
-- [S1] https://github.com/flagos-ai/FlagPerf
+- Canonical project: [FlagPerf](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flagos-ai/FlagPerf/FlagPerf.md)
+- 当前路径保留用于兼容 Obsidian / Quartz 内部链接，避免原有引用失效。
+- 技术概念继续由本仓库 `software/concepts/` 维护；项目能力、集成、硬件支持、维护者与组织关系请更新 canonical project。
