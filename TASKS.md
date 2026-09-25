@@ -39,10 +39,10 @@ updated: 2026-09-25
 |---|---:|---:|---|
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
 | Phase 1：System Foundation | 29 | 29 | DONE |
-| Phase 2：Serving / MoE / Training / Reliability | 0 | 13 | TODO |
+| Phase 2：Serving / MoE / Training / Reliability | 5 | 13 | DOING |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **32** | **59** | **DOING** |
+| **合计** | **37** | **59** | **DOING** |
 
 ---
 
@@ -130,34 +130,34 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| SRV-001 | DOING | LLM Serving Model | WL-002, CMP-003, MEM-001 | `system/serving/llm-serving-model.md` | 能把请求负载映射到 compute/memory/communication | - |
-| SRV-002 | TODO | Continuous Batching | SRV-001 | `system/serving/continuous-batching.md` | 解释 batch 动态变化对利用率、KV 和 latency 的影响 | - |
-| SRV-003 | TODO | Prefix Caching | SRV-001, MEM-004 | `system/serving/prefix-caching.md` | 明确 hit rate、节省 Prefill、缓存容量和失效语义 | - |
-| SRV-004 | TODO | Disaggregated Prefill / Decode | SRV-001, COM-004, TOP-001 | `system/serving/disaggregated-prefill-decode.md` | 给出拆分收益条件和网络/KV transfer 代价 | - |
+| SRV-001 | DONE | LLM Serving Model | WL-002, CMP-003, MEM-001 | `system/serving/llm-serving-model.md` | 能把请求负载映射到 compute/memory/communication | - |
+| SRV-002 | DOING | Continuous Batching | SRV-001 | `system/serving/continuous-batching.md` | 解释 batch 动态变化对利用率、KV 和 latency 的影响 | - |
+| SRV-003 | DOING | Prefix Caching | SRV-001, MEM-004 | `system/serving/prefix-caching.md` | 明确 hit rate、节省 Prefill、缓存容量和失效语义 | - |
+| SRV-004 | DOING | Disaggregated Prefill / Decode | SRV-001, COM-004, TOP-001 | `system/serving/disaggregated-prefill-decode.md` | 给出拆分收益条件和网络/KV transfer 代价 | - |
 | SRV-005 | TODO | KV Transfer | SRV-004, MEM-004 | `system/serving/kv-transfer.md` | 建立 transfer vs recompute break-even 模型 | - |
 
 ## MoE
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| MOE-001 | DOING | MoE System Model | CMP-001, PAR-004 | `system/moe/moe-system-model.md` | 从 active params、experts、top-k 推导 compute/memory/communication 约束 | - |
-| MOE-002 | TODO | Expert Routing / Load Balance | MOE-001 | `system/moe/expert-routing-and-load-balance.md` | 覆盖 capacity factor、热点 expert、尾延迟和 placement | - |
+| MOE-001 | DONE | MoE System Model | CMP-001, PAR-004 | `system/moe/moe-system-model.md` | 从 active params、experts、top-k 推导 compute/memory/communication 约束 | - |
+| MOE-002 | DOING | Expert Routing / Load Balance | MOE-001 | `system/moe/expert-routing-and-load-balance.md` | 覆盖 capacity factor、热点 expert、尾延迟和 placement | - |
 
 ## Training
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| TRN-001 | DOING | Distributed Training Model | WL-003, PAR-001 | `system/training/distributed-training-model.md` | 建立训练 compute/memory/communication 主线 | - |
-| TRN-002 | TODO | Training Memory Model | TRN-001, MEM-001 | `system/training/training-memory-model.md` | 覆盖 parameters/gradients/optimizer/master weights/activations | - |
-| TRN-003 | TODO | Gradient Synchronization | TRN-001, COM-002 | `system/training/gradient-synchronization.md` | 给出同步通信量与 overlap 边界 | - |
+| TRN-001 | DONE | Distributed Training Model | WL-003, PAR-001 | `system/training/distributed-training-model.md` | 建立训练 compute/memory/communication 主线 | - |
+| TRN-002 | DOING | Training Memory Model | TRN-001, MEM-001 | `system/training/training-memory-model.md` | 覆盖 parameters/gradients/optimizer/master weights/activations | - |
+| TRN-003 | DOING | Gradient Synchronization | TRN-001, COM-002 | `system/training/gradient-synchronization.md` | 给出同步通信量与 overlap 边界 | - |
 
 ## Reliability / Power
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| REL-001 | TODO | Checkpoint / Recovery Model | TRN-001, TOP-005 | `system/reliability/checkpoint-recovery-model.md` | 关联 checkpoint size、storage BW、MTTR、failure domain | - |
-| REL-002 | DOING | Accelerator / Network Failure Domain | TOP-005 | `system/reliability/accelerator-and-network-failure-domain.md` | 区分 device/node/rack/fabric 故障范围 | - |
-| PWR-001 | DOING | Rack Power / Cooling Model | TOP-005 | `system/power/rack-power-and-cooling.md` | 从 device→node→rack 建立功耗密度与冷却约束 | - |
+| REL-001 | DOING | Checkpoint / Recovery Model | TRN-001, TOP-005 | `system/reliability/checkpoint-recovery-model.md` | 关联 checkpoint size、storage BW、MTTR、failure domain | - |
+| REL-002 | DONE | Accelerator / Network Failure Domain | TOP-005 | `system/reliability/accelerator-and-network-failure-domain.md` | 区分 device/node/rack/fabric 故障范围 | - |
+| PWR-001 | DONE | Rack Power / Cooling Model | TOP-005 | `system/power/rack-power-and-cooling.md` | 从 device→node→rack 建立功耗密度与冷却约束 | - |
 
 ---
 
