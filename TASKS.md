@@ -211,7 +211,8 @@ updated: 2026-09-25
 9. `TOP-001` Scale-up vs Scale-out
 10. `MEM-005` Memory Bandwidth Model
 11. `CMP-002` Roofline / Arithmetic Intensity
-12. `INT-001` 手工端到端案例，作为 Phase 1 的集成验收
+12. `COM-005` Communication Cost Model
+13. `INT-001` 手工端到端案例，作为 Phase 1 的集成验收
 
 不要同时大规模展开 Phase 2/3。先把前九项做成稳定骨架，再扩专题。
 
