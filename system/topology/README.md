@@ -15,6 +15,10 @@ Topology 层描述 Accelerator、CPU、NUMA、PCIe、NIC、Scale-up Fabric、Sca
 ## 核心概念
 
 - [[system/topology/scale-up-vs-scale-out|Scale-up vs Scale-out]]
+- [[system/topology/accelerator-fabric|Accelerator Fabric]]
+- [[system/topology/gpu-nic-affinity|GPU/NPU ↔ NIC Affinity]]
+- [[system/topology/numa-and-pcie-topology|NUMA / PCIe Topology]]
+- [[system/topology/rack-and-failure-domain|Rack / Failure Domain]]
 - [[system/scheduling/topology-aware-scheduling|拓扑感知调度]]
 - [[system/resource/accelerator-resource-model|加速器资源模型]]
 
@@ -27,4 +31,4 @@ Topology 层描述 Accelerator、CPU、NUMA、PCIe、NIC、Scale-up Fabric、Sca
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-后续按 `TOP-002` 至 `TOP-005` 建立 Accelerator Fabric、NIC Affinity、NUMA / PCIe 与 Rack / Failure Domain。
+Scale-up/Scale-out、Accelerator Fabric、NIC Affinity、NUMA/PCIe 与 Rack/Failure Domain 的基础拓扑口径均已建立。
