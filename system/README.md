@@ -42,6 +42,16 @@ Hardware capability
 
 这些 MOC 是领域入口。尚未落库的具体概念只记录在 [[TASKS|Implementation Tasks]]，不提前创建虚假 Wiki Link。
 
+## 系统专题
+
+- [[system/serving/README|Serving Architecture]]
+- [[system/moe/README|MoE System Architecture]]
+- [[system/training/README|Distributed Training]]
+- [[system/reliability/README|Reliability Model]]
+- [[system/power/README|Power and Cooling]]
+
+这些专题建立在 Workload / Compute / Memory / Parallelism / Communication / Topology 六个 Foundation 域之上。
+
 ## 已有核心概念
 
 - [[system/memory/kv-cache-memory-hierarchy|KV Cache 内存层级]]
