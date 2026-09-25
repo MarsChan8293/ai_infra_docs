@@ -15,6 +15,8 @@ Training 层把训练 workload、forward/backward、并行、内存、gradient c
 ## 核心概念
 
 - [[system/training/distributed-training-model|Distributed Training Model]]
+- [[system/training/training-memory-model|Training Memory Model]]
+- [[system/training/gradient-synchronization|Gradient Synchronization]]
 - [[system/workload/training-workload|Training Workload]]
 
 ## 基础依赖
@@ -23,4 +25,4 @@ Training 层把训练 workload、forward/backward、并行、内存、gradient c
 - [[system/memory/model-memory-accounting|Model Memory Accounting]]
 - [[system/communication/README|Communication Model]]
 
-后续任务继续补 Training Memory、Gradient Synchronization 与 Checkpoint / Recovery。
+Training Memory 与 Gradient Synchronization 已建立；Checkpoint / Recovery 由 Reliability 域维护。
