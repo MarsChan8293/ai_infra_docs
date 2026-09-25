@@ -140,7 +140,7 @@ replica
 - shared cooling dependency
 - rack-level correlated outage
 
-后续 [[system/power/README|Power]] 相关专题建立后可进一步细化；当前不要制造不存在的链接。
+后续任务 `PWR-001` 建立 Power / Cooling 专题后可进一步细化；当前不提前创建不存在的 Wiki Link。
 
 ## Recovery Scope
 
