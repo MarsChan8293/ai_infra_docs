@@ -38,11 +38,11 @@ updated: 2026-09-25
 | 阶段 | 完成 | 总数 | 状态 |
 |---|---:|---:|---|
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
-| Phase 1：System Foundation | 1 | 29 | DOING |
+| Phase 1：System Foundation | 2 | 29 | DOING |
 | Phase 2：Serving / MoE / Training / Reliability | 0 | 13 | TODO |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **4** | **59** | **DOING** |
+| **合计** | **5** | **59** | **DOING** |
 
 ---
 
@@ -70,7 +70,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| CMP-001 | TODO | Transformer Compute Model | WL-001 | `system/compute/transformer-compute-model.md` | 区分 dense/MoE；给出 Prefill/Decode 主要 FLOPs 构成及公式边界 | - |
+| CMP-001 | DOING | Transformer Compute Model | WL-001 | `system/compute/transformer-compute-model.md` | 区分 dense/MoE；给出 Prefill/Decode 主要 FLOPs 构成及公式边界 | - |
 | CMP-002 | TODO | Roofline 与 Arithmetic Intensity | CMP-001 | `system/compute/roofline-and-arithmetic-intensity.md` | 明确 compute-bound / memory-bound 判断；区分峰值、理论上界、系统上界、实测 | - |
 | CMP-003 | TODO | Prefill vs Decode 计算模型 | CMP-001, MEM-005 | `system/compute/prefill-vs-decode.md` | 解释 GEMM/GEMV、权重读取、KV 访问和 batch 对瓶颈的影响 | - |
 
@@ -78,7 +78,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| MEM-001 | DOING | 完整 Model Memory Accounting | WL-001 | `system/memory/model-memory-accounting.md` | 统一 weights + KV + activation + workspace + comm buffer + fragmentation + reserve 口径 | - |
+| MEM-001 | DONE | 完整 Model Memory Accounting | WL-001 | `system/memory/model-memory-accounting.md` | 统一 weights + KV + activation + workspace + comm buffer + fragmentation + reserve 口径 | - |
 | MEM-002 | TODO | Weight Memory Model | MEM-001 | `system/memory/weight-memory.md` | 覆盖 dtype/quantization/sharding；不把 runtime buffer 混入权重 | - |
 | MEM-003 | TODO | Activation Memory Model | MEM-001 | `system/memory/activation-memory.md` | 区分推理/训练 activation；说明 recomputation/checkpointing 影响 | - |
 | MEM-004 | TODO | KV Cache Model | MEM-001 | `system/memory/kv-cache-model.md` | 统一 MHA/GQA/MLA 等计算口径；和现有 KV hierarchy 双向关联 | - |
