@@ -3,6 +3,38 @@ schema_version: system-v0.1
 name: 异构推理
 object_type: concept
 category: heterogeneous-compute
+inputs:
+  - model.architecture
+  - workload.sla
+  - workload.role
+  - hardware.compute
+  - hardware.memory
+  - hardware.interconnect
+  - runtime.kernel_availability
+constraints:
+  - compute-capability
+  - precision-support
+  - memory-capacity
+  - memory-bandwidth
+  - collective-support
+  - topology
+outputs:
+  - execution_partitioning
+  - device_role_assignment
+  - compatibility_dimensions
+assumptions:
+  - 兼容性是多维系统属性，不使用单一布尔值概括
+related_layers:
+  - model
+  - workload
+  - compute
+  - memory
+  - communication
+  - topology
+  - scheduling
+  - accelerator
+  - network
+evidence: {}
 updated: 2026-09-25
 tags:
   - system
