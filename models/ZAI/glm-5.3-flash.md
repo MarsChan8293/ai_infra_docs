@@ -1,5 +1,5 @@
 ---
-schema_version: model-v0.1
+schema_version: model-v0.2
 name: GLM-5.3-Flash
 object_type: model
 organization: Z.ai
@@ -13,6 +13,26 @@ architecture:
 parameters:
   total: 320000000000
   active: 18000000000
+structure:
+  num_layers: 45
+  hidden_size: null
+  intermediate_size: null
+  attention:
+    num_attention_heads: null
+    num_key_value_heads: null
+    head_dim: null
+    growing_layers: 11
+    kv_lora_rank: 512
+    qk_rope_head_dim: 0
+    sliding_window: null
+  moe:
+    num_experts: null
+    experts_per_token: null
+    shared_experts: null
+  recurrent:
+    type: linear-attention
+    layers: 34
+    state_size: null
 context_length: 1048576
 kv_cache_64k_fp8_bytes: 369098752
 modalities:
