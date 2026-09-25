@@ -38,11 +38,11 @@ updated: 2026-09-25
 | 阶段 | 完成 | 总数 | 状态 |
 |---|---:|---:|---|
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
-| Phase 1：System Foundation | 6 | 29 | DOING |
+| Phase 1：System Foundation | 9 | 29 | DOING |
 | Phase 2：Serving / MoE / Training / Reliability | 0 | 13 | TODO |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **9** | **59** | **DOING** |
+| **合计** | **12** | **59** | **DOING** |
 
 ---
 
@@ -71,7 +71,7 @@ updated: 2026-09-25
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | CMP-001 | DONE | Transformer Compute Model | WL-001 | `system/compute/transformer-compute-model.md` | 区分 dense/MoE；给出 Prefill/Decode 主要 FLOPs 构成及公式边界 | - |
-| CMP-002 | DOING | Roofline 与 Arithmetic Intensity | CMP-001 | `system/compute/roofline-and-arithmetic-intensity.md` | 明确 compute-bound / memory-bound 判断；区分峰值、理论上界、系统上界、实测 | - |
+| CMP-002 | DONE | Roofline 与 Arithmetic Intensity | CMP-001 | `system/compute/roofline-and-arithmetic-intensity.md` | 明确 compute-bound / memory-bound 判断；区分峰值、理论上界、系统上界、实测 | - |
 | CMP-003 | TODO | Prefill vs Decode 计算模型 | CMP-001, MEM-005 | `system/compute/prefill-vs-decode.md` | 解释 GEMM/GEMV、权重读取、KV 访问和 batch 对瓶颈的影响 | - |
 
 ## Memory
@@ -82,7 +82,7 @@ updated: 2026-09-25
 | MEM-002 | TODO | Weight Memory Model | MEM-001 | `system/memory/weight-memory.md` | 覆盖 dtype/quantization/sharding；不把 runtime buffer 混入权重 | - |
 | MEM-003 | TODO | Activation Memory Model | MEM-001 | `system/memory/activation-memory.md` | 区分推理/训练 activation；说明 recomputation/checkpointing 影响 | - |
 | MEM-004 | TODO | KV Cache Model | MEM-001 | `system/memory/kv-cache-model.md` | 统一 MHA/GQA/MLA 等计算口径；和现有 KV hierarchy 双向关联 | - |
-| MEM-005 | DOING | Memory Bandwidth Model | MEM-001 | `system/memory/memory-bandwidth-model.md` | 建立 bytes/token、bytes/step 与带宽下界；说明有效带宽与标称带宽区别 | - |
+| MEM-005 | DONE | Memory Bandwidth Model | MEM-001 | `system/memory/memory-bandwidth-model.md` | 建立 bytes/token、bytes/step 与带宽下界；说明有效带宽与标称带宽区别 | - |
 | MEM-006 | TODO | CXL / Memory Pooling 系统模型 | MEM-001, TOP-001 | `system/memory/cxl-and-memory-pooling.md` | 明确 capacity/latency/bandwidth/failure-domain 交换；不把 CXL 当作 HBM 等价层 | - |
 
 ## Parallelism
@@ -104,7 +104,7 @@ updated: 2026-09-25
 | COM-002 | TODO | All-Reduce / All-Gather / Reduce-Scatter | COM-001 | `system/communication/all-reduce-all-gather-reduce-scatter.md` | 给出典型 ring/tree 成本边界；关联 TP/DP | - |
 | COM-003 | TODO | All-to-All | COM-001 | `system/communication/all-to-all.md` | 给出 MoE token dispatch 的数据量和拓扑敏感度 | - |
 | COM-004 | TODO | Point-to-Point | COM-001 | `system/communication/point-to-point.md` | 覆盖 PP、KV transfer、跨节点 P2P | - |
-| COM-005 | DOING | Communication Cost Model | COM-001, TOP-001 | `system/communication/communication-cost-model.md` | 建立 latency + serialization + transfer + synchronization 统一模型 | - |
+| COM-005 | DONE | Communication Cost Model | COM-001, TOP-001 | `system/communication/communication-cost-model.md` | 建立 latency + serialization + transfer + synchronization 统一模型 | - |
 
 ## Topology
 
@@ -120,7 +120,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| INT-001 | TODO | 手工端到端 Model → System → Hardware 案例 | CMP-001, CMP-002, MEM-001, MEM-005, COM-005, PAR-001, TOP-001 | `system/examples/model-to-hardware-walkthrough.md` | 选择一个 Evidence 完整的代表模型和明确 workload；逐步展示 compute/memory/communication/topology 推导；每个数字可追溯到输入与公式；未知项不强行估算 | - |
+| INT-001 | DOING | 手工端到端 Model → System → Hardware 案例 | CMP-001, CMP-002, MEM-001, MEM-005, COM-005, PAR-001, TOP-001 | `system/examples/model-to-hardware-walkthrough.md` | 选择一个 Evidence 完整的代表模型和明确 workload；逐步展示 compute/memory/communication/topology 推导；每个数字可追溯到输入与公式；未知项不强行估算 | - |
 
 ---
 
