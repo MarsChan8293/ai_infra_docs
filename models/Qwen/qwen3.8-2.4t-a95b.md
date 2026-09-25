@@ -1,5 +1,5 @@
 ---
-schema_version: model-v0.1
+schema_version: model-v0.2
 name: Qwen3.8-2.4T-A95B
 object_type: model
 organization: Qwen
@@ -13,6 +13,26 @@ architecture:
 parameters:
   total: 2400000000000
   active: 95000000000
+structure:
+  num_layers: 92
+  hidden_size: null
+  intermediate_size: null
+  attention:
+    num_attention_heads: 64
+    num_key_value_heads: 4
+    head_dim: 256
+    growing_layers: 23
+    kv_lora_rank: null
+    qk_rope_head_dim: null
+    sliding_window: null
+  moe:
+    num_experts: 512
+    experts_per_token: 10
+    shared_experts: 1
+  recurrent:
+    type: gated-deltanet
+    layers: 69
+    state_size: null
 context_length: 262144
 kv_cache_64k_fp8_bytes: 3087007744
 modalities:
