@@ -52,7 +52,7 @@ updated: 2026-09-25
 |---|---|---|---|---|---|---|
 | FND-001 | DOING | 定义 System Schema V0.1 | - | `system/SCHEMA.md` | 明确 inputs / constraints / outputs / assumptions / related_layers / evidence；示例可被 Validator 消费 | - |
 | FND-002 | DOING | 扩展仓库 Validator 支持 System Schema | FND-001 | `scripts/validate-repo.py` | 能校验 system concept 必填字段、日期、Evidence、内部链接；现有仓库验证通过 | - |
-| FND-003 | TODO | 重构 System MOC | FND-001 | `system/README.md` | 能导航到 Workload / Compute / Memory / Parallelism / Communication / Topology 等主域；无孤立核心节点 | - |
+| FND-003 | DOING | 重构 System MOC | FND-001 | `system/README.md` | 能导航到 Workload / Compute / Memory / Parallelism / Communication / Topology 等主域；无孤立核心节点 | - |
 
 ---
 
