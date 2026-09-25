@@ -22,6 +22,7 @@ tags:
 - [[models/00-model-index|AI Model Index]]
 - [[system/README|AI Infra 系统架构]]
 - [[chip/00-project-index|AI 芯片与基础设施资料库]]
+- [[ROADMAP|AI Infra Docs Roadmap]]
 - [[AGENTS|协作约定与知识图谱规则]]
 
 ## 系统桥梁
@@ -32,6 +33,10 @@ tags:
 - [[system/heterogeneous-compute/heterogeneous-inference|异构推理]]
 
 这些页面维护跨项目稳定的系统机制，不维护某个软件项目的版本、能力矩阵、组织、维护者或项目间集成事实。
+
+## Roadmap
+
+下一阶段优先扩建 `system/`，建立从 Model facts 和 Workload 到 Compute / Memory / Communication / Topology，再到 Hardware capability 的可计算主线。详细计划、优先级和验收标准见 [[ROADMAP|AI Infra Docs Roadmap]]。
 
 ## Obsidian 入口
 
