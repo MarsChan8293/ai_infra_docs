@@ -1,0 +1,38 @@
+schema_version: workload-profile-v0.1
+model:
+  path: models/Qwen/qwen3.8-27b.md
+hardware:
+  path: chip/AMD/mi300x.md
+workload:
+  type: inference
+  mode: online
+  phase: decode
+  prompt_tokens: 65536
+  output_tokens: 1
+  context_tokens: 65536
+  batch_size: 1
+  concurrency: 1
+  request_rate_rps: null
+  prefix_reuse_ratio: 0
+  sla:
+    ttft_ms: null
+    tpot_ms: null
+    percentile: null
+execution:
+  weight_bytes_per_parameter: 2
+  kv_bytes_per_scalar: 1
+  assume_total_parameters_equal_stored_parameters: true
+  traffic_model:
+    read_full_weight_each_decode_step: true
+    read_full_growing_kv_each_decode_step: true
+parallelism:
+  tp: 1
+  pp: 1
+  ep: 1
+  dp: 1
+  cp: 1
+assumptions:
+  - "2 bytes/parameter is a scenario storage assumption, not an official Qwen checkpoint fact."
+  - "Each decode step is assumed to read the full weight payload from HBM."
+  - "Each decode step is assumed to read the full 64K growing KV payload from HBM."
+  - "Activation, workspace, allocator overhead, runtime reserve and fixed recurrent state remain unknown."
