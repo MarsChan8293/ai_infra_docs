@@ -23,6 +23,7 @@ tags:
 - [[system/README|AI Infra 系统架构]]
 - [[chip/00-project-index|AI 芯片与基础设施资料库]]
 - [[ROADMAP|AI Infra Docs Roadmap]]
+- [[TASKS|实施任务与进度跟踪]]
 - [[AGENTS|协作约定与知识图谱规则]]
 
 ## 系统桥梁
@@ -36,7 +37,7 @@ tags:
 
 ## Roadmap
 
-下一阶段优先扩建 `system/`，建立从 Model facts 和 Workload 到 Compute / Memory / Communication / Topology，再到 Hardware capability 的可计算主线。详细计划、优先级和验收标准见 [[ROADMAP|AI Infra Docs Roadmap]]。
+下一阶段优先扩建 `system/`，建立从 Model facts 和 Workload 到 Compute / Memory / Communication / Topology，再到 Hardware capability 的可计算主线。方向、优先级和阶段目标见 [[ROADMAP|AI Infra Docs Roadmap]]；具体任务、依赖和当前进度见 [[TASKS|实施任务与进度跟踪]]。
 
 ## Obsidian 入口
 
