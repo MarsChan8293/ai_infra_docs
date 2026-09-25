@@ -3,7 +3,7 @@
 ## 任务开始
 
 - 先运行 `git status --short`，记录已有修改和未跟踪文件。已有改动属于当前工作，不得回退、覆盖或批量清理。
-- 芯片研究任务先动态扫描仓库一级厂商目录和其中的 Markdown 文件，任务清单以扫描结果为准，不使用硬编码厂商名单；软件研究任务按 `software/` 的架构层级和现有 MOC/概念节点确定边界。
+- 芯片研究任务先动态扫描仓库一级厂商目录和其中的 Markdown 文件，任务清单以扫描结果为准，不使用硬编码厂商名单；系统架构研究任务按 `system/` 的 MOC/概念节点确定边界，并围绕 Model → System → Chip 的跨层关系开展。
 - 把研究截止日期、目标目录、允许修改的文件、交付字段和完成条件写进每个子代理任务。
 
 ## 代理分工
@@ -31,21 +31,21 @@
 
 ## Obsidian 知识图谱与内部链接
 
-本仓库同时是 GitHub Markdown 文档库和 Obsidian Vault。文档组织不仅要考虑目录树，也要考虑“节点和边”。根入口为 [[00-ai-infra-map|AI Infra 知识图谱入口]]，软件入口为 [[software/README|AI Infra 软件栈地图]]，芯片入口为 [[chip/00-project-index|AI 芯片与基础设施资料库]]。
+本仓库同时是 GitHub Markdown 文档库和 Obsidian Vault。文档组织不仅要考虑目录树，也要考虑“节点和边”。根入口为 [[00-ai-infra-map|AI Infra 知识图谱入口]]，系统入口为 [[system/README|AI Infra 系统架构]]，模型入口为 [[models/00-model-index|AI Model Index]]，芯片入口为 [[chip/00-project-index|AI 芯片与基础设施资料库]]。
 
 - 仓库内部的语义关系优先使用 Obsidian Wiki Link，统一写成 `[[vault/root/path|显示名]]`。路径从仓库根开始，不写 `.md`，以减少同名文件歧义和移动后的误解析。
 - 外部官方资料、论文、博客和 GitHub 上游项目仍使用普通 URL，不要把外链伪装成 Wiki Link。
 - 不要求每条关系都手写 A→B 和 B→A 两份链接。Obsidian Backlinks 已能显示反向边。需要显式双向导航时，应有明确语义，例如“厂商总览 ↔ 芯片页”“MOC ↔ 主题页”。
 - 使用 MOC（Map of Content）和概念节点表达跨目录关系。MOC 负责“有哪些节点”，概念页负责“为什么这些节点有关”。不要为了让 Graph View 更密而制造无意义的全互联。
-- 每个重要文档都应至少存在一条从 MOC、概念页或上级总览可达的入边，避免孤岛节点。Software Project 的 canonical 事实已迁入 `ai_infra_relationship`；本仓库 `software/projects/*` 只保留兼容 redirect。新增项目事实应更新 relationship canonical project，不在 docs 新建第二份完整项目页。
-- 技术机制继续优先建模在 `software/concepts/`，例如 P/D 分离、KV 生命周期、拓扑感知、异构推理。项目级能力、集成、维护者和组织关系由 `ai_infra_relationship` Project v3 维护；docs 的 project redirect 不复制这些事实。
-- 芯片与软件跨域关系应通过“加速器资源模型”“拓扑感知调度”“异构推理”等概念节点连接，避免在每个芯片页机械链接所有软件。
+- 每个重要文档都应至少存在一条从 MOC、概念页或上级总览可达的入边，避免孤岛节点。软件项目的 canonical 事实维护在 `ai_infra_relationship`；本仓库不再保留 `software/` 项目目录或 redirect。新增项目事实应更新 relationship canonical project，不在 docs 新建第二份项目页。
+- 跨项目且直接影响硬件/系统设计的稳定机制优先建模在 `system/`，例如 KV 内存层级、加速器资源模型、拓扑感知和异构推理。项目级能力、集成、维护者和组织关系由 `ai_infra_relationship` 维护；system 页面只在需要举例时使用 canonical 外链。
+- 模型与芯片的跨域关系应优先通过“KV Cache 内存层级”“加速器资源模型”“拓扑感知调度”“异构推理”等 system 概念节点连接，避免在每个芯片页机械链接软件项目。
 - 新增或重命名文档时，检查 Wiki Link 的目标是否唯一。移动文件时同步更新显式路径链接，不能只依赖 Obsidian 的本地自动重写。
 - 页面标题尽量唯一；需要多个常用名称时使用 YAML frontmatter 的 `aliases`。MOC、概念页建议使用 `tags` 标记角色，但不要把 tags 当成双链替代品。
 - 不提交个人 Obsidian UI 状态，例如 `.obsidian/workspace.json`、`.obsidian/workspace-mobile.json` 及同类 workspace 文件。共享插件、主题或 Vault 设置只有在团队明确需要时才进入仓库。
 - 整理任务完成后除常规 Markdown 检查外，还要检查 unresolved Wiki Links、重复 title/alias、明显孤立节点，并在 Obsidian Graph View 中做一次关系合理性抽查。
 
-推荐的软件概念骨架：[[software/concepts/llm-serving-stack|LLM Serving 软件栈]]、[[software/concepts/pd-disaggregation|Prefill / Decode 分离]]、[[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]、[[software/concepts/topology-aware-scheduling|拓扑感知调度]]、[[software/concepts/accelerator-resource-model|加速器资源模型]]、[[software/concepts/heterogeneous-inference|异构推理]]。
+推荐的系统概念骨架：[[system/memory/kv-cache-memory-hierarchy|KV Cache 内存层级]]、[[system/resource/accelerator-resource-model|加速器资源模型]]、[[system/scheduling/topology-aware-scheduling|拓扑感知调度]]、[[system/heterogeneous-compute/heterogeneous-inference|异构推理]]。
 
 ## 在线知识图谱与派生数据
 

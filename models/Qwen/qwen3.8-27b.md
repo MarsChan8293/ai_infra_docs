@@ -61,11 +61,11 @@ updated: 2026-09-16
 - 该模型于 2026-08-14 发布。[S1]
 - `context_length` 记录官方权重原生 262K，而不是扩展后的约 1M。[S2]
 
-## 关联项目
+## 关联软件与系统
 
-- 推理引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]
-- Kernel：[[software/projects/flashinfer|FlashInfer]]
-- KV：[[software/projects/lmcache|LMCache]]
+- 推理引擎：[vLLM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM/vLLM.md)、[SGLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/sgl-project/SGLang/SGLang.md)
+- Kernel：[FlashInfer](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flashinfer-ai/FlashInfer/FlashInfer.md)
+- KV：[LMCache](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/LMCache/LMCache/LMCache.md)
 
 ## 直接来源
 

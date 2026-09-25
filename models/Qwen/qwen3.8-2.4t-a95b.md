@@ -59,11 +59,11 @@ updated: 2026-09-16
 - 该模型于 2026-08-12 作为 Qwen3.8 首批主要模型发布。[S1]
 - `context_length` 记录原生 262,144，而不是扩展后的约 1M，避免把运行时扩展方案当成模型原生配置。[S2]
 
-## 关联项目
+## 关联软件与系统
 
-- 推理引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]
-- 通信：[[software/projects/deepep|DeepEP]]、[[software/projects/nccl|NCCL]]
-- 异构推理：[[software/concepts/heterogeneous-inference|异构推理]]
+- 推理引擎：[vLLM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM/vLLM.md)、[SGLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/sgl-project/SGLang/SGLang.md)
+- 通信：[DeepEP](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/deepseek-ai/DeepSeek-Infra/DeepEP.md)、[NCCL](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/NVIDIA/NCCL/NCCL.md)
+- 异构推理：[[system/heterogeneous-compute/heterogeneous-inference|异构推理]]
 
 ## 直接来源
 
