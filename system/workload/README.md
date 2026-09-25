@@ -16,6 +16,7 @@ Workload 层描述“模型在什么运行条件下被执行”，把模型固�
 ## 核心概念
 
 - [[system/workload/ai-workload-model|AI Workload Model]]
+- [[system/workload/inference-workload|Inference Workload]]
 
 ## 边界
 
@@ -23,4 +24,4 @@ Workload 层描述“模型在什么运行条件下被执行”，把模型固�
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-下一步按任务 `WL-002`、`WL-003` 分别细化 Inference Workload 与 Training Workload。只有真实概念页落库后才加入 Wiki Link。
+下一步按任务 `WL-003` 补齐 Training Workload。只有真实概念页落库后才加入 Wiki Link。
