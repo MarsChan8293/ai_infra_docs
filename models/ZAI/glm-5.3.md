@@ -61,11 +61,11 @@ updated: 2026-09-16
 - 官方项目明确说明 GLM-5.3 与 GLM-5.2 共用同一 base model；因此本页不把 post-training 能力差异写成新硬件架构。[S1]
 - GLM-5.2 首发早于 2026-06-16，本轮不建立独立 recent-release 节点。
 
-## 关联项目
+## 关联软件与系统
 
-- 推理引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]
-- 通信：[[software/projects/nccl|NCCL]]、[[software/projects/deepep|DeepEP]]
-- 异构推理：[[software/concepts/heterogeneous-inference|异构推理]]
+- 推理引擎：[vLLM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM/vLLM.md)、[SGLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/sgl-project/SGLang/SGLang.md)
+- 通信：[NCCL](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/NVIDIA/NCCL/NCCL.md)、[DeepEP](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/deepseek-ai/DeepSeek-Infra/DeepEP.md)
+- 异构推理：[[system/heterogeneous-compute/heterogeneous-inference|异构推理]]
 
 ## 直接来源
 
