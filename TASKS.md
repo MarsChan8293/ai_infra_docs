@@ -134,7 +134,7 @@ updated: 2026-09-25
 | SRV-002 | DOING | Continuous Batching | SRV-001 | `system/serving/continuous-batching.md` | 解释 batch 动态变化对利用率、KV 和 latency 的影响 | - |
 | SRV-003 | DOING | Prefix Caching | SRV-001, MEM-004 | `system/serving/prefix-caching.md` | 明确 hit rate、节省 Prefill、缓存容量和失效语义 | - |
 | SRV-004 | DOING | Disaggregated Prefill / Decode | SRV-001, COM-004, TOP-001 | `system/serving/disaggregated-prefill-decode.md` | 给出拆分收益条件和网络/KV transfer 代价 | - |
-| SRV-005 | TODO | KV Transfer | SRV-004, MEM-004 | `system/serving/kv-transfer.md` | 建立 transfer vs recompute break-even 模型 | - |
+| SRV-005 | DOING | KV Transfer | SRV-004, MEM-004 | `system/serving/kv-transfer.md` | 建立 transfer vs recompute break-even 模型 | - |
 
 ## MoE
 
