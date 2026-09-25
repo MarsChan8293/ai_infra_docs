@@ -92,6 +92,13 @@ NVMe SSD / flash tier
 
 SSD 等持久化介质还需要单独评估写放大和耐久度。它们的容量优势并不自动意味着适合作为高频写入的 KV 热层。
 
+## 大小模型与层级模型
+
+- [[system/memory/kv-cache-model|KV Cache Model]] 负责计算 growing KV、固定 state、精度与分片后的容量。
+- 本页负责状态驻留层级、迁移路径与 retrieve-vs-recompute 判断。
+
+两者必须联合使用：先知道“有多少状态”，再判断“状态放在哪、怎么搬”。
+
 ## 相关概念
 
 - [[system/scheduling/topology-aware-scheduling|拓扑感知调度]]
