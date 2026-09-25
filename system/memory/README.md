@@ -20,6 +20,7 @@ Memory 层描述权重、KV、Activation、Workspace、通信 buffer 与内存�
 - [[system/memory/memory-bandwidth-model|Memory Bandwidth Model]]
 - [[system/memory/kv-cache-model|KV Cache Model]]
 - [[system/memory/kv-cache-memory-hierarchy|KV Cache 内存层级]]
+- [[system/memory/cxl-and-memory-pooling|CXL / Memory Pooling]]
 
 ## 跨层入口
 
@@ -31,4 +32,4 @@ Memory 层描述权重、KV、Activation、Workspace、通信 buffer 与内存�
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-后续按 `MEM-006` 补齐 CXL / Memory Pooling。
+Memory Foundation 的容量、带宽、Weight、Activation、KV 与 pooled-memory 基础口径均已建立。
