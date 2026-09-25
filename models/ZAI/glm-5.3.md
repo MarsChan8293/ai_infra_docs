@@ -1,5 +1,5 @@
 ---
-schema_version: model-v0.1
+schema_version: model-v0.2
 name: GLM-5.3
 object_type: model
 organization: Z.ai
@@ -13,6 +13,26 @@ architecture:
 parameters:
   total: 744000000000
   active: 40000000000
+structure:
+  num_layers: 78
+  hidden_size: null
+  intermediate_size: null
+  attention:
+    num_attention_heads: null
+    num_key_value_heads: null
+    head_dim: null
+    growing_layers: 78
+    kv_lora_rank: 512
+    qk_rope_head_dim: 64
+    sliding_window: null
+  moe:
+    num_experts: null
+    experts_per_token: null
+    shared_experts: null
+  recurrent:
+    type: null
+    layers: null
+    state_size: null
 context_length: 1048576
 kv_cache_64k_fp8_bytes: 2944401408
 modalities:
