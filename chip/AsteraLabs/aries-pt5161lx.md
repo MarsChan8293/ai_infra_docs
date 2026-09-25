@@ -13,7 +13,6 @@ interconnect:
   pcie_generation: PCIe 5.0
   cxl_version: '2.0'
   lanes: 16
-  signaling_gt_s: 32
 power: {}
 lifecycle:
   production: confirmed
