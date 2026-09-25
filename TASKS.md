@@ -38,11 +38,11 @@ updated: 2026-09-25
 | 阶段 | 完成 | 总数 | 状态 |
 |---|---:|---:|---|
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
-| Phase 1：System Foundation | 0 | 29 | TODO |
+| Phase 1：System Foundation | 1 | 29 | DOING |
 | Phase 2：Serving / MoE / Training / Reliability | 0 | 13 | TODO |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **3** | **59** | **DOING** |
+| **合计** | **4** | **59** | **DOING** |
 
 ---
 
@@ -62,7 +62,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| WL-001 | DOING | 建立 AI Workload 总模型 | FND-001 | `system/workload/ai-workload-model.md` | 定义 Model facts 与 runtime workload 的边界；覆盖 prompt/output/batch/concurrency/SLA；包含输入输出和假设 | - |
+| WL-001 | DONE | 建立 AI Workload 总模型 | FND-001 | `system/workload/ai-workload-model.md` | 定义 Model facts 与 runtime workload 的边界；覆盖 prompt/output/batch/concurrency/SLA；包含输入输出和假设 | - |
 | WL-002 | TODO | 建立 Inference Workload | WL-001 | `system/workload/inference-workload.md` | 覆盖 online/offline、TTFT、TPOT、吞吐、并发、prefix reuse；能链接 Serving 专题 | - |
 | WL-003 | TODO | 建立 Training Workload | WL-001 | `system/workload/training-workload.md` | 覆盖 global/micro batch、sequence、gradient accumulation、checkpoint interval | - |
 
@@ -78,7 +78,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| MEM-001 | TODO | 完整 Model Memory Accounting | WL-001 | `system/memory/model-memory-accounting.md` | 统一 weights + KV + activation + workspace + comm buffer + fragmentation + reserve 口径 | - |
+| MEM-001 | DOING | 完整 Model Memory Accounting | WL-001 | `system/memory/model-memory-accounting.md` | 统一 weights + KV + activation + workspace + comm buffer + fragmentation + reserve 口径 | - |
 | MEM-002 | TODO | Weight Memory Model | MEM-001 | `system/memory/weight-memory.md` | 覆盖 dtype/quantization/sharding；不把 runtime buffer 混入权重 | - |
 | MEM-003 | TODO | Activation Memory Model | MEM-001 | `system/memory/activation-memory.md` | 区分推理/训练 activation；说明 recomputation/checkpointing 影响 | - |
 | MEM-004 | TODO | KV Cache Model | MEM-001 | `system/memory/kv-cache-model.md` | 统一 MHA/GQA/MLA 等计算口径；和现有 KV hierarchy 双向关联 | - |
