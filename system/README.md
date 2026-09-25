@@ -62,6 +62,7 @@ Hardware capability
 ## 集成案例
 
 - [[system/examples/model-to-hardware-walkthrough|Qwen3.8-27B → MI300X 单卡 Decode Walkthrough]]
+- [[system/examples/executable-model-to-hardware|Executable Model → System → Hardware Case]]
 
 这个案例用于检查 Model → Workload → Compute / Memory / Communication / Topology → Hardware 是否真正可追溯；它不是硬件推荐或 benchmark。
 
