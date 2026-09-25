@@ -15,6 +15,7 @@ Compute 层负责把模型结构与 workload 转换为数学计算量、Arithmet
 ## 核心概念
 
 - [[system/compute/transformer-compute-model|Transformer Compute Model]]
+- [[system/compute/roofline-and-arithmetic-intensity|Roofline 与 Arithmetic Intensity]]
 
 ## 边界
 
@@ -25,4 +26,4 @@ Compute 层负责把模型结构与 workload 转换为数学计算量、Arithmet
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-下一步按 `CMP-002`、`CMP-003` 建立 Roofline / Arithmetic Intensity 与 Prefill vs Decode。
+下一步按 `CMP-003` 建立 Prefill vs Decode 计算模型。
