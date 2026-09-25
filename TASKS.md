@@ -83,7 +83,7 @@ updated: 2026-09-25
 | MEM-003 | DONE | Activation Memory Model | MEM-001 | `system/memory/activation-memory.md` | 区分推理/训练 activation；说明 recomputation/checkpointing 影响 | - |
 | MEM-004 | DONE | KV Cache Model | MEM-001 | `system/memory/kv-cache-model.md` | 统一 MHA/GQA/MLA 等计算口径；和现有 KV hierarchy 双向关联 | - |
 | MEM-005 | DONE | Memory Bandwidth Model | MEM-001 | `system/memory/memory-bandwidth-model.md` | 建立 bytes/token、bytes/step 与带宽下界；说明有效带宽与标称带宽区别 | - |
-| MEM-006 | TODO | CXL / Memory Pooling 系统模型 | MEM-001, TOP-001 | `system/memory/cxl-and-memory-pooling.md` | 明确 capacity/latency/bandwidth/failure-domain 交换；不把 CXL 当作 HBM 等价层 | - |
+| MEM-006 | DOING | CXL / Memory Pooling 系统模型 | MEM-001, TOP-001 | `system/memory/cxl-and-memory-pooling.md` | 明确 capacity/latency/bandwidth/failure-domain 交换；不把 CXL 当作 HBM 等价层 | - |
 
 ## Parallelism
 
@@ -111,10 +111,10 @@ updated: 2026-09-25
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | TOP-001 | DONE | Scale-up vs Scale-out | WL-001 | `system/topology/scale-up-vs-scale-out.md` | 定义两类 fabric 的边界、带宽/时延/规模/故障域；关联硬件对象 | - |
-| TOP-002 | TODO | Accelerator Fabric | TOP-001 | `system/topology/accelerator-fabric.md` | 描述 accelerator↔accelerator fabric 的系统作用，不复制厂商产品页 | - |
-| TOP-003 | TODO | GPU/NPU ↔ NIC Affinity | TOP-001 | `system/topology/gpu-nic-affinity.md` | 覆盖 PCIe switch、NUMA、rail、NIC locality 对通信的影响 | - |
-| TOP-004 | TODO | NUMA / PCIe Topology | TOP-001 | `system/topology/numa-and-pcie-topology.md` | 建立 CPU/accelerator/NIC/PCIe switch 的 placement 约束 | - |
-| TOP-005 | TODO | Rack / Failure Domain | TOP-001 | `system/topology/rack-and-failure-domain.md` | 把 rack、rail、switch、power failure domain 纳入调度模型 | - |
+| TOP-002 | DOING | Accelerator Fabric | TOP-001 | `system/topology/accelerator-fabric.md` | 描述 accelerator↔accelerator fabric 的系统作用，不复制厂商产品页 | - |
+| TOP-003 | DOING | GPU/NPU ↔ NIC Affinity | TOP-001 | `system/topology/gpu-nic-affinity.md` | 覆盖 PCIe switch、NUMA、rail、NIC locality 对通信的影响 | - |
+| TOP-004 | DOING | NUMA / PCIe Topology | TOP-001 | `system/topology/numa-and-pcie-topology.md` | 建立 CPU/accelerator/NIC/PCIe switch 的 placement 约束 | - |
+| TOP-005 | DOING | Rack / Failure Domain | TOP-001 | `system/topology/rack-and-failure-domain.md` | 把 rack、rail、switch、power failure domain 纳入调度模型 | - |
 
 ## Integration
 
