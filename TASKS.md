@@ -39,10 +39,10 @@ updated: 2026-09-25
 |---|---:|---:|---|
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
 | Phase 1：System Foundation | 29 | 29 | DONE |
-| Phase 2：Serving / MoE / Training / Reliability | 5 | 13 | DOING |
+| Phase 2：Serving / MoE / Training / Reliability | 13 | 13 | DONE |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **37** | **59** | **DOING** |
+| **合计** | **45** | **59** | **DOING** |
 
 ---
 
@@ -131,31 +131,31 @@ updated: 2026-09-25
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | SRV-001 | DONE | LLM Serving Model | WL-002, CMP-003, MEM-001 | `system/serving/llm-serving-model.md` | 能把请求负载映射到 compute/memory/communication | - |
-| SRV-002 | DOING | Continuous Batching | SRV-001 | `system/serving/continuous-batching.md` | 解释 batch 动态变化对利用率、KV 和 latency 的影响 | - |
-| SRV-003 | DOING | Prefix Caching | SRV-001, MEM-004 | `system/serving/prefix-caching.md` | 明确 hit rate、节省 Prefill、缓存容量和失效语义 | - |
-| SRV-004 | DOING | Disaggregated Prefill / Decode | SRV-001, COM-004, TOP-001 | `system/serving/disaggregated-prefill-decode.md` | 给出拆分收益条件和网络/KV transfer 代价 | - |
-| SRV-005 | DOING | KV Transfer | SRV-004, MEM-004 | `system/serving/kv-transfer.md` | 建立 transfer vs recompute break-even 模型 | - |
+| SRV-002 | DONE | Continuous Batching | SRV-001 | `system/serving/continuous-batching.md` | 解释 batch 动态变化对利用率、KV 和 latency 的影响 | - |
+| SRV-003 | DONE | Prefix Caching | SRV-001, MEM-004 | `system/serving/prefix-caching.md` | 明确 hit rate、节省 Prefill、缓存容量和失效语义 | - |
+| SRV-004 | DONE | Disaggregated Prefill / Decode | SRV-001, COM-004, TOP-001 | `system/serving/disaggregated-prefill-decode.md` | 给出拆分收益条件和网络/KV transfer 代价 | - |
+| SRV-005 | DONE | KV Transfer | SRV-004, MEM-004 | `system/serving/kv-transfer.md` | 建立 transfer vs recompute break-even 模型 | - |
 
 ## MoE
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | MOE-001 | DONE | MoE System Model | CMP-001, PAR-004 | `system/moe/moe-system-model.md` | 从 active params、experts、top-k 推导 compute/memory/communication 约束 | - |
-| MOE-002 | DOING | Expert Routing / Load Balance | MOE-001 | `system/moe/expert-routing-and-load-balance.md` | 覆盖 capacity factor、热点 expert、尾延迟和 placement | - |
+| MOE-002 | DONE | Expert Routing / Load Balance | MOE-001 | `system/moe/expert-routing-and-load-balance.md` | 覆盖 capacity factor、热点 expert、尾延迟和 placement | - |
 
 ## Training
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | TRN-001 | DONE | Distributed Training Model | WL-003, PAR-001 | `system/training/distributed-training-model.md` | 建立训练 compute/memory/communication 主线 | - |
-| TRN-002 | DOING | Training Memory Model | TRN-001, MEM-001 | `system/training/training-memory-model.md` | 覆盖 parameters/gradients/optimizer/master weights/activations | - |
-| TRN-003 | DOING | Gradient Synchronization | TRN-001, COM-002 | `system/training/gradient-synchronization.md` | 给出同步通信量与 overlap 边界 | - |
+| TRN-002 | DONE | Training Memory Model | TRN-001, MEM-001 | `system/training/training-memory-model.md` | 覆盖 parameters/gradients/optimizer/master weights/activations | - |
+| TRN-003 | DONE | Gradient Synchronization | TRN-001, COM-002 | `system/training/gradient-synchronization.md` | 给出同步通信量与 overlap 边界 | - |
 
 ## Reliability / Power
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| REL-001 | DOING | Checkpoint / Recovery Model | TRN-001, TOP-005 | `system/reliability/checkpoint-recovery-model.md` | 关联 checkpoint size、storage BW、MTTR、failure domain | - |
+| REL-001 | DONE | Checkpoint / Recovery Model | TRN-001, TOP-005 | `system/reliability/checkpoint-recovery-model.md` | 关联 checkpoint size、storage BW、MTTR、failure domain | - |
 | REL-002 | DONE | Accelerator / Network Failure Domain | TOP-005 | `system/reliability/accelerator-and-network-failure-domain.md` | 区分 device/node/rack/fabric 故障范围 | - |
 | PWR-001 | DONE | Rack Power / Cooling Model | TOP-005 | `system/power/rack-power-and-cooling.md` | 从 device→node→rack 建立功耗密度与冷却约束 | - |
 
@@ -167,7 +167,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| MOD-001 | TODO | Model Schema V0.2 设计 | FND-001, MEM-004, CMP-001 | `models/SCHEMA.md` | 评估 layers/hidden/heads/kv_heads/head_dim/experts/top-k/MLA 等可验证字段；保持模型事实边界 | - |
+| MOD-001 | DOING | Model Schema V0.2 设计 | FND-001, MEM-004, CMP-001 | `models/SCHEMA.md` | 评估 layers/hidden/heads/kv_heads/head_dim/experts/top-k/MLA 等可验证字段；保持模型事实边界 | - |
 | MOD-002 | TODO | 迁移现有模型到 V0.2 | MOD-001 | 现有 `models/*` 页面 | Validator 全通过；未知值保持 null；Evidence 可追溯 | - |
 | MOD-003 | TODO | 建立 Architecture Anchors | MOD-001 | `models/00-model-index.md` + 代表模型页 | 至少覆盖 Dense/GQA/MLA/MoE/Linear-or-SSM/Multimodal 中有公开证据的代表模型 | - |
 
@@ -175,7 +175,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| HW-001 | TODO | Memory / HBM 对象边界设计 | MEM-001 | Chip Schema 扩展说明或新增硬件对象 | 明确 HBM/DDR/CXL memory 的 object/layer/字段边界 | - |
+| HW-001 | DOING | Memory / HBM 对象边界设计 | MEM-001 | Chip Schema 扩展说明或新增硬件对象 | 明确 HBM/DDR/CXL memory 的 object/layer/字段边界 | - |
 | HW-002 | TODO | Scale-up Fabric 对象边界与首批对象 | TOP-001 | NVLink/NVSwitch/Infinity Fabric/UALink 等硬件事实页 | 每页直接 Evidence；不把系统聚合值回填单器件 | - |
 | HW-003 | TODO | NIC / DPU / Scale-out Network 首批对象 | TOP-003 | ConnectX/Spectrum/InfiniBand/Broadcom 等事实页 | 可与 topology/communication 页面建立真实跨域边 | - |
 | HW-004 | TODO | PCIe / CXL 组件首批对象 | MEM-006, TOP-004 | switch/retimer/memory-expander 页面 | 类型边界清晰；字段单位统一 | - |
