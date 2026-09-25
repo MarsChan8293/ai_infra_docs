@@ -7,7 +7,9 @@ tags:
 
 # ai_infra_docs
 
-本仓库整理 AI 芯片、LLM 推理软件栈、KV Cache、分布式 Serving、Kubernetes 调度和设备资源管理等 AI Infra 主题，同时兼容 GitHub 阅读、Obsidian 双链浏览和在线知识图谱探索。
+本仓库聚焦 AI workload 如何落到系统架构与硬件：从模型状态、内存层次、资源表达、拓扑与异构计算，一路连接到 GPU / NPU、HBM、互联与基础设施。
+
+软件项目、社区、能力、集成和维护者关系的 canonical 事实统一维护在 [ai_infra_relationship](https://github.com/MarsChan8293/ai_infra_relationship)。本仓库不再维护第二份软件项目数据库，也不保留本地软件项目 redirect。
 
 ## 知识图谱入口
 
@@ -15,26 +17,24 @@ tags:
 - 在线 Quartz 知识库：https://MarsChan8293.github.io/ai_infra_docs/
 - 在线关系探索器：https://MarsChan8293.github.io/ai_infra_docs/graph-explorer/
 
-在线站点参考 `ai_infra_relationship` 的做法：GitHub Actions 扫描仓库 Markdown，把文档建模为节点，把 Obsidian Wiki Link / 本地 Markdown Link 建模为边，再生成 Quartz 站点和可交互的 1-hop / 2-hop 关系探索器。
-
-## Obsidian 入口
-
-推荐把仓库根目录直接作为 Obsidian Vault，并从 [[00-ai-infra-map|AI Infra 知识图谱入口]] 开始浏览。这个独立 MOC 使用唯一文件名，避免仓库中多个 `README.md` 在 Wiki Link 解析时产生歧义。
-
 ## 主要领域
 
-- [[chip/00-project-index|AI 芯片与基础设施资料库]]
-- [[software/README|AI Infra 软件栈地图]]
-- [[AGENTS|协作约定与知识图谱规则]]
+- [[models/00-model-index|AI Model Index]]：描述 workload 与状态规模。
+- [[system/README|AI Infra System Architecture]]：描述 workload 到硬件之间的系统机制。
+- [[chip/00-project-index|AI 芯片与基础设施资料库]]：描述芯片、板卡、内存、互联与产品事实。
 
-## 软件核心概念
+推荐阅读路径是 **Model → System → Chip**，而不是把软件项目复制进本仓库。
 
-- [[software/concepts/llm-serving-stack|LLM Serving 软件栈]]
-- [[software/concepts/pd-disaggregation|Prefill / Decode 分离]]
-- [[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]
-- [[software/concepts/topology-aware-scheduling|拓扑感知调度]]
-- [[software/concepts/accelerator-resource-model|加速器资源模型]]
-- [[software/concepts/heterogeneous-inference|异构推理]]
+## 系统架构核心节点
+
+- [[system/memory/kv-cache-memory-hierarchy|KV Cache 内存层次]]
+- [[system/resource/accelerator-resource-model|加速器资源模型]]
+- [[system/topology/topology-aware-scheduling|拓扑感知调度]]
+- [[system/heterogeneous-compute/heterogeneous-inference|异构推理]]
+
+## 与软件项目资料的边界
+
+本仓库可以在模型页和系统概念页中引用 vLLM、SGLang、LMCache、NIXL、Kubernetes DRA 等项目，但应直接链接其 canonical relationship 页面或官方上游，不在本仓库建立项目镜像页。
 
 ## 图谱构建
 
@@ -44,6 +44,4 @@ tags:
 python3 scripts/build-knowledge-graph.py --root . --output generated
 ```
 
-脚本会生成 `nodes.json`、`edges.json`、`metrics.json`、`unresolved-links.json` 和 `graph-summary.md`。这些均属于派生数据，不作为知识源手工维护。主知识源始终是仓库中的 Markdown、frontmatter 和内部双链。
-
-仓库内部关系优先使用 Obsidian Wiki Link，外部资料继续使用普通 URL。具体规范见 [[AGENTS#Obsidian 知识图谱与内部链接|AGENTS.md 的 Obsidian 规范]]。
+脚本会生成 `nodes.json`、`edges.json`、`metrics.json`、`unresolved-links.json` 和 `graph-summary.md`。这些均属于派生数据；主知识源始终是仓库中的 Markdown、frontmatter 和内部双链。
