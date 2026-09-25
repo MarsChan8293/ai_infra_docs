@@ -38,11 +38,11 @@ updated: 2026-09-25
 | 阶段 | 完成 | 总数 | 状态 |
 |---|---:|---:|---|
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
-| Phase 1：System Foundation | 10 | 29 | DOING |
+| Phase 1：System Foundation | 13 | 29 | DOING |
 | Phase 2：Serving / MoE / Training / Reliability | 0 | 13 | TODO |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **13** | **59** | **DOING** |
+| **合计** | **16** | **59** | **DOING** |
 
 ---
 
@@ -63,8 +63,8 @@ updated: 2026-09-25
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | WL-001 | DONE | 建立 AI Workload 总模型 | FND-001 | `system/workload/ai-workload-model.md` | 定义 Model facts 与 runtime workload 的边界；覆盖 prompt/output/batch/concurrency/SLA；包含输入输出和假设 | - |
-| WL-002 | DOING | 建立 Inference Workload | WL-001 | `system/workload/inference-workload.md` | 覆盖 online/offline、TTFT、TPOT、吞吐、并发、prefix reuse；能链接 Serving 专题 | - |
-| WL-003 | TODO | 建立 Training Workload | WL-001 | `system/workload/training-workload.md` | 覆盖 global/micro batch、sequence、gradient accumulation、checkpoint interval | - |
+| WL-002 | DONE | 建立 Inference Workload | WL-001 | `system/workload/inference-workload.md` | 覆盖 online/offline、TTFT、TPOT、吞吐、并发、prefix reuse；能链接 Serving 专题 | - |
+| WL-003 | DOING | 建立 Training Workload | WL-001 | `system/workload/training-workload.md` | 覆盖 global/micro batch、sequence、gradient accumulation、checkpoint interval | - |
 
 ## Compute
 
@@ -72,16 +72,16 @@ updated: 2026-09-25
 |---|---|---|---|---|---|---|
 | CMP-001 | DONE | Transformer Compute Model | WL-001 | `system/compute/transformer-compute-model.md` | 区分 dense/MoE；给出 Prefill/Decode 主要 FLOPs 构成及公式边界 | - |
 | CMP-002 | DONE | Roofline 与 Arithmetic Intensity | CMP-001 | `system/compute/roofline-and-arithmetic-intensity.md` | 明确 compute-bound / memory-bound 判断；区分峰值、理论上界、系统上界、实测 | - |
-| CMP-003 | DOING | Prefill vs Decode 计算模型 | CMP-001, MEM-005 | `system/compute/prefill-vs-decode.md` | 解释 GEMM/GEMV、权重读取、KV 访问和 batch 对瓶颈的影响 | - |
+| CMP-003 | DONE | Prefill vs Decode 计算模型 | CMP-001, MEM-005 | `system/compute/prefill-vs-decode.md` | 解释 GEMM/GEMV、权重读取、KV 访问和 batch 对瓶颈的影响 | - |
 
 ## Memory
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | MEM-001 | DONE | 完整 Model Memory Accounting | WL-001 | `system/memory/model-memory-accounting.md` | 统一 weights + KV + activation + workspace + comm buffer + fragmentation + reserve 口径 | - |
-| MEM-002 | TODO | Weight Memory Model | MEM-001 | `system/memory/weight-memory.md` | 覆盖 dtype/quantization/sharding；不把 runtime buffer 混入权重 | - |
-| MEM-003 | TODO | Activation Memory Model | MEM-001 | `system/memory/activation-memory.md` | 区分推理/训练 activation；说明 recomputation/checkpointing 影响 | - |
-| MEM-004 | DOING | KV Cache Model | MEM-001 | `system/memory/kv-cache-model.md` | 统一 MHA/GQA/MLA 等计算口径；和现有 KV hierarchy 双向关联 | - |
+| MEM-002 | DOING | Weight Memory Model | MEM-001 | `system/memory/weight-memory.md` | 覆盖 dtype/quantization/sharding；不把 runtime buffer 混入权重 | - |
+| MEM-003 | DOING | Activation Memory Model | MEM-001 | `system/memory/activation-memory.md` | 区分推理/训练 activation；说明 recomputation/checkpointing 影响 | - |
+| MEM-004 | DONE | KV Cache Model | MEM-001 | `system/memory/kv-cache-model.md` | 统一 MHA/GQA/MLA 等计算口径；和现有 KV hierarchy 双向关联 | - |
 | MEM-005 | DONE | Memory Bandwidth Model | MEM-001 | `system/memory/memory-bandwidth-model.md` | 建立 bytes/token、bytes/step 与带宽下界；说明有效带宽与标称带宽区别 | - |
 | MEM-006 | TODO | CXL / Memory Pooling 系统模型 | MEM-001, TOP-001 | `system/memory/cxl-and-memory-pooling.md` | 明确 capacity/latency/bandwidth/failure-domain 交换；不把 CXL 当作 HBM 等价层 | - |
 
