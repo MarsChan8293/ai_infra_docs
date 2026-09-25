@@ -3,6 +3,35 @@ schema_version: system-v0.1
 name: 拓扑感知调度
 object_type: concept
 category: scheduling
+inputs:
+  - workload.parallelism
+  - workload.role
+  - hardware.topology
+  - hardware.numa
+  - hardware.nic_affinity
+constraints:
+  - interconnect-bandwidth
+  - interconnect-latency
+  - numa-locality
+  - failure-domain
+  - placement
+outputs:
+  - placement_constraints
+  - topology_cost
+  - failure_domain_constraints
+assumptions:
+  - 调度决策应消费真实物理拓扑，而不是仅使用逻辑设备计数
+related_layers:
+  - workload
+  - parallelism
+  - communication
+  - topology
+  - scheduling
+  - memory
+  - accelerator
+  - network
+  - reliability
+evidence: {}
 updated: 2026-09-25
 tags:
   - system
