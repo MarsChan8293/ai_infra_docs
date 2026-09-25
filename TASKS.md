@@ -40,9 +40,9 @@ updated: 2026-09-25
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
 | Phase 1：System Foundation | 29 | 29 | DONE |
 | Phase 2：Serving / MoE / Training / Reliability | 13 | 13 | DONE |
-| Phase 3：Model / Hardware Expansion | 3 | 9 | DOING |
-| Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **48** | **59** | **DOING** |
+| Phase 3：Model / Hardware Expansion | 9 | 9 | DONE |
+| Phase 4：Executable Knowledge Base | 5 | 5 | DONE |
+| **合计** | **59** | **59** | **DONE** |
 
 ---
 
@@ -169,18 +169,18 @@ updated: 2026-09-25
 |---|---|---|---|---|---|---|
 | MOD-001 | DONE | Model Schema V0.2 设计 | FND-001, MEM-004, CMP-001 | `models/SCHEMA.md` | 评估 layers/hidden/heads/kv_heads/head_dim/experts/top-k/MLA 等可验证字段；保持模型事实边界 | - |
 | MOD-002 | DONE | 迁移现有模型到 V0.2 | MOD-001 | 现有 `models/*` 页面 | Validator 全通过；未知值保持 null；Evidence 可追溯 | - |
-| MOD-003 | DOING | 建立 Architecture Anchors | MOD-001 | `models/00-model-index.md` + 代表模型页 | 至少覆盖 Dense/GQA/MLA/MoE/Linear-or-SSM/Multimodal 中有公开证据的代表模型 | - |
+| MOD-003 | DONE | 建立 Architecture Anchors | MOD-001 | `models/00-model-index.md` + 代表模型页 | 至少覆盖 Dense/GQA/MLA/MoE/Linear-or-SSM/Multimodal 中有公开证据的代表模型 | - |
 
 ## Hardware
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | HW-001 | DONE | Memory / HBM 对象边界设计 | MEM-001 | Chip Schema 扩展说明或新增硬件对象 | 明确 HBM/DDR/CXL memory 的 object/layer/字段边界 | - |
-| HW-002 | DOING | Scale-up Fabric 对象边界与首批对象 | TOP-001 | NVLink/NVSwitch/Infinity Fabric/UALink 等硬件事实页 | 每页直接 Evidence；不把系统聚合值回填单器件 | - |
-| HW-003 | DOING | NIC / DPU / Scale-out Network 首批对象 | TOP-003 | ConnectX/Spectrum/InfiniBand/Broadcom 等事实页 | 可与 topology/communication 页面建立真实跨域边 | - |
-| HW-004 | DOING | PCIe / CXL 组件首批对象 | MEM-006, TOP-004 | switch/retimer/memory-expander 页面 | 类型边界清晰；字段单位统一 | - |
-| HW-005 | DOING | Storage / NVMe 首批对象 | REL-001, SRV-005 | AI Infra storage 事实页 | 包含 BW/latency/capacity/endurance/interface/power，区分厂商规格与分析 | - |
-| HW-006 | DOING | Packaging / Power / Cooling 边界设计 | PWR-001 | 领域边界说明 + 首批代表对象 | 只覆盖直接影响 AI hardware capability 的封装/供电/冷却事实 | - |
+| HW-002 | DONE | Scale-up Fabric 对象边界与首批对象 | TOP-001 | NVLink/NVSwitch/Infinity Fabric/UALink 等硬件事实页 | 每页直接 Evidence；不把系统聚合值回填单器件 | - |
+| HW-003 | DONE | NIC / DPU / Scale-out Network 首批对象 | TOP-003 | ConnectX/Spectrum/InfiniBand/Broadcom 等事实页 | 可与 topology/communication 页面建立真实跨域边 | - |
+| HW-004 | DONE | PCIe / CXL 组件首批对象 | MEM-006, TOP-004 | switch/retimer/memory-expander 页面 | 类型边界清晰；字段单位统一 | - |
+| HW-005 | DONE | Storage / NVMe 首批对象 | REL-001, SRV-005 | AI Infra storage 事实页 | 包含 BW/latency/capacity/endurance/interface/power，区分厂商规格与分析 | - |
+| HW-006 | DONE | Packaging / Power / Cooling 边界设计 | PWR-001 | 领域边界说明 + 首批代表对象 | 只覆盖直接影响 AI hardware capability 的封装/供电/冷却事实 | - |
 
 ---
 
@@ -188,15 +188,32 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| EXE-001 | DOING | 定义 Workload Profile 数据格式 | WL-001, FND-001 | Schema / example profile | 能稳定表示 inference/training workload，单位明确 | - |
-| EXE-002 | DOING | 构建 Workload Profile 生成器 | EXE-001 | `scripts/build-workload-profile.py` | 能从模型页 + workload 输入生成机器可读 profile | - |
-| EXE-003 | DOING | 构建 System Requirements 生成器 | EXE-002, CMP-001, MEM-001, COM-005 | `scripts/build-system-requirements.py` | 输出 compute/memory/communication 派生值并保留公式、输入、假设、单位 | - |
-| EXE-004 | DOING | 建立端到端代表模型案例 | EXE-003, MOD-002 | 一个完整 Model → Workload → System → Hardware 示例 | 任一派生数字可回溯到模型字段、公式和 Evidence | - |
-| EXE-005 | DOING | 将派生结果接入知识图谱/CI | EXE-003 | CI + generated reports | 派生数据自动构建、不手工维护；失败会阻断 CI 或产生明确报告 | - |
+| EXE-001 | DONE | 定义 Workload Profile 数据格式 | WL-001, FND-001 | Schema / example profile | 能稳定表示 inference/training workload，单位明确 | - |
+| EXE-002 | DONE | 构建 Workload Profile 生成器 | EXE-001 | `scripts/build-workload-profile.py` | 能从模型页 + workload 输入生成机器可读 profile | - |
+| EXE-003 | DONE | 构建 System Requirements 生成器 | EXE-002, CMP-001, MEM-001, COM-005 | `scripts/build-system-requirements.py` | 输出 compute/memory/communication 派生值并保留公式、输入、假设、单位 | - |
+| EXE-004 | DONE | 建立端到端代表模型案例 | EXE-003, MOD-002 | 一个完整 Model → Workload → System → Hardware 示例 | 任一派生数字可回溯到模型字段、公式和 Evidence | - |
+| EXE-005 | DONE | 将派生结果接入知识图谱/CI | EXE-003 | CI + generated reports | 派生数据自动构建、不手工维护；失败会阻断 CI 或产生明确报告 | - |
 
 ---
 
-# 首批执行队列
+## 实施完成
+
+截至 2026-09-25，本 Roadmap 对应的 59 个实施任务全部完成。后续新增工作使用新的稳定 Task ID 追加，不复用或重排现有 ID。
+
+Phase 4 已把知识库从“可读文档”推进到可重复执行链：
+
+```text
+Model V0.2 + Chip V0.2 + Workload Profile
+→ normalized workload JSON
+→ System Requirements JSON / derived Markdown
+→ Validator
+→ Knowledge Graph
+→ Quartz / Graph Explorer
+```
+
+派生结果只计算有明确输入、公式与 assumption 的字段；未知值继续保留 unknown，不按 0 补齐。
+
+# 首批执行队列（已完成）
 
 按依赖关系，建议第一批严格按以下顺序推进：
 
@@ -214,7 +231,7 @@ updated: 2026-09-25
 12. `COM-005` Communication Cost Model
 13. `INT-001` 手工端到端案例，作为 Phase 1 的集成验收
 
-不要同时大规模展开 Phase 2/3。先把前九项做成稳定骨架，再扩专题。
+以上队列与后续 Phase 2/3/4 均已完成；保留本节作为实施顺序记录。
 
 ## 每批完成后的统一验收
 
