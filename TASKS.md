@@ -89,7 +89,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| PAR-001 | TODO | Parallelism Overview | WL-001 | `system/parallelism/parallelism-overview.md` | 统一 DP/TP/PP/EP/CP 的目的、切分对象、通信与拓扑要求 | - |
+| PAR-001 | DOING | Parallelism Overview | WL-001 | `system/parallelism/parallelism-overview.md` | 统一 DP/TP/PP/EP/CP 的目的、切分对象、通信与拓扑要求 | - |
 | PAR-002 | TODO | Tensor Parallelism | PAR-001, COM-001 | `system/parallelism/tensor-parallelism.md` | 给出主要 collective 与通信量关系；链接 Scale-up topology | - |
 | PAR-003 | TODO | Pipeline Parallelism | PAR-001, COM-004 | `system/parallelism/pipeline-parallelism.md` | 覆盖 stage、bubble、microbatch、P2P 边界 | - |
 | PAR-004 | TODO | Expert Parallelism | PAR-001, COM-003 | `system/parallelism/expert-parallelism.md` | 说明 token dispatch、all-to-all、负载不均衡和 placement | - |
@@ -100,7 +100,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| COM-001 | TODO | Collective Communication Overview | WL-001 | `system/communication/collective-communication.md` | 定义 participant/message/algorithm/bandwidth/latency 模型 | - |
+| COM-001 | DOING | Collective Communication Overview | WL-001 | `system/communication/collective-communication.md` | 定义 participant/message/algorithm/bandwidth/latency 模型 | - |
 | COM-002 | TODO | All-Reduce / All-Gather / Reduce-Scatter | COM-001 | `system/communication/all-reduce-all-gather-reduce-scatter.md` | 给出典型 ring/tree 成本边界；关联 TP/DP | - |
 | COM-003 | TODO | All-to-All | COM-001 | `system/communication/all-to-all.md` | 给出 MoE token dispatch 的数据量和拓扑敏感度 | - |
 | COM-004 | TODO | Point-to-Point | COM-001 | `system/communication/point-to-point.md` | 覆盖 PP、KV transfer、跨节点 P2P | - |
@@ -110,7 +110,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| TOP-001 | TODO | Scale-up vs Scale-out | WL-001 | `system/topology/scale-up-vs-scale-out.md` | 定义两类 fabric 的边界、带宽/时延/规模/故障域；关联硬件对象 | - |
+| TOP-001 | DOING | Scale-up vs Scale-out | WL-001 | `system/topology/scale-up-vs-scale-out.md` | 定义两类 fabric 的边界、带宽/时延/规模/故障域；关联硬件对象 | - |
 | TOP-002 | TODO | Accelerator Fabric | TOP-001 | `system/topology/accelerator-fabric.md` | 描述 accelerator↔accelerator fabric 的系统作用，不复制厂商产品页 | - |
 | TOP-003 | TODO | GPU/NPU ↔ NIC Affinity | TOP-001 | `system/topology/gpu-nic-affinity.md` | 覆盖 PCIe switch、NUMA、rail、NIC locality 对通信的影响 | - |
 | TOP-004 | TODO | NUMA / PCIe Topology | TOP-001 | `system/topology/numa-and-pcie-topology.md` | 建立 CPU/accelerator/NIC/PCIe switch 的 placement 约束 | - |
