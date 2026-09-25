@@ -62,11 +62,11 @@ updated: 2026-09-16
 - ZCode 官方 changelog 在 2026-08-26 加入 GLM-5.3 Flash 多模态模型。[S4]
 - 页面记录的是 canonical open weights；不同 FP8/BF16/NVFP4 checkpoint 不拆成独立模型实体。
 
-## 关联项目
+## 关联软件与系统
 
-- 推理引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]、[[software/projects/tokenspeed|TokenSpeed]]
-- Kernel：[[software/projects/flashinfer|FlashInfer]]
-- KV：[[software/projects/lmcache|LMCache]]、[[software/projects/mooncake|Mooncake]]
+- 推理引擎：[vLLM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM/vLLM.md)、[SGLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/sgl-project/SGLang/SGLang.md)、[TokenSpeed](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/lightseekorg/TokenSpeed/TokenSpeed.md)
+- Kernel：[FlashInfer](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flashinfer-ai/FlashInfer/FlashInfer.md)
+- KV：[LMCache](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/LMCache/LMCache/LMCache.md)、[Mooncake](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/kvcache-ai/Mooncake/Mooncake.md)
 
 ## 直接来源
 
