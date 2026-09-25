@@ -88,7 +88,7 @@ def relation_entries(value: object) -> list[tuple[str, str]]:
 def node_domain(rel: pathlib.PurePosixPath) -> str:
     if not rel.parts:
         return "root"
-    return rel.parts[0] if rel.parts[0] in {"chip", "software", "models"} else "root"
+    return rel.parts[0] if rel.parts[0] in {"chip", "system", "models"} else "root"
 
 
 def node_kind(rel: pathlib.PurePosixPath, fm: dict) -> str:
@@ -102,11 +102,7 @@ def node_kind(rel: pathlib.PurePosixPath, fm: dict) -> str:
     object_type = fm.get("object_type")
     if object_type == "model":
         return "model"
-    if rel.parts[:2] == ("software", "projects") and object_type == "project-redirect":
-        return "project-redirect"
-    if rel.parts[:2] == ("software", "projects") and object_type == "project":
-        return str(fm.get("category") or "project")
-    if rel.parts[:2] == ("software", "concepts") or object_type == "concept":
+    if object_type == "concept":
         return "concept"
     if rel.parts and rel.parts[0] == "chip":
         if stem.endswith("overview") or "概览" in rel.stem:
@@ -114,8 +110,8 @@ def node_kind(rel: pathlib.PurePosixPath, fm: dict) -> str:
         if len(rel.parts) >= 3:
             return "chip"
         return "hardware-note"
-    if rel.parts and rel.parts[0] == "software":
-        return rel.parts[1].replace("_", "-") if len(rel.parts) >= 3 else "software"
+    if rel.parts and rel.parts[0] == "system":
+        return "system-note"
     if rel.parts and rel.parts[0] == "models":
         if stem == "schema":
             return "model-schema"
@@ -185,7 +181,6 @@ def main() -> int:
     records: dict[str, dict] = {}
     texts: dict[str, str] = {}
     by_basename: dict[str, list[str]] = defaultdict(list)
-    project_by_slug: dict[str, str] = {}
     for path in markdown_files(root):
         rel = pathlib.PurePosixPath(path.relative_to(root).as_posix())
         node_id = rel.with_suffix("").as_posix()
@@ -205,8 +200,6 @@ def main() -> int:
         records[node_id] = node
         texts[node_id] = text
         by_basename[rel.stem.casefold()].append(node_id)
-        if rel.parts[:2] == ("software", "projects"):
-            project_by_slug[rel.stem] = node_id
         aliases = fm.get("aliases") or []
         if isinstance(aliases, str):
             aliases = [aliases]
@@ -242,24 +235,6 @@ def main() -> int:
                 unresolved.append({"source": source_id, "target": target, "reason": reason, "syntax": "markdown-link"})
             elif target_id != source_id:
                 add_edge(source_id, target_id, classify_edge(records[source_id], records[target_id]), "markdown-link")
-
-    for source_id, node in records.items():
-        if not source_id.startswith("software/projects/"):
-            continue
-        fm = node["frontmatter"]
-        typed: list[tuple[str, str]] = []
-        integrations = fm.get("integrations") or []
-        if isinstance(integrations, list):
-            typed.extend(("integrates-with", str(target)) for target in integrations)
-        typed.extend(relation_entries(fm.get("relations")))
-        for relation, slug in typed:
-            target_id = project_by_slug.get(slug)
-            if not target_id or target_id == source_id:
-                continue
-            for key in list(edge_map):
-                if key[0] == source_id and key[1] == target_id and key[2] in GENERIC_RELATIONS:
-                    del edge_map[key]
-            add_edge(source_id, target_id, relation, "frontmatter")
 
     edges = sorted(edge_map.values(), key=lambda edge: (edge["source"], edge["target"], edge["relation"]))
     incoming = defaultdict(int)
