@@ -90,11 +90,11 @@ updated: 2026-09-25
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | PAR-001 | DONE | Parallelism Overview | WL-001 | `system/parallelism/parallelism-overview.md` | 统一 DP/TP/PP/EP/CP 的目的、切分对象、通信与拓扑要求 | - |
-| PAR-002 | TODO | Tensor Parallelism | PAR-001, COM-001 | `system/parallelism/tensor-parallelism.md` | 给出主要 collective 与通信量关系；链接 Scale-up topology | - |
-| PAR-003 | TODO | Pipeline Parallelism | PAR-001, COM-004 | `system/parallelism/pipeline-parallelism.md` | 覆盖 stage、bubble、microbatch、P2P 边界 | - |
-| PAR-004 | TODO | Expert Parallelism | PAR-001, COM-003 | `system/parallelism/expert-parallelism.md` | 说明 token dispatch、all-to-all、负载不均衡和 placement | - |
-| PAR-005 | TODO | Data Parallelism | PAR-001, COM-002 | `system/parallelism/data-parallelism.md` | 覆盖 gradient synchronization、replication 和通信成本 | - |
-| PAR-006 | TODO | Context Parallelism | PAR-001, COM-001 | `system/parallelism/context-parallelism.md` | 说明长上下文切分、KV/attention 通信与拓扑敏感度 | - |
+| PAR-002 | DOING | Tensor Parallelism | PAR-001, COM-001 | `system/parallelism/tensor-parallelism.md` | 给出主要 collective 与通信量关系；链接 Scale-up topology | - |
+| PAR-003 | DOING | Pipeline Parallelism | PAR-001, COM-004 | `system/parallelism/pipeline-parallelism.md` | 覆盖 stage、bubble、microbatch、P2P 边界 | - |
+| PAR-004 | DOING | Expert Parallelism | PAR-001, COM-003 | `system/parallelism/expert-parallelism.md` | 说明 token dispatch、all-to-all、负载不均衡和 placement | - |
+| PAR-005 | DOING | Data Parallelism | PAR-001, COM-002 | `system/parallelism/data-parallelism.md` | 覆盖 gradient synchronization、replication 和通信成本 | - |
+| PAR-006 | DOING | Context Parallelism | PAR-001, COM-001 | `system/parallelism/context-parallelism.md` | 说明长上下文切分、KV/attention 通信与拓扑敏感度 | - |
 
 ## Communication
 
