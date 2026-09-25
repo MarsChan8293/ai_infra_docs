@@ -62,11 +62,11 @@ updated: 2026-09-16
 - `parameters.total=180B` 是对官方明确列出的 125B core、51B n-gram embedding、4B MTP 三部分求和的派生值，不应和“core 125B”混写。[S2]
 - `parameters.active=6B` 采用官方 core-model 激活口径，不代表 n-gram/MTP 的逐 token 完整运行成本。
 
-## 关联项目
+## 关联软件与系统
 
-- 推理引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]
-- Kernel：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/triton|Triton]]
-- KV：[[software/projects/lmcache|LMCache]]、[[software/projects/mooncake|Mooncake]]
+- 推理引擎：[vLLM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM/vLLM.md)、[SGLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/sgl-project/SGLang/SGLang.md)
+- Kernel：[FlashInfer](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flashinfer-ai/FlashInfer/FlashInfer.md)、[Triton](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/triton-lang/Triton/Triton.md)
+- KV：[LMCache](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/LMCache/LMCache/LMCache.md)、[Mooncake](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/kvcache-ai/Mooncake/Mooncake.md)
 
 ## 直接来源
 
