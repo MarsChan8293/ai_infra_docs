@@ -61,6 +61,8 @@ def infer_layer(object_type: str) -> str:
         return "family"
     if any(k in value for k in ("network", "switch", "nic")):
         return "network"
+    if any(k in value for k in ("storage", "ssd", "nvme")):
+        return "storage"
     if any(k in value for k in ("memory", "hbm")):
         return "memory"
     if "soc" in value:
