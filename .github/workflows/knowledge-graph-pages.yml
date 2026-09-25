@@ -81,7 +81,7 @@ jobs:
           cp README.md "$QUARTZ_DIR/content/README.md"
           cp AGENTS.md "$QUARTZ_DIR/content/AGENTS.md"
           cp -R chip "$QUARTZ_DIR/content/chip"
-          cp -R software "$QUARTZ_DIR/content/software"
+          cp -R system "$QUARTZ_DIR/content/system"
           cp -R models "$QUARTZ_DIR/content/models"
           cp generated/graph-summary.md "$QUARTZ_DIR/content/generated/graph-summary.md"
           cp generated/chip-health.md "$QUARTZ_DIR/content/generated/chip-health.md"
