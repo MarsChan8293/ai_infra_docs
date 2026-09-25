@@ -55,6 +55,31 @@ updated: 2026-09-15
 - 功耗使用 `value_w` 并带 `scope`；系统/机架聚合功耗不得回填芯片对象。
 - 生命周期优先使用 `announced`、`tapeout`、`sampling`、`production`、`shipping`、`customer_deployed`、`cloud_available`、`eol`。
 
+
+## Memory / HBM 对象边界
+
+`layer: memory` 用于独立、可识别的 memory product / technology object；accelerator 上集成的 HBM 规格仍写在 accelerator 自身的 `memory` block，不因为使用了 HBM 就额外复制成一个 memory SKU 节点。
+
+Memory hardware 页面优先记录：
+
+- `object_type`：例如 `hbm-stack`、`memory-device`、`memory-expander`、`memory-module`。
+- `layer: memory`。
+- `memory.type`：HBM3、HBM3E、HBM4、DDR5、LPDDR、CXL-attached-memory 等。
+- `memory.capacity_gb`：对象自身容量。
+- `memory.bandwidth_tb_s` / `bandwidth_gb_s`：对象自身公开带宽，必须保留 scope。
+- `interconnect.host_interface`：例如公开可确认的 CXL / DDR / proprietary interface。
+- `power`：只有官方给出对象级 power 时填写。
+- `lifecycle`：宣布、量产、出货等分开记录。
+
+边界规则：
+
+1. HBM technology generation 与具体 stack / product SKU 可以是不同对象；没有 SKU 事实时不要虚构产品。
+2. Accelerator 的 aggregate HBM capacity/bandwidth 不得回填成单颗 HBM stack 规格。
+3. Memory Expander / CXL Memory 记录自身容量、接口和带宽，不把 host/cluster 聚合容量回填。
+4. SSD / NVMe 属于 storage 语义时不强塞进 `layer: memory`；后续 Storage 对象边界单独维护。
+5. PIM / near-memory compute 若同时具备显著 compute 属性，应选择最能表达产品本体的 `object_type`，正文说明 memory-compute 边界，不复制成两个实体。
+6. 所有容量与带宽都必须保留对象 scope 和直接 Evidence。
+
 ## Evidence
 
 `evidence` 的 key 使用 `S1`、`S2`；每项至少包含 `url`，建议补 `source_type` 与 `accessed`。`evidence_map` 把 `memory.capacity_gb` 等字段路径映射到 Source ID。历史页暂时只能确认页面来源时使用 `evidence_map: {__page__: [S1, S2]}`，这不代表字段已逐项追溯。正文 `## 直接来源` 仍必须保留这些 URL。
