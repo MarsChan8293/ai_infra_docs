@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/MarsChan8293/ai_infra_docs/system/workload/workload-profile-v0.1.schema.json",
+  "title": "AI Infra Workload Profile V0.1",
+  "type": "object",
+  "required": ["schema_version", "model", "workload", "execution", "parallelism", "assumptions"],
+  "properties": {
+    "schema_version": {"const": "workload-profile-v0.1"},
+    "model": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^models/.+\\.md$"},
+        "facts": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "hardware": {
+      "type": ["object", "null"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^chip/.+\\.md$"},
+        "facts": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "workload": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {"enum": ["inference", "training"]},
+        "mode": {"type": ["string", "null"]},
+        "phase": {"enum": ["prefill", "decode", "prefill-and-decode", null]},
+        "prompt_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "output_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "context_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "batch_size": {"type": ["integer", "null"], "minimum": 1},
+        "concurrency": {"type": ["integer", "null"], "minimum": 1},
+        "request_rate_rps": {"type": ["number", "null"], "minimum": 0},
+        "prefix_reuse_ratio": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "global_batch_size": {"type": ["integer", "null"], "minimum": 1},
+        "micro_batch_size": {"type": ["integer", "null"], "minimum": 1},
+        "gradient_accumulation_steps": {"type": ["integer", "null"], "minimum": 1},
+        "sequence_length": {"type": ["integer", "null"], "minimum": 1},
+        "checkpoint_interval_steps": {"type": ["integer", "null"], "minimum": 1},
+        "sla": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "execution": {
+      "type": "object",
+      "properties": {
+        "weight_bytes_per_parameter": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "kv_bytes_per_scalar": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "assume_total_parameters_equal_stored_parameters": {"type": "boolean"},
+        "traffic_model": {
+          "type": "object",
+          "properties": {
+            "read_full_weight_each_decode_step": {"type": "boolean"},
+            "read_full_growing_kv_each_decode_step": {"type": "boolean"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "parallelism": {
+      "type": "object",
+      "required": ["tp", "pp", "ep", "dp", "cp"],
+      "properties": {
+        "tp": {"type": "integer", "minimum": 1},
+        "pp": {"type": "integer", "minimum": 1},
+        "ep": {"type": "integer", "minimum": 1},
+        "dp": {"type": "integer", "minimum": 1},
+        "cp": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "additionalProperties": true
+}
