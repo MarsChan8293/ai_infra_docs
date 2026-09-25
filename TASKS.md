@@ -40,9 +40,9 @@ updated: 2026-09-25
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
 | Phase 1：System Foundation | 29 | 29 | DONE |
 | Phase 2：Serving / MoE / Training / Reliability | 13 | 13 | DONE |
-| Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
+| Phase 3：Model / Hardware Expansion | 3 | 9 | DOING |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **45** | **59** | **DOING** |
+| **合计** | **48** | **59** | **DOING** |
 
 ---
 
@@ -167,15 +167,15 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| MOD-001 | DOING | Model Schema V0.2 设计 | FND-001, MEM-004, CMP-001 | `models/SCHEMA.md` | 评估 layers/hidden/heads/kv_heads/head_dim/experts/top-k/MLA 等可验证字段；保持模型事实边界 | - |
-| MOD-002 | TODO | 迁移现有模型到 V0.2 | MOD-001 | 现有 `models/*` 页面 | Validator 全通过；未知值保持 null；Evidence 可追溯 | - |
-| MOD-003 | TODO | 建立 Architecture Anchors | MOD-001 | `models/00-model-index.md` + 代表模型页 | 至少覆盖 Dense/GQA/MLA/MoE/Linear-or-SSM/Multimodal 中有公开证据的代表模型 | - |
+| MOD-001 | DONE | Model Schema V0.2 设计 | FND-001, MEM-004, CMP-001 | `models/SCHEMA.md` | 评估 layers/hidden/heads/kv_heads/head_dim/experts/top-k/MLA 等可验证字段；保持模型事实边界 | - |
+| MOD-002 | DONE | 迁移现有模型到 V0.2 | MOD-001 | 现有 `models/*` 页面 | Validator 全通过；未知值保持 null；Evidence 可追溯 | - |
+| MOD-003 | DOING | 建立 Architecture Anchors | MOD-001 | `models/00-model-index.md` + 代表模型页 | 至少覆盖 Dense/GQA/MLA/MoE/Linear-or-SSM/Multimodal 中有公开证据的代表模型 | - |
 
 ## Hardware
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| HW-001 | DOING | Memory / HBM 对象边界设计 | MEM-001 | Chip Schema 扩展说明或新增硬件对象 | 明确 HBM/DDR/CXL memory 的 object/layer/字段边界 | - |
+| HW-001 | DONE | Memory / HBM 对象边界设计 | MEM-001 | Chip Schema 扩展说明或新增硬件对象 | 明确 HBM/DDR/CXL memory 的 object/layer/字段边界 | - |
 | HW-002 | TODO | Scale-up Fabric 对象边界与首批对象 | TOP-001 | NVLink/NVSwitch/Infinity Fabric/UALink 等硬件事实页 | 每页直接 Evidence；不把系统聚合值回填单器件 | - |
 | HW-003 | TODO | NIC / DPU / Scale-out Network 首批对象 | TOP-003 | ConnectX/Spectrum/InfiniBand/Broadcom 等事实页 | 可与 topology/communication 页面建立真实跨域边 | - |
 | HW-004 | TODO | PCIe / CXL 组件首批对象 | MEM-006, TOP-004 | switch/retimer/memory-expander 页面 | 类型边界清晰；字段单位统一 | - |
