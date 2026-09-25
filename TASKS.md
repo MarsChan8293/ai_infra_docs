@@ -37,12 +37,12 @@ updated: 2026-09-25
 
 | 阶段 | 完成 | 总数 | 状态 |
 |---|---:|---:|---|
-| Phase 0：Foundation / Schema | 0 | 3 | TODO |
+| Phase 0：Foundation / Schema | 3 | 3 | DONE |
 | Phase 1：System Foundation | 0 | 29 | TODO |
 | Phase 2：Serving / MoE / Training / Reliability | 0 | 13 | TODO |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **0** | **59** | **TODO** |
+| **合计** | **3** | **59** | **DOING** |
 
 ---
 
@@ -50,9 +50,9 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| FND-001 | DOING | 定义 System Schema V0.1 | - | `system/SCHEMA.md` | 明确 inputs / constraints / outputs / assumptions / related_layers / evidence；示例可被 Validator 消费 | - |
-| FND-002 | DOING | 扩展仓库 Validator 支持 System Schema | FND-001 | `scripts/validate-repo.py` | 能校验 system concept 必填字段、日期、Evidence、内部链接；现有仓库验证通过 | - |
-| FND-003 | DOING | 重构 System MOC | FND-001 | `system/README.md` | 能导航到 Workload / Compute / Memory / Parallelism / Communication / Topology 等主域；无孤立核心节点 | - |
+| FND-001 | DONE | 定义 System Schema V0.1 | - | `system/SCHEMA.md` | 明确 inputs / constraints / outputs / assumptions / related_layers / evidence；示例可被 Validator 消费 | - |
+| FND-002 | DONE | 扩展仓库 Validator 支持 System Schema | FND-001 | `scripts/validate-repo.py` | 能校验 system concept 必填字段、日期、Evidence、内部链接；现有仓库验证通过 | - |
+| FND-003 | DONE | 重构 System MOC | FND-001 | `system/README.md` | 能导航到 Workload / Compute / Memory / Parallelism / Communication / Topology 等主域；无孤立核心节点 | - |
 
 ---
 
@@ -62,7 +62,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| WL-001 | TODO | 建立 AI Workload 总模型 | FND-001 | `system/workload/ai-workload-model.md` | 定义 Model facts 与 runtime workload 的边界；覆盖 prompt/output/batch/concurrency/SLA；包含输入输出和假设 | - |
+| WL-001 | DOING | 建立 AI Workload 总模型 | FND-001 | `system/workload/ai-workload-model.md` | 定义 Model facts 与 runtime workload 的边界；覆盖 prompt/output/batch/concurrency/SLA；包含输入输出和假设 | - |
 | WL-002 | TODO | 建立 Inference Workload | WL-001 | `system/workload/inference-workload.md` | 覆盖 online/offline、TTFT、TPOT、吞吐、并发、prefix reuse；能链接 Serving 专题 | - |
 | WL-003 | TODO | 建立 Training Workload | WL-001 | `system/workload/training-workload.md` | 覆盖 global/micro batch、sequence、gradient accumulation、checkpoint interval | - |
 
