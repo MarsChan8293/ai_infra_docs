@@ -31,6 +31,7 @@ python3 scripts/enrich-knowledge-graph.py --generated generated
 | 厂商 | 总览 |
 |---|---|
 | AMD | [[chip/AMD/AMD-overview|AMD Instinct]] |
+| Astera Labs | [[chip/AsteraLabs/AsteraLabs-overview|Astera Labs Connectivity]] |
 | AWS | [[chip/AWS/AWS-overview|AWS AI Accelerators]] |
 | Biren / 壁仞 | [[chip/Biren/壁仞科技-概览|壁仞科技]] |
 | Broadcom | [[chip/Broadcom/Broadcom-overview|Broadcom AI Infrastructure Silicon]] |
@@ -48,6 +49,7 @@ python3 scripts/enrich-knowledge-graph.py --generated generated
 | Meta | [[chip/Meta/Meta-overview|Meta MTIA]] |
 | MetaX / 沐曦 | [[chip/MetaX/沐曦-概览|沐曦]] |
 | Microsoft | [[chip/Microsoft/Microsoft-overview|Microsoft Maia]] |
+| Microchip | [[chip/Microchip/Microchip-overview|Microchip PCIe Infrastructure]] |
 | Moore Threads / 摩尔线程 | [[chip/MooreThreads/摩尔线程-概览|摩尔线程]] |
 | NVIDIA | [[chip/NVIDIA/NVIDIA-overview|NVIDIA Data Center GPU]] |
 | SambaNova | [[chip/SambaNova/SambaNova-overview|SambaNova RDU]] |
@@ -75,8 +77,15 @@ python3 scripts/enrich-knowledge-graph.py --generated generated
 ### Scale-out / NIC / Switch
 
 - [[chip/NVIDIA/connectx-7|NVIDIA ConnectX-7]]
+- [[chip/NVIDIA/bluefield-3|NVIDIA BlueField-3 DPU]]
 - [[chip/NVIDIA/spectrum-4|NVIDIA Spectrum-4]]
 - [[chip/Broadcom/thor-ultra|Broadcom Thor Ultra]]
+
+### PCIe / CXL Components
+
+- [[chip/AsteraLabs/aries-pt5161lx|Astera Labs Aries PT5161LX]]
+- [[chip/Microchip/switchtec-pfx-gen5|Microchip Switchtec PFX Gen 5]]
+- [[chip/Samsung/cmm-d-md310|Samsung CMM-D MD310]]
 
 ### CXL / Memory Expansion
 
