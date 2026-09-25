@@ -3,6 +3,38 @@ schema_version: system-v0.1
 name: KV Cache 内存层级
 object_type: concept
 category: memory-architecture
+inputs:
+  - model.context_length
+  - model.architecture.attention
+  - workload.batch_size
+  - workload.concurrency
+  - workload.prefix_reuse
+  - hardware.memory.capacity
+  - hardware.memory.bandwidth
+constraints:
+  - memory-capacity
+  - memory-bandwidth
+  - transfer-bandwidth
+  - transfer-latency
+  - storage-endurance
+  - isolation
+outputs:
+  - kv_placement_policy
+  - kv_transfer_cost
+  - recompute_vs_retrieve_break_even
+  - tier_capacity_requirements
+assumptions:
+  - KV 状态可以在生命周期边界内被识别、迁移和失效
+  - 派生判断必须显式计入传输、排队和布局转换成本
+related_layers:
+  - model
+  - workload
+  - memory
+  - communication
+  - topology
+  - accelerator
+  - storage
+evidence: {}
 updated: 2026-09-25
 tags:
   - system
