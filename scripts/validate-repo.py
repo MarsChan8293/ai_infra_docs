@@ -20,7 +20,13 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 EXCLUDED_DIRS = {".git", ".github", ".obsidian", ".codex", "generated", "node_modules"}
 MODEL_STATUSES = {"preview", "released", "deprecated", "retired", "unknown"}
 MODEL_MODALITIES = {"text", "image", "audio", "video"}
-STRICT_ROOT_NODES = {"README", "00-ai-infra-map", "AGENTS"}
+SYSTEM_RELATED_LAYERS = {
+    "model", "workload", "compute", "memory", "parallelism", "communication",
+    "topology", "scheduling", "accelerator", "network", "storage", "power", "reliability",
+}
+SOURCE_ID_RE = re.compile(r"^S\d+$")
+KEBAB_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+STRICT_ROOT_NODES = {"README", "00-ai-infra-map", "AGENTS", "ROADMAP", "TASKS"}
 
 
 def markdown_files(root: pathlib.Path) -> list[pathlib.Path]:
@@ -104,6 +110,14 @@ def int_or_null(value: object) -> bool:
     return value is None or (isinstance(value, int) and not isinstance(value, bool) and value >= 0)
 
 
+def nonempty_string_list(value: object) -> bool:
+    return (
+        isinstance(value, list)
+        and bool(value)
+        and all(isinstance(item, str) and bool(item.strip()) for item in value)
+    )
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=".")
@@ -137,11 +151,16 @@ def main() -> int:
         if rec["path"].parts and rec["path"].parts[0] == "system"
         and rec["frontmatter"].get("object_type") == "concept"
     }
+    system_names: dict[str, str] = {}
+    system_required = {
+        "schema_version", "name", "object_type", "category", "inputs", "constraints",
+        "outputs", "assumptions", "related_layers", "evidence", "updated",
+    }
     for node_id, rec in sorted(system_concepts.items()):
         path = rec["path"].as_posix()
         fm = rec["frontmatter"]
-        required = {"schema_version", "name", "object_type", "category", "updated"}
-        missing = sorted(required - set(fm))
+        text = texts[node_id]
+        missing = sorted(system_required - set(fm))
         if missing:
             errors.append(f"{path}: 缺少 System Concept 字段 {', '.join(missing)}")
             continue
@@ -149,10 +168,75 @@ def main() -> int:
             errors.append(f"{path}: schema_version 必须为 system-v0.1")
         if fm.get("object_type") != "concept":
             errors.append(f"{path}: object_type 必须为 concept")
-        if not isinstance(fm.get("name"), str) or not fm["name"].strip():
+
+        name = fm.get("name")
+        if not isinstance(name, str) or not name.strip():
             errors.append(f"{path}: name 必须为非空字符串")
-        if not isinstance(fm.get("category"), str) or not fm["category"].strip():
-            errors.append(f"{path}: category 必须为非空字符串")
+        elif name.casefold() in system_names:
+            errors.append(f"{path}: system concept name 与 {system_names[name.casefold()]} 重复: {name}")
+        else:
+            system_names[name.casefold()] = path
+
+        category = fm.get("category")
+        if not isinstance(category, str) or not KEBAB_RE.fullmatch(category):
+            errors.append(f"{path}: category 必须为非空 kebab-case 字符串")
+
+        for field in ("inputs", "constraints", "outputs"):
+            if not nonempty_string_list(fm.get(field)):
+                errors.append(f"{path}: {field} 必须是非空字符串 list")
+
+        assumptions = fm.get("assumptions")
+        if not isinstance(assumptions, list):
+            errors.append(f"{path}: assumptions 必须是 list")
+        else:
+            for i, item in enumerate(assumptions):
+                if isinstance(item, str):
+                    if not item.strip():
+                        errors.append(f"{path}: assumptions[{i}] 不能为空字符串")
+                elif isinstance(item, dict):
+                    if not isinstance(item.get("name"), str) or not item["name"].strip():
+                        errors.append(f"{path}: assumptions[{i}].name 必须为非空字符串")
+                else:
+                    errors.append(f"{path}: assumptions[{i}] 必须是字符串或 mapping")
+
+        related_layers = fm.get("related_layers")
+        if not nonempty_string_list(related_layers):
+            errors.append(f"{path}: related_layers 必须是非空字符串 list")
+        else:
+            invalid_layers = sorted(set(related_layers) - SYSTEM_RELATED_LAYERS)
+            if invalid_layers:
+                errors.append(f"{path}: 非法 related_layers: {', '.join(invalid_layers)}")
+
+        evidence = fm.get("evidence")
+        evidence_ids: set[str] = set()
+        if not isinstance(evidence, dict):
+            errors.append(f"{path}: evidence 必须是 mapping")
+        else:
+            for source_id, source in evidence.items():
+                source_id = str(source_id)
+                evidence_ids.add(source_id)
+                if not SOURCE_ID_RE.fullmatch(source_id):
+                    errors.append(f"{path}: 非法 System Evidence ID {source_id!r}")
+                if not isinstance(source, dict):
+                    errors.append(f"{path}: evidence.{source_id} 必须是 mapping")
+                    continue
+                if not valid_url(source.get("url")) or source.get("url") is None:
+                    errors.append(f"{path}: evidence.{source_id}.url 必须是 http(s) URL")
+                if "source_type" in source and (
+                    not isinstance(source.get("source_type"), str) or not source["source_type"].strip()
+                ):
+                    errors.append(f"{path}: evidence.{source_id}.source_type 必须为非空字符串")
+                if "accessed" in source and not valid_date(source.get("accessed")):
+                    errors.append(f"{path}: evidence.{source_id}.accessed 必须是 YYYY-MM-DD")
+
+        claim_refs = set(EVIDENCE_REF_RE.findall(link_scan_text(text)))
+        missing_evidence = sorted(claim_refs - evidence_ids)
+        if missing_evidence:
+            errors.append(f"{path}: 未定义 System Evidence ID: {', '.join(missing_evidence)}")
+        unused_evidence = sorted(evidence_ids - claim_refs)
+        if unused_evidence:
+            warnings.append(f"{path}: 未使用 System Evidence ID: {', '.join(unused_evidence)}")
+
         if not valid_date(fm.get("updated")):
             errors.append(f"{path}: updated 必须是 YYYY-MM-DD")
 
