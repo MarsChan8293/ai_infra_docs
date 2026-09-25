@@ -1,5 +1,5 @@
 ---
-schema_version: model-v0.1
+schema_version: model-v0.2
 name: Qwen3.8-27B
 object_type: model
 organization: Qwen
@@ -13,6 +13,23 @@ architecture:
 parameters:
   total: 27000000000
   active: 27000000000
+structure:
+  num_layers: 64
+  hidden_size: null
+  intermediate_size: null
+  attention:
+    num_attention_heads: 24
+    num_key_value_heads: 4
+    head_dim: 256
+    growing_layers: 16
+    kv_lora_rank: null
+    qk_rope_head_dim: null
+    sliding_window: null
+  moe: null
+  recurrent:
+    type: gated-deltanet
+    layers: 48
+    state_size: null
 context_length: 262144
 kv_cache_64k_fp8_bytes: 2147483648
 modalities:
