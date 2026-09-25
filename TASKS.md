@@ -38,11 +38,11 @@ updated: 2026-09-25
 | 阶段 | 完成 | 总数 | 状态 |
 |---|---:|---:|---|
 | Phase 0：Foundation / Schema | 0 | 3 | TODO |
-| Phase 1：System Foundation | 0 | 22 | TODO |
-| Phase 2：Serving / MoE / Training / Reliability | 0 | 12 | TODO |
+| Phase 1：System Foundation | 0 | 29 | TODO |
+| Phase 2：Serving / MoE / Training / Reliability | 0 | 13 | TODO |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **0** | **51** | **TODO** |
+| **合计** | **0** | **59** | **TODO** |
 
 ---
 
@@ -115,6 +115,12 @@ updated: 2026-09-25
 | TOP-003 | TODO | GPU/NPU ↔ NIC Affinity | TOP-001 | `system/topology/gpu-nic-affinity.md` | 覆盖 PCIe switch、NUMA、rail、NIC locality 对通信的影响 | - |
 | TOP-004 | TODO | NUMA / PCIe Topology | TOP-001 | `system/topology/numa-and-pcie-topology.md` | 建立 CPU/accelerator/NIC/PCIe switch 的 placement 约束 | - |
 | TOP-005 | TODO | Rack / Failure Domain | TOP-001 | `system/topology/rack-and-failure-domain.md` | 把 rack、rail、switch、power failure domain 纳入调度模型 | - |
+
+## Integration
+
+| ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
+|---|---|---|---|---|---|---|
+| INT-001 | TODO | 手工端到端 Model → System → Hardware 案例 | CMP-001, CMP-002, MEM-001, MEM-005, COM-005, PAR-001, TOP-001 | `system/examples/model-to-hardware-walkthrough.md` | 选择一个 Evidence 完整的代表模型和明确 workload；逐步展示 compute/memory/communication/topology 推导；每个数字可追溯到输入与公式；未知项不强行估算 | - |
 
 ---
 
@@ -205,7 +211,7 @@ updated: 2026-09-25
 9. `TOP-001` Scale-up vs Scale-out
 10. `MEM-005` Memory Bandwidth Model
 11. `CMP-002` Roofline / Arithmetic Intensity
-12. `EXE-004` 端到端案例在依赖完成后作为 Phase 1 验收目标
+12. `INT-001` 手工端到端案例，作为 Phase 1 的集成验收
 
 不要同时大规模展开 Phase 2/3。先把前九项做成稳定骨架，再扩专题。
 
