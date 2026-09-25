@@ -64,9 +64,9 @@ updated: 2026-09-16
 
 ## 关联项目
 
-- 推理引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]
-- Kernel：[[software/projects/flashinfer|FlashInfer]]、[[software/projects/triton|Triton]]
-- KV：[[software/projects/lmcache|LMCache]]、[[software/projects/mooncake|Mooncake]]
+- 推理引擎：[vLLM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM/vLLM.md)、[SGLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/sgl-project/SGLang/SGLang.md)
+- Kernel：[FlashInfer](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/flashinfer-ai/FlashInfer/FlashInfer.md)、[Triton](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/triton-lang/Triton/Triton.md)
+- KV：[LMCache](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/LMCache/LMCache/LMCache.md)、[Mooncake](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/kvcache-ai/Mooncake/Mooncake.md)
 
 ## 直接来源
 

@@ -160,130 +160,14 @@ def main() -> int:
             for alias in aliases:
                 by_basename[str(alias).casefold()].append(node_id)
 
-    software_projects = {
-        node_id: rec for node_id, rec in records.items()
-        if rec["path"].parts[:2] == ("software", "projects") and len(rec["path"].parts) == 3
-    }
-    software_slugs = {rec["path"].stem for rec in software_projects.values()}
-    software_names: dict[str, str] = {}
-    software_page_evidence = 0
-    software_claim_evidence = 0
-
-    sw_required = {
-        "schema_version", "name", "object_type", "category", "organization", "status",
-        "repo", "docs", "snapshot", "capabilities", "integrations", "backends", "updated",
-    }
-    sw_redirect_required = {"schema_version", "name", "object_type", "canonical", "updated"}
-    software_redirects = 0
-
-    for node_id, rec in sorted(software_projects.items()):
-        path = rec["path"].as_posix()
-        fm = rec["frontmatter"]
-        text = texts[node_id]
-
-        if fm.get("object_type") == "project-redirect":
-            software_redirects += 1
-            missing = sorted(sw_redirect_required - set(fm))
-            if missing:
-                errors.append(f"{path}: project-redirect 缺少字段 {', '.join(missing)}")
-                continue
-            if fm.get("schema_version") != "software-redirect-v0.1":
-                errors.append(f"{path}: project-redirect schema_version 必须为 software-redirect-v0.1")
-            canonical = fm.get("canonical")
-            if not valid_url(canonical):
-                errors.append(f"{path}: canonical 必须为 http(s) URL")
-            elif "github.com/MarsChan8293/ai_infra_relationship/" not in str(canonical):
-                errors.append(f"{path}: canonical 必须指向 MarsChan8293/ai_infra_relationship")
-            if not valid_date(fm.get("updated")):
-                errors.append(f"{path}: updated 必须是 YYYY-MM-DD")
-            name = str(fm.get("name", "")).strip()
-            if not name:
-                errors.append(f"{path}: name 不能为空")
-            elif name.casefold() in software_names:
-                errors.append(f"{path}: name 与 {software_names[name.casefold()]} 重复: {name}")
-            else:
-                software_names[name.casefold()] = path
-            forbidden = {
-                "category", "organization", "status", "repo", "docs", "snapshot",
-                "capabilities", "integrations", "relations", "backends",
-            }
-            extra = sorted(forbidden & set(fm))
-            if extra:
-                errors.append(f"{path}: project-redirect 不应继续维护项目事实字段: {', '.join(extra)}")
-            continue
-
-        missing = sorted(sw_required - set(fm))
-        if missing:
-            errors.append(f"{path}: 缺少字段 {', '.join(missing)}")
-            continue
-        if fm.get("object_type") != "project":
-            errors.append(f"{path}: object_type 必须为 project")
-        if fm.get("schema_version") != "software-v0.1":
-            errors.append(f"{path}: schema_version 必须为 software-v0.1")
-        if fm.get("category") not in SOFTWARE_CATEGORIES:
-            errors.append(f"{path}: 非法 category={fm.get('category')!r}")
-        if fm.get("status") not in SOFTWARE_STATUSES:
-            errors.append(f"{path}: 非法 status={fm.get('status')!r}")
-        for key in ("repo", "docs"):
-            if not valid_url(fm.get(key)):
-                errors.append(f"{path}: {key} 必须为 http(s) URL 或 null")
-        snapshot = fm.get("snapshot")
-        if not isinstance(snapshot, dict):
-            errors.append(f"{path}: snapshot 必须是 mapping")
-        elif not valid_date(snapshot.get("as_of")):
-            errors.append(f"{path}: snapshot.as_of 必须是 YYYY-MM-DD")
-        if not valid_date(fm.get("updated")):
-            errors.append(f"{path}: updated 必须是 YYYY-MM-DD")
-        capabilities = fm.get("capabilities")
-        if not isinstance(capabilities, list):
-            errors.append(f"{path}: capabilities 必须是 list")
-        else:
-            for item in capabilities:
-                if not isinstance(item, str) or not KEBAB_RE.match(item):
-                    errors.append(f"{path}: capability {item!r} 不是 kebab-case")
-        integrations = fm.get("integrations")
-        if not isinstance(integrations, list):
-            errors.append(f"{path}: integrations 必须是 list")
-        else:
-            for target in integrations:
-                if target not in software_slugs:
-                    errors.append(f"{path}: integrations 目标不存在: {target}")
-        if not isinstance(fm.get("backends"), list):
-            errors.append(f"{path}: backends 必须是 list")
-        for rel, target in relation_entries(fm.get("relations")):
-            if rel not in RELATION_TYPES:
-                errors.append(f"{path}: 非法 relation type={rel}")
-            if target not in software_slugs:
-                errors.append(f"{path}: relation 目标不存在: {target}")
-        name = str(fm.get("name", "")).strip()
-        if not name:
-            errors.append(f"{path}: name 不能为空")
-        elif name.casefold() in software_names:
-            errors.append(f"{path}: name 与 {software_names[name.casefold()]} 重复: {name}")
-        else:
-            software_names[name.casefold()] = path
-
-        refs, defs, urls = evidence_info(text, ("核心能力",))
-        if urls:
-            software_page_evidence += 1
-        else:
-            errors.append(f"{path}: ## 直接来源 至少需要一个 http(s) URL")
-        if defs:
-            missing_defs = sorted(refs - set(defs))
-            if missing_defs:
-                errors.append(f"{path}: 未定义证据 ID: {', '.join(missing_defs)}")
-            unused_defs = sorted(set(defs) - refs)
-            if unused_defs:
-                warnings.append(f"{path}: 未在核心能力引用证据 ID: {', '.join(unused_defs)}")
-            if refs:
-                software_claim_evidence += 1
-        else:
-            warnings.append(f"{path}: 尚未使用 [S1] claim-level evidence；当前按 page-level evidence 验证")
-
-    if software_redirects != len(software_projects):
+    retired_software = sorted(
+        node_id for node_id, rec in records.items()
+        if rec["path"].parts and rec["path"].parts[0] == "software"
+    )
+    for node_id in retired_software:
         errors.append(
-            "所有 software/projects 页面都必须是 project-redirect："
-            f"{software_redirects}/{len(software_projects)} 已迁移"
+            f"{node_id}: software/ 已退役；软件项目事实应直接链接 ai_infra_relationship，"
+            "硬件相关机制应归入 system/"
         )
 
     models = {
@@ -417,7 +301,7 @@ def main() -> int:
             candidates = list(dict.fromkeys(by_basename.get(pathlib.PurePosixPath(raw).name.casefold(), [])))
             if len(candidates) == 1:
                 incoming[candidates[0]] += 1
-            elif source_id.startswith(("software/", "models/")):
+            elif source_id.startswith(("system/", "models/")):
                 unresolved.append({
                     "source": source_id, "target": raw,
                     "reason": "ambiguous" if candidates else "missing",
@@ -425,18 +309,19 @@ def main() -> int:
 
     for item in unresolved:
         errors.append(f"{item['source']}: unresolved Wiki Link -> {item['target']} ({item['reason']})")
-    for node_id in software_projects:
-        if incoming[node_id] == 0:
-            warnings.append(f"{node_id}: 没有任何内部入边，可能是孤岛节点")
+    for node_id, rec in records.items():
+        if rec["path"].parts and rec["path"].parts[0] == "system" and incoming[node_id] == 0:
+            warnings.append(f"{node_id}: System 节点没有任何内部入边，可能是孤岛节点")
     for node_id in models:
         if incoming[node_id] == 0:
             warnings.append(f"{node_id}: Model 没有任何内部入边，可能是孤岛节点")
 
+    system_nodes = sum(
+        1 for rec in records.values()
+        if rec["path"].parts and rec["path"].parts[0] == "system"
+    )
     summary = {
-        "software_projects": len(software_projects),
-        "software_redirects": software_redirects,
-        "software_page_evidence": software_page_evidence,
-        "software_claim_evidence": software_claim_evidence,
+        "system_nodes": system_nodes,
         "models": len(models),
         "model_page_evidence": model_page_evidence,
         "model_claim_evidence": model_claim_evidence,
@@ -449,10 +334,9 @@ def main() -> int:
         report.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(
-        "software_projects={} software_redirects={} software_page_evidence={} software_claim_evidence={} "
-        "models={} model_page_evidence={} model_claim_evidence={} errors={} warnings={}".format(
-            len(software_projects), software_redirects, software_page_evidence, software_claim_evidence,
-            len(models), model_page_evidence, model_claim_evidence, len(errors), len(warnings)
+        "system_nodes={} models={} model_page_evidence={} model_claim_evidence={} errors={} warnings={}".format(
+            system_nodes, len(models), model_page_evidence, model_claim_evidence,
+            len(errors), len(warnings)
         )
     )
     for msg in errors:

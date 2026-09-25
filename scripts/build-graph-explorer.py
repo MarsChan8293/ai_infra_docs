@@ -92,7 +92,7 @@ def main() -> int:
   <div class="top"><div><div class="title">AI Infra Docs · 知识图谱</div><div class="sub">基于仓库 Markdown 双链自动生成。默认查看焦点节点的 1-hop / 2-hop 邻域，可筛选领域、节点类型与关系类型，并寻找最短路径。</div></div><a class="home" id="homeLink" href="#">返回知识库</a></div>
   <div class="grid">
     <aside class="panel">
-      <div class="section"><h3>焦点节点</h3><input id="focusInput" type="text" list="nodeList" placeholder="输入 vLLM / KAI-Scheduler / H100 / 异构推理…"/><datalist id="nodeList"></datalist><div class="row" style="margin-top:7px"><button id="focusBtn" class="primary">聚焦</button><button id="openBtn">打开页面</button></div></div>
+      <div class="section"><h3>焦点节点</h3><input id="focusInput" type="text" list="nodeList" placeholder="输入 H100 / KV Cache / 异构推理 / Qwen…"/><datalist id="nodeList"></datalist><div class="row" style="margin-top:7px"><button id="focusBtn" class="primary">聚焦</button><button id="openBtn">打开页面</button></div></div>
       <div class="section"><h3>领域</h3><div id="domainFilters" class="filter-list"></div></div>
       <div class="section"><h3>节点类型</h3><div id="kindFilters" class="filter-list"></div></div>
       <div class="section"><h3>关系类型</h3><div id="relationFilters" class="filter-list"></div></div>
@@ -114,8 +114,8 @@ const data=await fetch('./data.json').then(r=>r.json());
 const nodes=data.nodes,edges=data.edges,byId=new Map(nodes.map(n=>[n.id,n]));
 const adj=new Map(nodes.map(n=>[n.id,[]]));
 for(const e of edges){adj.get(e.source)?.push({id:e.target,edge:e});adj.get(e.target)?.push({id:e.source,edge:e});}
-const domainColors={chip:'#4f7da5',software:'#5f8b62',models:'#a36b47',root:'#8a6faf'};
-const domainNames={chip:'芯片 / 硬件',software:'软件栈',models:'模型',root:'入口 / 规则'};
+const domainColors={chip:'#4f7da5',system:'#5f8b62',models:'#a36b47',root:'#8a6faf'};
+const domainNames={chip:'芯片 / 硬件',system:'系统架构',models:'模型',root:'入口 / 规则'};
 const relationNames={'cross-domain':'跨域关系','concept-link':'概念关系','navigation':'导航关系','vendor-chip':'厂商-芯片','wikilink':'普通双链'};
 const domains=[...new Set(nodes.map(n=>n.domain))].sort();
 const kinds=[...new Set(nodes.map(n=>n.kind))].sort();

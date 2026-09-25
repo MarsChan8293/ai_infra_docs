@@ -63,9 +63,9 @@ updated: 2026-09-16
 
 ## 关联项目
 
-- 推理引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]
-- 通信：[[software/projects/nccl|NCCL]]、[[software/projects/deepep|DeepEP]]
-- 异构推理：[[software/concepts/heterogeneous-inference|异构推理]]
+- 推理引擎：[vLLM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM/vLLM.md)、[SGLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/sgl-project/SGLang/SGLang.md)
+- 通信：[NCCL](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/NVIDIA/NCCL/NCCL.md)、[DeepEP](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/deepseek-ai/DeepSeek-Infra/DeepEP.md)
+- 异构推理：[[system/heterogeneous-compute/heterogeneous-inference|异构推理]]
 
 ## 直接来源
 
