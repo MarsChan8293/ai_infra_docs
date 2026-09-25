@@ -62,11 +62,11 @@ updated: 2026-09-16
 - DeepSeek 官方已将 V4-Flash 与 V4-Flash-Vision-Exp 下线并临时路由到 V4.1 Flash，因此不在本轮建立重复的旧 alias 节点。[S1]
 - `parameters.active` 保持 `null`，因为官方明确给出输入 8B、输出 16B 两种激活规模，单一标量会丢失语义。
 
-## 关联项目
+## 关联软件与系统
 
-- 推理引擎：[[software/projects/vllm|vLLM]]、[[software/projects/sglang|SGLang]]
-- KV / Memory：[[software/projects/lmcache|LMCache]]、[[software/projects/mooncake|Mooncake]]
-- 机制：[[software/concepts/pd-disaggregation|Prefill / Decode 分离]]、[[software/concepts/kv-cache-lifecycle|KV Cache 生命周期]]
+- 推理引擎：[vLLM](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/vllm-project/vLLM/vLLM.md)、[SGLang](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/sgl-project/SGLang/SGLang.md)
+- KV / Memory：[LMCache](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/LMCache/LMCache/LMCache.md)、[Mooncake](https://github.com/MarsChan8293/ai_infra_relationship/blob/main/community/kvcache-ai/Mooncake/Mooncake.md)
+- 机制：Prefill / Decode 分离、[[system/memory/kv-cache-memory-hierarchy|KV Cache 内存层级]]
 
 ## 直接来源
 
