@@ -52,9 +52,42 @@ python3 scripts/enrich-knowledge-graph.py --generated generated
 | NVIDIA | [[chip/NVIDIA/NVIDIA-overview|NVIDIA Data Center GPU]] |
 | SambaNova | [[chip/SambaNova/SambaNova-overview|SambaNova RDU]] |
 | Samsung | [[chip/Samsung/Samsung-overview|Samsung AI Memory]] |
+| Solidigm | [[chip/Solidigm/Solidigm-overview|Solidigm Data Center Storage]] |
 | Sunrise / 曦望 | [[chip/Sunrise/Sunrise-overview|曦望 Sunrise]] |
 | Tenstorrent | [[chip/Tenstorrent/Tenstorrent-overview|Tenstorrent]] |
 | XCENA | [[chip/XCENA/XCENA-overview|XCENA]] |
 | Xiaomi / 小米 | [[chip/Xiaomi/小米-概览|小米芯片]] |
 | d-Matrix | [[chip/d-Matrix/d-Matrix-overview|d-Matrix]] |
 | OpenAI | [[chip/openai/openai-overview|OpenAI Custom Silicon]] |
+| UALink Consortium | [[chip/UALink/UALink-overview|UALink]] |
+
+
+## AI Infrastructure Components
+
+这里按硬件角色提供跨厂商入口，避免把 network / memory / storage / rack power 混成 accelerator SKU。
+
+### Scale-up Fabric
+
+- [[chip/NVIDIA/nvlink-5|NVIDIA NVLink 5]]
+- [[chip/UALink/ualink-1-0|UALink 200G 1.0]]
+- [[chip/Broadcom/tomahawk-ultra|Broadcom Tomahawk Ultra]]
+
+### Scale-out / NIC / Switch
+
+- [[chip/NVIDIA/connectx-7|NVIDIA ConnectX-7]]
+- [[chip/NVIDIA/spectrum-4|NVIDIA Spectrum-4]]
+- [[chip/Broadcom/thor-ultra|Broadcom Thor Ultra]]
+
+### CXL / Memory Expansion
+
+- [[chip/Samsung/cmm-d-md310|Samsung CMM-D MD310]]
+
+### Storage / NVMe
+
+- [[chip/Solidigm/d7-ps1010|Solidigm D7-PS1010]]
+
+### Rack Power / Cooling Representative
+
+- [[chip/NVIDIA/dgx-gb200-nvl72-rack|NVIDIA DGX GB200 NVL72 Rack]]
+
+System 层分别从 [[system/topology/README|Topology]]、[[system/memory/README|Memory]]、[[system/communication/README|Communication]]、[[system/power/README|Power]] 消费这些硬件事实。
