@@ -18,6 +18,7 @@ Workload 层描述“模型在什么运行条件下被执行”，把模型固�
 - [[system/workload/ai-workload-model|AI Workload Model]]
 - [[system/workload/inference-workload|Inference Workload]]
 - [[system/workload/training-workload|Training Workload]]
+- [[system/workload/workload-profile-v0.1|Workload Profile V0.1]]
 
 ## 边界
 
