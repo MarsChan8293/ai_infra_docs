@@ -1,5 +1,5 @@
 ---
-schema_version: model-v0.1
+schema_version: model-v0.2
 name: DeepSeek V4.1 Flash
 object_type: model
 organization: DeepSeek
@@ -13,6 +13,26 @@ architecture:
 parameters:
   total: 552000000000
   active: null
+structure:
+  num_layers: null
+  hidden_size: null
+  intermediate_size: null
+  attention:
+    num_attention_heads: null
+    num_key_value_heads: null
+    head_dim: null
+    growing_layers: 4
+    kv_lora_rank: null
+    qk_rope_head_dim: null
+    sliding_window: 128
+  moe:
+    num_experts: 384
+    experts_per_token: 6
+    shared_experts: 1
+  recurrent:
+    type: null
+    layers: null
+    state_size: null
 context_length: 1048576
 kv_cache_64k_fp8_bytes: 83886080
 modalities:
