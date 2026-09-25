@@ -15,6 +15,7 @@ Communication 层把 message size、participant、collective algorithm、链路�
 ## 核心概念
 
 - [[system/communication/collective-communication|Collective Communication]]
+- [[system/communication/communication-cost-model|Communication Cost Model]]
 
 ## 跨层入口
 
@@ -24,4 +25,4 @@ Communication 层把 message size、participant、collective algorithm、链路�
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-后续按 `COM-002` 至 `COM-005` 建立具体 collective、P2P 和统一 Communication Cost Model。
+后续按 `COM-002` 至 `COM-004` 建立具体 collective 与 P2P 模型。
