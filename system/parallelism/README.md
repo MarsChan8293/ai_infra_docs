@@ -15,6 +15,11 @@ Parallelism 层描述 DP、TP、PP、EP、CP 如何切分计算与状态，以�
 ## 核心概念
 
 - [[system/parallelism/parallelism-overview|Parallelism Overview]]
+- [[system/parallelism/tensor-parallelism|Tensor Parallelism]]
+- [[system/parallelism/pipeline-parallelism|Pipeline Parallelism]]
+- [[system/parallelism/expert-parallelism|Expert Parallelism]]
+- [[system/parallelism/data-parallelism|Data Parallelism]]
+- [[system/parallelism/context-parallelism|Context Parallelism]]
 
 ## 跨层入口
 
@@ -26,4 +31,4 @@ Parallelism 层描述 DP、TP、PP、EP、CP 如何切分计算与状态，以�
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-后续按 `PAR-002` 至 `PAR-006` 建立 TP、PP、EP、DP、CP 各并行策略。
+TP、PP、EP、DP、CP 的基础切分、通信与拓扑口径均已建立。
