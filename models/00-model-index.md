@@ -6,12 +6,12 @@ aliases:
 tags:
   - moc
   - models
-updated: 2026-09-16
+updated: 2026-09-25
 ---
 
 # AI Model Index
 
-本目录按 **Model Schema V0.1** 记录与 AI Infra 强相关的模型事实。首批覆盖窗口为 **2026-06-16 至 2026-09-16** 的 DeepSeek、Kimi、GLM、Qwen 主要公开模型。
+本目录按 **Model Schema V0.2** 记录与 AI Infra 强相关的模型事实。首批覆盖窗口为 **2026-06-16 至 2026-09-16** 的 DeepSeek、Kimi、GLM、Qwen 主要公开模型。
 
 ## Architecture Anchors
 
@@ -52,7 +52,7 @@ Anchor 的字段仍以各模型页的 direct Evidence 为准。表格只做导�
 
 ## 规则
 
-- Schema：[[models/SCHEMA|Model Schema V0.1]]
+- Schema：[[models/SCHEMA|Model Schema V0.2]]
 - 模型事实必须绑定 Evidence。
 - `kv_cache_64k_fp8_bytes` 使用统一的 64K / FP8 / batch=1 派生口径。
 - 模型页只记录模型事实和直接架构影响；部署性能与具体系统方案不写入 Model Schema。
