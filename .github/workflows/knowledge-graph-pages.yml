@@ -37,6 +37,39 @@ jobs:
       - name: Install graph validation dependencies
         run: python -m pip install -r scripts/requirements.txt
 
+      - name: Build executable workload profile
+        run: |
+          python scripts/build-workload-profile.py \
+            --root . \
+            --input examples/workloads/qwen3.8-27b-mi300x-decode-64k.yaml \
+            --output generated/executable/qwen3.8-27b-mi300x-profile.json
+
+      - name: Build executable system requirements
+        run: |
+          python scripts/build-system-requirements.py \
+            --root . \
+            --profile generated/executable/qwen3.8-27b-mi300x-profile.json \
+            --output generated/executable/qwen3.8-27b-mi300x-requirements.json \
+            --markdown-output system/derived/qwen3.8-27b-mi300x-decode-64k.md
+
+      - name: Verify executable reference case
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          r = json.loads(Path("generated/executable/qwen3.8-27b-mi300x-requirements.json").read_text())
+          m = r["metrics"]
+          assert m["memory"]["logical_weight_payload_bytes"]["value"] == 54_000_000_000
+          assert m["memory"]["growing_kv_payload_bytes_per_token"]["value"] == 32_768
+          assert m["memory"]["growing_kv_payload_bytes_for_context"]["value"] == 2_147_483_648
+          assert m["memory"]["known_resident_lower_bound_bytes"]["value"] == 56_147_483_648
+          assert m["compute"]["linear_flops_per_token_approx"]["value"] == 54_000_000_000
+          assert m["communication"]["inter_accelerator_payload_bytes"]["value"] == 0
+          assert any("compute throughput is unavailable" in x for x in r["unknowns"])
+          print("executable reference case verified")
+          PY
+
       - name: Validate Chip Schema V0.2
         run: python scripts/validate-chip.py --root . --report generated/chip-validation.json
 
