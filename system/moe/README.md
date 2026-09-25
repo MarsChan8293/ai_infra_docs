@@ -15,7 +15,8 @@ MoE 层把 total/active/resident parameters、routing、Expert Parallel、All-to
 ## 核心概念
 
 - [[system/moe/moe-system-model|MoE System Model]]
+- [[system/moe/expert-routing-and-load-balance|Expert Routing / Load Balance]]
 - [[system/parallelism/expert-parallelism|Expert Parallelism]]
 - [[system/communication/all-to-all|All-to-All]]
 
-后续任务继续补 Expert Routing / Load Balance。
+MoE 的参数、Expert Parallel、All-to-All、Routing 与 Load Balance 基础模型均已建立。
