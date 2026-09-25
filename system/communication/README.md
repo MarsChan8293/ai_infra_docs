@@ -16,6 +16,9 @@ Communication 层把 message size、participant、collective algorithm、链路�
 
 - [[system/communication/collective-communication|Collective Communication]]
 - [[system/communication/communication-cost-model|Communication Cost Model]]
+- [[system/communication/all-reduce-all-gather-reduce-scatter|All-Reduce / All-Gather / Reduce-Scatter]]
+- [[system/communication/all-to-all|All-to-All]]
+- [[system/communication/point-to-point|Point-to-Point]]
 
 ## 跨层入口
 
@@ -25,4 +28,4 @@ Communication 层把 message size、participant、collective algorithm、链路�
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-后续按 `COM-002` 至 `COM-004` 建立具体 collective 与 P2P 模型。
+Collective、All-to-All、P2P 与统一 Cost Model 的基础口径已经建立。
