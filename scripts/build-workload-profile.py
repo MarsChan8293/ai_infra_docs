@@ -31,6 +31,18 @@ def frontmatter(path: pathlib.Path) -> dict[str, Any]:
     return data
 
 
+def json_safe(value: Any) -> Any:
+    if isinstance(value, (dt.date, dt.datetime)):
+        return value.isoformat()
+    if isinstance(value, dict):
+        return {str(k): json_safe(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [json_safe(v) for v in value]
+    if isinstance(value, tuple):
+        return [json_safe(v) for v in value]
+    return value
+
+
 def require_positive_int(value: Any, label: str, *, allow_zero: bool = False) -> None:
     if value is None:
         return
@@ -217,7 +229,7 @@ def main() -> int:
 
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(
-        json.dumps(normalized, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        json.dumps(json_safe(normalized), ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
     print(f"workload_profile={output.relative_to(root)} warnings={len(warnings)} unknowns={len(unknowns)}")
