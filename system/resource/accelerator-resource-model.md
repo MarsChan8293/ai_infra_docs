@@ -3,6 +3,32 @@ schema_version: system-v0.1
 name: 加速器资源模型
 object_type: concept
 category: resource-management
+inputs:
+  - hardware.accelerator.capability
+  - hardware.memory
+  - hardware.interconnect
+  - hardware.health
+  - workload.role
+constraints:
+  - resource-capacity
+  - topology
+  - runtime-compatibility
+  - sharing-isolation
+  - health-state
+outputs:
+  - allocatable_resource_model
+  - placement_attributes
+  - role_suitability
+assumptions:
+  - 静态硬件能力、动态健康状态与 workload suitability 分开表达
+related_layers:
+  - workload
+  - memory
+  - topology
+  - scheduling
+  - accelerator
+  - network
+evidence: {}
 updated: 2026-09-25
 tags:
   - system
