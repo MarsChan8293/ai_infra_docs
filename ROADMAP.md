@@ -14,6 +14,10 @@ updated: 2026-09-25
 
 本路线图定义 `ai_infra_docs` 下一阶段的知识建设重点。当前仓库已经完成从“软件项目资料库”向 **Model → System → Chip / Hardware** 的方向调整：模型层记录可验证的模型事实，系统层负责把 workload 转换成计算、内存、通信和拓扑约束，硬件层记录芯片、内存、互联和基础设施事实。
 
+## 实施进度
+
+具体任务、依赖、状态、交付物和验收条件统一维护在 [[TASKS|AI Infra Docs Implementation Tasks]]。**ROADMAP 只维护方向和阶段目标，TASKS 是唯一实施状态源**，避免在多个文档里重复维护 checkbox。
+
 软件项目、社区、能力、集成和维护者关系继续由 [ai_infra_relationship](https://github.com/MarsChan8293/ai_infra_relationship) 维护，本仓库不恢复 `software/` 目录，也不维护软件项目的第二份 canonical 事实。
 
 ## 目标状态
@@ -728,19 +732,6 @@ git diff --check
 
 ---
 
-# 近期第一批任务
+# 实施任务入口
 
-近期优先只做以下工作，不扩散范围：
-
-- [ ] 建立 `system/workload/ai-workload-model.md`
-- [ ] 建立 `system/compute/roofline-and-arithmetic-intensity.md`
-- [ ] 建立完整 Memory Accounting
-- [ ] 建立 Parallelism Overview
-- [ ] 建立 Collective Communication 模型
-- [ ] 建立 Scale-up vs Scale-out 概念页
-- [ ] 设计 System Schema V0.1
-- [ ] 评估 Model Schema V0.2 所需架构字段
-- [ ] 为 HBM / Fabric / NIC / Storage 设计硬件扩展边界
-- [ ] 用一个代表模型跑通 Model → Workload → System → Hardware 的完整示例
-
-完成这批工作后，再决定下一轮芯片、模型和硬件对象扩充范围。
+近期执行队列和全部 Task ID 统一见 [[TASKS|AI Infra Docs Implementation Tasks]]。每个任务开始、阻塞或完成时只更新该文件的状态，避免 Roadmap 与实际进度漂移。
