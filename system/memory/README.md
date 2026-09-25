@@ -15,6 +15,7 @@ Memory 层描述权重、KV、Activation、Workspace、通信 buffer 与内存�
 ## 核心概念
 
 - [[system/memory/model-memory-accounting|Model Memory Accounting]]
+- [[system/memory/memory-bandwidth-model|Memory Bandwidth Model]]
 - [[system/memory/kv-cache-memory-hierarchy|KV Cache 内存层级]]
 
 ## 跨层入口
@@ -27,4 +28,4 @@ Memory 层描述权重、KV、Activation、Workspace、通信 buffer 与内存�
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-后续按 `MEM-002` 至 `MEM-006` 补齐 Weight、Activation、KV、Bandwidth 与 CXL / Memory Pooling。
+后续按 `MEM-002` 至 `MEM-004`、`MEM-006` 补齐 Weight、Activation、KV 与 CXL / Memory Pooling。
