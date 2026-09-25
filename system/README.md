@@ -49,6 +49,12 @@ Hardware capability
 - [[system/scheduling/topology-aware-scheduling|拓扑感知调度]]
 - [[system/heterogeneous-compute/heterogeneous-inference|异构推理]]
 
+## 集成案例
+
+- [[system/examples/model-to-hardware-walkthrough|Qwen3.8-27B → MI300X 单卡 Decode Walkthrough]]
+
+这个案例用于检查 Model → Workload → Compute / Memory / Communication / Topology → Hardware 是否真正可追溯；它不是硬件推荐或 benchmark。
+
 ## Schema 与实施
 
 - [[system/SCHEMA|System Schema V0.1]]
