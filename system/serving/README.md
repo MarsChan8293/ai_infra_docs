@@ -15,6 +15,10 @@ Serving 层把 [[system/workload/inference-workload|Inference Workload]] 映射�
 ## 核心概念
 
 - [[system/serving/llm-serving-model|LLM Serving Model]]
+- [[system/serving/continuous-batching|Continuous Batching]]
+- [[system/serving/prefix-caching|Prefix Caching]]
+- [[system/serving/disaggregated-prefill-decode|Disaggregated Prefill / Decode]]
+- [[system/serving/kv-transfer|KV Transfer]]
 
 ## 基础依赖
 
@@ -23,4 +27,4 @@ Serving 层把 [[system/workload/inference-workload|Inference Workload]] 映射�
 - [[system/memory/kv-cache-memory-hierarchy|KV Cache 内存层级]]
 - [[system/topology/README|Topology Model]]
 
-后续任务继续补 Continuous Batching、Prefix Caching、P/D Disaggregation 与 KV Transfer。
+Serving 的请求调度、Prefix Cache、P/D 分离与 KV Transfer 基础模型均已建立。
