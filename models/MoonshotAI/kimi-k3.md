@@ -1,5 +1,5 @@
 ---
-schema_version: model-v0.1
+schema_version: model-v0.2
 name: Kimi K3
 object_type: model
 organization: Moonshot AI
@@ -13,6 +13,26 @@ architecture:
 parameters:
   total: 2800000000000
   active: null
+structure:
+  num_layers: 93
+  hidden_size: null
+  intermediate_size: null
+  attention:
+    num_attention_heads: null
+    num_key_value_heads: null
+    head_dim: null
+    growing_layers: 24
+    kv_lora_rank: 512
+    qk_rope_head_dim: 64
+    sliding_window: null
+  moe:
+    num_experts: 896
+    experts_per_token: 16
+    shared_experts: 2
+  recurrent:
+    type: kda
+    layers: 69
+    state_size: null
 context_length: 1048576
 kv_cache_64k_fp8_bytes: 905969664
 modalities:
