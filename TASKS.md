@@ -38,11 +38,11 @@ updated: 2026-09-25
 | 阶段 | 完成 | 总数 | 状态 |
 |---|---:|---:|---|
 | Phase 0：Foundation / Schema | 3 | 3 | DONE |
-| Phase 1：System Foundation | 16 | 29 | DOING |
+| Phase 1：System Foundation | 29 | 29 | DONE |
 | Phase 2：Serving / MoE / Training / Reliability | 0 | 13 | TODO |
 | Phase 3：Model / Hardware Expansion | 0 | 9 | TODO |
 | Phase 4：Executable Knowledge Base | 0 | 5 | TODO |
-| **合计** | **19** | **59** | **DOING** |
+| **合计** | **32** | **59** | **DOING** |
 
 ---
 
@@ -83,27 +83,27 @@ updated: 2026-09-25
 | MEM-003 | DONE | Activation Memory Model | MEM-001 | `system/memory/activation-memory.md` | 区分推理/训练 activation；说明 recomputation/checkpointing 影响 | - |
 | MEM-004 | DONE | KV Cache Model | MEM-001 | `system/memory/kv-cache-model.md` | 统一 MHA/GQA/MLA 等计算口径；和现有 KV hierarchy 双向关联 | - |
 | MEM-005 | DONE | Memory Bandwidth Model | MEM-001 | `system/memory/memory-bandwidth-model.md` | 建立 bytes/token、bytes/step 与带宽下界；说明有效带宽与标称带宽区别 | - |
-| MEM-006 | DOING | CXL / Memory Pooling 系统模型 | MEM-001, TOP-001 | `system/memory/cxl-and-memory-pooling.md` | 明确 capacity/latency/bandwidth/failure-domain 交换；不把 CXL 当作 HBM 等价层 | - |
+| MEM-006 | DONE | CXL / Memory Pooling 系统模型 | MEM-001, TOP-001 | `system/memory/cxl-and-memory-pooling.md` | 明确 capacity/latency/bandwidth/failure-domain 交换；不把 CXL 当作 HBM 等价层 | - |
 
 ## Parallelism
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | PAR-001 | DONE | Parallelism Overview | WL-001 | `system/parallelism/parallelism-overview.md` | 统一 DP/TP/PP/EP/CP 的目的、切分对象、通信与拓扑要求 | - |
-| PAR-002 | DOING | Tensor Parallelism | PAR-001, COM-001 | `system/parallelism/tensor-parallelism.md` | 给出主要 collective 与通信量关系；链接 Scale-up topology | - |
-| PAR-003 | DOING | Pipeline Parallelism | PAR-001, COM-004 | `system/parallelism/pipeline-parallelism.md` | 覆盖 stage、bubble、microbatch、P2P 边界 | - |
-| PAR-004 | DOING | Expert Parallelism | PAR-001, COM-003 | `system/parallelism/expert-parallelism.md` | 说明 token dispatch、all-to-all、负载不均衡和 placement | - |
-| PAR-005 | DOING | Data Parallelism | PAR-001, COM-002 | `system/parallelism/data-parallelism.md` | 覆盖 gradient synchronization、replication 和通信成本 | - |
-| PAR-006 | DOING | Context Parallelism | PAR-001, COM-001 | `system/parallelism/context-parallelism.md` | 说明长上下文切分、KV/attention 通信与拓扑敏感度 | - |
+| PAR-002 | DONE | Tensor Parallelism | PAR-001, COM-001 | `system/parallelism/tensor-parallelism.md` | 给出主要 collective 与通信量关系；链接 Scale-up topology | - |
+| PAR-003 | DONE | Pipeline Parallelism | PAR-001, COM-004 | `system/parallelism/pipeline-parallelism.md` | 覆盖 stage、bubble、microbatch、P2P 边界 | - |
+| PAR-004 | DONE | Expert Parallelism | PAR-001, COM-003 | `system/parallelism/expert-parallelism.md` | 说明 token dispatch、all-to-all、负载不均衡和 placement | - |
+| PAR-005 | DONE | Data Parallelism | PAR-001, COM-002 | `system/parallelism/data-parallelism.md` | 覆盖 gradient synchronization、replication 和通信成本 | - |
+| PAR-006 | DONE | Context Parallelism | PAR-001, COM-001 | `system/parallelism/context-parallelism.md` | 说明长上下文切分、KV/attention 通信与拓扑敏感度 | - |
 
 ## Communication
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | COM-001 | DONE | Collective Communication Overview | WL-001 | `system/communication/collective-communication.md` | 定义 participant/message/algorithm/bandwidth/latency 模型 | - |
-| COM-002 | DOING | All-Reduce / All-Gather / Reduce-Scatter | COM-001 | `system/communication/all-reduce-all-gather-reduce-scatter.md` | 给出典型 ring/tree 成本边界；关联 TP/DP | - |
-| COM-003 | DOING | All-to-All | COM-001 | `system/communication/all-to-all.md` | 给出 MoE token dispatch 的数据量和拓扑敏感度 | - |
-| COM-004 | DOING | Point-to-Point | COM-001 | `system/communication/point-to-point.md` | 覆盖 PP、KV transfer、跨节点 P2P | - |
+| COM-002 | DONE | All-Reduce / All-Gather / Reduce-Scatter | COM-001 | `system/communication/all-reduce-all-gather-reduce-scatter.md` | 给出典型 ring/tree 成本边界；关联 TP/DP | - |
+| COM-003 | DONE | All-to-All | COM-001 | `system/communication/all-to-all.md` | 给出 MoE token dispatch 的数据量和拓扑敏感度 | - |
+| COM-004 | DONE | Point-to-Point | COM-001 | `system/communication/point-to-point.md` | 覆盖 PP、KV transfer、跨节点 P2P | - |
 | COM-005 | DONE | Communication Cost Model | COM-001, TOP-001 | `system/communication/communication-cost-model.md` | 建立 latency + serialization + transfer + synchronization 统一模型 | - |
 
 ## Topology
@@ -111,10 +111,10 @@ updated: 2026-09-25
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | TOP-001 | DONE | Scale-up vs Scale-out | WL-001 | `system/topology/scale-up-vs-scale-out.md` | 定义两类 fabric 的边界、带宽/时延/规模/故障域；关联硬件对象 | - |
-| TOP-002 | DOING | Accelerator Fabric | TOP-001 | `system/topology/accelerator-fabric.md` | 描述 accelerator↔accelerator fabric 的系统作用，不复制厂商产品页 | - |
-| TOP-003 | DOING | GPU/NPU ↔ NIC Affinity | TOP-001 | `system/topology/gpu-nic-affinity.md` | 覆盖 PCIe switch、NUMA、rail、NIC locality 对通信的影响 | - |
-| TOP-004 | DOING | NUMA / PCIe Topology | TOP-001 | `system/topology/numa-and-pcie-topology.md` | 建立 CPU/accelerator/NIC/PCIe switch 的 placement 约束 | - |
-| TOP-005 | DOING | Rack / Failure Domain | TOP-001 | `system/topology/rack-and-failure-domain.md` | 把 rack、rail、switch、power failure domain 纳入调度模型 | - |
+| TOP-002 | DONE | Accelerator Fabric | TOP-001 | `system/topology/accelerator-fabric.md` | 描述 accelerator↔accelerator fabric 的系统作用，不复制厂商产品页 | - |
+| TOP-003 | DONE | GPU/NPU ↔ NIC Affinity | TOP-001 | `system/topology/gpu-nic-affinity.md` | 覆盖 PCIe switch、NUMA、rail、NIC locality 对通信的影响 | - |
+| TOP-004 | DONE | NUMA / PCIe Topology | TOP-001 | `system/topology/numa-and-pcie-topology.md` | 建立 CPU/accelerator/NIC/PCIe switch 的 placement 约束 | - |
+| TOP-005 | DONE | Rack / Failure Domain | TOP-001 | `system/topology/rack-and-failure-domain.md` | 把 rack、rail、switch、power failure domain 纳入调度模型 | - |
 
 ## Integration
 
@@ -130,7 +130,7 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| SRV-001 | TODO | LLM Serving Model | WL-002, CMP-003, MEM-001 | `system/serving/llm-serving-model.md` | 能把请求负载映射到 compute/memory/communication | - |
+| SRV-001 | DOING | LLM Serving Model | WL-002, CMP-003, MEM-001 | `system/serving/llm-serving-model.md` | 能把请求负载映射到 compute/memory/communication | - |
 | SRV-002 | TODO | Continuous Batching | SRV-001 | `system/serving/continuous-batching.md` | 解释 batch 动态变化对利用率、KV 和 latency 的影响 | - |
 | SRV-003 | TODO | Prefix Caching | SRV-001, MEM-004 | `system/serving/prefix-caching.md` | 明确 hit rate、节省 Prefill、缓存容量和失效语义 | - |
 | SRV-004 | TODO | Disaggregated Prefill / Decode | SRV-001, COM-004, TOP-001 | `system/serving/disaggregated-prefill-decode.md` | 给出拆分收益条件和网络/KV transfer 代价 | - |
@@ -140,14 +140,14 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| MOE-001 | TODO | MoE System Model | CMP-001, PAR-004 | `system/moe/moe-system-model.md` | 从 active params、experts、top-k 推导 compute/memory/communication 约束 | - |
+| MOE-001 | DOING | MoE System Model | CMP-001, PAR-004 | `system/moe/moe-system-model.md` | 从 active params、experts、top-k 推导 compute/memory/communication 约束 | - |
 | MOE-002 | TODO | Expert Routing / Load Balance | MOE-001 | `system/moe/expert-routing-and-load-balance.md` | 覆盖 capacity factor、热点 expert、尾延迟和 placement | - |
 
 ## Training
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| TRN-001 | TODO | Distributed Training Model | WL-003, PAR-001 | `system/training/distributed-training-model.md` | 建立训练 compute/memory/communication 主线 | - |
+| TRN-001 | DOING | Distributed Training Model | WL-003, PAR-001 | `system/training/distributed-training-model.md` | 建立训练 compute/memory/communication 主线 | - |
 | TRN-002 | TODO | Training Memory Model | TRN-001, MEM-001 | `system/training/training-memory-model.md` | 覆盖 parameters/gradients/optimizer/master weights/activations | - |
 | TRN-003 | TODO | Gradient Synchronization | TRN-001, COM-002 | `system/training/gradient-synchronization.md` | 给出同步通信量与 overlap 边界 | - |
 
@@ -156,8 +156,8 @@ updated: 2026-09-25
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | REL-001 | TODO | Checkpoint / Recovery Model | TRN-001, TOP-005 | `system/reliability/checkpoint-recovery-model.md` | 关联 checkpoint size、storage BW、MTTR、failure domain | - |
-| REL-002 | TODO | Accelerator / Network Failure Domain | TOP-005 | `system/reliability/accelerator-and-network-failure-domain.md` | 区分 device/node/rack/fabric 故障范围 | - |
-| PWR-001 | TODO | Rack Power / Cooling Model | TOP-005 | `system/power/rack-power-and-cooling.md` | 从 device→node→rack 建立功耗密度与冷却约束 | - |
+| REL-002 | DOING | Accelerator / Network Failure Domain | TOP-005 | `system/reliability/accelerator-and-network-failure-domain.md` | 区分 device/node/rack/fabric 故障范围 | - |
+| PWR-001 | DOING | Rack Power / Cooling Model | TOP-005 | `system/power/rack-power-and-cooling.md` | 从 device→node→rack 建立功耗密度与冷却约束 | - |
 
 ---
 
