@@ -176,11 +176,11 @@ updated: 2026-09-25
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
 | HW-001 | DONE | Memory / HBM 对象边界设计 | MEM-001 | Chip Schema 扩展说明或新增硬件对象 | 明确 HBM/DDR/CXL memory 的 object/layer/字段边界 | - |
-| HW-002 | TODO | Scale-up Fabric 对象边界与首批对象 | TOP-001 | NVLink/NVSwitch/Infinity Fabric/UALink 等硬件事实页 | 每页直接 Evidence；不把系统聚合值回填单器件 | - |
-| HW-003 | TODO | NIC / DPU / Scale-out Network 首批对象 | TOP-003 | ConnectX/Spectrum/InfiniBand/Broadcom 等事实页 | 可与 topology/communication 页面建立真实跨域边 | - |
-| HW-004 | TODO | PCIe / CXL 组件首批对象 | MEM-006, TOP-004 | switch/retimer/memory-expander 页面 | 类型边界清晰；字段单位统一 | - |
-| HW-005 | TODO | Storage / NVMe 首批对象 | REL-001, SRV-005 | AI Infra storage 事实页 | 包含 BW/latency/capacity/endurance/interface/power，区分厂商规格与分析 | - |
-| HW-006 | TODO | Packaging / Power / Cooling 边界设计 | PWR-001 | 领域边界说明 + 首批代表对象 | 只覆盖直接影响 AI hardware capability 的封装/供电/冷却事实 | - |
+| HW-002 | DOING | Scale-up Fabric 对象边界与首批对象 | TOP-001 | NVLink/NVSwitch/Infinity Fabric/UALink 等硬件事实页 | 每页直接 Evidence；不把系统聚合值回填单器件 | - |
+| HW-003 | DOING | NIC / DPU / Scale-out Network 首批对象 | TOP-003 | ConnectX/Spectrum/InfiniBand/Broadcom 等事实页 | 可与 topology/communication 页面建立真实跨域边 | - |
+| HW-004 | DOING | PCIe / CXL 组件首批对象 | MEM-006, TOP-004 | switch/retimer/memory-expander 页面 | 类型边界清晰；字段单位统一 | - |
+| HW-005 | DOING | Storage / NVMe 首批对象 | REL-001, SRV-005 | AI Infra storage 事实页 | 包含 BW/latency/capacity/endurance/interface/power，区分厂商规格与分析 | - |
+| HW-006 | DOING | Packaging / Power / Cooling 边界设计 | PWR-001 | 领域边界说明 + 首批代表对象 | 只覆盖直接影响 AI hardware capability 的封装/供电/冷却事实 | - |
 
 ---
 
@@ -188,11 +188,11 @@ updated: 2026-09-25
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| EXE-001 | TODO | 定义 Workload Profile 数据格式 | WL-001, FND-001 | Schema / example profile | 能稳定表示 inference/training workload，单位明确 | - |
-| EXE-002 | TODO | 构建 Workload Profile 生成器 | EXE-001 | `scripts/build-workload-profile.py` | 能从模型页 + workload 输入生成机器可读 profile | - |
-| EXE-003 | TODO | 构建 System Requirements 生成器 | EXE-002, CMP-001, MEM-001, COM-005 | `scripts/build-system-requirements.py` | 输出 compute/memory/communication 派生值并保留公式、输入、假设、单位 | - |
-| EXE-004 | TODO | 建立端到端代表模型案例 | EXE-003, MOD-002 | 一个完整 Model → Workload → System → Hardware 示例 | 任一派生数字可回溯到模型字段、公式和 Evidence | - |
-| EXE-005 | TODO | 将派生结果接入知识图谱/CI | EXE-003 | CI + generated reports | 派生数据自动构建、不手工维护；失败会阻断 CI 或产生明确报告 | - |
+| EXE-001 | DOING | 定义 Workload Profile 数据格式 | WL-001, FND-001 | Schema / example profile | 能稳定表示 inference/training workload，单位明确 | - |
+| EXE-002 | DOING | 构建 Workload Profile 生成器 | EXE-001 | `scripts/build-workload-profile.py` | 能从模型页 + workload 输入生成机器可读 profile | - |
+| EXE-003 | DOING | 构建 System Requirements 生成器 | EXE-002, CMP-001, MEM-001, COM-005 | `scripts/build-system-requirements.py` | 输出 compute/memory/communication 派生值并保留公式、输入、假设、单位 | - |
+| EXE-004 | DOING | 建立端到端代表模型案例 | EXE-003, MOD-002 | 一个完整 Model → Workload → System → Hardware 示例 | 任一派生数字可回溯到模型字段、公式和 Evidence | - |
+| EXE-005 | DOING | 将派生结果接入知识图谱/CI | EXE-003 | CI + generated reports | 派生数据自动构建、不手工维护；失败会阻断 CI 或产生明确报告 | - |
 
 ---
 
