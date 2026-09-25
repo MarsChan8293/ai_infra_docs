@@ -250,7 +250,7 @@ def main() -> int:
     model_claim_evidence = 0
     model_required = {
         "schema_version", "name", "object_type", "organization", "family", "status",
-        "release_date", "architecture", "parameters", "context_length",
+        "release_date", "architecture", "parameters", "structure", "context_length",
         "kv_cache_64k_fp8_bytes", "modalities", "weights", "snapshot", "updated",
     }
 
@@ -262,8 +262,8 @@ def main() -> int:
         if missing:
             errors.append(f"{path}: 缺少 Model 字段 {', '.join(missing)}")
             continue
-        if fm.get("schema_version") != "model-v0.1":
-            errors.append(f"{path}: schema_version 必须为 model-v0.1")
+        if fm.get("schema_version") != "model-v0.2":
+            errors.append(f"{path}: schema_version 必须为 model-v0.2")
         if fm.get("object_type") != "model":
             errors.append(f"{path}: object_type 必须为 model")
         if not isinstance(fm.get("organization"), str) or not fm["organization"].strip():
@@ -294,6 +294,74 @@ def main() -> int:
                     errors.append(f"{path}: parameters 缺少 {key}")
                 elif not int_or_null(parameters[key]):
                     errors.append(f"{path}: parameters.{key} 必须为非负整数或 null")
+
+        structure = fm.get("structure")
+        if not isinstance(structure, dict):
+            errors.append(f"{path}: structure 必须是 mapping")
+        else:
+            structure_required = {"num_layers", "hidden_size", "intermediate_size", "attention", "moe", "recurrent"}
+            missing_structure = sorted(structure_required - set(structure))
+            if missing_structure:
+                errors.append(f"{path}: structure 缺少 {', '.join(missing_structure)}")
+            for key in ("num_layers", "hidden_size", "intermediate_size"):
+                if key in structure and not int_or_null(structure.get(key)):
+                    errors.append(f"{path}: structure.{key} 必须为非负整数或 null")
+
+            attention_cfg = structure.get("attention")
+            attention_required = {
+                "num_attention_heads", "num_key_value_heads", "head_dim", "growing_layers",
+                "kv_lora_rank", "qk_rope_head_dim", "sliding_window",
+            }
+            if not isinstance(attention_cfg, dict):
+                errors.append(f"{path}: structure.attention 必须是 mapping")
+            else:
+                missing_attention = sorted(attention_required - set(attention_cfg))
+                if missing_attention:
+                    errors.append(f"{path}: structure.attention 缺少 {', '.join(missing_attention)}")
+                for key in attention_required:
+                    if key in attention_cfg and not int_or_null(attention_cfg.get(key)):
+                        errors.append(f"{path}: structure.attention.{key} 必须为非负整数或 null")
+                num_layers = structure.get("num_layers")
+                growing_layers = attention_cfg.get("growing_layers")
+                if isinstance(num_layers, int) and isinstance(growing_layers, int) and growing_layers > num_layers:
+                    errors.append(f"{path}: structure.attention.growing_layers 不能大于 structure.num_layers")
+
+            moe_cfg = structure.get("moe")
+            sparsity = architecture.get("sparsity") if isinstance(architecture, dict) else None
+            if sparsity == "dense" and moe_cfg is not None:
+                errors.append(f"{path}: dense 模型的 structure.moe 必须为 null")
+            if sparsity == "moe" and not isinstance(moe_cfg, dict):
+                errors.append(f"{path}: MoE 模型的 structure.moe 必须是 mapping")
+            if isinstance(moe_cfg, dict):
+                moe_required = {"num_experts", "experts_per_token", "shared_experts"}
+                missing_moe = sorted(moe_required - set(moe_cfg))
+                if missing_moe:
+                    errors.append(f"{path}: structure.moe 缺少 {', '.join(missing_moe)}")
+                for key in moe_required:
+                    if key in moe_cfg and not int_or_null(moe_cfg.get(key)):
+                        errors.append(f"{path}: structure.moe.{key} 必须为非负整数或 null")
+                num_experts = moe_cfg.get("num_experts")
+                experts_per_token = moe_cfg.get("experts_per_token")
+                if isinstance(num_experts, int) and isinstance(experts_per_token, int) and experts_per_token > num_experts:
+                    errors.append(f"{path}: experts_per_token 不能大于 num_experts")
+
+            recurrent = structure.get("recurrent")
+            if not isinstance(recurrent, dict):
+                errors.append(f"{path}: structure.recurrent 必须是 mapping")
+            else:
+                recurrent_required = {"type", "layers", "state_size"}
+                missing_recurrent = sorted(recurrent_required - set(recurrent))
+                if missing_recurrent:
+                    errors.append(f"{path}: structure.recurrent 缺少 {', '.join(missing_recurrent)}")
+                if "type" in recurrent and recurrent.get("type") is not None and not isinstance(recurrent.get("type"), str):
+                    errors.append(f"{path}: structure.recurrent.type 必须为字符串或 null")
+                for key in ("layers", "state_size"):
+                    if key in recurrent and not int_or_null(recurrent.get(key)):
+                        errors.append(f"{path}: structure.recurrent.{key} 必须为非负整数或 null")
+                num_layers = structure.get("num_layers")
+                recurrent_layers = recurrent.get("layers")
+                if isinstance(num_layers, int) and isinstance(recurrent_layers, int) and recurrent_layers > num_layers:
+                    errors.append(f"{path}: structure.recurrent.layers 不能大于 structure.num_layers")
 
         context_length = fm.get("context_length")
         cache_bytes = fm.get("kv_cache_64k_fp8_bytes")
@@ -339,9 +407,9 @@ def main() -> int:
         else:
             errors.append(f"{path}: ## 直接来源 至少需要一个 http(s) URL")
         if not refs:
-            errors.append(f"{path}: Model V0.1 必须使用 [S1] claim-level evidence")
+            errors.append(f"{path}: Model V0.2 必须使用 [S1] claim-level evidence")
         if not defs:
-            errors.append(f"{path}: Model V0.1 的 ## 直接来源 必须定义 [S1] 形式 Evidence")
+            errors.append(f"{path}: Model V0.2 的 ## 直接来源 必须定义 [S1] 形式 Evidence")
         else:
             missing_defs = sorted(refs - set(defs))
             if missing_defs:
