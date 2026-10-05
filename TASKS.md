@@ -8,7 +8,7 @@ tags:
   - roadmap
   - ai-infra
   - tracking
-updated: 2026-09-25
+updated: 2026-10-05
 ---
 
 # AI Infra Docs Implementation Tasks
@@ -42,7 +42,8 @@ updated: 2026-09-25
 | Phase 2：Serving / MoE / Training / Reliability | 13 | 13 | DONE |
 | Phase 3：Model / Hardware Expansion | 9 | 9 | DONE |
 | Phase 4：Executable Knowledge Base | 5 | 5 | DONE |
-| **合计** | **59** | **59** | **DONE** |
+| Phase 5：Interconnect / Optical Expansion | 3 | 6 | IN PROGRESS |
+| **合计** | **62** | **65** | **IN PROGRESS** |
 
 ---
 
@@ -196,9 +197,22 @@ updated: 2026-09-25
 
 ---
 
-## 实施完成
+# Phase 5：Interconnect / Optical Expansion
 
-截至 2026-09-25，本 Roadmap 对应的 59 个实施任务全部完成。后续新增工作使用新的稳定 Task ID 追加，不复用或重排现有 ID。
+| ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
+|---|---|---|---|---|---|---|
+| ICN-001 | DONE | 建立 Interconnect / Fabric / Optical I/O 专项 MOC 与对象边界 | HW-002, HW-003 | `chip/interconnect/README.md` + `chip/SCHEMA.md` | 明确 protocol/link、switch、CPO/NPO/LPO、system topology 边界；带宽 scope 不混写 | - |
+| ICN-002 | DONE | 补齐首批 Scale-up interconnect 独立对象 | ICN-001 | NVLink 5 Switch、AMD Infinity Fabric、Google ICI、Huawei UnifiedBus 2.0 | 每页直接 Evidence；协议/代际与系统聚合值分离；关键字段有 evidence_map | - |
+| ICN-003 | DONE | 补齐首批 Optical I/O 对象 | ICN-001 | Broadcom TH6-Davisson CPO、Huawei Hi-ONE NPO | CPO/NPO 不当协议；engine/link/switch capacity 分 scope；生命周期口径保守 | - |
+| ICN-004 | TODO | 扩展 Huawei UnifiedBus 硬件生态 | ICN-002, ICN-003 | LinkBlade、LinkDevice、UBG/SF9300、CloudEngine XH9300 NPO 等事实页 | 协议、互联设备、optical engine、switch system 分页；只收官方公开规格 | - |
+| ICN-005 | TODO | 扩展下一代与开放互联标准 | ICN-001 | NVLink 6 / NVLink 6 Switch、UEC / SUE、后续 UALink 等有直接证据的对象 | 不用 roadmap 数字冒充 GA；standard 与 silicon implementation 分离 | - |
+| ICN-006 | TODO | 生成 Interconnect 横向比较与健康度视图 | ICN-002, ICN-003, EXE-005 | generator + generated interconnect comparison | 能按 lane/link/device/switch/domain 与 electrical/optical 维度比较；未知值保持 unknown | - |
+
+---
+
+## 当前实施状态
+
+截至 2026-09-25，原 Roadmap 对应的 59 个实施任务全部完成。2026-10-05 新增 Phase 5 互联专项 6 个任务，当前完成 3 个；后续继续使用稳定 Task ID 追加，不复用或重排现有 ID。
 
 Phase 4 已把知识库从“可读文档”推进到可重复执行链：
 
@@ -231,7 +245,7 @@ Model V0.2 + Chip V0.2 + Workload Profile
 12. `COM-005` Communication Cost Model
 13. `INT-001` 手工端到端案例，作为 Phase 1 的集成验收
 
-以上队列与后续 Phase 2/3/4 均已完成；保留本节作为实施顺序记录。
+以上队列与 Phase 2/3/4 均已完成；Phase 5 互联专项按 ICN-001 → ICN-006 继续推进。本节保留作为早期实施顺序记录。
 
 ## 每批完成后的统一验收
 
