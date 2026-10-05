@@ -32,7 +32,7 @@ related_layers:
   - accelerator
   - network
 evidence: {}
-updated: 2026-09-25
+updated: 2026-10-05
 tags:
   - system
   - communication
@@ -192,3 +192,13 @@ max(
 ## 直接来源
 
 本页定义通用 All-to-All 数据守恒、routing matrix 与 topology cost，没有引入特定框架或网络 benchmark，因此 `evidence: {}`。
+
+
+## Phase 6 可执行边界
+
+[[system/communication/collective-performance-model|Collective Performance Model]] 对 All-to-All 刻意采用更严格的规则：
+
+- 可以在 `uniform_partition: true` 时派生 baseline 的 per-rank network send bytes。
+- 不会把单条 P2P path 的 effective bandwidth 自动用作 All-to-All bandwidth。
+- 若要得到 timing lower bound，必须显式提供 topology-aware 的 `collective_effective_bandwidth_gbps`，并明确 critical-path bytes / algorithm steps。
+- 对 MoE，应优先从 destination matrix、max-rank send/recv 与 bisection 模型生成这些输入，而不是使用均匀 baseline 代替真实 routing。
