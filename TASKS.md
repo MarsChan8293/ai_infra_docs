@@ -217,7 +217,7 @@ updated: 2026-10-05
 |---|---|---|---|---|---|---|
 | FAB-001 | DONE | 建立 Fabric Effective Bandwidth / Latency 模型 | COM-005, TOP-002, ICN-006 | `system/communication/fabric-performance-model.md` | 区分 nominal/effective/observed；显式建模 protocol/utilization/contention；多 stage bottleneck 与 latency scope 不混写 | - |
 | FAB-002 | DONE | 构建 executable Fabric Path Estimator | FAB-001, EXE-005 | `scripts/build-fabric-performance.py` + reference profile | 输入 path stages 后生成 nominal/effective bottleneck、serialization、fixed latency、P2P lower bound；未知输入保持 null | - |
-| FAB-003 | TODO | 建立 Collective Efficiency 可执行模型 | FAB-001, FAB-002, COM-001 | collective algorithm profiles + estimator extension | Ring/Tree/All-to-All 等算法的 steps、critical-path bytes、effective BW 口径可追溯，不用固定经验效率 | - |
+| FAB-003 | DOING | 建立 Collective Efficiency 可执行模型 | FAB-001, FAB-002, COM-001 | collective algorithm profiles + estimator extension | Ring/Tree/All-to-All 等算法的 steps、critical-path bytes、effective BW 口径可追溯，不用固定经验效率 | - |
 | FAB-004 | TODO | 建立 Fabric Failure / Retry / Degraded Topology 模型 | FAB-001, REL-002 | reliability model + degraded path cases | retry/recovery/reroute/partial-rack 分开；故障后重新计算 path，不用固定故障折扣 | - |
 | OPT-001 | TODO | 建立 Optical I/O Power / Reach / Repairability 模型 | ICN-003, FAB-001 | optical system model | CPO/NPO/LPO/pluggable 分 packaging；power/reach/laser/DSP/repairability 有明确 scope | - |
 | OPT-002 | TODO | 扩展代表 Optical I/O 实现并生成深度比较 | OPT-001, ICN-006 | hardware facts + generated comparison | 直接 Evidence；器件、engine、switch、system power/latency 不混写；未知值不推断 | - |
