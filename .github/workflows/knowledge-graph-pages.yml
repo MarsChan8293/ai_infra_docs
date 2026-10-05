@@ -70,6 +70,46 @@ jobs:
           print("executable reference case verified")
           PY
 
+      - name: Build fabric performance reference
+        run: |
+          python scripts/build-fabric-performance.py \
+            --input examples/fabric/two-stage-reference.yaml \
+            --output generated/executable/fabric-reference.json \
+            --markdown-output system/derived/fabric-reference.md
+
+      - name: Verify fabric performance reference
+        run: |
+          python - <<'PY'
+          import json
+          import math
+          from pathlib import Path
+
+          r = json.loads(Path("generated/executable/fabric-reference.json").read_text())
+          m = r["metrics"]
+
+          assert r["schema_version"] == "fabric-path-v0.1"
+          assert r["critical_path_bytes"] == 268_435_456
+          assert len(r["stages"]) == 2
+
+          assert math.isclose(m["nominal_path_bottleneck_gbps"], 1600.0)
+          assert m["nominal_bottleneck_stage"] == "accelerator-injection"
+          assert math.isclose(m["effective_path_bandwidth_gbps"], 1368.0)
+          assert m["effective_bottleneck_stage"] == "accelerator-injection"
+
+          assert math.isclose(m["nominal_serialization_seconds"], 0.00134217728)
+          assert math.isclose(
+              m["effective_serialization_seconds"],
+              0.0015697979883040937,
+          )
+          assert math.isclose(m["path_fixed_latency_ns"], 750.0)
+          assert math.isclose(
+              m["p2p_transfer_lower_bound_seconds"],
+              0.0015705479883040938,
+          )
+          assert r["unknowns"] == []
+          print("fabric performance reference verified")
+          PY
+
       - name: Validate Chip Schema V0.2
         run: python scripts/validate-chip.py --root . --report generated/chip-validation.json
 

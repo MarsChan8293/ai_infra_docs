@@ -1,0 +1,19 @@
+schema_version: fabric-path-v0.1
+name: Synthetic Two-Stage Fabric Reference
+description: >-
+  Synthetic CI reference only. Values are explicit modeling inputs and are not
+  vendor product facts.
+critical_path_bytes: 268435456
+path:
+  - name: accelerator-injection
+    nominal_bandwidth_gbps: 1600
+    protocol_efficiency: 0.95
+    utilization: 0.90
+    contention_efficiency: 1.0
+    fixed_latency_ns: 250
+  - name: switch-path
+    nominal_bandwidth_gbps: 3200
+    protocol_efficiency: 0.97
+    utilization: 0.85
+    contention_efficiency: 0.90
+    fixed_latency_ns: 500
