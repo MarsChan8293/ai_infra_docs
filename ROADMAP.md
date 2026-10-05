@@ -7,7 +7,7 @@ tags:
   - roadmap
   - ai-infra
   - planning
-updated: 2026-09-25
+updated: 2026-10-05
 ---
 
 # AI Infra Docs Roadmap
@@ -49,16 +49,22 @@ accelerator / HBM / fabric / NIC / storage / rack
 
 ## 当前阶段判断
 
-当前 `chip/` 已经形成较完整的硬件事实库，并具备 Chip Schema、Evidence、自动校验和派生比较能力；`models/` 已建立 Model Schema；`system/` 已有 KV Cache 内存层级、加速器资源模型、拓扑感知调度和异构推理四个核心概念。
+截至 2026-09-25，Phase 0–4 已完成：System 主干、Model Schema、硬件事实库和可执行派生链已经建立。当前主要缺口从“缺 System 主干”转向 **硬件横向覆盖不均衡**，尤其是 accelerator interconnect、switch generation 与 optical I/O。
 
-下一阶段的主要瓶颈不是继续增加更多小众加速器厂商，而是 **System 层过薄，Model → Hardware 之间缺少可计算、可复用的中间模型**。
+2026-10 起新增的优先方向是 Interconnect / Fabric / Optical I/O：
 
-资源投入建议：
+- 把 NVLink / NVSwitch、Infinity Fabric、TPU ICI、UALink、UnifiedBus 等协议/链路对象独立化。
+- 把 switch silicon / switch generation 与 system/domain aggregate 指标分开。
+- 把 CPO / NPO / LPO / pluggable optics 作为物理 I/O / packaging 形态建模，不与网络协议混写。
+- 优先记录 optical engine bandwidth、SerDes/link rate、switch capacity、radix/domain scale、latency scope 和 lifecycle。
+- 建立跨厂商 interconnect comparison，并保持 lane / link / engine / device / switch / domain / rack / cluster scope 可追溯。
 
-- 约 60%：扩建 `system/`
-- 约 20%：补齐 Model Schema 与代表性模型
-- 约 15%：向 Memory / Fabric / Storage / Packaging / Power 等硬件横向扩展
-- 约 5%：仓库工程化、贡献规范与发布体验
+当前资源投入建议：
+
+- 约 40%：Interconnect / Fabric / Optical I/O 横向扩展
+- 约 30%：System 模型继续精炼并接入新的硬件事实
+- 约 20%：Model / Hardware 代表对象的证据补齐
+- 约 10%：生成器、Validator、知识图谱与发布体验
 
 ---
 
@@ -419,13 +425,27 @@ accelerator
 
 ## Scale-up Interconnect
 
+跨厂商入口统一维护在 [[chip/interconnect/README|Interconnect / Fabric / Optical I/O]]。
+
 重点：
 
 - NVLink / NVSwitch
 - AMD Infinity Fabric
 - UALink
 - Google TPU ICI
+- Huawei UnifiedBus / 灵衢
+- Ethernet scale-up fabrics
 - 其他厂商自研 accelerator fabric
+
+同时新增 Optical I/O 主线：
+
+- CPO (Co-Packaged Optics)
+- NPO (Near-Packaged Optics)
+- LPO / pluggable optics
+- optical engine / laser source placement
+- electrical SerDes ↔ optical conversion boundary
+
+协议、switch silicon、optical packaging 与 system topology 必须分层记录。
 
 记录：
 
