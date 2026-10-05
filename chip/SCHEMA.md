@@ -99,6 +99,26 @@ Memory hardware 页面优先记录：
 3. fabric 规模上限必须保留 scope，例如“up to 72 GPUs in an NVLink domain”。
 4. System 层的 collective efficiency、topology mapping 与 placement 不回填硬件页。
 
+## Optical Interconnect / CPO / NPO 对象边界
+
+CPO / NPO / LPO / pluggable optics 描述的是高速 I/O 的物理实现与封装位置，不是新的 accelerator protocol。直接服务 AI scale-up / scale-out fabric 的 optical engine、CPO switch、NPO module 通常使用 `layer: network`；若对象本体只是通用光模块，则按产品本体选择更合适的层级和 object type。
+
+建议 object type：
+
+- `optical-engine`：独立可识别的高速 optical engine。
+- `npo-optical-engine`：Near-Packaged Optics engine / module。
+- `cpo-switch`：switch silicon 与 optical engines 共封装形成的交换对象。
+- `optical-transceiver`：可插拔 optical transceiver；不因用于 AI 网络就改写成 switch ASIC。
+
+边界规则：
+
+1. NVLink / UALink / Ethernet / UnifiedBus 等协议与 CPO / NPO / LPO 等 optical implementation 必须分字段、分对象。
+2. `per_lane` / `per_link` / `optical_engine` / `switch_capacity` / `device` / `domain` 的带宽口径不得互相替代。
+3. laser source 是否内置、外置或 field-replaceable 只有直接 Evidence 时记录，不从 CPO/NPO 名称推断。
+4. 系统级“节省 X% 功耗”、整机可用度、MTBF、机柜光模块数量等不得回填为单 optical engine 的器件功耗或可靠性。
+5. optical reach、fiber type、wavelength、SerDes rate、DSP/LPO 架构只有对象级官方资料明确时进入结构化字段。
+6. CPO / NPO 页面必须说明它和 protocol / switch ASIC / switch system 的边界，避免把封装形态误当成网络协议。
+
 ## NIC / DPU / Scale-out Network 对象边界
 
 `layer: network` 同时覆盖 NIC / SuperNIC / HCA / DPU / switch ASIC / switch system。建议：
