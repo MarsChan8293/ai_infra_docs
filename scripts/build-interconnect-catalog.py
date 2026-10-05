@@ -25,6 +25,7 @@ CLASS_BY_TYPE = {
     "network-adapter": "endpoint",
     "hca": "endpoint",
     "nic": "endpoint",
+    "nic-silicon": "endpoint",
     "dpu": "endpoint",
 }
 
