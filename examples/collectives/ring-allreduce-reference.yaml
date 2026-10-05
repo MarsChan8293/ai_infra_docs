@@ -1,0 +1,9 @@
+schema_version: collective-profile-v0.1
+name: Synthetic Ring All-Reduce Reference
+description: >-
+  Synthetic CI reference. The payload and participant count are modeling inputs,
+  not vendor benchmark data.
+collective: all-reduce
+algorithm: ring
+participant_count: 8
+payload_bytes_per_rank: 268435456
