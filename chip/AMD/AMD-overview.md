@@ -2,7 +2,7 @@
 title: "AMD Instinct"
 vendor: AMD
 object_type: vendor-overview
-updated: 2026-09-15
+updated: 2026-10-05
 ---
 # AMD Instinct
 
@@ -23,6 +23,10 @@ AMD 数据中心加速器按 CDNA 代际组织。单卡/模组、托盘、Helios
 | [[chip/AMD/mi430x|MI430X]] | accelerator | roadmap | CDNA5；432GB HBM4 |
 | [[chip/AMD/mi455x|MI455X]] | accelerator | announced | CDNA5；432GB HBM4；23.3TB/s |
 | [[chip/AMD/mi500|MI500]] | family | roadmap | CDNA6 / 2nm / HBM4E 路线 |
+
+## Interconnect
+
+[[chip/AMD/infinity-fabric-instinct|AMD Infinity Fabric for Instinct]]：记录 MI300X / MI325X OAM 平台的 device-to-device scale-up 互联事实，不把 package 内 Infinity Fabric 与节点级 fabric 混为同一 scope。
 
 ## 证据边界
 - 旧型号没有明确 EOL 公告时只标 `legacy`，不自动写“停产”。
