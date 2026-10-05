@@ -22,7 +22,12 @@ power: {}
 lifecycle:
   announced: 2025-09-18
   public_specification: 2025-09-18
-relations: {}
+relations:
+  used-in:
+    - chip/Huawei/unifiedbus-linkblade
+    - chip/Huawei/unifiedbus-linkdevice
+    - chip/Huawei/unifiedbus-ubg-switch
+    - chip/Huawei/cloudengine-sf9300
 evidence:
   S1:
     url: https://www.huawei.com/cn/news/2025/9/hc-xu-keynote-speech
@@ -63,7 +68,8 @@ updated: 2026-10-05
 - 本页记录协议/互联架构代际，不是某颗交换芯片、光引擎或完整 SuperPoD。
 - “TB 级”是华为公开的量级描述，不在缺少端口/设备 scope 时强行转换成精确 GB/s 数值。
 - SuperPoD 的卡数、总互联带宽和系统算力属于 system / cluster 聚合指标，不回填本页。
-- 具体 NPO 光引擎见 [[chip/Huawei/hi-one-npo|Huawei Hi-ONE NPO]]。
+- 柜内/跨柜/跨集群实现分别见 [[chip/Huawei/unifiedbus-linkblade|LinkBlade]]、[[chip/Huawei/unifiedbus-linkdevice|LinkDevice]]、[[chip/Huawei/unifiedbus-ubg-switch|UBG Switch]] 与 [[chip/Huawei/cloudengine-sf9300|CloudEngine SF9300]]。
+- 具体 NPO 光引擎见 [[chip/Huawei/hi-one-npo|Huawei Hi-ONE NPO]]；NPO 交换机 [[chip/Huawei/cloudengine-xh9300-npo|CloudEngine XH9300]] 当前不因同属华为 AI 网络而推断为 UnifiedBus 实现。
 
 ## 直接来源
 

@@ -90,11 +90,13 @@ Memory hardware 页面优先记录：
 - `accelerator-interconnect`：例如 NVLink 代际。
 - `interconnect-standard`：例如 UALink specification generation。
 - `network-asic`：例如 scale-up Ethernet / fabric switch ASIC。
-- `switch-system`：只有对象本体是完整交换系统时使用。
+- `interconnect-blade`：柜内/机内的可识别互联刀片或部件。
+- `interconnect-device`：跨柜等独立互联设备；不要因其有多个端口就默认等同 switch ASIC。
+- `switch-system`：只有对象本体是完整交换系统或公开发布的交换产品系列时使用。
 
 规则：
 
-1. per-lane / per-link / per-device aggregate / domain aggregate bandwidth 必须分字段，不能互相替代。
+1. per-lane / per-link / per-port / per-device aggregate / domain aggregate bandwidth 必须分字段，不能互相替代。
 2. rack/system 的 130 TB/s 等聚合值不得回填成单颗 switch ASIC 规格。
 3. fabric 规模上限必须保留 scope，例如“up to 72 GPUs in an NVLink domain”。
 4. System 层的 collective efficiency、topology mapping 与 placement 不回填硬件页。
@@ -113,7 +115,7 @@ CPO / NPO / LPO / pluggable optics 描述的是高速 I/O 的物理实现与封�
 边界规则：
 
 1. NVLink / UALink / Ethernet / UnifiedBus 等协议与 CPO / NPO / LPO 等 optical implementation 必须分字段、分对象。
-2. `per_lane` / `per_link` / `optical_engine` / `switch_capacity` / `device` / `domain` 的带宽口径不得互相替代。
+2. `per_lane` / `per_link` / `per_port` / `optical_engine` / `switch_capacity` / `device` / `domain` 的带宽口径不得互相替代。
 3. laser source 是否内置、外置或 field-replaceable 只有直接 Evidence 时记录，不从 CPO/NPO 名称推断。
 4. 系统级“节省 X% 功耗”、整机可用度、MTBF、机柜光模块数量等不得回填为单 optical engine 的器件功耗或可靠性。
 5. optical reach、fiber type、wavelength、SerDes rate、DSP/LPO 架构只有对象级官方资料明确时进入结构化字段。

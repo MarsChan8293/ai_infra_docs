@@ -27,6 +27,8 @@ CLASS_BY_TYPE = {
     "nic": "endpoint",
     "nic-silicon": "endpoint",
     "dpu": "endpoint",
+    "interconnect-blade": "fabric-component",
+    "interconnect-device": "fabric-device",
 }
 
 OPTICAL_PACKAGING_BY_TYPE = {
@@ -43,6 +45,9 @@ SCALE_FIELDS = {
     "target_scale",
     "node_gpus",
     "mi300x_node_gpus",
+    "port_count",
+    "radix",
+    "max_cluster_npus",
 }
 
 RATE_SUFFIXES = (
@@ -107,6 +112,8 @@ def infer_scope(field: str, object_class: str) -> str:
         return "engine"
     if "station" in leaf:
         return "station"
+    if "port" in leaf:
+        return "port"
     if "domain" in leaf or "nvl72" in leaf:
         return "domain"
     if "switch_capacity" in leaf:
@@ -129,7 +136,7 @@ def infer_scope(field: str, object_class: str) -> str:
     if "link" in leaf and not leaf.startswith(("links_", "max_links_", "peer_links_")):
         return "link"
 
-    if object_class == "endpoint":
+    if object_class in {"endpoint", "fabric-device"}:
         return "device"
     if object_class in {"switch-asic", "switch-generation", "switch-system", "cpo-switch"} and "capacity" in leaf:
         return "switch"
@@ -152,7 +159,7 @@ def infer_aggregation(field: str, scope: str) -> str:
     leaf = field.rsplit(".", 1)[-1].lower()
     if "aggregate" in leaf or "total" in leaf or "switch_capacity" in leaf:
         return "aggregate"
-    if "per_" in leaf or scope in {"lane", "link", "engine", "station"}:
+    if "per_" in leaf or scope in {"lane", "link", "port", "engine", "station"}:
         return "per-unit"
     return "unknown"
 
@@ -337,7 +344,7 @@ def main() -> int:
     csv_columns = [
         "id", "title", "vendor", "object_type", "object_class", "status",
         "medium", "optical_packaging", "lane_bandwidth", "link_bandwidth",
-        "station_bandwidth", "device_bandwidth", "engine_bandwidth",
+        "port_bandwidth", "station_bandwidth", "device_bandwidth", "engine_bandwidth",
         "switch_bandwidth", "domain_bandwidth", "scale", "topology", "latency",
         "source_count", "interconnect_field_evidence_ratio", "updated",
     ]
@@ -356,6 +363,7 @@ def main() -> int:
             "optical_packaging": record["optical_packaging"] or "",
             "lane_bandwidth": rate_display(record["rates"], "lane"),
             "link_bandwidth": rate_display(record["rates"], "link"),
+            "port_bandwidth": rate_display(record["rates"], "port"),
             "station_bandwidth": rate_display(record["rates"], "station"),
             "device_bandwidth": rate_display(record["rates"], "device"),
             "engine_bandwidth": rate_display(record["rates"], "engine"),
@@ -386,13 +394,13 @@ def main() -> int:
         "",
         "## Scope 规则",
         "",
-        "- Lane / Link / Station / Device / Engine / Switch / Domain 是不同 scope，不允许直接互换。",
+        "- Lane / Link / Port / Station / Device / Engine / Switch / Domain 是不同 scope，不允许直接互换。",
         "- GB/s 与 Gb/s 只在 JSON 中提供 decimal normalized_gbps 辅助值；Markdown 保留厂商原始单位。",
         "- CPO / NPO 是 optical packaging / I/O implementation，不是网络协议。",
         "- direction 只有字段明确包含 bidirectional / TX / RX 时才标注。",
         "",
-        "| 对象 | Class | Medium | Optical | Lane | Link | Station | Device | Engine | Switch | Domain | Scale | Topology |",
-        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+        "| 对象 | Class | Medium | Optical | Lane | Link | Port | Station | Device | Engine | Switch | Domain | Scale | Topology |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for record in records:
         comparison.append(
@@ -402,6 +410,7 @@ def main() -> int:
             f"| {md_cell(record['optical_packaging'])} "
             f"| {md_cell(rate_display(record['rates'], 'lane'))} "
             f"| {md_cell(rate_display(record['rates'], 'link'))} "
+            f"| {md_cell(rate_display(record['rates'], 'port'))} "
             f"| {md_cell(rate_display(record['rates'], 'station'))} "
             f"| {md_cell(rate_display(record['rates'], 'device'))} "
             f"| {md_cell(rate_display(record['rates'], 'engine'))} "
@@ -421,7 +430,7 @@ def main() -> int:
     ])
     (output / "interconnect-comparison.md").write_text("\n".join(comparison), encoding="utf-8")
 
-    scope_names = ("lane", "link", "station", "device", "engine", "switch", "domain")
+    scope_names = ("lane", "link", "port", "station", "device", "engine", "switch", "domain")
     object_scope_counts = {
         scope: sum(1 for record in records if any(rate["scope"] == scope for rate in record["rates"]))
         for scope in scope_names
