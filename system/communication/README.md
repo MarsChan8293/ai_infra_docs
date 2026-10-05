@@ -6,7 +6,7 @@ tags:
   - moc
   - system
   - communication
-updated: 2026-09-25
+updated: 2026-10-05
 ---
 # Communication Model
 
@@ -16,6 +16,7 @@ Communication 层把 message size、participant、collective algorithm、链路�
 
 - [[system/communication/collective-communication|Collective Communication]]
 - [[system/communication/communication-cost-model|Communication Cost Model]]
+- [[system/communication/fabric-performance-model|Fabric Performance Model]]
 - [[system/communication/all-reduce-all-gather-reduce-scatter|All-Reduce / All-Gather / Reduce-Scatter]]
 - [[system/communication/all-to-all|All-to-All]]
 - [[system/communication/point-to-point|Point-to-Point]]
@@ -28,4 +29,4 @@ Communication 层把 message size、participant、collective algorithm、链路�
 - System Schema：[[system/SCHEMA|System Schema V0.1]]
 - 实施任务：[[TASKS|Implementation Tasks]]
 
-Collective、All-to-All、P2P 与统一 Cost Model 的基础口径已经建立。
+Collective、All-to-All、P2P 与统一 Cost Model 的基础口径已经建立。Phase 6 进一步把 nominal bandwidth → effective path bandwidth → serialization / latency lower bound 做成可执行模型。
