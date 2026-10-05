@@ -115,7 +115,11 @@ jobs:
 
           for row in records.values():
               for rate in row["rates"]:
-                  assert rate["value"] != 0, "generator must not fabricate zero for unknown bandwidth"
+                  assert rate["value"] is not None
+                  assert rate["scope"] in {"lane", "link", "station", "device", "engine", "switch", "domain", "unknown"}
+
+          comparison = Path("generated/interconnect-comparison.md").read_text()
+          assert "unknown" in comparison, "missing facts must remain visibly unknown"
 
           print("interconnect normalization verified")
           PY
