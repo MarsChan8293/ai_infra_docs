@@ -38,7 +38,11 @@ Hardware 页只记录对象本体的可验证事实；fabric bisection、oversub
 |---|---|---|
 | [[chip/NVIDIA/nvlink-5|NVIDIA NVLink 5]] | accelerator interconnect | 1,800 GB/s per GPU；18 links |
 | [[chip/NVIDIA/nvlink-5-switch|NVIDIA NVLink 5 Switch]] | switch generation | 8/72 GPU domain；NVL72 130 TB/s aggregate |
+| [[chip/NVIDIA/nvlink-6|NVIDIA NVLink 6]] | accelerator interconnect | current preliminary：3,000 GB/s per GPU；36 links |
+| [[chip/NVIDIA/nvlink-6-switch|NVIDIA NVLink 6 Switch]] | switch generation | current preliminary：NVL72 216 TB/s aggregate |
 | [[chip/UALink/ualink-1-0|UALink 200G 1.0]] | open interconnect standard | 200G/lane；最多 1,024 accelerators |
+| [[chip/UALink/ualink-common-2-0|UALink Common 2.0]] | open interconnect standard | In-Network Compute；Common 与 DL/PL 解耦 |
+| [[chip/UALink/ualink-200g-dlpl-2-0|UALink 200G DL/PL 2.0]] | open DL/PL standard | 200G/lane |
 | [[chip/AMD/infinity-fabric-instinct|AMD Infinity Fabric for Instinct]] | accelerator interconnect | MI300X 1,024 GB/s peak aggregate P2P |
 | [[chip/Google/tpu-ici|Google TPU ICI]] | accelerator interconnect | v5p/v6e/TPU7x per-chip ICI + torus topology |
 | [[chip/Huawei/unifiedbus-2|Huawei UnifiedBus 2.0 / 灵衢 2.0]] | SuperPoD interconnect standard | memory semantics；TB-class；约 2.1 μs RTT |
@@ -70,6 +74,15 @@ Hardware 页只记录对象本体的可验证事实；fabric bisection、oversub
 - NPO (Near-Packaged Optics)：optical engine 位于主 silicon package 附近但保持更强的模块化/可维护性；具体机械、电气与光学边界依产品实现而异。
 - LPO / pluggable optics：属于不同的 optical I/O implementation，不应与 NVLink / UALink / Ethernet 等 protocol/fabric 名称放在同一比较列。
 
+## Open Ethernet standards
+
+| 对象 | 状态 | 边界 |
+|---|---|---|
+| [[chip/UEC/ultra-ethernet-1-0-3|Ultra Ethernet 1.0.3]] | current published | 当前主要面向 backend scale-out；UET transport |
+| [[chip/UEC/scale-up-transport-roadmap|UEC Scale-Up Transport / SUE Roadmap]] | roadmap | scale-up-focused transport 正在推进，不冒充已 ratified 规范 |
+
+UEC 的 scale-up 工作与 UALink 是不同路线：前者建立在 Ethernet/UET 体系上；后者是 accelerator scale-up interconnect standard。标准层页面不自动等价于任何厂商 switch silicon。
+
 ## Scale-out / NIC / Switch
 
 现有代表对象：
@@ -83,9 +96,9 @@ Hardware 页只记录对象本体的可验证事实；fabric bisection、oversub
 
 优先继续补：
 
-1. NVIDIA NVLink 6 / NVLink 6 Switch，按链路代际与 switch generation 分页。
-2. Broadcom TH5-Bailly、更多 CPO generation，以及 CPO / NPO / LPO 横向字段。
-3. UEC / Scale-Up Ethernet (SUE) 等开放 Ethernet fabric 标准与对应 silicon implementation。
+1. Broadcom TH5-Bailly、更多 CPO generation，以及 CPO / NPO / LPO 横向字段。
+2. UEC scale-up transport：等正式 ratified spec 发布后，从 roadmap 节点拆出稳定版本页。
+3. UALink 后续 PHY / speed / silicon implementation：只跟随正式规范和产品发布。
 4. Huawei UnifiedBus 后续具体 SKU：只有产品资料直接公开端口/带宽/功耗时再补，不从方案级指标反推。
 5. 其他厂商自研 accelerator fabric；只在有直接公开 Evidence 时建独立对象。
 

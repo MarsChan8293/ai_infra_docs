@@ -19,7 +19,7 @@ Blackwell 和 Rubin 按 GPU、Superchip、8-GPU 基板/服务器、机架分层�
 
 ## Network / Fabric
 
-[[chip/NVIDIA/nvlink-5|NVLink 5]] · [[chip/NVIDIA/nvlink-5-switch|NVLink 5 Switch]] · [[chip/NVIDIA/connectx-7|ConnectX-7]] · [[chip/NVIDIA/bluefield-3|BlueField-3]] · [[chip/NVIDIA/spectrum-4|Spectrum-4]]
+[[chip/NVIDIA/nvlink-5|NVLink 5]] · [[chip/NVIDIA/nvlink-5-switch|NVLink 5 Switch]] · [[chip/NVIDIA/nvlink-6|NVLink 6]] · [[chip/NVIDIA/nvlink-6-switch|NVLink 6 Switch]] · [[chip/NVIDIA/connectx-7|ConnectX-7]] · [[chip/NVIDIA/bluefield-3|BlueField-3]] · [[chip/NVIDIA/spectrum-4|Spectrum-4]]
 
 ## Rack Power / Cooling
 

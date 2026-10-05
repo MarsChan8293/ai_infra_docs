@@ -100,6 +100,7 @@ Memory hardware 页面优先记录：
 2. rack/system 的 130 TB/s 等聚合值不得回填成单颗 switch ASIC 规格。
 3. fabric 规模上限必须保留 scope，例如“up to 72 GPUs in an NVLink domain”。
 4. System 层的 collective efficiency、topology mapping 与 placement 不回填硬件页。
+5. 若厂商不同时间的官方资料出现冲突，优先记录当前产品/规格页的现行口径；旧数字只保留为规格演进记录。若当前页标注 preliminary / subject to change，必须显式保留该状态，不把早期发布值和当前值平均或拼接。
 
 ## Optical Interconnect / CPO / NPO 对象边界
 

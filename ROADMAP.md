@@ -49,22 +49,29 @@ accelerator / HBM / fabric / NIC / storage / rack
 
 ## 当前阶段判断
 
-截至 2026-09-25，Phase 0–4 已完成：System 主干、Model Schema、硬件事实库和可执行派生链已经建立。当前主要缺口从“缺 System 主干”转向 **硬件横向覆盖不均衡**，尤其是 accelerator interconnect、switch generation 与 optical I/O。
+截至 2026-10-05，Phase 0–5 已完成。仓库已经具备：
 
-2026-10 起新增的优先方向是 Interconnect / Fabric / Optical I/O：
+- Model → Workload → System Requirements → Hardware 的可执行派生链。
+- Accelerator / HBM / Fabric / NIC / Storage / Rack 等硬件事实对象。
+- NVLink / Infinity Fabric / TPU ICI / UALink / UnifiedBus / Ultra Ethernet 等跨厂商互联标准与代际对象。
+- CPO / NPO optical I/O 对象边界。
+- lane / link / port / station / device / engine / switch / domain 的带宽 scope 归一化与自动比较。
+- Interconnect health / comparison 自动生成，并由 CI 验证关键 reference cases。
 
-- 把 NVLink / NVSwitch、Infinity Fabric、TPU ICI、UALink、UnifiedBus 等协议/链路对象独立化。
-- 把 switch silicon / switch generation 与 system/domain aggregate 指标分开。
-- 把 CPO / NPO / LPO / pluggable optics 作为物理 I/O / packaging 形态建模，不与网络协议混写。
-- 优先记录 optical engine bandwidth、SerDes/link rate、switch capacity、radix/domain scale、latency scope 和 lifecycle。
-- 建立跨厂商 interconnect comparison，并保持 lane / link / engine / device / switch / domain / rack / cluster scope 可追溯。
+Phase 5 完成后，下一阶段不应继续以“补齐更多名称”为主，而应转向 **深度、时效性与系统可计算性**：
+
+- 跟踪 preliminary / roadmap 规格转为 production / GA 后的变化，例如 NVLink 6 与 UEC scale-up transport。
+- 补具体 silicon implementation，而不是只增加协议名称；standard、IP、ASIC、switch system 分层。
+- 将 fabric latency、effective bandwidth、collective efficiency、failure/recovery 与 System communication model 接起来。
+- 深化 Optical I/O：CPO / NPO / LPO 的 power、reach、laser placement、repairability 与 switch capacity 的结构化比较。
+- 对高价值但高变动对象建立 freshness / stale monitoring，而不是用旧发布稿覆盖当前产品规格。
 
 当前资源投入建议：
 
-- 约 40%：Interconnect / Fabric / Optical I/O 横向扩展
-- 约 30%：System 模型继续精炼并接入新的硬件事实
-- 约 20%：Model / Hardware 代表对象的证据补齐
-- 约 10%：生成器、Validator、知识图谱与发布体验
+- 约 35%：System communication / topology 的可计算模型与硬件映射
+- 约 30%：Interconnect / Optical I/O 具体 silicon 与产品实现
+- 约 20%：Memory / Storage / Power 等其他基础设施横向补强
+- 约 15%：Evidence freshness、Validator、生成器与知识图谱质量
 
 ---
 
