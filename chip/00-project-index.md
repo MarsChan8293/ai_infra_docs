@@ -1,7 +1,7 @@
 ---
 title: "AI 芯片与硬件资料库"
 tags: [moc, chip]
-updated: 2026-09-16
+updated: 2026-10-05
 ---
 # AI 芯片与硬件资料库
 
@@ -68,11 +68,22 @@ python3 scripts/enrich-knowledge-graph.py --generated generated
 
 这里按硬件角色提供跨厂商入口，避免把 network / memory / storage / rack power 混成 accelerator SKU。
 
+互联专项入口：[[chip/interconnect/README|Interconnect / Fabric / Optical I/O]]。
+
 ### Scale-up Fabric
 
 - [[chip/NVIDIA/nvlink-5|NVIDIA NVLink 5]]
+- [[chip/NVIDIA/nvlink-5-switch|NVIDIA NVLink 5 Switch]]
 - [[chip/UALink/ualink-1-0|UALink 200G 1.0]]
+- [[chip/AMD/infinity-fabric-instinct|AMD Infinity Fabric for Instinct]]
+- [[chip/Google/tpu-ici|Google TPU ICI]]
+- [[chip/Huawei/unifiedbus-2|Huawei UnifiedBus 2.0 / 灵衢 2.0]]
 - [[chip/Broadcom/tomahawk-ultra|Broadcom Tomahawk Ultra]]
+
+### Optical I/O
+
+- [[chip/Broadcom/th6-davisson-cpo|Broadcom Tomahawk 6 Davisson CPO]]
+- [[chip/Huawei/hi-one-npo|Huawei Hi-ONE NPO]]
 
 ### Scale-out / NIC / Switch
 
