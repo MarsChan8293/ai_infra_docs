@@ -206,7 +206,7 @@ updated: 2026-10-05
 | ICN-003 | DONE | 补齐首批 Optical I/O 对象 | ICN-001 | Broadcom TH6-Davisson CPO、Huawei Hi-ONE NPO | CPO/NPO 不当协议；engine/link/switch capacity 分 scope；生命周期口径保守 | - |
 | ICN-004 | TODO | 扩展 Huawei UnifiedBus 硬件生态 | ICN-002, ICN-003 | LinkBlade、LinkDevice、UBG/SF9300、CloudEngine XH9300 NPO 等事实页 | 协议、互联设备、optical engine、switch system 分页；只收官方公开规格 | - |
 | ICN-005 | TODO | 扩展下一代与开放互联标准 | ICN-001 | NVLink 6 / NVLink 6 Switch、UEC / SUE、后续 UALink 等有直接证据的对象 | 不用 roadmap 数字冒充 GA；standard 与 silicon implementation 分离 | - |
-| ICN-006 | TODO | 生成 Interconnect 横向比较与健康度视图 | ICN-002, ICN-003, EXE-005 | generator + generated interconnect comparison | 能按 lane/link/device/switch/domain 与 electrical/optical 维度比较；未知值保持 unknown | - |
+| ICN-006 | DOING | 生成 Interconnect 横向比较与健康度视图 | ICN-002, ICN-003, EXE-005 | generator + generated interconnect comparison | 能按 lane/link/device/switch/domain 与 electrical/optical 维度比较；未知值保持 unknown | - |
 
 ---
 
