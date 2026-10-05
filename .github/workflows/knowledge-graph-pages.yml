@@ -79,6 +79,51 @@ jobs:
       - name: Build chip catalog and data-quality reports
         run: python scripts/build-chip-catalog.py --root . --output generated
 
+      - name: Build interconnect comparison and health reports
+        run: python scripts/build-interconnect-catalog.py --root . --output generated
+
+      - name: Verify interconnect scope normalization
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          records = {
+              row["id"]: row
+              for row in json.loads(Path("generated/interconnect-catalog.json").read_text())
+          }
+
+          def rates(node, scope):
+              return [r for r in records[node]["rates"] if r["scope"] == scope]
+
+          nvlink = rates("chip/NVIDIA/nvlink-5", "device")
+          assert any(r["value"] == 1800 and r["unit"] == "GB/s" for r in nvlink)
+
+          th6 = records["chip/Broadcom/th6-davisson-cpo"]
+          assert th6["optical_packaging"] == "CPO"
+          assert "optical" in th6["medium"]
+          assert any(r["value"] == 102.4 and r["unit"] == "TB/s" for r in rates("chip/Broadcom/th6-davisson-cpo", "switch"))
+          assert any(r["value"] == 6.4 and r["unit"] == "TB/s" for r in rates("chip/Broadcom/th6-davisson-cpo", "engine"))
+          assert any(r["value"] == 200 and r["unit"] == "Gb/s" for r in rates("chip/Broadcom/th6-davisson-cpo", "link"))
+
+          hi_one = records["chip/Huawei/hi-one-npo"]
+          assert hi_one["optical_packaging"] == "NPO"
+          assert any(r["value"] == 7.2 and r["unit"] == "TB/s" for r in rates("chip/Huawei/hi-one-npo", "engine"))
+
+          ici = rates("chip/Google/tpu-ici", "device")
+          assert len([r for r in ici if r["direction"] == "bidirectional"]) >= 3
+
+          for row in records.values():
+              for rate in row["rates"]:
+                  assert rate["value"] is not None
+                  assert rate["scope"] in {"lane", "link", "station", "device", "engine", "switch", "domain", "unknown"}
+
+          comparison = Path("generated/interconnect-comparison.md").read_text()
+          assert "unknown" in comparison, "missing facts must remain visibly unknown"
+
+          print("interconnect normalization verified")
+          PY
+
       - name: Build knowledge graph artifacts
         run: python scripts/build-knowledge-graph.py --root . --output generated
 
@@ -119,6 +164,8 @@ jobs:
           cp generated/graph-summary.md "$QUARTZ_DIR/content/generated/graph-summary.md"
           cp generated/chip-health.md "$QUARTZ_DIR/content/generated/chip-health.md"
           cp generated/chip-comparison.md "$QUARTZ_DIR/content/generated/chip-comparison.md"
+          cp generated/interconnect-health.md "$QUARTZ_DIR/content/generated/interconnect-health.md"
+          cp generated/interconnect-comparison.md "$QUARTZ_DIR/content/generated/interconnect-comparison.md"
 
           echo "Staged Markdown files: $(find "$QUARTZ_DIR/content" -type f -name '*.md' | wc -l)"
 

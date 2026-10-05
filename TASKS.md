@@ -42,8 +42,8 @@ updated: 2026-10-05
 | Phase 2：Serving / MoE / Training / Reliability | 13 | 13 | DONE |
 | Phase 3：Model / Hardware Expansion | 9 | 9 | DONE |
 | Phase 4：Executable Knowledge Base | 5 | 5 | DONE |
-| Phase 5：Interconnect / Optical Expansion | 3 | 6 | IN PROGRESS |
-| **合计** | **62** | **65** | **IN PROGRESS** |
+| Phase 5：Interconnect / Optical Expansion | 4 | 6 | IN PROGRESS |
+| **合计** | **63** | **65** | **IN PROGRESS** |
 
 ---
 
@@ -206,13 +206,13 @@ updated: 2026-10-05
 | ICN-003 | DONE | 补齐首批 Optical I/O 对象 | ICN-001 | Broadcom TH6-Davisson CPO、Huawei Hi-ONE NPO | CPO/NPO 不当协议；engine/link/switch capacity 分 scope；生命周期口径保守 | - |
 | ICN-004 | TODO | 扩展 Huawei UnifiedBus 硬件生态 | ICN-002, ICN-003 | LinkBlade、LinkDevice、UBG/SF9300、CloudEngine XH9300 NPO 等事实页 | 协议、互联设备、optical engine、switch system 分页；只收官方公开规格 | - |
 | ICN-005 | TODO | 扩展下一代与开放互联标准 | ICN-001 | NVLink 6 / NVLink 6 Switch、UEC / SUE、后续 UALink 等有直接证据的对象 | 不用 roadmap 数字冒充 GA；standard 与 silicon implementation 分离 | - |
-| ICN-006 | TODO | 生成 Interconnect 横向比较与健康度视图 | ICN-002, ICN-003, EXE-005 | generator + generated interconnect comparison | 能按 lane/link/device/switch/domain 与 electrical/optical 维度比较；未知值保持 unknown | - |
+| ICN-006 | DONE | 生成 Interconnect 横向比较与健康度视图 | ICN-002, ICN-003, EXE-005 | generator + generated interconnect comparison | 能按 lane/link/device/switch/domain 与 electrical/optical 维度比较；未知值保持 unknown | - |
 
 ---
 
 ## 当前实施状态
 
-截至 2026-09-25，原 Roadmap 对应的 59 个实施任务全部完成。2026-10-05 新增 Phase 5 互联专项 6 个任务，当前完成 3 个；后续继续使用稳定 Task ID 追加，不复用或重排现有 ID。
+截至 2026-09-25，原 Roadmap 对应的 59 个实施任务全部完成。2026-10-05 新增 Phase 5 互联专项 6 个任务，当前完成 4 个；后续继续使用稳定 Task ID 追加，不复用或重排现有 ID。
 
 Phase 4 已把知识库从“可读文档”推进到可重复执行链：
 
