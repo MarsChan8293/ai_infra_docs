@@ -113,10 +113,29 @@ jobs:
           ici = rates("chip/Google/tpu-ici", "device")
           assert len([r for r in ici if r["direction"] == "bidirectional"]) >= 3
 
+          linkdevice = records["chip/Huawei/unifiedbus-linkdevice"]
+          assert "optical" in linkdevice["medium"]
+          assert any(r["value"] == 1.6 and r["unit"] == "Tb/s" for r in rates("chip/Huawei/unifiedbus-linkdevice", "port"))
+          assert any(r["value"] == 280 and r["unit"] == "Tb/s" for r in rates("chip/Huawei/unifiedbus-linkdevice", "device"))
+          assert any(x["field"] == "interconnect.rtt_us" and x["value"] == 2 for x in linkdevice["latency"])
+
+          ubg = records["chip/Huawei/unifiedbus-ubg-switch"]
+          assert any(x["field"] == "interconnect.radix" and x["value"] == 1024 for x in ubg["scale"])
+          assert any(x["field"] == "interconnect.max_cluster_npus" and x["value"] == 1000000 for x in ubg["scale"])
+
+          sf9300 = records["chip/Huawei/cloudengine-sf9300"]
+          assert any(x["field"] == "interconnect.topology" for x in sf9300["topology"])
+
+          xh9300 = records["chip/Huawei/cloudengine-xh9300-npo"]
+          assert xh9300["optical_packaging"] == "NPO"
+          assert any(r["value"] == 100 and r["unit"] == "TB/s" for r in rates("chip/Huawei/cloudengine-xh9300-npo", "switch"))
+          assert any(r["value"] == 51.2 and r["unit"] == "TB/s" for r in rates("chip/Huawei/cloudengine-xh9300-npo", "switch"))
+          assert any(r["value"] == 3.2 and r["unit"] == "TB/s" for r in rates("chip/Huawei/cloudengine-xh9300-npo", "engine"))
+
           for row in records.values():
               for rate in row["rates"]:
                   assert rate["value"] is not None
-                  assert rate["scope"] in {"lane", "link", "station", "device", "engine", "switch", "domain", "unknown"}
+                  assert rate["scope"] in {"lane", "link", "port", "station", "device", "engine", "switch", "domain", "unknown"}
 
           comparison = Path("generated/interconnect-comparison.md").read_text()
           assert "unknown" in comparison, "missing facts must remain visibly unknown"
