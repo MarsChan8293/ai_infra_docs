@@ -132,6 +132,27 @@ jobs:
           assert any(r["value"] == 51.2 and r["unit"] == "TB/s" for r in rates("chip/Huawei/cloudengine-xh9300-npo", "switch"))
           assert any(r["value"] == 3.2 and r["unit"] == "TB/s" for r in rates("chip/Huawei/cloudengine-xh9300-npo", "engine"))
 
+          nvlink6 = records["chip/NVIDIA/nvlink-6"]
+          assert nvlink6["status"] == "announced"
+          assert any(r["value"] == 3000 and r["unit"] == "GB/s" for r in rates("chip/NVIDIA/nvlink-6", "device"))
+          assert any(r["value"] == 216 and r["unit"] == "TB/s" for r in rates("chip/NVIDIA/nvlink-6", "domain"))
+
+          nvlink6_switch = records["chip/NVIDIA/nvlink-6-switch"]
+          assert any(r["value"] == 3000 and r["unit"] == "GB/s" for r in rates("chip/NVIDIA/nvlink-6-switch", "device"))
+          assert any(r["value"] == 216 and r["unit"] == "TB/s" for r in rates("chip/NVIDIA/nvlink-6-switch", "domain"))
+
+          ualink2_phy = records["chip/UALink/ualink-200g-dlpl-2-0"]
+          assert any(r["value"] == 200 and r["unit"] == "Gb/s" for r in rates("chip/UALink/ualink-200g-dlpl-2-0", "lane"))
+
+          uec = records["chip/UEC/ultra-ethernet-1-0-3"]
+          assert uec["status"] == "current-catalog"
+          assert uec["object_class"] == "interconnect-standard"
+          assert not uec["rates"]
+
+          sue = records["chip/UEC/scale-up-transport-roadmap"]
+          assert sue["status"] == "roadmap"
+          assert not sue["rates"]
+
           for row in records.values():
               for rate in row["rates"]:
                   assert rate["value"] is not None
