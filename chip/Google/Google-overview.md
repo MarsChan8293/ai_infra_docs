@@ -2,7 +2,7 @@
 title: "Google TPU"
 vendor: Google
 object_type: vendor-overview
-updated: 2026-09-15
+updated: 2026-10-05
 ---
 # Google TPU
 
@@ -15,6 +15,7 @@ TPU 芯片、Cloud TPU VM、Pod/Superpod 与 ICI 网络严格分层。
 | [[chip/Google/tpu7x-ironwood|TPU7x / Ironwood]] | ga | 192GiB HBM；4 SparseCore |
 | [[chip/Google/tpu8t|TPU 8t]] | announced | 训练；FP4；216GB |
 | [[chip/Google/tpu8i|TPU 8i]] | announced | 推理/RL；CAE；288GB |
+| [[chip/Google/tpu-ici|TPU ICI]] | current-catalog | slice 内 inter-chip interconnect；代际带宽与 torus topology |
 
 ## 来源
 - https://cloud.google.com/tpu
