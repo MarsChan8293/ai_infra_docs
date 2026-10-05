@@ -73,6 +73,18 @@ Phase 5 完成后，下一阶段不应继续以“补齐更多名称”为主，
 - 约 20%：Memory / Storage / Power 等其他基础设施横向补强
 - 约 15%：Evidence freshness、Validator、生成器与知识图谱质量
 
+### Phase 6：Fabric Performance & Optical I/O Deep Dive
+
+Phase 6 不再以新增协议名称为核心，而是把现有硬件事实转成更接近系统性能分析的可执行模型：
+
+1. **Fabric effective bandwidth**：nominal / effective / observed 三层分开，显式记录 protocol efficiency、utilization、contention 和 bottleneck stage。
+2. **Path latency**：link/switch/fixed hop latency 与 software/synchronization/queueing 分离。
+3. **Collective efficiency**：由 algorithm、participant、critical-path bytes、topology mapping 和 fabric effective bandwidth 推导，不使用全局固定“效率百分比”。
+4. **Failure / degraded topology**：link/switch failure 后重建 path、hop 与 bottleneck，不用一个静态折扣系数代表故障。
+5. **Optical I/O**：CPO / NPO / LPO / pluggable 的 power、reach、laser placement、DSP path、repairability 与 switch/engine scope 分离。
+
+第一批交付为 FAB-001 / FAB-002：Fabric Performance Model 与 executable path estimator。
+
 ---
 
 # P0：建立可计算的 System 主干
