@@ -44,12 +44,25 @@ Hardware 页只记录对象本体的可验证事实；fabric bisection、oversub
 | [[chip/Huawei/unifiedbus-2|Huawei UnifiedBus 2.0 / 灵衢 2.0]] | SuperPoD interconnect standard | memory semantics；TB-class；约 2.1 μs RTT |
 | [[chip/Broadcom/tomahawk-ultra|Broadcom Tomahawk Ultra]] | scale-up Ethernet switch ASIC | 51.2 Tb/s |
 
+## Huawei UnifiedBus hardware stack
+
+| 层级 | 对象 | 公开边界 |
+|---|---|---|
+| Protocol | [[chip/Huawei/unifiedbus-2|UnifiedBus 2.0 / 灵衢 2.0]] | 总线级协议；内存语义；统一编址 |
+| Intra-cabinet | [[chip/Huawei/unifiedbus-linkblade|UnifiedBus LinkBlade]] | 柜内无电缆互联刀片 |
+| Inter-cabinet | [[chip/Huawei/unifiedbus-linkdevice|UnifiedBus LinkDevice]] | 176 ports；1.6 Tb/s per port；280 Tb/s device aggregate；全光 |
+| Inter-cluster | [[chip/Huawei/unifiedbus-ubg-switch|UnifiedBus UBG Switch]] | Radix 1024；面向百万 NPU SuperCluster |
+| Product series | [[chip/Huawei/cloudengine-sf9300|CloudEngine SF9300 UBG Series]] | two-layer multi-plane；LLR；具体 SKU 带宽未公开确认 |
+
+该分层刻意把协议、柜内部件、跨柜设备、跨集群交换层和具体产品系列拆开；不从通用 UBG 的 Radix 反推 SF9300 SKU 规格。
+
 ## Optical I/O
 
 | 对象 | 形态 | 当前重点 |
 |---|---|---|
 | [[chip/Broadcom/th6-davisson-cpo|Broadcom TH6 Davisson CPO]] | CPO switch | 102.4 Tb/s；16 × 6.4T optical engines；200G/link |
 | [[chip/Huawei/hi-one-npo|Huawei Hi-ONE NPO]] | NPO optical engine | 7.2 Tb/s / engine；内置光源 |
+| [[chip/Huawei/cloudengine-xh9300-npo|Huawei CloudEngine XH9300 NPO]] | NPO switch system | 100T / 51.2T；3.2T OE optical engine |
 
 ### CPO / NPO 不是协议
 
@@ -71,11 +84,10 @@ Hardware 页只记录对象本体的可验证事实；fabric bisection、oversub
 优先继续补：
 
 1. NVIDIA NVLink 6 / NVLink 6 Switch，按链路代际与 switch generation 分页。
-2. Huawei UnifiedBus 互联设备：LinkBlade、LinkDevice、UBG / SF9300，并与协议页分层。
-3. Huawei CloudEngine XH9300 NPO switch，区分 NPO optical engine 与完整 switch system。
-4. Broadcom TH5-Bailly、更多 CPO generation，以及 CPO / NPO / LPO 横向字段。
-5. UEC / Scale-Up Ethernet (SUE) 等开放 Ethernet fabric 标准与对应 silicon implementation。
-6. 其他厂商自研 accelerator fabric；只在有直接公开 Evidence 时建独立对象。
+2. Broadcom TH5-Bailly、更多 CPO generation，以及 CPO / NPO / LPO 横向字段。
+3. UEC / Scale-Up Ethernet (SUE) 等开放 Ethernet fabric 标准与对应 silicon implementation。
+4. Huawei UnifiedBus 后续具体 SKU：只有产品资料直接公开端口/带宽/功耗时再补，不从方案级指标反推。
+5. 其他厂商自研 accelerator fabric；只在有直接公开 Evidence 时建独立对象。
 
 ## 横向比较字段
 
@@ -95,4 +107,4 @@ Hardware 页只记录对象本体的可验证事实；fabric bisection、oversub
 - laser source placement
 - lifecycle / shipping status
 
-任何数字必须保留 lane / link / engine / device / switch / domain / rack / cluster scope。
+任何数字必须保留 lane / link / port / engine / device / switch / domain / rack / cluster scope。
