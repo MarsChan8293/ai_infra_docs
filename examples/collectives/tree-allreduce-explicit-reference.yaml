@@ -1,0 +1,11 @@
+schema_version: collective-profile-v0.1
+name: Synthetic Explicit Tree All-Reduce Reference
+description: >-
+  Synthetic explicit algorithm profile. algorithm_steps and critical_path_bytes
+  are inputs for one modeled tree implementation; they are not a universal tree formula.
+collective: all-reduce
+algorithm: tree
+participant_count: 8
+payload_bytes_per_rank: 268435456
+algorithm_steps: 6
+critical_path_bytes: 536870912

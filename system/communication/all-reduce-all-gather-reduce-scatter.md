@@ -30,7 +30,7 @@ related_layers:
   - accelerator
   - network
 evidence: {}
-updated: 2026-09-25
+updated: 2026-10-05
 tags:
   - system
   - communication
@@ -176,3 +176,14 @@ intra-domain phase
 ## 直接来源
 
 本页公式来自 collective 数据守恒与 ring baseline 的第一性原理分解，没有引入具体实现 benchmark，因此 `evidence: {}`。
+
+
+## Phase 6 可执行模型
+
+[[system/communication/collective-performance-model|Collective Performance Model]] 当前对 Ring 语义提供可执行推导：
+
+- Ring Reduce-Scatter：`N-1` sequential steps，critical-path bytes 为 `M × (N-1)/N`。
+- Ring All-Gather：`N-1` sequential steps；其中输入 payload 表示 local shard，critical-path bytes 为 `S × (N-1)`。
+- Ring All-Reduce：Reduce-Scatter + All-Gather，共 `2 × (N-1)` steps，critical-path bytes 为 `2 × M × (N-1)/N`。
+
+Tree 不使用统一数据量公式。只有明确给出具体实现的 `algorithm_steps` 与 `critical_path_bytes` 时才进入 estimator，避免把 binary tree、recursive doubling、hierarchical tree 等实现混成同一算法。
