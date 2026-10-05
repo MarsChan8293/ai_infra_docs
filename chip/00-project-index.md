@@ -62,6 +62,7 @@ python3 scripts/enrich-knowledge-graph.py --generated generated
 | d-Matrix | [[chip/d-Matrix/d-Matrix-overview|d-Matrix]] |
 | OpenAI | [[chip/openai/openai-overview|OpenAI Custom Silicon]] |
 | UALink Consortium | [[chip/UALink/UALink-overview|UALink]] |
+| Ultra Ethernet Consortium | [[chip/UEC/UEC-overview|Ultra Ethernet Consortium]] |
 
 
 ## AI Infrastructure Components
@@ -74,7 +75,12 @@ python3 scripts/enrich-knowledge-graph.py --generated generated
 
 - [[chip/NVIDIA/nvlink-5|NVIDIA NVLink 5]]
 - [[chip/NVIDIA/nvlink-5-switch|NVIDIA NVLink 5 Switch]]
+- [[chip/NVIDIA/nvlink-6|NVIDIA NVLink 6]]
+- [[chip/NVIDIA/nvlink-6-switch|NVIDIA NVLink 6 Switch]]
 - [[chip/UALink/ualink-1-0|UALink 200G 1.0]]
+- [[chip/UALink/ualink-common-2-0|UALink Common 2.0]]
+- [[chip/UALink/ualink-200g-dlpl-2-0|UALink 200G DL/PL 2.0]]
+- [[chip/UEC/scale-up-transport-roadmap|UEC Scale-Up Transport Roadmap]]
 - [[chip/AMD/infinity-fabric-instinct|AMD Infinity Fabric for Instinct]]
 - [[chip/Google/tpu-ici|Google TPU ICI]]
 - [[chip/Huawei/unifiedbus-2|Huawei UnifiedBus 2.0 / 灵衢 2.0]]
@@ -87,6 +93,7 @@ python3 scripts/enrich-knowledge-graph.py --generated generated
 
 ### Scale-out / NIC / Switch
 
+- [[chip/UEC/ultra-ethernet-1-0-3|Ultra Ethernet Specification 1.0.3]]
 - [[chip/NVIDIA/connectx-7|NVIDIA ConnectX-7]]
 - [[chip/NVIDIA/bluefield-3|NVIDIA BlueField-3 DPU]]
 - [[chip/NVIDIA/spectrum-4|NVIDIA Spectrum-4]]
