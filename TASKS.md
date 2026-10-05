@@ -43,8 +43,8 @@ updated: 2026-10-05
 | Phase 3：Model / Hardware Expansion | 9 | 9 | DONE |
 | Phase 4：Executable Knowledge Base | 5 | 5 | DONE |
 | Phase 5：Interconnect / Optical Expansion | 6 | 6 | DONE |
-| Phase 6：Fabric Performance & Optical I/O Deep Dive | 0 | 6 | IN PROGRESS |
-| **合计** | **65** | **71** | **IN PROGRESS** |
+| Phase 6：Fabric Performance & Optical I/O Deep Dive | 2 | 6 | IN PROGRESS |
+| **合计** | **67** | **71** | **IN PROGRESS** |
 
 ---
 
@@ -215,8 +215,8 @@ updated: 2026-10-05
 
 | ID | 状态 | 任务 | 依赖 | 交付物 | 验收条件 | 跟踪 |
 |---|---|---|---|---|---|---|
-| FAB-001 | DOING | 建立 Fabric Effective Bandwidth / Latency 模型 | COM-005, TOP-002, ICN-006 | `system/communication/fabric-performance-model.md` | 区分 nominal/effective/observed；显式建模 protocol/utilization/contention；多 stage bottleneck 与 latency scope 不混写 | - |
-| FAB-002 | DOING | 构建 executable Fabric Path Estimator | FAB-001, EXE-005 | `scripts/build-fabric-performance.py` + reference profile | 输入 path stages 后生成 nominal/effective bottleneck、serialization、fixed latency、P2P lower bound；未知输入保持 null | - |
+| FAB-001 | DONE | 建立 Fabric Effective Bandwidth / Latency 模型 | COM-005, TOP-002, ICN-006 | `system/communication/fabric-performance-model.md` | 区分 nominal/effective/observed；显式建模 protocol/utilization/contention；多 stage bottleneck 与 latency scope 不混写 | - |
+| FAB-002 | DONE | 构建 executable Fabric Path Estimator | FAB-001, EXE-005 | `scripts/build-fabric-performance.py` + reference profile | 输入 path stages 后生成 nominal/effective bottleneck、serialization、fixed latency、P2P lower bound；未知输入保持 null | - |
 | FAB-003 | TODO | 建立 Collective Efficiency 可执行模型 | FAB-001, FAB-002, COM-001 | collective algorithm profiles + estimator extension | Ring/Tree/All-to-All 等算法的 steps、critical-path bytes、effective BW 口径可追溯，不用固定经验效率 | - |
 | FAB-004 | TODO | 建立 Fabric Failure / Retry / Degraded Topology 模型 | FAB-001, REL-002 | reliability model + degraded path cases | retry/recovery/reroute/partial-rack 分开；故障后重新计算 path，不用固定故障折扣 | - |
 | OPT-001 | TODO | 建立 Optical I/O Power / Reach / Repairability 模型 | ICN-003, FAB-001 | optical system model | CPO/NPO/LPO/pluggable 分 packaging；power/reach/laser/DSP/repairability 有明确 scope | - |
@@ -226,7 +226,7 @@ updated: 2026-10-05
 
 ## 当前实施状态
 
-截至 2026-10-05，Phase 0–5 的 65 个任务已全部完成。Phase 6 新增 6 个 Fabric Performance / Optical I/O 深化任务，当前从 FAB-001 / FAB-002 开始实施；后续继续使用稳定 Task ID 追加，不复用或重排现有 ID。
+截至 2026-10-05，Phase 0–5 的 65 个任务已全部完成。Phase 6 新增 6 个 Fabric Performance / Optical I/O 深化任务，当前已完成 FAB-001 / FAB-002；后续继续使用稳定 Task ID 追加，不复用或重排现有 ID。
 
 Phase 4 已把知识库从“可读文档”推进到可重复执行链：
 
