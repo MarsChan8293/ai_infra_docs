@@ -36,7 +36,7 @@ related_layers:
   - accelerator
   - network
 evidence: {}
-updated: 2026-09-25
+updated: 2026-10-05
 tags:
   - system
   - communication
@@ -146,6 +146,8 @@ T
 - critical path 由算法和 placement 决定。
 
 这个式子是建模骨架，不意味着所有 collective 都能被一个 alpha/beta 参数精确描述。
+
+可执行的 algorithm decomposition 见 [[system/communication/collective-performance-model|Collective Performance Model]]。该模型不会维护跨算法通用的固定 collective efficiency，而是保留 steps、critical-path bytes、bandwidth source 与 step latency source。
 
 ## Participant Count
 

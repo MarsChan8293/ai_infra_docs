@@ -110,6 +110,91 @@ jobs:
           print("fabric performance reference verified")
           PY
 
+      - name: Build collective performance references
+        run: |
+          python scripts/build-collective-performance.py \
+            --input examples/collectives/ring-allreduce-reference.yaml \
+            --fabric-profile generated/executable/fabric-reference.json \
+            --output generated/executable/collective-ring-allreduce-reference.json \
+            --markdown-output system/derived/collective-ring-allreduce-reference.md
+
+          python scripts/build-collective-performance.py \
+            --input examples/collectives/tree-allreduce-explicit-reference.yaml \
+            --fabric-profile generated/executable/fabric-reference.json \
+            --output generated/executable/collective-tree-explicit-reference.json
+
+          python scripts/build-collective-performance.py \
+            --input examples/collectives/alltoall-explicit-reference.yaml \
+            --output generated/executable/collective-alltoall-explicit-reference.json
+
+      - name: Verify collective performance references
+        run: |
+          python - <<'PY'
+          import json
+          import math
+          from pathlib import Path
+
+          ring = json.loads(
+              Path("generated/executable/collective-ring-allreduce-reference.json").read_text()
+          )
+          m = ring["metrics"]
+          s = ring["sources"]
+
+          assert ring["collective"] == "all-reduce"
+          assert ring["algorithm"] == "ring"
+          assert ring["participant_count"] == 8
+          assert m["algorithm_steps"] == 14
+          assert m["critical_path_bytes"] == 469_762_048
+          assert math.isclose(m["algorithmic_traffic_factor"], 1.75)
+          assert math.isclose(m["effective_bandwidth_gbps"], 1368.0)
+          assert math.isclose(m["step_latency_ns"], 750.0)
+          assert math.isclose(m["serialization_seconds"], 0.0027471464795321638)
+          assert math.isclose(m["step_latency_seconds"], 0.0000105)
+          assert math.isclose(
+              m["collective_time_lower_bound_seconds"],
+              0.002757646479532164,
+          )
+          assert s["steps_source"] == "derived-ring"
+          assert s["critical_path_bytes_source"] == "derived-ring"
+          assert s["effective_bandwidth_source"] == "fabric-profile-effective-path"
+          assert s["step_latency_source"] == "fabric-profile-fixed-path"
+          assert ring["unknowns"] == []
+
+          tree = json.loads(
+              Path("generated/executable/collective-tree-explicit-reference.json").read_text()
+          )
+          tm = tree["metrics"]
+          ts = tree["sources"]
+          assert tree["algorithm"] == "tree"
+          assert tm["algorithm_steps"] == 6
+          assert tm["critical_path_bytes"] == 536_870_912
+          assert ts["steps_source"] == "explicit"
+          assert ts["critical_path_bytes_source"] == "explicit"
+          assert ts["effective_bandwidth_source"] == "fabric-profile-effective-path"
+
+          a2a = json.loads(
+              Path("generated/executable/collective-alltoall-explicit-reference.json").read_text()
+          )
+          am = a2a["metrics"]
+          ass = a2a["sources"]
+          assert a2a["collective"] == "all-to-all"
+          assert a2a["algorithm"] == "direct"
+          assert math.isclose(
+              a2a["algorithm_details"]["uniform_network_send_bytes_per_rank"],
+              234_881_024,
+          )
+          assert am["algorithm_steps"] == 1
+          assert am["critical_path_bytes"] == 234_881_024
+          assert math.isclose(am["effective_bandwidth_gbps"], 900.0)
+          assert math.isclose(am["step_latency_ns"], 1200.0)
+          assert ass["effective_bandwidth_source"] == "explicit-collective"
+          assert ass["step_latency_source"] == "explicit"
+          assert a2a["fabric_profile"] is None
+          assert a2a["unknowns"] == []
+
+          print("collective performance references verified")
+          PY
+
       - name: Validate Chip Schema V0.2
         run: python scripts/validate-chip.py --root . --report generated/chip-validation.json
 

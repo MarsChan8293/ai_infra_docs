@@ -1,0 +1,14 @@
+schema_version: collective-profile-v0.1
+name: Synthetic Uniform All-to-All Reference
+description: >-
+  Synthetic CI reference. The collective bandwidth is an explicit topology-aware
+  modeling input and is not inferred from the P2P fabric profile.
+collective: all-to-all
+algorithm: direct
+participant_count: 8
+payload_bytes_per_rank: 268435456
+uniform_partition: true
+algorithm_steps: 1
+critical_path_bytes: 234881024
+collective_effective_bandwidth_gbps: 900
+step_latency_ns: 1200
